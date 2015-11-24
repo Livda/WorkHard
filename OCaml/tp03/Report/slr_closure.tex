@@ -1,0 +1,128 @@
+\begin{table}[!ht]
+  \hspace{-1.4cm}
+  \begin{minipage}[t]{.4\linewidth}
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+      \hline
+      GOTO & Kernel & State & Closure\\
+      \hline
+      &	\{I $\Rightarrow$ .id $\leftarrow$ E\} & 0 & \{I $\Rightarrow$ .id $\leftarrow$ E\}\\
+      \hline
+      goto(0, id)	& \{I $\Rightarrow$ id.$\leftarrow$ E\} &	1	&	\{I $\Rightarrow$ id.$\leftarrow$ E\}\\
+      \hline
+      \multirow{6}{*}{goto(1, $\leftarrow$)} & \multirow{6}{*}{\{I $\Rightarrow$ id $\leftarrow$.E\}} & \multirow{6}{*}{2} & \{I $\Rightarrow$ id $\leftarrow$.E;\\
+      & & & E $\Rightarrow$ .E + E;\\
+      & & & E $\Rightarrow$ .E $<$ E;\\
+      & & & E $\Rightarrow$ .E and E;\\
+      & & & E $\Rightarrow$ .( E );\\
+      & & & E $\Rightarrow$ .id\}\\
+      \hline
+      \multirow{4}{*}{goto(2, E)} & \{I $\Rightarrow$ id $\leftarrow$ E.; & \multirow{4}{*}{3} & \{I $\Rightarrow$ id $\leftarrow$ E.;\\
+      & E $\Rightarrow$ E.+ E; & & E $\Rightarrow$ E.+ E; \\
+      & E $\Rightarrow$ E.$<$ E; & & E $\Rightarrow$ E.$<$ E; \\
+      & E $\Rightarrow$ E.and E\} & & E $\Rightarrow$ E.and E\} \\
+      \hline
+      \multirow{6}{*}{goto(2, ()} & \multirow{6}{*}{\{E $\Rightarrow$ (.E )\}} & \multirow{6}{*}{4}	& \{E $\Rightarrow$ (.E );\\
+      & & & E $\Rightarrow$ .E + E;\\
+      & & & E $\Rightarrow$ .E $<$ E;\\
+      & & & E $\Rightarrow$ .E and E; \\
+      & & & E $\Rightarrow$ .( E );\\
+      & & & E $\Rightarrow$ .id\}\\
+      \hline
+      goto(2, id) & \{E $\Rightarrow$ id.\} & 5 & \{E $\Rightarrow$ id.\}\\
+      \hline
+      \multirow{5}{*}{goto(3, +)} & \multirow{5}{*}{\{E $\Rightarrow$ E +.E\}}	& \multirow{5}{*}{6}	& \{E $\Rightarrow$ E +.E; \\
+      & & & E $\Rightarrow$ .E + E; \\
+      & & & E $\Rightarrow$ .E $<$ E; \\
+      & & & E $\Rightarrow$ .E and E; \\
+      & & & E $\Rightarrow$ .( E ); \\
+      & & & E $\Rightarrow$ .id\}\\
+      \hline
+      \multirow{6}{*}{goto(3, $<$)} & \multirow{6}{*}{\{E $\Rightarrow$ E $<$.E\}}	& \multirow{6}{*}{7}	& \{E $\Rightarrow$ E $<$.E; \\
+      & & & E $\Rightarrow$ .E + E; \\
+      & & & E $\Rightarrow$ .E $<$ E; \\
+      & & & E $\Rightarrow$ .E and E; \\
+      & & & E $\Rightarrow$ .( E ); \\
+      & & & E $\Rightarrow$ .id\}\\
+      \hline
+      \multirow{6}{*}{goto(3, and)} & \multirow{6}{*}{\{E $\Rightarrow$ E and.E\}}	& \multirow{6}{*}{8}	& \{E $\Rightarrow$ E and.E; \\
+      & & & E $\Rightarrow$ .E + E; \\
+      & & & E $\Rightarrow$ .E $<$ E; \\
+      & & & E $\Rightarrow$ .E and E; \\
+      & & & E $\Rightarrow$ .( E ); \\
+      & & & E $\Rightarrow$ .id\}\\
+      \hline
+    \end{tabular}
+  \end{minipage}
+  \hspace{3cm}
+  \begin{minipage}[t]{.4\linewidth}
+    \begin{tabular}{|c|c|c|c|}
+      \hline
+      GOTO & Kernel & State & Closure\\
+      \hline
+      \multirow{4}{*}{goto(4, E)} & \{E $\Rightarrow$ ( E.); & \multirow{4}{*}{9}	& \{E $\Rightarrow$ ( E.); \\
+      & E $\Rightarrow$ E.+ E; & & E $\Rightarrow$ E.+ E; \\
+      & E $\Rightarrow$ E.$<$ E; & & E $\Rightarrow$ E.$<$ E; \\
+      & E $\Rightarrow$ E.and E\} & & E $\Rightarrow$ E.and E\}\\
+      \hline
+      goto(4, ()	& \{E $\Rightarrow$ (.E )\}	& 4	& \\
+      \hline
+      goto(4, id)	& \{E $\Rightarrow$ id.\} & 5 & \\
+      \hline
+      \multirow{4}{*}{goto(6, E)} & \{E $\Rightarrow$ E + E.; & \multirow{4}{*}{10}	& \{E $\Rightarrow$ E + E.; \\
+      & E $\Rightarrow$ E.+ E; & & E $\Rightarrow$ E.+ E; \\
+      & E $\Rightarrow$ E.$<$ E; & & E $\Rightarrow$ E.$<$ E; \\
+      & E $\Rightarrow$ E.and E\} & & E $\Rightarrow$ E.and E\} \\
+      \hline
+      goto(6, () & \{E $\Rightarrow$ (.E )\}	& 4 & \\
+      \hline
+      goto(6, id)	& \{E $\Rightarrow$ id.\} & 5 & \\
+      \hline
+      \multirow{4}{*}{goto(7, E)} & \{E $\Rightarrow$ E $<$ E.; & \multirow{4}{*}{11} & \{E $\Rightarrow$ E $<$ E.; \\
+      & E $\Rightarrow$ E.+ E; & & E $\Rightarrow$ E.+ E; \\
+      & E $\Rightarrow$ E.$<$ E; & & E $\Rightarrow$ E.$<$ E; \\
+      & E $\Rightarrow$ E.and E\}	& & E $\Rightarrow$ E.and E\} \\
+      \hline
+      goto(7, () & \{E $\Rightarrow$ (.E )\}	& 4 & \\
+      \hline
+      goto(7, id)	& \{E $\Rightarrow$ id.\} & 5 & \\
+      \hline
+      \multirow{4}{*}{goto(8, E)} & \{E $\Rightarrow$ E and E.; & \multirow{4}{*}{12} & \{E $\Rightarrow$ E and E.; \\
+      & E $\Rightarrow$ E.+ E; & & E $\Rightarrow$ E.+ E; \\
+      & E $\Rightarrow$ E.$<$ E; & & E $\Rightarrow$ E.$<$ E; \\
+      & E $\Rightarrow$ E.and E\}	& & E $\Rightarrow$ E.and E\} \\
+      \hline
+      goto(8, () & \{E $\Rightarrow$ (.E )\}	& 4 & \\
+      \hline
+      goto(8, id)	& \{E $\Rightarrow$ id.\} & 5 & \\
+      \hline
+      goto(9, )) & \{E $\Rightarrow$ ( E ).\} & 13	& \{E $\Rightarrow$ ( E ).\} \\
+      \hline
+      goto(9, +) & \{E $\Rightarrow$ E +.E\}	& 6 & \\
+      \hline
+      goto(9, $<$) & \{E $\Rightarrow$ E $<$.E\}	& 7 & \\
+      \hline
+      goto(9, and) & \{E $\Rightarrow$ E and.E\}	& 8 & \\
+      \hline
+      goto(10, +)	& \{E $\Rightarrow$ E +.E\} & 6 & \\
+      \hline
+      goto(10, $<$)	& \{E $\Rightarrow$ E $<$.E\} & 7 & \\
+      \hline
+      goto(10, and)	& \{E $\Rightarrow$ E and.E\} & 8 & \\
+      \hline
+      goto(11, +)	& \{E $\Rightarrow$ E +.E\} & 6 & \\
+      \hline
+      goto(11, $<$)	& \{E $\Rightarrow$ E $<$.E\} & 7 & \\
+      \hline
+      goto(11, and)	& \{E $\Rightarrow$ E and.E\} & 8 & \\
+      \hline
+      goto(12, +)	& \{E $\Rightarrow$ E +.E\} & 6 & \\
+      \hline
+      goto(12, $<$)	& \{E $\Rightarrow$ E $<$.E\} & 7 & \\
+      \hline
+      goto(12, and)	& \{E $\Rightarrow$ E and.E\} & 8 & \\
+      \hline
+    \end{tabular}
+  \end{minipage}
+  \caption{SLR closure table}
+\end{table}

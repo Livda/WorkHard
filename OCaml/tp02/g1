@@ -1,0 +1,20 @@
+({et, ou, eq, dif, <, >, supeq, infeq, ident, pouv, pfer, si, alors, sinon, fsi},
+{Expr, Termb, OU, ET, Facteurb, Relation, Op}, Expr,
+      {
+	Expr -> Termb OU,
+	OU -> ou Termb OU,
+	OU -> ,
+	Termb -> Facteurb ET,
+	ET -> et Facteurb ET,
+	ET -> ,
+	Facteurb -> Relation,
+	Facteurb -> pouv Expr pfer,
+	Facteurb -> si Expr alors Expr sinon Expr fsi,
+	Relation -> ident Op ident,
+	Op -> eq,
+	Op -> dif,
+	Op -> <,
+	Op -> >,
+	Op -> infeq,
+	Op -> supeq
+	} )

@@ -1,0 +1,112 @@
+\documentclass{rapport}
+\author{Aurélien Fontaine\\Damien Duvacher}
+\title{Compilation : Compte Rendu TP3}
+\begin{document}
+
+    \maketitle
+
+    \chapter{Préparation du TP}
+    Après avoir supprimé les règles 15 et 16 car elles ne concernent pas
+    l'analyse syntaxique, nous obtenons la grammaire suivante à partir de
+    la ligne 9:
+
+    \verbatiminput{grammar}
+
+    A partir de cette grammaire nous avons fait sa clôture SLR
+    (voir chapitre \ref{slr_closure} page \pageref{slr_closure}).
+    Puis nous avons obtenu cette table SLR en faisant attention aux conflits :
+    \input{slr_table}
+
+    \chapter{Code du TP}-
+
+    Voici les différents fichiers que nous avons développés pour ce TP.
+
+    \section{parser.ml}
+    \verbatiminput{../parser.mly}
+
+    \section{lexer.mll}
+    \verbatiminput{../lexer.mll}
+
+    \section{main.ml}
+    \verbatiminput{../main.ml}
+
+    \section{type.ml}
+    \verbatiminput{../type.ml}
+
+    \chapter{Tests effectués}
+
+    \section{Tests validé}
+    \begin{multicols}{2}
+    Voici le jeu de test avec tous les tokens d'utilisés :
+    \verbatiminput{../test1}
+    \vspace{5pt}
+    \setlength{\columnseprule}{0.5pt}
+    Qui a donné les résultats suivants :
+    \verbatiminput{../res1}
+    \end{multicols}
+
+    \section{Tests sur les balises BEGIN et END}
+    \begin{multicols}{2}
+        Voici le jeu de test pour la balise  "begin" :
+        \verbatiminput{../test2}
+
+        Qui a donné les résultats suivants :
+        \verbatiminput{../res2}
+
+        \setlength{\columnseprule}{0.5pt}
+
+        Voici le jeu de test pour la balise "end" :
+        \verbatiminput{../test3}
+
+        Qui a donné les résultats suivants :
+        \verbatiminput{../res3}
+    \end{multicols}
+
+    \newpage
+    \section{Tests sur les types}
+    \begin{multicols}{2}
+        Voici le jeu de test pour les entiers :
+        \verbatiminput{../test4}
+        Qui a donné les résultats suivants :
+        \verbatiminput{../res4}
+        \setlength{\columnseprule}{0.5pt}
+        Voici le jeu de test pour les booléens :
+        \verbatiminput{../test5}
+        Qui a donné les résultats suivants :
+        \verbatiminput{../res5}
+    \end{multicols}
+
+    \section{Tests sur la ponctuation}
+    \begin{multicols}{2}
+        Voici le premier jeu de test sur la ponctuation dans les déclarations :
+        \verbatiminput{../test6}
+        Qui a donné les résultats suivants :
+        \verbatiminput{../res6}
+        Voici le second jeu de test sur la ponctuation dans les déclarations :
+        \verbatiminput{../test7}
+        Qui a donné les résultats suivants :
+        \verbatiminput{../res7}
+        \setlength{\columnseprule}{0.5pt}
+        Voici le premier jeu de test sur la ponctuation dans les instructions :
+        \verbatiminput{../test8}
+        Qui a donné les résultats suivants :
+        \verbatiminput{../res8}
+        Voici le second jeu de test sur la ponctuation dans les instructions :
+        \verbatiminput{../test9}
+        Qui a donné les résultats suivants :
+        \verbatiminput{../res9}
+    \end{multicols}
+
+    \section{Test sur les affectations}
+    Voici le jeu de test pour les affectations :
+    \verbatiminput{../test10}
+    Qui a donné les résultats suivants :
+    \verbatiminput{../res10}
+
+    \appendix
+    \chapter{SLR Closure Table}
+    \label{slr_closure}
+    \input{slr_closure}
+
+
+\end{document}

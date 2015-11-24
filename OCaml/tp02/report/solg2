@@ -1,0 +1,24 @@
+Grammar is well-formed
+
+Equations
+Null(B) = ((false) \/ (true)) \/ (false)
+Null(A) = (((false) \/ (true)) \/ (false)) \/ ((Null(B)) /\ (true))
+First(B) = (({ }) \/ ({ })) \/ ({ b })
+First(A) = ((({ }) \/ ({ })) \/ ({ a })) \/ ((First(B)) \/
+  ((Null(B)) => ({ })))
+Follow(B) = ({ }) \/ (({ }) \/ ((true) => (Follow(A))))
+Follow(A) = { }
+
+Solutions
+Null(B) = true
+Null(A) = true
+First(B) = { b }
+First(A) = { a b }
+Follow(B) = { }
+Follow(A) = { }
+
+The grammar is LL1
+Input a string:
+Warning : exception Failure("Main.MyLexer.token : use Lexer.token of TP1")
+was raised after reading 0 tokens
+Failure("No derivation")

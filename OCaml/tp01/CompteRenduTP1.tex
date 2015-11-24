@@ -1,0 +1,47 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage{ucs}
+\usepackage{graphicx, moreverb}
+\author{Aurélien Fontaine}
+\title{Compilation : Compte Rendu TP1}
+\begin{document}
+	
+	\maketitle
+	
+	\section{Questions de compréhension du TP}
+	
+	\paragraph{Question 1.1} \textit{Quel est l'intérêt d'avoir un crible séparé dans l'analyse lexical ?}
+	
+	Le crible est séparé afin d'avoir un analyseur plus générique et plus facilement compréhensible/maintenable.
+	
+	\paragraph{Question 1.2} \textit{Est-il possible de reconnaître les mots-clés "et" et "ou" par le même lexème que "ident". Quel est l'impact sur l'AFD généré par OCAMLLEX ? Quel est l'impact sur le crible ?}
+	
+	On peut mais c'est perdre la puissance de OCAMLLEX. On devra retraiter les sous chaines pour savoir si l'on a trouvé les mots-clés "et" et "ou". Le crible lui se retouve simplifié.
+	
+	\paragraph{Question 1.3} \textit{Quels sont les intérêts d'utiliser les types énumérés en OCAML ?}
+	
+	On peut définir précisément chacun des types ainsi on évite les erreurs de typage.
+	
+	\paragraph{Question 1.4} \textit{Quel est l'intérêt d'un scanner incrémental qui rend un lexème à la demande (fonction générée par \emph{Lexer.token}), par rapport à un scanner qui rend la liste des lexèmes du programme ?}
+	
+	Cela simplifie le code à générer et on peut plus facilement récupérer et traiter les erreurs.
+	
+	\paragraph{Question 1.5} \textit{Pourquoi ident est-il considéré comme un terminal et non pas un non-terminal ?}
+	
+	Il n'a pas d'autre sens que celui d'être une unité lexicale. C'est donc un terminal et non un identificateur quelconque.
+	
+	\paragraph{Question 1.6} \textit{On souhaite ajouter au langage précédent : une conditionnelle ainsi qure deux opérateurs de comparaison. Quelles sont les modifications à apporter à votre analyseur lexical afin de prendre en compte l'extension du langage ?}
+	
+	Il faut qu'il reconnaisse de nouveaux tokens. Ces tokens sont "<=", ">=", "si", "alors" et "sinon". Il faut aussi étendre l'analyseur pour reconnaitre le nouveau schema de la conditionnelle.
+	
+	\section{Code de l'analyseur}
+	
+	\subsection{Code de lexer.mll}
+	
+	\verbatimtabinput[3]{lexer.mll}
+	
+	\subsection{Code de ulex.ml}
+	
+	\verbatimtabinput[3]{ulex.ml}
+	
+\end{document}

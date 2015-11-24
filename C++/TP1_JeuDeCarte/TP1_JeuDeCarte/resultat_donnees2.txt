@@ -1,0 +1,1626 @@
+Les paquets de depart sont :
+Paquet de N :
+valet de carreau (11, 4)
+dix de carreau (10, 4)
+neuf de carreau (9, 4)
+sept de carreau (7, 4)
+cinq de carreau (5, 4)
+quatre de carreau (4, 4)
+trois de carreau (3, 4)
+deux de carreau (2, 4)
+as de carreau (1, 4)
+dame de coeur (12, 3)
+valet de coeur (11, 3)
+sept de coeur (7, 3)
+cinq de coeur (5, 3)
+trois de coeur (3, 3)
+deux de coeur (2, 3)
+roi de trefle (13, 2)
+valet de trefle (11, 2)
+neuf de trefle (9, 2)
+huit de trefle (8, 2)
+six de trefle (6, 2)
+deux de trefle (2, 2)
+dame de pique (12, 1)
+dix de pique (10, 1)
+huit de pique (8, 1)
+cinq de pique (5, 1)
+trois de pique (3, 1)
+
+Paquet de S :
+roi de carreau (13, 4)
+dame de carreau (12, 4)
+huit de carreau (8, 4)
+six de carreau (6, 4)
+roi de coeur (13, 3)
+dix de coeur (10, 3)
+neuf de coeur (9, 3)
+huit de coeur (8, 3)
+six de coeur (6, 3)
+quatre de coeur (4, 3)
+as de coeur (1, 3)
+dame de trefle (12, 2)
+dix de trefle (10, 2)
+sept de trefle (7, 2)
+cinq de trefle (5, 2)
+quatre de trefle (4, 2)
+trois de trefle (3, 2)
+as de trefle (1, 2)
+roi de pique (13, 1)
+valet de pique (11, 1)
+neuf de pique (9, 1)
+sept de pique (7, 1)
+six de pique (6, 1)
+quatre de pique (4, 1)
+deux de pique (2, 1)
+as de pique (1, 1)
+
+Boucle principale
+Carte de N :valet de carreau (11, 4)
+Carte de S :roi de carreau (13, 4)
+
+
+ S gagne les cartes :
+valet de carreau (11, 4)
+roi de carreau (13, 4)
+
+----
+Carte de N :dix de carreau (10, 4)
+Carte de S :dame de carreau (12, 4)
+
+
+ S gagne les cartes :
+dix de carreau (10, 4)
+dame de carreau (12, 4)
+
+----
+Carte de N :neuf de carreau (9, 4)
+Carte de S :huit de carreau (8, 4)
+
+
+ N gagne les cartes :
+huit de carreau (8, 4)
+neuf de carreau (9, 4)
+
+----
+Carte de N :sept de carreau (7, 4)
+Carte de S :six de carreau (6, 4)
+
+
+ N gagne les cartes :
+six de carreau (6, 4)
+sept de carreau (7, 4)
+
+----
+Carte de N :cinq de carreau (5, 4)
+Carte de S :roi de coeur (13, 3)
+
+
+ S gagne les cartes :
+cinq de carreau (5, 4)
+roi de coeur (13, 3)
+
+----
+Carte de N :quatre de carreau (4, 4)
+Carte de S :dix de coeur (10, 3)
+
+
+ S gagne les cartes :
+quatre de carreau (4, 4)
+dix de coeur (10, 3)
+
+----
+Carte de N :trois de carreau (3, 4)
+Carte de S :neuf de coeur (9, 3)
+
+
+ S gagne les cartes :
+trois de carreau (3, 4)
+neuf de coeur (9, 3)
+
+----
+Carte de N :deux de carreau (2, 4)
+Carte de S :huit de coeur (8, 3)
+
+
+ S gagne les cartes :
+deux de carreau (2, 4)
+huit de coeur (8, 3)
+
+----
+Carte de N :as de carreau (1, 4)
+Carte de S :six de coeur (6, 3)
+
+
+ S gagne les cartes :
+as de carreau (1, 4)
+six de coeur (6, 3)
+
+----
+Carte de N :dame de coeur (12, 3)
+Carte de S :quatre de coeur (4, 3)
+
+
+ N gagne les cartes :
+quatre de coeur (4, 3)
+dame de coeur (12, 3)
+
+----
+Carte de N :valet de coeur (11, 3)
+Carte de S :as de coeur (1, 3)
+
+
+ N gagne les cartes :
+as de coeur (1, 3)
+valet de coeur (11, 3)
+
+----
+Carte de N :sept de coeur (7, 3)
+Carte de S :dame de trefle (12, 2)
+
+
+ S gagne les cartes :
+sept de coeur (7, 3)
+dame de trefle (12, 2)
+
+----
+Carte de N :cinq de coeur (5, 3)
+Carte de S :dix de trefle (10, 2)
+
+
+ S gagne les cartes :
+cinq de coeur (5, 3)
+dix de trefle (10, 2)
+
+----
+Carte de N :trois de coeur (3, 3)
+Carte de S :sept de trefle (7, 2)
+
+
+ S gagne les cartes :
+trois de coeur (3, 3)
+sept de trefle (7, 2)
+
+----
+Carte de N :deux de coeur (2, 3)
+Carte de S :cinq de trefle (5, 2)
+
+
+ S gagne les cartes :
+deux de coeur (2, 3)
+cinq de trefle (5, 2)
+
+----
+Carte de N :roi de trefle (13, 2)
+Carte de S :quatre de trefle (4, 2)
+
+
+ N gagne les cartes :
+quatre de trefle (4, 2)
+roi de trefle (13, 2)
+
+----
+Carte de N :valet de trefle (11, 2)
+Carte de S :trois de trefle (3, 2)
+
+
+ N gagne les cartes :
+trois de trefle (3, 2)
+valet de trefle (11, 2)
+
+----
+Carte de N :neuf de trefle (9, 2)
+Carte de S :as de trefle (1, 2)
+
+
+ N gagne les cartes :
+as de trefle (1, 2)
+neuf de trefle (9, 2)
+
+----
+Carte de N :huit de trefle (8, 2)
+Carte de S :roi de pique (13, 1)
+
+
+ S gagne les cartes :
+huit de trefle (8, 2)
+roi de pique (13, 1)
+
+----
+Carte de N :six de trefle (6, 2)
+Carte de S :valet de pique (11, 1)
+
+
+ S gagne les cartes :
+six de trefle (6, 2)
+valet de pique (11, 1)
+
+----
+Carte de N :deux de trefle (2, 2)
+Carte de S :neuf de pique (9, 1)
+
+
+ S gagne les cartes :
+deux de trefle (2, 2)
+neuf de pique (9, 1)
+
+----
+Carte de N :dame de pique (12, 1)
+Carte de S :sept de pique (7, 1)
+
+
+ N gagne les cartes :
+sept de pique (7, 1)
+dame de pique (12, 1)
+
+----
+Carte de N :dix de pique (10, 1)
+Carte de S :six de pique (6, 1)
+
+
+ N gagne les cartes :
+six de pique (6, 1)
+dix de pique (10, 1)
+
+----
+Carte de N :huit de pique (8, 1)
+Carte de S :quatre de pique (4, 1)
+
+
+ N gagne les cartes :
+quatre de pique (4, 1)
+huit de pique (8, 1)
+
+----
+Carte de N :cinq de pique (5, 1)
+Carte de S :deux de pique (2, 1)
+
+
+ N gagne les cartes :
+deux de pique (2, 1)
+cinq de pique (5, 1)
+
+----
+Carte de N :trois de pique (3, 1)
+Carte de S :as de pique (1, 1)
+
+
+ N gagne les cartes :
+as de pique (1, 1)
+trois de pique (3, 1)
+
+----
+Carte de N :huit de carreau (8, 4)
+Carte de S :valet de carreau (11, 4)
+
+
+ S gagne les cartes :
+huit de carreau (8, 4)
+valet de carreau (11, 4)
+
+----
+Carte de N :neuf de carreau (9, 4)
+Carte de S :roi de carreau (13, 4)
+
+
+ S gagne les cartes :
+neuf de carreau (9, 4)
+roi de carreau (13, 4)
+
+----
+Carte de N :six de carreau (6, 4)
+Carte de S :dix de carreau (10, 4)
+
+
+ S gagne les cartes :
+six de carreau (6, 4)
+dix de carreau (10, 4)
+
+----
+Carte de N :sept de carreau (7, 4)
+Carte de S :dame de carreau (12, 4)
+
+
+ S gagne les cartes :
+sept de carreau (7, 4)
+dame de carreau (12, 4)
+
+----
+Carte de N :quatre de coeur (4, 3)
+Carte de S :cinq de carreau (5, 4)
+
+
+ S gagne les cartes :
+quatre de coeur (4, 3)
+cinq de carreau (5, 4)
+
+----
+Carte de N :dame de coeur (12, 3)
+Carte de S :roi de coeur (13, 3)
+
+
+ S gagne les cartes :
+dame de coeur (12, 3)
+roi de coeur (13, 3)
+
+----
+Carte de N :as de coeur (1, 3)
+Carte de S :quatre de carreau (4, 4)
+
+
+ S gagne les cartes :
+as de coeur (1, 3)
+quatre de carreau (4, 4)
+
+----
+Carte de N :valet de coeur (11, 3)
+Carte de S :dix de coeur (10, 3)
+
+
+ N gagne les cartes :
+dix de coeur (10, 3)
+valet de coeur (11, 3)
+
+----
+Carte de N :quatre de trefle (4, 2)
+Carte de S :trois de carreau (3, 4)
+
+
+ N gagne les cartes :
+trois de carreau (3, 4)
+quatre de trefle (4, 2)
+
+----
+Carte de N :roi de trefle (13, 2)
+Carte de S :neuf de coeur (9, 3)
+
+
+ N gagne les cartes :
+neuf de coeur (9, 3)
+roi de trefle (13, 2)
+
+----
+Carte de N :trois de trefle (3, 2)
+Carte de S :deux de carreau (2, 4)
+
+
+ N gagne les cartes :
+deux de carreau (2, 4)
+trois de trefle (3, 2)
+
+----
+Carte de N :valet de trefle (11, 2)
+Carte de S :huit de coeur (8, 3)
+
+
+ N gagne les cartes :
+huit de coeur (8, 3)
+valet de trefle (11, 2)
+
+----
+Carte de N :as de trefle (1, 2)
+Carte de S :as de carreau (1, 4)
+
+** bataille ** 
+Carte de N :sept de pique (7, 1)
+Carte de S :sept de coeur (7, 3)
+** bataille ** 
+Carte de N :six de pique (6, 1)
+Carte de S :cinq de coeur (5, 3)
+
+ N gagne les cartes :
+as de carreau (1, 4)
+as de trefle (1, 2)
+
+six de coeur (6, 3)
+neuf de trefle (9, 2)
+
+sept de coeur (7, 3)
+sept de pique (7, 1)
+
+dame de trefle (12, 2)
+dame de pique (12, 1)
+
+cinq de coeur (5, 3)
+six de pique (6, 1)
+
+----
+Carte de N :dix de pique (10, 1)
+Carte de S :dix de trefle (10, 2)
+
+** bataille ** 
+Carte de N :huit de pique (8, 1)
+Carte de S :sept de trefle (7, 2)
+
+ N gagne les cartes :
+dix de trefle (10, 2)
+dix de pique (10, 1)
+
+trois de coeur (3, 3)
+quatre de pique (4, 1)
+
+sept de trefle (7, 2)
+huit de pique (8, 1)
+
+----
+Carte de N :deux de pique (2, 1)
+Carte de S :deux de coeur (2, 3)
+
+** bataille ** 
+Carte de N :as de pique (1, 1)
+Carte de S :huit de trefle (8, 2)
+
+ S gagne les cartes :
+deux de pique (2, 1)
+deux de coeur (2, 3)
+
+cinq de pique (5, 1)
+cinq de trefle (5, 2)
+
+as de pique (1, 1)
+huit de trefle (8, 2)
+
+----
+Carte de N :trois de pique (3, 1)
+Carte de S :roi de pique (13, 1)
+
+
+ S gagne les cartes :
+trois de pique (3, 1)
+roi de pique (13, 1)
+
+----
+Carte de N :dix de coeur (10, 3)
+Carte de S :six de trefle (6, 2)
+
+
+ N gagne les cartes :
+six de trefle (6, 2)
+dix de coeur (10, 3)
+
+----
+Carte de N :valet de coeur (11, 3)
+Carte de S :valet de pique (11, 1)
+
+** bataille ** 
+Carte de N :quatre de trefle (4, 2)
+Carte de S :neuf de pique (9, 1)
+
+ S gagne les cartes :
+valet de coeur (11, 3)
+valet de pique (11, 1)
+
+trois de carreau (3, 4)
+deux de trefle (2, 2)
+
+quatre de trefle (4, 2)
+neuf de pique (9, 1)
+
+----
+Carte de N :neuf de coeur (9, 3)
+Carte de S :huit de carreau (8, 4)
+
+
+ N gagne les cartes :
+huit de carreau (8, 4)
+neuf de coeur (9, 3)
+
+----
+Carte de N :roi de trefle (13, 2)
+Carte de S :valet de carreau (11, 4)
+
+
+ N gagne les cartes :
+valet de carreau (11, 4)
+roi de trefle (13, 2)
+
+----
+Carte de N :deux de carreau (2, 4)
+Carte de S :neuf de carreau (9, 4)
+
+
+ S gagne les cartes :
+deux de carreau (2, 4)
+neuf de carreau (9, 4)
+
+----
+Carte de N :trois de trefle (3, 2)
+Carte de S :roi de carreau (13, 4)
+
+
+ S gagne les cartes :
+trois de trefle (3, 2)
+roi de carreau (13, 4)
+
+----
+Carte de N :huit de coeur (8, 3)
+Carte de S :six de carreau (6, 4)
+
+
+ N gagne les cartes :
+six de carreau (6, 4)
+huit de coeur (8, 3)
+
+----
+Carte de N :valet de trefle (11, 2)
+Carte de S :dix de carreau (10, 4)
+
+
+ N gagne les cartes :
+dix de carreau (10, 4)
+valet de trefle (11, 2)
+
+----
+Carte de N :as de carreau (1, 4)
+Carte de S :sept de carreau (7, 4)
+
+
+ S gagne les cartes :
+as de carreau (1, 4)
+sept de carreau (7, 4)
+
+----
+Carte de N :as de trefle (1, 2)
+Carte de S :dame de carreau (12, 4)
+
+
+ S gagne les cartes :
+as de trefle (1, 2)
+dame de carreau (12, 4)
+
+----
+Carte de N :six de coeur (6, 3)
+Carte de S :quatre de coeur (4, 3)
+
+
+ N gagne les cartes :
+quatre de coeur (4, 3)
+six de coeur (6, 3)
+
+----
+Carte de N :neuf de trefle (9, 2)
+Carte de S :cinq de carreau (5, 4)
+
+
+ N gagne les cartes :
+cinq de carreau (5, 4)
+neuf de trefle (9, 2)
+
+----
+Carte de N :sept de coeur (7, 3)
+Carte de S :dame de coeur (12, 3)
+
+
+ S gagne les cartes :
+sept de coeur (7, 3)
+dame de coeur (12, 3)
+
+----
+Carte de N :sept de pique (7, 1)
+Carte de S :roi de coeur (13, 3)
+
+
+ S gagne les cartes :
+sept de pique (7, 1)
+roi de coeur (13, 3)
+
+----
+Carte de N :dame de trefle (12, 2)
+Carte de S :as de coeur (1, 3)
+
+
+ N gagne les cartes :
+as de coeur (1, 3)
+dame de trefle (12, 2)
+
+----
+Carte de N :dame de pique (12, 1)
+Carte de S :quatre de carreau (4, 4)
+
+
+ N gagne les cartes :
+quatre de carreau (4, 4)
+dame de pique (12, 1)
+
+----
+Carte de N :cinq de coeur (5, 3)
+Carte de S :deux de pique (2, 1)
+
+
+ N gagne les cartes :
+deux de pique (2, 1)
+cinq de coeur (5, 3)
+
+----
+Carte de N :six de pique (6, 1)
+Carte de S :deux de coeur (2, 3)
+
+
+ N gagne les cartes :
+deux de coeur (2, 3)
+six de pique (6, 1)
+
+----
+Carte de N :dix de trefle (10, 2)
+Carte de S :cinq de pique (5, 1)
+
+
+ N gagne les cartes :
+cinq de pique (5, 1)
+dix de trefle (10, 2)
+
+----
+Carte de N :dix de pique (10, 1)
+Carte de S :cinq de trefle (5, 2)
+
+
+ N gagne les cartes :
+cinq de trefle (5, 2)
+dix de pique (10, 1)
+
+----
+Carte de N :trois de coeur (3, 3)
+Carte de S :as de pique (1, 1)
+
+
+ N gagne les cartes :
+as de pique (1, 1)
+trois de coeur (3, 3)
+
+----
+Carte de N :quatre de pique (4, 1)
+Carte de S :huit de trefle (8, 2)
+
+
+ S gagne les cartes :
+quatre de pique (4, 1)
+huit de trefle (8, 2)
+
+----
+Carte de N :sept de trefle (7, 2)
+Carte de S :trois de pique (3, 1)
+
+
+ N gagne les cartes :
+trois de pique (3, 1)
+sept de trefle (7, 2)
+
+----
+Carte de N :huit de pique (8, 1)
+Carte de S :roi de pique (13, 1)
+
+
+ S gagne les cartes :
+huit de pique (8, 1)
+roi de pique (13, 1)
+
+----
+Carte de N :six de trefle (6, 2)
+Carte de S :valet de coeur (11, 3)
+
+
+ S gagne les cartes :
+six de trefle (6, 2)
+valet de coeur (11, 3)
+
+----
+Carte de N :dix de coeur (10, 3)
+Carte de S :valet de pique (11, 1)
+
+
+ S gagne les cartes :
+dix de coeur (10, 3)
+valet de pique (11, 1)
+
+----
+Carte de N :huit de carreau (8, 4)
+Carte de S :trois de carreau (3, 4)
+
+
+ N gagne les cartes :
+trois de carreau (3, 4)
+huit de carreau (8, 4)
+
+----
+Carte de N :neuf de coeur (9, 3)
+Carte de S :deux de trefle (2, 2)
+
+
+ N gagne les cartes :
+deux de trefle (2, 2)
+neuf de coeur (9, 3)
+
+----
+Carte de N :valet de carreau (11, 4)
+Carte de S :quatre de trefle (4, 2)
+
+
+ N gagne les cartes :
+quatre de trefle (4, 2)
+valet de carreau (11, 4)
+
+----
+Carte de N :roi de trefle (13, 2)
+Carte de S :neuf de pique (9, 1)
+
+
+ N gagne les cartes :
+neuf de pique (9, 1)
+roi de trefle (13, 2)
+
+----
+Carte de N :six de carreau (6, 4)
+Carte de S :deux de carreau (2, 4)
+
+
+ N gagne les cartes :
+deux de carreau (2, 4)
+six de carreau (6, 4)
+
+----
+Carte de N :huit de coeur (8, 3)
+Carte de S :neuf de carreau (9, 4)
+
+
+ S gagne les cartes :
+huit de coeur (8, 3)
+neuf de carreau (9, 4)
+
+----
+Carte de N :dix de carreau (10, 4)
+Carte de S :trois de trefle (3, 2)
+
+
+ N gagne les cartes :
+trois de trefle (3, 2)
+dix de carreau (10, 4)
+
+----
+Carte de N :valet de trefle (11, 2)
+Carte de S :roi de carreau (13, 4)
+
+
+ S gagne les cartes :
+valet de trefle (11, 2)
+roi de carreau (13, 4)
+
+----
+Carte de N :quatre de coeur (4, 3)
+Carte de S :as de carreau (1, 4)
+
+
+ N gagne les cartes :
+as de carreau (1, 4)
+quatre de coeur (4, 3)
+
+----
+Carte de N :six de coeur (6, 3)
+Carte de S :sept de carreau (7, 4)
+
+
+ S gagne les cartes :
+six de coeur (6, 3)
+sept de carreau (7, 4)
+
+----
+Carte de N :cinq de carreau (5, 4)
+Carte de S :as de trefle (1, 2)
+
+
+ N gagne les cartes :
+as de trefle (1, 2)
+cinq de carreau (5, 4)
+
+----
+Carte de N :neuf de trefle (9, 2)
+Carte de S :dame de carreau (12, 4)
+
+
+ S gagne les cartes :
+neuf de trefle (9, 2)
+dame de carreau (12, 4)
+
+----
+Carte de N :as de coeur (1, 3)
+Carte de S :sept de coeur (7, 3)
+
+
+ S gagne les cartes :
+as de coeur (1, 3)
+sept de coeur (7, 3)
+
+----
+Carte de N :dame de trefle (12, 2)
+Carte de S :dame de coeur (12, 3)
+
+** bataille ** 
+Carte de N :dame de pique (12, 1)
+Carte de S :roi de coeur (13, 3)
+
+ S gagne les cartes :
+dame de trefle (12, 2)
+dame de coeur (12, 3)
+
+quatre de carreau (4, 4)
+sept de pique (7, 1)
+
+dame de pique (12, 1)
+roi de coeur (13, 3)
+
+----
+Carte de N :deux de pique (2, 1)
+Carte de S :quatre de pique (4, 1)
+
+
+ S gagne les cartes :
+deux de pique (2, 1)
+quatre de pique (4, 1)
+
+----
+Carte de N :cinq de coeur (5, 3)
+Carte de S :huit de trefle (8, 2)
+
+
+ S gagne les cartes :
+cinq de coeur (5, 3)
+huit de trefle (8, 2)
+
+----
+Carte de N :deux de coeur (2, 3)
+Carte de S :huit de pique (8, 1)
+
+
+ S gagne les cartes :
+deux de coeur (2, 3)
+huit de pique (8, 1)
+
+----
+Carte de N :six de pique (6, 1)
+Carte de S :roi de pique (13, 1)
+
+
+ S gagne les cartes :
+six de pique (6, 1)
+roi de pique (13, 1)
+
+----
+Carte de N :cinq de pique (5, 1)
+Carte de S :six de trefle (6, 2)
+
+
+ S gagne les cartes :
+cinq de pique (5, 1)
+six de trefle (6, 2)
+
+----
+Carte de N :dix de trefle (10, 2)
+Carte de S :valet de coeur (11, 3)
+
+
+ S gagne les cartes :
+dix de trefle (10, 2)
+valet de coeur (11, 3)
+
+----
+Carte de N :cinq de trefle (5, 2)
+Carte de S :dix de coeur (10, 3)
+
+
+ S gagne les cartes :
+cinq de trefle (5, 2)
+dix de coeur (10, 3)
+
+----
+Carte de N :dix de pique (10, 1)
+Carte de S :valet de pique (11, 1)
+
+
+ S gagne les cartes :
+dix de pique (10, 1)
+valet de pique (11, 1)
+
+----
+Carte de N :as de pique (1, 1)
+Carte de S :huit de coeur (8, 3)
+
+
+ S gagne les cartes :
+as de pique (1, 1)
+huit de coeur (8, 3)
+
+----
+Carte de N :trois de coeur (3, 3)
+Carte de S :neuf de carreau (9, 4)
+
+
+ S gagne les cartes :
+trois de coeur (3, 3)
+neuf de carreau (9, 4)
+
+----
+Carte de N :trois de pique (3, 1)
+Carte de S :valet de trefle (11, 2)
+
+
+ S gagne les cartes :
+trois de pique (3, 1)
+valet de trefle (11, 2)
+
+----
+Carte de N :sept de trefle (7, 2)
+Carte de S :roi de carreau (13, 4)
+
+
+ S gagne les cartes :
+sept de trefle (7, 2)
+roi de carreau (13, 4)
+
+----
+Carte de N :trois de carreau (3, 4)
+Carte de S :six de coeur (6, 3)
+
+
+ S gagne les cartes :
+trois de carreau (3, 4)
+six de coeur (6, 3)
+
+----
+Carte de N :huit de carreau (8, 4)
+Carte de S :sept de carreau (7, 4)
+
+
+ N gagne les cartes :
+sept de carreau (7, 4)
+huit de carreau (8, 4)
+
+----
+Carte de N :deux de trefle (2, 2)
+Carte de S :neuf de trefle (9, 2)
+
+
+ S gagne les cartes :
+deux de trefle (2, 2)
+neuf de trefle (9, 2)
+
+----
+Carte de N :neuf de coeur (9, 3)
+Carte de S :dame de carreau (12, 4)
+
+
+ S gagne les cartes :
+neuf de coeur (9, 3)
+dame de carreau (12, 4)
+
+----
+Carte de N :quatre de trefle (4, 2)
+Carte de S :as de coeur (1, 3)
+
+
+ N gagne les cartes :
+as de coeur (1, 3)
+quatre de trefle (4, 2)
+
+----
+Carte de N :valet de carreau (11, 4)
+Carte de S :sept de coeur (7, 3)
+
+
+ N gagne les cartes :
+sept de coeur (7, 3)
+valet de carreau (11, 4)
+
+----
+Carte de N :neuf de pique (9, 1)
+Carte de S :dame de trefle (12, 2)
+
+
+ S gagne les cartes :
+neuf de pique (9, 1)
+dame de trefle (12, 2)
+
+----
+Carte de N :roi de trefle (13, 2)
+Carte de S :dame de coeur (12, 3)
+
+
+ N gagne les cartes :
+dame de coeur (12, 3)
+roi de trefle (13, 2)
+
+----
+Carte de N :deux de carreau (2, 4)
+Carte de S :quatre de carreau (4, 4)
+
+
+ S gagne les cartes :
+deux de carreau (2, 4)
+quatre de carreau (4, 4)
+
+----
+Carte de N :six de carreau (6, 4)
+Carte de S :sept de pique (7, 1)
+
+
+ S gagne les cartes :
+six de carreau (6, 4)
+sept de pique (7, 1)
+
+----
+Carte de N :trois de trefle (3, 2)
+Carte de S :dame de pique (12, 1)
+
+
+ S gagne les cartes :
+trois de trefle (3, 2)
+dame de pique (12, 1)
+
+----
+Carte de N :dix de carreau (10, 4)
+Carte de S :roi de coeur (13, 3)
+
+
+ S gagne les cartes :
+dix de carreau (10, 4)
+roi de coeur (13, 3)
+
+----
+Carte de N :as de carreau (1, 4)
+Carte de S :deux de pique (2, 1)
+
+
+ S gagne les cartes :
+as de carreau (1, 4)
+deux de pique (2, 1)
+
+----
+Carte de N :quatre de coeur (4, 3)
+Carte de S :quatre de pique (4, 1)
+
+** bataille ** 
+Carte de N :cinq de carreau (5, 4)
+Carte de S :huit de trefle (8, 2)
+
+ S gagne les cartes :
+quatre de coeur (4, 3)
+quatre de pique (4, 1)
+
+as de trefle (1, 2)
+cinq de coeur (5, 3)
+
+cinq de carreau (5, 4)
+huit de trefle (8, 2)
+
+----
+Carte de N :sept de carreau (7, 4)
+Carte de S :deux de coeur (2, 3)
+
+
+ N gagne les cartes :
+deux de coeur (2, 3)
+sept de carreau (7, 4)
+
+----
+Carte de N :huit de carreau (8, 4)
+Carte de S :huit de pique (8, 1)
+
+** bataille ** 
+Carte de N :quatre de trefle (4, 2)
+Carte de S :roi de pique (13, 1)
+
+ S gagne les cartes :
+huit de carreau (8, 4)
+huit de pique (8, 1)
+
+as de coeur (1, 3)
+six de pique (6, 1)
+
+quatre de trefle (4, 2)
+roi de pique (13, 1)
+
+----
+Carte de N :sept de coeur (7, 3)
+Carte de S :cinq de pique (5, 1)
+
+
+ N gagne les cartes :
+cinq de pique (5, 1)
+sept de coeur (7, 3)
+
+----
+Carte de N :valet de carreau (11, 4)
+Carte de S :six de trefle (6, 2)
+
+
+ N gagne les cartes :
+six de trefle (6, 2)
+valet de carreau (11, 4)
+
+----
+Carte de N :dame de coeur (12, 3)
+Carte de S :dix de trefle (10, 2)
+
+
+ N gagne les cartes :
+dix de trefle (10, 2)
+dame de coeur (12, 3)
+
+----
+Carte de N :roi de trefle (13, 2)
+Carte de S :valet de coeur (11, 3)
+
+
+ N gagne les cartes :
+valet de coeur (11, 3)
+roi de trefle (13, 2)
+
+----
+Carte de N :deux de coeur (2, 3)
+Carte de S :cinq de trefle (5, 2)
+
+
+ S gagne les cartes :
+deux de coeur (2, 3)
+cinq de trefle (5, 2)
+
+----
+Carte de N :sept de carreau (7, 4)
+Carte de S :dix de coeur (10, 3)
+
+
+ S gagne les cartes :
+sept de carreau (7, 4)
+dix de coeur (10, 3)
+
+----
+Carte de N :cinq de pique (5, 1)
+Carte de S :dix de pique (10, 1)
+
+
+ S gagne les cartes :
+cinq de pique (5, 1)
+dix de pique (10, 1)
+
+----
+Carte de N :sept de coeur (7, 3)
+Carte de S :valet de pique (11, 1)
+
+
+ S gagne les cartes :
+sept de coeur (7, 3)
+valet de pique (11, 1)
+
+----
+Carte de N :six de trefle (6, 2)
+Carte de S :as de pique (1, 1)
+
+
+ N gagne les cartes :
+as de pique (1, 1)
+six de trefle (6, 2)
+
+----
+Carte de N :valet de carreau (11, 4)
+Carte de S :huit de coeur (8, 3)
+
+
+ N gagne les cartes :
+huit de coeur (8, 3)
+valet de carreau (11, 4)
+
+----
+Carte de N :dix de trefle (10, 2)
+Carte de S :trois de coeur (3, 3)
+
+
+ N gagne les cartes :
+trois de coeur (3, 3)
+dix de trefle (10, 2)
+
+----
+Carte de N :dame de coeur (12, 3)
+Carte de S :neuf de carreau (9, 4)
+
+
+ N gagne les cartes :
+neuf de carreau (9, 4)
+dame de coeur (12, 3)
+
+----
+Carte de N :valet de coeur (11, 3)
+Carte de S :trois de pique (3, 1)
+
+
+ N gagne les cartes :
+trois de pique (3, 1)
+valet de coeur (11, 3)
+
+----
+Carte de N :roi de trefle (13, 2)
+Carte de S :valet de trefle (11, 2)
+
+
+ N gagne les cartes :
+valet de trefle (11, 2)
+roi de trefle (13, 2)
+
+----
+Carte de N :as de pique (1, 1)
+Carte de S :sept de trefle (7, 2)
+
+
+ S gagne les cartes :
+as de pique (1, 1)
+sept de trefle (7, 2)
+
+----
+Carte de N :six de trefle (6, 2)
+Carte de S :roi de carreau (13, 4)
+
+
+ S gagne les cartes :
+six de trefle (6, 2)
+roi de carreau (13, 4)
+
+----
+Carte de N :huit de coeur (8, 3)
+Carte de S :trois de carreau (3, 4)
+
+
+ N gagne les cartes :
+trois de carreau (3, 4)
+huit de coeur (8, 3)
+
+----
+Carte de N :valet de carreau (11, 4)
+Carte de S :six de coeur (6, 3)
+
+
+ N gagne les cartes :
+six de coeur (6, 3)
+valet de carreau (11, 4)
+
+----
+Carte de N :trois de coeur (3, 3)
+Carte de S :deux de trefle (2, 2)
+
+
+ N gagne les cartes :
+deux de trefle (2, 2)
+trois de coeur (3, 3)
+
+----
+Carte de N :dix de trefle (10, 2)
+Carte de S :neuf de trefle (9, 2)
+
+
+ N gagne les cartes :
+neuf de trefle (9, 2)
+dix de trefle (10, 2)
+
+----
+Carte de N :neuf de carreau (9, 4)
+Carte de S :neuf de coeur (9, 3)
+
+** bataille ** 
+Carte de N :trois de pique (3, 1)
+Carte de S :neuf de pique (9, 1)
+
+ S gagne les cartes :
+neuf de carreau (9, 4)
+neuf de coeur (9, 3)
+
+dame de coeur (12, 3)
+dame de carreau (12, 4)
+
+trois de pique (3, 1)
+neuf de pique (9, 1)
+
+----
+Carte de N :valet de coeur (11, 3)
+Carte de S :dame de trefle (12, 2)
+
+
+ S gagne les cartes :
+valet de coeur (11, 3)
+dame de trefle (12, 2)
+
+----
+Carte de N :valet de trefle (11, 2)
+Carte de S :deux de carreau (2, 4)
+
+
+ N gagne les cartes :
+deux de carreau (2, 4)
+valet de trefle (11, 2)
+
+----
+Carte de N :roi de trefle (13, 2)
+Carte de S :quatre de carreau (4, 4)
+
+
+ N gagne les cartes :
+quatre de carreau (4, 4)
+roi de trefle (13, 2)
+
+----
+Carte de N :trois de carreau (3, 4)
+Carte de S :six de carreau (6, 4)
+
+
+ S gagne les cartes :
+trois de carreau (3, 4)
+six de carreau (6, 4)
+
+----
+Carte de N :huit de coeur (8, 3)
+Carte de S :sept de pique (7, 1)
+
+
+ N gagne les cartes :
+sept de pique (7, 1)
+huit de coeur (8, 3)
+
+----
+Carte de N :six de coeur (6, 3)
+Carte de S :trois de trefle (3, 2)
+
+
+ N gagne les cartes :
+trois de trefle (3, 2)
+six de coeur (6, 3)
+
+----
+Carte de N :valet de carreau (11, 4)
+Carte de S :dame de pique (12, 1)
+
+
+ S gagne les cartes :
+valet de carreau (11, 4)
+dame de pique (12, 1)
+
+----
+Carte de N :deux de trefle (2, 2)
+Carte de S :dix de carreau (10, 4)
+
+
+ S gagne les cartes :
+deux de trefle (2, 2)
+dix de carreau (10, 4)
+
+----
+Carte de N :trois de coeur (3, 3)
+Carte de S :roi de coeur (13, 3)
+
+
+ S gagne les cartes :
+trois de coeur (3, 3)
+roi de coeur (13, 3)
+
+----
+Carte de N :neuf de trefle (9, 2)
+Carte de S :as de carreau (1, 4)
+
+
+ N gagne les cartes :
+as de carreau (1, 4)
+neuf de trefle (9, 2)
+
+----
+Carte de N :dix de trefle (10, 2)
+Carte de S :deux de pique (2, 1)
+
+
+ N gagne les cartes :
+deux de pique (2, 1)
+dix de trefle (10, 2)
+
+----
+Carte de N :deux de carreau (2, 4)
+Carte de S :quatre de coeur (4, 3)
+
+
+ S gagne les cartes :
+deux de carreau (2, 4)
+quatre de coeur (4, 3)
+
+----
+Carte de N :valet de trefle (11, 2)
+Carte de S :quatre de pique (4, 1)
+
+
+ N gagne les cartes :
+quatre de pique (4, 1)
+valet de trefle (11, 2)
+
+----
+Carte de N :quatre de carreau (4, 4)
+Carte de S :as de trefle (1, 2)
+
+
+ N gagne les cartes :
+as de trefle (1, 2)
+quatre de carreau (4, 4)
+
+----
+Carte de N :roi de trefle (13, 2)
+Carte de S :cinq de coeur (5, 3)
+
+
+ N gagne les cartes :
+cinq de coeur (5, 3)
+roi de trefle (13, 2)
+
+----
+Carte de N :sept de pique (7, 1)
+Carte de S :cinq de carreau (5, 4)
+
+
+ N gagne les cartes :
+cinq de carreau (5, 4)
+sept de pique (7, 1)
+
+----
+Carte de N :huit de coeur (8, 3)
+Carte de S :huit de trefle (8, 2)
+
+** bataille ** 
+Carte de N :six de coeur (6, 3)
+Carte de S :huit de pique (8, 1)
+
+ S gagne les cartes :
+huit de coeur (8, 3)
+huit de trefle (8, 2)
+
+trois de trefle (3, 2)
+huit de carreau (8, 4)
+
+six de coeur (6, 3)
+huit de pique (8, 1)
+
+----
+Carte de N :as de carreau (1, 4)
+Carte de S :as de coeur (1, 3)
+
+** bataille ** 
+Carte de N :deux de pique (2, 1)
+Carte de S :quatre de trefle (4, 2)
+
+ S gagne les cartes :
+as de carreau (1, 4)
+as de coeur (1, 3)
+
+neuf de trefle (9, 2)
+six de pique (6, 1)
+
+deux de pique (2, 1)
+quatre de trefle (4, 2)
+
+----
+Carte de N :dix de trefle (10, 2)
+Carte de S :roi de pique (13, 1)
+
+
+ S gagne les cartes :
+dix de trefle (10, 2)
+roi de pique (13, 1)
+
+----
+Carte de N :quatre de pique (4, 1)
+Carte de S :deux de coeur (2, 3)
+
+
+ N gagne les cartes :
+deux de coeur (2, 3)
+quatre de pique (4, 1)
+
+----
+Carte de N :valet de trefle (11, 2)
+Carte de S :cinq de trefle (5, 2)
+
+
+ N gagne les cartes :
+cinq de trefle (5, 2)
+valet de trefle (11, 2)
+
+----
+Carte de N :as de trefle (1, 2)
+Carte de S :sept de carreau (7, 4)
+
+
+ S gagne les cartes :
+as de trefle (1, 2)
+sept de carreau (7, 4)
+
+----
+Carte de N :quatre de carreau (4, 4)
+Carte de S :dix de coeur (10, 3)
+
+
+ S gagne les cartes :
+quatre de carreau (4, 4)
+dix de coeur (10, 3)
+
+----
+Carte de N :cinq de coeur (5, 3)
+Carte de S :cinq de pique (5, 1)
+
+** bataille ** 
+Carte de N :cinq de carreau (5, 4)
+Carte de S :sept de coeur (7, 3)
+
+ S gagne les cartes :
+cinq de coeur (5, 3)
+cinq de pique (5, 1)
+
+roi de trefle (13, 2)
+dix de pique (10, 1)
+
+cinq de carreau (5, 4)
+sept de coeur (7, 3)
+
+----
+Carte de N :sept de pique (7, 1)
+Carte de S :valet de pique (11, 1)
+
+
+ S gagne les cartes :
+sept de pique (7, 1)
+valet de pique (11, 1)
+
+----
+Carte de N :deux de coeur (2, 3)
+Carte de S :as de pique (1, 1)
+
+
+ N gagne les cartes :
+as de pique (1, 1)
+deux de coeur (2, 3)
+
+----
+Carte de N :quatre de pique (4, 1)
+Carte de S :sept de trefle (7, 2)
+
+
+ S gagne les cartes :
+quatre de pique (4, 1)
+sept de trefle (7, 2)
+
+----
+Carte de N :cinq de trefle (5, 2)
+Carte de S :six de trefle (6, 2)
+
+
+ S gagne les cartes :
+cinq de trefle (5, 2)
+six de trefle (6, 2)
+
+----
+Carte de N :valet de trefle (11, 2)
+Carte de S :roi de carreau (13, 4)
+
+
+ S gagne les cartes :
+valet de trefle (11, 2)
+roi de carreau (13, 4)
+
+----
+Carte de N :as de pique (1, 1)
+Carte de S :neuf de carreau (9, 4)
+
+
+ S gagne les cartes :
+as de pique (1, 1)
+neuf de carreau (9, 4)
+
+----
+Carte de N :deux de coeur (2, 3)
+Carte de S :neuf de coeur (9, 3)
+
+
+ S gagne les cartes :
+deux de coeur (2, 3)
+neuf de coeur (9, 3)
+
+----
+ >>>>>>>>>>>>> le gagnant de ce jeu est : S
+fin de partie

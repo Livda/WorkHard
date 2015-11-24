@@ -1,0 +1,59 @@
+Equations
+Null(Termb) = (false) \/ ((Null(Facteurb)) /\ ((Null(ET)) /\ (true)))
+Null(Relation) = (false) \/ (false)
+Null(Op) = ((((((false) \/ (false)) \/ (false)) \/ (false)) \/ (false)) \/
+(false)) \/ (false)
+Null(OU) = ((false) \/ (true)) \/ (false)
+Null(Facteurb) = (((false) \/ (false)) \/ (false)) \/ ((Null(Relation)) /\
+(true))
+Null(Expr) = (false) \/ ((Null(Termb)) /\ ((Null(OU)) /\ (true)))
+Null(ET) = ((false) \/ (true)) \/ (false)
+First(Termb) = ({ }) \/ ((First(Facteurb)) \/ ((Null(Facteurb)) => ((First(ET))
+\/ ((Null(ET)) => ({ })))))
+First(Relation) = ({ }) \/ ({ ident })
+First(Op) = (((((({ }) \/ ({ < })) \/ ({ > })) \/ ({ dif })) \/ ({ eq })) \/
+({ infeq })) \/ ({ supeq })
+First(OU) = (({ }) \/ ({ })) \/ ({ ou })
+First(Facteurb) = ((({ }) \/ ({ pouv })) \/ ({ si })) \/ ((First(Relation)) \/
+((Null(Relation)) => ({ })))
+First(Expr) = ({ }) \/ ((First(Termb)) \/ ((Null(Termb)) => ((First(OU)) \/
+ ((Null(OU)) => ({ })))))
+First(ET) = (({ }) \/ ({ })) \/ ({ et })
+Follow(Termb) = (({ }) \/ (((First(OU)) \/ ((Null(OU)) => ({ }))) \/
+(((Null(OU)) /\ (true)) => (Follow(OU))))) \/ (((First(OU)) \/ ((Null(OU)) =>
+({ }))) \/ (((Null(OU)) /\ (true)) => (Follow(Expr))))
+Follow(Relation) = ({ }) \/ (({ }) \/ ((true) => (Follow(Facteurb))))
+Follow(Op) = ({ }) \/ (({ ident }) \/ ((false) => (Follow(Relation))))
+Follow(OU) = (({ }) \/ (({ }) \/ ((true) => (Follow(OU))))) \/ (({ }) \/
+((true) => (Follow(Expr))))
+Follow(Facteurb) = (({ }) \/ (((First(ET)) \/ ((Null(ET)) => ({ }))) \/
+(((Null(ET)) /\ (true)) => (Follow(Termb))))) \/ (((First(ET)) \/
+((Null(ET)) => ({ }))) \/ (((Null(ET)) /\ (true)) => (Follow(ET))))
+Follow(Expr) = (((({ }) \/ (({ pfer }) \/ ((false) => (Follow(Facteurb))))) \/
+ (({ fsi }) \/ ((false) => (Follow(Facteurb))))) \/ (({ sinon }) \/ ((false) =>
+ (Follow(Facteurb))))) \/ (({ alors }) \/ ((false) => (Follow(Facteurb))))
+Follow(ET) = (({ }) \/ (({ }) \/ ((true) => (Follow(Termb))))) \/ (({ }) \/
+((true) => (Follow(ET))))
+
+Solutions
+Null(Termb) = false
+Null(Relation) = false
+Null(Op) = false
+Null(OU) = true
+Null(Facteurb) = false
+Null(Expr) = false
+Null(ET) = true
+First(Termb) = { ident pouv si }
+First(Relation) = { ident }
+First(Op) = { < > dif eq infeq supeq }
+First(OU) = { ou }
+First(Facteurb) = { ident pouv si }
+First(Expr) = { ident pouv si }
+First(ET) = { et }
+Follow(Termb) = { alors fsi ou pfer sinon }
+Follow(Relation) = { alors et fsi ou pfer sinon }
+Follow(Op) = { ident }
+Follow(OU) = { alors fsi pfer sinon }
+Follow(Facteurb) = { alors et fsi ou pfer sinon }
+Follow(Expr) = { alors fsi pfer sinon }
+Follow(ET) = { alors fsi ou pfer sinon }

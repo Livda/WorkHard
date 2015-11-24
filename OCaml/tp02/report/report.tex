@@ -1,0 +1,69 @@
+\documentclass{rapport}
+\author{Aurélien Fontaine \\ Damien Duvacher \\ Florentin Hortet}
+\title{Compilation : Compte Rendu TP2}
+\begin{document}
+  \maketitle
+
+  \chapter{Préparation du TP}
+  \label{chap:PrepTP}
+  Voici la grammaire obtenue après avoir supprimé les règles ne conscernant
+  pas l'annalyse syntaxique, et mise sous forme LL(1) :
+  \verbatimtabinput[3]{../g1}
+  Pour les prédicats \textit{null}, \textit{premier} et \textit{suivant}
+  de cette grammaire, on obtient :
+  \verbatimtabinput[3]{predic}
+
+  \chapter{Analyseur LL1}
+  \label{chap:AnalyseurLL1}
+  La fonction \textit{is\_LL1} n'est pas totalement fonctionnelle,
+  elle reconnait trop de grammaires.
+  La fonction \textit{deriv} n'a pas été implémentée du tout.
+  Voici notre code de \textit{lL1.ml} :
+  \verbatimtabinput[3]{../lL1.ml}
+
+  \chapter{Questions de compréhention du TP}
+  \label{chap:QuestionsTP}
+  \section{Question 2.1}
+  \textit{Pourquoi n'inclut-on pas les commentaires dans la grammaire
+  définissant les constructions du langage ?}
+
+  Lors de l'analyse lexicale, les commentaires sont supprimés car ils
+  ne sont pas utiles pour le compilateur. L'analyse syntaxique n'a donc pas
+  besoin de connaitre les commentaires, et donc la grammaire non plus.
+
+  \section{Question 2.2}
+  \textit{Pourquoi utilise-t-on des grammaires \emph{LL(1)} ? Quel est
+  l'intérêt d'une grammaire \emph{LL(1)} ?}
+
+  Les grammaires LL(1) sont des grammaires non ambigues, sans récurtion à
+  gauche. Et les propriétés entre deux productions permettent de construire
+  un analyseur prédictif en ne regardant qu'un élément suivant.
+
+  \section{Question 2.3}
+  \textit{Comment fait-on le lien entre analyse lexicale et analyse syntaxique
+  ?}
+
+  Ici le lien entre les deux analyseurs est un arbre.
+
+  \chapter{Tests}
+  \label{chap:Tests}
+  \section{Grammaire proposée}
+  Nous avons réalisé un test avec la grammaire \emph{g3}, proposée par défaut :
+  \verbatiminput{../g3}
+
+  Nous optenons :
+  \verbatiminput{solg3}
+
+
+  La grammaire n'est pas LL(1) mais les prédicats sont bons. On retrouve les
+  mêmes résulats avec un autre grammaire dont deux prédicats permettent
+  d'atteindre l'état \emph{null}. Voici la grammaire \emph{g2} :
+  \verbatiminput{../g2}
+
+  Et voici le résulat :
+  \verbatiminput{solg2}
+
+  Ici encore, la grammaire n'est pas LL(1) mais les prédicats sont bons.
+
+
+\end{document}

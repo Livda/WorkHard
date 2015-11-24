@@ -1,0 +1,38 @@
+\begin{table}[!ht]
+  \centering
+  \begin{tabular}{|c||c|c|c|c|c|c|c|c||c|c|}
+    \hline
+    \multirow{2}{*}{State} & \multicolumn{8}{c||}{Action} & \multicolumn{2}{c|}{GOTO}\\
+    \cline{2-11} & id & $\leftarrow$ & + & $<$ & and & ( & ) &\$ & I & E\\
+    \hline
+    0  &s1 &   &   &   &   &   &   &   &   &\\
+    \hline
+    1  &   &s2 &   &   &   &   &   &   &   &\\
+    \hline
+    2  &s5 &   &   &   &   &s4 &   &   &   &3\\
+    \hline
+    3  &   &   &s6 &s7 &s8 &   &   &acc&   &\\
+    \hline
+    4  &s5 &   &   &   &   &s4 &   &   &   &9\\
+    \hline
+    5  &   &   &r5 &r5 &r5 &   &r5 &r5 &   &\\
+    \hline
+    6   &s5 &   &   &   &   &s4 &   &   &   &10\\
+    \hline
+    7   &s5 &   &   &   &   &s4 &   &   &   &11\\
+    \hline
+    8   &s5 &   &   &   &   &s4 &   &   &   &12\\
+    \hline
+    9   &   &   &s6 &s7 &s8 &   &s13&   &   &\\
+    \hline
+    10  &   &   &r1 &r1 &r1 &   &r1 &r1 &   &\\
+    \hline
+    11  &   &   &s6 &r2 &r2 &   &r2 &r2 &   &\\
+    \hline
+    12  &   &   &s6 &s7 &s8 &   &r3 &r3 &   &\\
+    \hline
+    13  &   &   &r4 &r4 &r4 &   &r4 &r4 &   &\\
+    \hline
+  \end{tabular}
+  \caption{SLR table}
+\end{table}

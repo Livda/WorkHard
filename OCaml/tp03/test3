@@ -1,0 +1,10 @@
+begin
+    int n,
+    bool a;
+    n <- (toto and bubu) + (a < b);
+    a <- 5;
+    begin
+        int b;
+        b <- 265
+    end
+enad
