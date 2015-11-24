@@ -403,3 +403,23 @@ void boy_leaves_bathroom();
 void girl_want_to_use_the_bathroom();
 void girl_leaves_bathroom();
 ```
+
+```
+init(boy, 1);
+init(bathroom, 0);
+init(S, 0);
+init(Mb, 1);
+
+boy_want_to_use_bathroom(){     boy_leaves_bathroom(){
+    P(Mb);                          P(boys);
+    P(boys);                        nbBoys--;
+    if(nbBoys == 0) {               if(nbBoys == 0) {V(bathroom);}
+        P(bathroom);                V(boys);
+        V(S);                   }
+        V(S);
+    }
+    if(girl > 0) {P(S);}
+    nbBoys++;
+    V(Mb);
+}
+```
