@@ -1,4 +1,4 @@
-%Système 2013
+%Système Janvier 2013
 
 #1. Cours
 ##Question 1.1
