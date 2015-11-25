@@ -3,16 +3,26 @@
 %}
 
 %token <int> INT
-%token LET
+%token <bool> BOOL
+%token LET REC IN
 %token EOF END_OF_EXPRESSION
+%token IF THEN ELSE
+%token FUNCTION
 %token LEFT_PAREN RIGHT_PAREN
 %token COMMA
-%token <bool> BOOL
 %token NIL
 %token CONS
 %token PLUS MINUS MUL EQUAL INF
 %token FIRST SECOND
 %token <string> IDENT
+%right ELSE
+%nonassoc IN
+%left EQUAL
+%nonassoc INF
+%left PLUS MINUS
+%left MUL
+%right CONS
+%right FIRST SECOND
 %start main
 %type <Ast.ml_expr> main
 %%
@@ -31,7 +41,10 @@ main:
  }
 
 expr:
+| LET IDENT EQUAL expr IN expr { Ml_let($2, $4, $6) }
+| LET REC IDENT EQUAL expr IN expr { Ml_letrec($3, $5, $7) }
 | simple_expr                            { $1 }
+| LEFT_PAREN expr RIGHT_PAREN            { $2 }
 | expr CONS expr                         { Ml_cons ($1, $3) }
 | LEFT_PAREN expr COMMA expr RIGHT_PAREN { Ml_pair($2, $4) }
 | FIRST expr                             { Ml_unop(Ml_fst, $2) }
@@ -41,6 +54,7 @@ expr:
 | expr MUL expr                          { Ml_binop(Ml_mult, $1, $3) }
 | expr EQUAL expr                        { Ml_binop(Ml_eq, $1, $3) }
 | expr INF expr                          { Ml_binop(Ml_less, $1, $3) }
+| IF expr THEN expr ELSE expr            { Ml_if($2, $4, $6)}
 | application                            { List.fold_left (fun res a -> Ml_app(res, a)) (List.hd $1) (List.tl $1) }
 
 simple_expr:
