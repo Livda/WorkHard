@@ -1,2 +1,2 @@
 # WorkHard
-A reposoty with my INSA's work
+A repository with my INSA's work
