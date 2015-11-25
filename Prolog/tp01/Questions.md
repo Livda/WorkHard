@@ -1,4 +1,5 @@
 %Travail à réaliser tp01 Prolog
+%Aurélien Fontaine & François Boschet
 
 #Base Menu
 ##Question 1.1
