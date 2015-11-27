@@ -158,5 +158,5 @@ le_roi_est_mort_vive_le_roi(R1, D, R2) :-
 
 ancetre(X, Y) :- parent(X, Y).
 ancetre(X, Y) :-
-    ancetre(X, P),
-    parent(P, Y).
+    parent(P, Y),
+    ancetre(X, P).
