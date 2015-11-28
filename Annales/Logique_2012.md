@@ -107,8 +107,8 @@ p_1 \lor p_2)))
 (p_2 \Rightarrow p_1))))$ et $(p_1 \Rightarrow (p_2 \Rightarrow p_3))$ sont
 logiquement équivalentes.*
 
-#Enigme
-Dans ma malette de peintre, j'ai des tubes de peinture. Les couleurs dont je
+#Énigme
+Dans ma mallette de peintre, j'ai des tubes de peinture. Les couleurs dont je
 dispose sont parmi les suivantes : rouge, jaune, bleu, orange, gris et noir. On
 désignera par :
 
@@ -121,7 +121,7 @@ désignera par :
 
 ##Question 7
 *Ecrire sous la forme d'une formule chacune des affirmations suivantes. Pour la
-2), la formule "il y a exactement trois couleurs dans ma malette" est composée
+2), la formule "il y a exactement trois couleurs dans ma mallette" est composée
 de plusieurs combinaisons, n'exprimer qu'une seule combinaison et expliquer
 comment faire pour les autres combinaisons.*
 
@@ -130,11 +130,11 @@ comment faire pour les autres combinaisons.*
 $M = \neg J$
 
 2. *j'ai du noir ou du gris, si et seulement si il y a exactement 3 couleurs
-dans ma malette ;*
+dans ma mallette ;*
 
 $M = (G \land N \land R \land \neg (J \lor B \lor O))\newline$
 On construit toutes les autres combinaisons en changeant R par J, B, ou O et en
-mettant R (ou son remplacant) dans la parenthèse "non".
+mettant R (ou son remplaçant) dans la parenthèse "non".
 On fait de même en mettant G dans la parenthèse non et en faisant toutes
 les combinaisons entre les autres couleurs. Puis on fait comme précédemment,
 sauf que cette fois ci, N reste dans la parenthèse "non" et G reste en dehors.
@@ -148,8 +148,8 @@ $M = (B \land J) \lor (B \land O) \lor (J \land O) \lor (B \land J \land O)$
 $M = (G \lor O) \land \neg (G \land O)$
 
 ##Question 8
-*On suppose que les quatres affirmations ci-dessus sont vraies. Déduire les
-contenus possibles de la malette. Justifier le raisonnement.*
+*On suppose que les quatre affirmations ci-dessus sont vraies. Déduire les
+contenus possibles de la mallette. Justifier le raisonnement.*
 
 Avec la proposition *1* on voit qu'il ne pourra jamais y avoir de jaune.
 
@@ -163,7 +163,7 @@ que l'on a du bleu et du orange. Donc pas de gris.
 La proposition *2* nous oblige à avoir trois couleurs si l'on a du gris ou du
 noir. Nous n'avons pas de gris, du coup seul le cas noir se présente. Il se
 trouve que nous avons déjà du bleu et du orange, si on lui ajoute le noir,
-nous avons bien trois couleurs dans notre malette.
+nous avons bien trois couleurs dans notre mallette.
 
 Puis on peut rajouter toutes les combinaisons qui n'entrent pas en conflit avec
 les propositions. Soit :
