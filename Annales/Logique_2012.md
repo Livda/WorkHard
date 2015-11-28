@@ -1,8 +1,7 @@
 ---
 title : Logique 2012
 author : Aurélien Fontaine
-header-includes:
-    - \usepackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+geometry: margin=3cm
 ---
 #Table de vérité
 Soit la proposition suivante :
