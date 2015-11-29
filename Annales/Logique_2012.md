@@ -55,21 +55,17 @@ F = (p_1 \land p_2) \Rightarrow (p_3 \Leftrightarrow (\neg p_1 \lor p_2))
 *Déterminer une formule logiquement équivalente à *F*, écrite sans autre symbole
 de connecteur que $\Rightarrow$ et $\Leftrightarrow$.*
 
-**Rappel :** $A \Rightarrow B \equiv (\neg A \lor B)$ et $A \equiv \neg \neg A$
+**Rappel :** $A \Rightarrow B \equiv (\neg A \lor B)$
+
+On voit que l'expression est de la même forme que pour la question 3 avec
+A = *p~1~* , B = *p~2~* et C = $(p_3 \Leftrightarrow (\neg p_1 \lor p_2))$
 
 \begin{math}
 F = (p_1 \land p_2) \Rightarrow (p_3 \Leftrightarrow (\neg p_1 \lor p_2))
 \newline
-\equiv (p_1 \land p_2) \Rightarrow (p_3 \Leftrightarrow (p_1 \Rightarrow p_2))
+\equiv p_1 \Rightarrow (p_2 \Rightarrow (p_3 \Leftrightarrow (\neg p_1 \lor p_2)))
 \newline
-\equiv \neg \neg (p_1 \land p_2) \Rightarrow (p_3 \Leftrightarrow
-(p_1 \Rightarrow p_2))
-\newline
-\equiv \neg (\neg p_1 \lor \neg p_2) \Rightarrow (p_3 \Leftrightarrow
-(p_1 \Rightarrow p_2))
-\newline
-\equiv \neg (p_1 \Rightarrow \neg p_2) \Rightarrow (p_3 \Leftrightarrow
-(p_1 \Rightarrow p_2))
+\equiv p_1 \Rightarrow (p_2 \Rightarrow (p_3 \Leftrightarrow (p_1 \Rightarrow p_2)))
 \end{math}
 
 ##Question 5
@@ -106,6 +102,14 @@ p_3 \lor \neg p_2)
 *Montrer que les formules $(p_1 \Rightarrow (p_2 \Rightarrow (p_3 \Leftrightarrow
 (p_2 \Rightarrow p_1))))$ et $(p_1 \Rightarrow (p_2 \Rightarrow p_3))$ sont
 logiquement équivalentes.*
+
+On a vu dans la question 4 que *F* peut s'écrire sous la forme
+$(p_1 \Rightarrow (p_2 \Rightarrow (p_3 \Leftrightarrow (p_2 \Rightarrow p_1))))$.
+
+Mais à la question 5, nous avons montré que *F* peut s'écrire comme ceci :
+$\neg p_1 \lor \neg p_2 \lor p_3$, or $\neg A \lor B \equiv A \Rightarrow B$.
+On applique deux fois ce principe à cette expression et on retrouve bien le
+résultat voulu, soit $(p_1 \Rightarrow (p_2 \Rightarrow p_3))$.
 
 #Énigme
 Dans ma mallette de peintre, j'ai des tubes de peinture. Les couleurs dont je
