@@ -75,9 +75,9 @@ F = (p_1 \land p_2) \Rightarrow (p_3 \Leftrightarrow (\neg p_1 \lor p_2))
 ##Question 5
 *Donner la forme normale conjonctive de F aussi réduite que possible.*
 
-**Rappel :** La forme normale conjonctive est de la forme $(A \lor B) \land
-(\neg C \lor \neg D)$ et $A \Leftrightarrow B \equiv (A \land B) \lor (\neg A
-\land \neg B)$
+**Rappels :** $A \Leftrightarrow B \equiv (A \land B) \lor (\neg A \land \neg
+B)$ et la forme normale conjonctive est de la forme $(A \lor B) \land (\neg C
+\lor \neg D)$
 
 \begin{math}
 F = (p_1 \land p_2) \Rightarrow (p_3 \Leftrightarrow (\neg p_1 \lor p_2))
@@ -86,19 +86,20 @@ F = (p_1 \land p_2) \Rightarrow (p_3 \Leftrightarrow (\neg p_1 \lor p_2))
 \lor (\neg p_3 \land \neg (\neg p_1 \lor p_2)))
 \newline
 \equiv (\neg p_1 \lor \neg p_2) \lor ((p_3 \land (\neg p_1 \lor p_2))
-\lor (\neg p_3 \land (p_1 \land \neg p_2)))
+\lor (\neg p_3 \land p_1 \land \neg p_2))
 \newline
-\equiv (\neg p_1 \lor \neg p_2) \lor ((p_3 \lor (\neg p_3 \land p_1 \land \neg
-p_2)) \land ((\neg p_1 \lor p_2) \lor (\neg p_3 \land p_1 \land p2)))
+\equiv (\neg p_1 \lor \neg p_2) \lor ((\neg p_3 \lor p_3) \land (\neg p_1 \lor
+p_2 \lor \neg p_3) \land (p_3 \lor p_1) \land (\neg p_1 \lor p_2 \lor p_1) \land
+(p_3 \lor \neg p_2) \land (\neg p_1 \lor p_2 \lor \neg p_2))
 \newline
-\equiv (\neg p_1 \lor \neg p_2) \lor ((1 \land (p_3 \lor p_1) \land (p_3 \land
-p_2)) \land ((\neg p_1 \lor p_2 \lor \neg p_3) \land (1 \lor p_2) \land (\neg
-p_1 \lor p_2)))
+\equiv (\neg p_1 \lor \neg p_2) \lor ((\neg p_1 \lor p_2 \lor \neg p_3) \land (
+p_3 \lor p_1) \land (p_3 \lor \neg p_2))
 \newline
-\equiv (\neg p_1 \lor \neg p_2) \lor (1 \land (\neg p_1 \lor p_2 \lor \neg p_3)
-\land p_2 \land (\neg p_1 \lor p_2))
+\equiv (\neg p_1 \lor \neg p_2 \lor \neg p_1 \lor p_2 \lor \neg p_3) \land
+(\neg p_1 \lor \neg p_2 \lor p_3 \lor p_1) \land (\neg p_1 \lor \neg p_2 \lor
+p_3 \lor \neg p_2)
 \newline
-\equiv \neg p_1 \lor \neg p_2
+\equiv \neg p_1 \lor \neg p_2 \lor p_3
 \end{math}
 
 ##Question 6
