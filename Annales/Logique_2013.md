@@ -157,6 +157,18 @@ reverse(cons(X, R), Y) :-
 ##Question 12
 *Transformer ce programme en un ensemble de clauses.*
 
+Soit A = append, c = cons et R = reverse :
+
+\begin{math}
+A1 = A(nil, X, X)
+\newline
+A2 = A(c(X, R), Y, cons(X, R1)) \lor \neg A(R, Y, R1)
+\newline
+A3 = R(nil, nil)
+\newline
+A4 = R(cons(X, R), Y) \lor \neg R(R, R1) \lor A(R1, cons(X, nil), Y)
+\end{math}
+
 *On veut que Prolog réponde à la question suivante :*
 
 ~~~~ {#mycode .prolog .numberLines}
@@ -166,3 +178,13 @@ reverse(cons(X, R), Y) :-
 ##Question 13
 *Transformer la question précédente en clause puis effectuer la résolution sur
 l'ensemble des clauses pour obtenir la réponse.*
+
+Soit F la clause issue de la transformation de la question :
+
+\begin{math}
+F = R(cons(1, cons(2, nil)), Res)
+\newline
+\neg F = \neg R(1, cons(2, nil), Res)
+\end{math}
+
+On essaie d'unifier les clauses pour atteindre la clause vide :
