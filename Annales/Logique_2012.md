@@ -124,7 +124,7 @@ désignera par :
 - N la proposition "j'ai du noir".
 
 ##Question 7
-*Ecrire sous la forme d'une formule chacune des affirmations suivantes. Pour la
+*Écrire sous la forme d'une formule chacune des affirmations suivantes. Pour la
 2), la formule "il y a exactement trois couleurs dans ma mallette" est composée
 de plusieurs combinaisons, n'exprimer qu'une seule combinaison et expliquer
 comment faire pour les autres combinaisons.*
@@ -171,7 +171,7 @@ nous avons bien trois couleurs dans notre mallette.
 
 Puis on peut rajouter toutes les combinaisons qui n'entrent pas en conflit avec
 les propositions. Soit :
-(B, O) ; (N, B, O) ; (B, O, R).
+(B, O) ; (N, B, O).
 
 #Résolution
 Soit :
