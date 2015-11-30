@@ -262,6 +262,19 @@ prod(s(X), Y, Z) :- prod(X, Y, Z1), add(Y, Z1, Z).
 ##Question 11
 *Transformer ce programme en un ensemble de clauses.*
 
+Pour transformer en clauses, on laisse les parties gauches comme elles sont. Pour
+les parties droites, on fait la négation du tout, en sachant que les virgules
+sont des "et" (et donc se transforment en "ou" quand on fait la négation).
+
+\begin{math}
+\{\newline
+add(zero, X, X), \newline
+add(s(X), Y, s(Z)) \lor \neg add(X, Y, Z), \newline
+prod(zero, \_, zero), \newline
+prod(s(X), Y, Z) \lor \neg prod(X, Y, Z1) \lor \neg add(Y, Z1, Z) \newline
+\}
+\end{math}
+
 *On veut que Prolog réponde à la question :*
 
 ~~~~ {#mycode .prolog .numberLines}
@@ -271,6 +284,16 @@ prod(s(X), Y, Z) :- prod(X, Y, Z1), add(Y, Z1, Z).
 ##Question 12
 *Transformer cette question en clause puis effectuer la résolution du l'ensemble
 de clauses pour obtenir la réponse.*
+
+On transforme la question en $\neg prod(s(zero), s(zero), Res)$.
+Puis on unifie avec les clauses de la question précédente :
+
+*J'ai pas réussi à le faire, mais Eclipse m'a donné la réponse. Si vous y êtes
+arrivés normalement, je suis preneur*
+
+\begin{math}
+Res = s(zero)
+\end{math}
 
 #Système formel
 Le système formel *MUI* (inventé par Douglas Hofstadter et présenté dans *Gödel,
@@ -300,3 +323,16 @@ MI \rightarrow (2. x = I) MII \rightarrow (2.x = II) MIIII \rightarrow
 *On veut montrer que l'on ne peut pas démontrer MU. Pour ce faire une propriété
 qui vous aidera est "le nombre de I n'est pas divisible par 3". Montrer que l'on
 ne peut pas démontrer MU.*
+
+On part de l'axiome. $MI$ n'a pas un nombre de *I* divisible par 3.
+
+Si on applique la règle d'inférence *1*, on ne change pas le nombre de *I*.
+Si on applique la règle d'inférence *2*, on double le nombre de *I*, ce qui ne
+rend toujours pas le nombre de *I* divisible par 3.
+Si on applique la règle d'inférence *3*, on enlève 3 *I* à un nombre où il n'y a
+pas de multiple de 3.
+Si on applique la règle d'inférence *4*, on ne change pas le nombre de *I*.
+
+Le seul moyen d'avoir *MU* serait de pouvoir enlever les *I* qui se retirent
+grâce à la règle *3*, mais on ne peut pas tous les enlever puisqu'on ne peut pas
+atteindre un nombre multiple de 3 de *I*.
