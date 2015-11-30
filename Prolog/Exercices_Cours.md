@@ -179,7 +179,7 @@ plat_resistance(P):- poisson(P).
 
 ##Diapo c2-9
 Pour composer un repas, on doit choisir un hors-d'oeuvre, un plat de resistance
-et un dessert. Ecrire le prédicat repas/3 définissant un repas.
+et un dessert. Écrire le prédicat repas/3 définissant un repas.
 ```prolog
 repas(H, P, D) :-
     hors_d_oeuvre(H),
@@ -248,7 +248,7 @@ route(rennes, le_mans).
 ...
 ```
 
-Ecrire le prédicat chemin/2 définissant la fermeture transitive de route.
+Écrire le prédicat chemin/2 définissant la fermeture transitive de route.
 
 ```prolog
 chemin(X, Y) :-
@@ -349,3 +349,385 @@ Quid des cas d'échec ?
 
 - Non codés
 - Exemple : lister les éléments d'une liste vide
+
+#Cours 4
+##Diapo c3-15
+En mode (-,+).
+Rappel :
+```prolog
+membre(X, [X|Y]).
+membre(X, [A|Y]) :- membre(X, Y).
+```
+
+Arbre de recherche de `?- membre(X, [10, 20]).`
+
+```prolog
+  membre(X, [10, 20])
+    /             \
+X1 = X         X2 = X
+X1 = 10        A2 = 10
+Y1 = [20]      Y2 = [20]
+   |              |
+  vide        membre(X, [20])
+                  |
+               X3 = X
+               X3 = 20
+               Y3 = []
+                  |
+                vide
+```
+
+##Diapo c3-17
+
+En mode (+,-).
+
+Arbre de recherche de `?- membre(10, L).`
+
+```prolog
+       membre(10, L)
+    /                \
+X1 = 10             X2 = 10
+L = [X1|Y1]        L = [A2|Y2]
+  = [10|Y1]          = [_|Y2]
+    |                |
+   vide          membre(10,Y2)
+               /              \
+           X3 = 10         X4 = 10
+           Y2 = [X3|Y3]    Y2 = [A4|Y4]
+              = [10|Y3]       = [_|Y4]
+              |               |
+             vide          membre(10,Y4)
+                           /          \
+                       X5 = 10        ...
+                       Y4 = [X5|Y5]
+                          = [10|Y5]
+                          |
+                         vide
+```
+
+##Diapo c3-19
+`[1,2,3,4,5]` : construire la liste formée des éléments de rang impair : `[1,3,5]`
+
+Écrire le prédicat `elem_impair/2` en mode (+,-).
+
+```prolog
+elem_impar([], []).
+elem_impair([X1], [X1]).
+elem_impair([X1,X2|L], [X1| Reste]) :-
+  elem_impair(L, Reste).
+```
+
+##Diapo c3-22
+Construire l'arbre de recherche de `?- elem_impair([1,2,3], S).`
+
+```prolog
+elem_impair([1,2,3], S)
+        |
+    X11 = 1
+    X21 = 2
+    L = [3]
+    S = [1 | Reste1]
+        |
+elem_impair([3], Reste1)
+        |
+    X12 = 3
+    Reste1 = [3] = X12
+        |
+      vide ; S = [1 | Reste1] = [1, 3]
+```
+
+##Diapo c3-25
+`[1,2,3]` : construire la liste formée des éléments dans le sens inverse :
+`[3,2,1]`
+
+Écrire le prédicat `renv/2` en mode (+,-).
+
+On va parcourir `L` en mettant ses éléments lus en réserve: liste auxiliaire `A`
+ initialisée à `[]`.
+
+```prolog
+renv(L, R) :- renverser(L, [], R).
+renverser([], A, A).
+renverser([X|L], A, R) :- renverser(L, [X|A], R).
+```
+Arbre de recherche de `?- renv([1,2,3], Res).`
+
+```prolog
+renv([1,2,3], Res)
+      |
+    L1 = [1,2,3]
+    R1 = Res
+      |
+renverser([1,2,3], [], Res)
+      |
+    X2 = 1
+    L2 = [2, 3]
+    A2 = [1]
+    R2 = Res
+      |
+renverser([2,3], [1], Res)
+      |
+    X3 = 2
+    L3 = [3]
+    A3 = [2, 3]
+    R3 = Res
+      |
+renverser([3], [2, 1], Res)
+      |
+    X4 = []
+    A4 = [3,2,1]
+    Res = A4
+      |
+     vide
+```
+
+##Diapo c3-32
+Écrire le prédicat `concat/3` en mode (+,+,-).
+
+```prolog
+concat([], L, L).
+concat([X|L1], L2, [X|L3]) :- concat(L1, L2, L3).
+```
+On a un temps d'execution proportionnel à la taille de `L1`.
+
+##Diapo c4-5
+
+~PGU : Plus grand unificateur~
+
+PGU de `T1 = [a,b,c,d]` et `T2 = [Y|Z]` ?
+
+Y = [a]
+Z = [b,c,d]
+
+PGU de `append([a,b],[c,d],L)` et `append([X|X1], Y, [X|Z])` ?
+
+X = a
+X1 = [b]
+Y = [c,d]
+L = [X|Z] donc Z = []
+
+PGU de `p([a,b], [c], [Y, Z|T])` et de `p(A, B, [A|B])` ?
+
+A = [a,b]
+B = [c]
+Y = A = [a,b]
+B = [Z|T] donc Z = [c] et T = []
+
+#Cours 5
+##Diapo c4-10
+Écrire le prédicat `oter_prem(+L, -R)` qui ôte le premier élément d'un liste.
+
+```prolog
+oter_prem([T|Q], Q).
+```
+
+Écrire le prédicat `oter_der(+L, -R)` qui ôte le dernier élément d'une liste.
+
+```prolog
+oter_der([X1], []).
+oter_der([X1|L], [X1|R]) :- oter_der(L, R).
+```
+
+##Diapo c4-12
+Écrire le prédicat `longueur(+L, ?N)` qui calcule la longueur d'une liste.
+
+```prolog
+longueur([], 0).
+longueur([X|L], N) :- longueur(L, M), N is M+1.
+```
+
+##Diapo c4-13
+Arbre de recherche de `longueur([1,2], S)`.
+
+```prolog
+longueur([1,2], S)
+      |
+    X1 = 1
+    L1 = [2]
+    S = N1
+      |
+longueur([2], M1), S is M1+1
+      |
+    X2 = 2
+    L2 = []
+    M1 = N2
+      |
+longueur([], M2) M1 is M2+1, S is M1+1
+      |
+    M2 = 0
+      |
+M1 is 0+1, S is M1+1
+      |
+    M1 = 1
+      |
+    S = 2
+      |
+    vide
+```
+
+##Diapo c4-20
+Écrire le prédicat `longueur(+L, ?N)` avec un accumulateur.
+
+```prolog
+longueur(L, S) :- lg(L, 0, S).
+lg([], N, N).
+lg([X|L], A, N) :- lg(L, B, N), B is A+1.
+```
+
+##Diapo c4-21
+Arbre de recherche de `longeur([1,2], S)`.
+
+```prolog
+longeur([1,2], S)
+      |
+  L1 = [1,2]
+  S1 = S
+      |
+  lg([1, 2], 0, S1)
+      |
+    X2 = 1
+    L2 = [2]
+    A2 = 0
+    N2 = S1
+    B2 = A2+1 = 1
+      |
+  lg([2], 1, N2)
+      |
+    X3 = 2
+    L3 = []
+    A3 = 1
+    N3 = N2
+    B3 = A3+1 = 2
+      |
+  lg([], 2, 2)
+      |
+    vide
+B3 = N2 = N1 = S1 = S = 2
+```
+
+##Diapo c4-23
+Écrire le prédicat `meme_longueur(+L1, +L2)` qui rend vrai si les deux listes
+ont la même taille.
+
+```prolog
+meme_longueur([],[]).
+meme_longueur([X|L1], [Y|L2]) :- meme_longueur(L1, L2).
+```
+
+##Diapo c5-6
+
+```prolog
+pp0(X, Y) :-      pp2(X, Y):-
+  qq(X),            qq(X),
+  qq(Y).            !,
+pp0(0,1).           qq(Y).
+                  pp2(0,1).
+
+pp1(X, Y) :-
+  qq(X),          qq(1).
+  qq(Y),          qq(2).
+  !.
+pp1(0,1).
+```
+
+Arbre de recherche et affichage des X et Y obtenus par : `?- pp0(X,Y).`,
+`?- pp1(X, Y).` et `?-pp2(X, Y).`
+
+```prolog
+                  pp0(X, Y)
+              /               \
+         qq(X), qq(Y)        X = 0
+      /             \        Y = 1
+    X = 1          X = 2       |
+      |              |      pp0(0,1)
+    qq(Y)          qq(Y)
+  /      \        /     \
+Y = 1   Y = 2  Y = 1   Y = 2
+  |       |      |       |
+succès  succès succès succès
+
+
+                  pp1(X, Y)
+              /               \
+       qq(X), qq(Y), !         cut
+      /             \
+    X = 1           cut
+      |
+    qq(Y), !
+  /      \
+Y = 1    cut
+  |
+succès
+
+
+                  pp2(X, Y)
+              /                  \
+      qq(X), !, qq(Y)           cut
+      /             \
+    X = 1           cut
+      |
+    !, qq(Y)
+  /       \
+Y = 1    Y = 0
+  |        |
+succès  succès
+```
+
+##Diapo c5-10
+
+Que calculent les questions posées et quels sont les résultats affichés.
+
+1er ensemble de valeurs satisfaisant `repas`
+
+`E=artichauts_Melanie, P = grillade_de_boeuf, D = sorbet_aux_poires`
+
+1er repas comportant du poisson
+
+`E = artichauts_Melanie, P = , D = sorbet_aux_poires`
+
+1er repas et vérification qu'il contient du poisson
+`No`
+
+##Diapo c5-18
+
+Écrire le prédicat `effacer(+P, +E1, -E2)` qui efface l'élément `P` de l'ensemble
+`E1`.
+
+###Version SANS coupure
+
+```prolog
+effacer(P, [P|E], E).
+effacer(P, [P1|E], [P1|E1]) :- effacer(P, E, E1), \==(P, P1).
+```
+
+###Version AVEC coupure
+
+```prolog
+effacer(P, [P|E], E) :- !.
+effacer(P, [P1|E], [P1|E1]) :- effacer(P, E, E1).
+```
+
+##Diapo c5-25
+
+Version 1 ou version 2 ?
+
+###Version 1
+```prolog
+sauver(X) :-
+  homme(X),
+  !,
+  moins_de_quatoze_ans(X).
+sauver(X).
+```
+
+###Version 2
+```prolog
+sauver(X) :-
+  homme(X),
+  moins_de_quatoze_ans(X),
+  !.
+sauver(X).
+```
+
+La version 1 est la seule correcte. Dans la seconde, tout le monde est sauvé car
+`age(georges, 50). ?-sauver(georges).` rend `Yes`.
