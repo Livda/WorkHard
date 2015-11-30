@@ -4,6 +4,8 @@ author : Aurélien Fontaine
 geometry: margin=3cm
 ---
 #Table de vérité
+**Avec l'aide de `laymard` pour cette partie.**
+
 Soit la proposition suivante :
 \begin{math}
 P = (p_3 \lor (p_1 \land p_2 )) \Rightarrow (\neg p_1 \land \neg p_2)
@@ -173,6 +175,8 @@ Puis on peut rajouter toutes les combinaisons qui n'entrent pas en conflit avec
 les propositions. Soit :
 (B, O) ; (N, B, O).
 
+**Merci à `arnaud` pour la correction des erreurs de cette partie.**
+
 #Résolution
 Soit :
 \begin{math}
@@ -285,15 +289,36 @@ prod(s(X), Y, Z) \lor \neg prod(X, Y, Z1) \lor \neg add(Y, Z1, Z) \newline
 *Transformer cette question en clause puis effectuer la résolution du l'ensemble
 de clauses pour obtenir la réponse.*
 
+**`arnaud` a fait cet arbre, j'ai juste recopié.**
+
 On transforme la question en $\neg prod(s(zero), s(zero), Res)$.
 Puis on unifie avec les clauses de la question précédente :
+\begin{center}
+    \begin{math}
+        \underbrace{\neg prod(s(zero), s(zero), Res) \hspace{10pt} prod(s(X), Y, Z)
+        \lor \neg prod(X, Y, Z1) \lor \neg add(Y, Z1, Z)}
+        \newline
+        \null \hspace{158pt} \downarrow X = zero, Y = s(zero), z = Res
+        \newline
+        \underbrace{\neg prod(zero, s(zero), Z1) \lor \neg add(s(zero), Z1, Res)
+        \hspace{10pt} prod(zero, \_, zero)}
+        \newline
+        \null \hspace{125pt} \downarrow T = s(zero), Z1 = zero
+        \newline
+        \underbrace{\neg add(s(zero), zero, Res) \hspace{10pt} add(s(X), Y, s(Z))
+        \lor \neg add(X, Y, Z)}
+        \newline
+        \null \hspace{140pt} \downarrow X = zero, Y = zero, Res = s(zero)
+        \newline
+        \underbrace{\neg add(zero, zero, Z) \hspace{10pt} add(zero, X, X)}
+        \newline
+        \null \hspace{80pt} \downarrow X = zero, Z = zero
+        \newline
+        \Box \hspace{90pt} \null
+    \end{math}
+\end{center}
 
-*J'ai pas réussi à le faire, mais Eclipse m'a donné la réponse. Si vous y êtes
-arrivés normalement, je suis preneur*
-
-\begin{math}
-Res = s(zero)
-\end{math}
+On obtient donc **Res = s(zero)**.
 
 #Système formel
 Le système formel *MUI* (inventé par Douglas Hofstadter et présenté dans *Gödel,
