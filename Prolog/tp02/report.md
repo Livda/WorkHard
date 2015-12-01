@@ -1,6 +1,6 @@
 ---
 title: TP2 - Manipulation des termes construits
-author: François Boschet & Aurélien Fontaine
+author: François Boschet _”Tyzeppelin”_ & Aurélien Fontaine _”Malabar”_
 date: 4-INFO
 header-includes:
     - \usepackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
@@ -115,33 +115,99 @@ full(main(C1,C2,C3,C4,C5)) :-
 ~~~~ {#mycode .prolog .numberLines}
 ?-carte_test(c1,carte(sept,trefle)).
 
-Yes (0.00s cpu)
 ?-carte_test(c1,carte(sept,trefle)).
 
-Yes (0.00s cpu)
 ?-carte_test(c2,carte(neuf,carreau)).
 
-Yes (0.00s cpu)
 ?-carte_test(ce1,carte(7,trefle)).
 
-Yes (0.00s cpu)
 ?-carte_test(ce2,carte(sept,t)).
-
-Yes (0.00s cpu)
 ~~~~
 
 ##TESTS QUESTION 2 : est_main
 
-##TESTS QUESTION 3
+~~~~ {#mycode .prolog .numberLines}
 
-##TESTS QUESTION 4
+?- est_main(main(carte(sept,trefle), carte(valet,coeur),
+    carte(dame,carreau), carte(dame,pique), carte(roi,pique))).
+Yes (0.00s cpu)
 
-##TESTS QUESTION 5
+?- est_main(main_test(merreur1, ...)).
+No (0.00s cpu)
 
-##TESTS QUESTION 6
+~~~~
 
-##TESTS QUESTION 7
+##TESTS QUESTION 3 : inf_carte
 
-##TESTS QUESTION 8
+~~~~ {#mycode .prolog .numberLines}
 
-##TESTS QUESTION 9
+?- inf_carte(carte(sept,trefle), carte(neuf,carreau)).
+Yes
+
+?- inf_carte(carte(neuf,carreau), carte(sept,trefle)).
+No
+
+~~~~
+
+##TESTS QUESTION 4 : est_main_triee
+
+~~~~ {#mycode .prolog .numberLines}
+
+?- est_main_triee(main(carte(sept,trefle), carte(valet,coeur),
+    carte(dame,carreau), carte(dame,pique), carte(roi,pique))).
+Yes
+
+~~~~
+
+\newpage
+
+##TESTS QUESTION 5 : une paire
+
+~~~~ {#mycode .prolog .numberLines}
+
+?- une_paire(main(carte(sept,trefle), carte(valet,coeur),
+    carte(dame,carreau), carte(dame,pique), carte(roi,pique))).
+Yes
+
+~~~~
+
+##TESTS QUESTION 6 : deux paires
+
+~~~~ {#mycode .prolog .numberLines}
+
+deux_paires(main(carte(valet,trefle), carte(valet,coeur),
+    carte(dame,carreau), carte(roi,coeur), carte(roi,pique))).
+Yes
+
+~~~~
+
+##TESTS QUESTION 7 : brelan
+
+~~~~ {#mycode .prolog .numberLines}
+
+brelan(main(carte(sept,trefle), carte(dame,carreau),
+    carte(dame,coeur), carte(dame,pique), carte(roi,pique))).
+Yes
+
+~~~~
+
+##TESTS QUESTION 8 : suite
+
+~~~~ {#mycode .prolog .numberLines}
+
+?- suite(main(carte(sept,trefle),carte(huit,pique),
+    carte(neuf,coeur),carte(dix,carreau),carte(valet,carreau))).
+Yes
+
+~~~~
+
+##TESTS QUESTION 9 : full
+
+~~~~ {#mycode .prolog .numberLines}
+
+?- full(main(carte(deux,coeur),carte(deux,pique),
+    carte(quatre,trefle),carte(quatre,coeur),carte(quatre,pique))).
+Yes
+
+~~~~
+
