@@ -253,6 +253,34 @@ On essaie d'atteindre la clause vide :
 *Montrer que $G = \forall x \forall y \forall z. I(x,y) \Rightarrow I(f(x, y),
 f(y, z))$ n'est pas conséquence valide de {A~1~, A~2~, A~3~, A~4~}.*
 
+**Merci `tristan` pour ton aide !**
+
+On se place dans [0,1] :
+
+E(x, y) = **vrai**    -> on ne s'occupe plus de **A1**, **A2**
+
+g(y) = y -> **A4 vrai**
+
+I(x, y) : vrai si x = 1 ou y = 1
+
+e : 1
+
+Donc **A3 vrai**
+
+f(x,y) : min(x,y)
+
+On choisit x = 0, y = 1, z = 0 :
+
+I(x,y) = I(0,1) : vrai
+
+f(x,z) = min(0,0) = 0
+
+f(y,z) = min(1,0) = 0
+
+Et I(f(x,z),f(y,z)) = I(0,0) : **faux**
+
+Donc **vrai** implique **faux**, *pas possible*
+
 #Prolog
 Soit le programme *Prolog* suivant :
 
