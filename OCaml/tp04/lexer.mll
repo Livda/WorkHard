@@ -14,7 +14,8 @@
   "if"      , IF ;
   "then"    , THEN ;
   "else"    , ELSE ;
-  "function", FUNCTION
+  "function", FUNCTION ;
+  "->"      , ARROW
       ]
 }
 
@@ -42,6 +43,7 @@ rule get_token = parse
   | '*'         { MUL }
   | '='         { EQUAL }
   | '<'         { INF }
+  | '|'         { PIPE }
   | letter+ as i{ try
       Hashtbl.find keyword_table i with
       |Not_found -> IDENT i }
