@@ -227,20 +227,22 @@ Y = [] .
 #### tri(+X,-Y)
 ~~~~ {#mycode .prolog .numberLines}
 
-/* It’s not working. And I can’t see why. */
+/* It’s supposed to be working. 
+   ( OLD : It looks like Quicksort, but it can't work :'( )
+*/
 tri([], Y).
 tri([A|X], Y) :-
     part(A, X, L, R),
     tri(L, LS),
     tri(R, RS),
-    concat3(LS, [A], RS).
+    conc3(LS, [A], RS, Y).
 
 part(A, [], [], []).
-part(A, [xs|X], [xs|L], R) :-
-    xs =< A,
+part(A, [S|X], [S|L], R) :-
+    S =< A,
     part(A, X, L, R).
-part(A, [xs|X], L, [xs|R]) :-
-    xs > A,
+part(A, [S|X], L, [S|R]) :-
+    S > A,
     part(A, X, L, R).
 
 ?:- tri([1,2,3,4], Y).
