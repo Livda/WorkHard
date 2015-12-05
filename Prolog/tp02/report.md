@@ -16,13 +16,16 @@ est_carte(carte(H, C)) :-
 ~~~~
 
 ##QUESTION 2 : est_main(main(C1,C2,C3,C4,C5))
+Pour un maximum d'efficacité, on fait les tests au
+plus tôt.
 ~~~~ {#mycode .prolog .numberLines}
 est_main(main(C1,C2,C3,C4,C5)) :-
-    est_carte(C1), est_carte(C2), est_carte(C3), est_carte(C4), est_carte(C5),
-    C1 \== C2, C1 \== C3, C1 \== C4, C1 \== C5,
-    C2 \== C3, C2 \== C4, C2 \== C5,
-    C3 \== C4, C3 \== C5,
-    C4 \== C5.
+    est_carte(C1), C1 \== C2, C1 \== C3, C1 \== C4, C1 \== C5,
+    est_carte(C2), C2 \== C3, C2 \== C4, C2 \== C5,
+    est_carte(C3), C3 \== C4, C3 \== C5,
+    est_carte(C4), C4 \== C5,
+    est_carte(C5).
+
 ~~~~
 
 ##QUESTION 3 : inf_carte(C1,C2) première version
@@ -41,8 +44,7 @@ inf_coul(C1, C2) :-
 
 inf_carte(carte(H1, _), carte(H2, _)) :-
     inf_hauteur(H1, H2).
-inf_carte(carte(H1, C1), carte(H2, C2)) :-
-    H1 = H2,
+inf_carte(carte(H, C1), carte(H, C2)) :-
     inf_coul(C1, C2).
 
 inf_carte_52coeur(carte(H, C)) :-
@@ -61,8 +63,7 @@ est_main_triee(main(C1,C2,C3,C4,C5)) :-
 
 ##QUESTION 5 : une_paire(main(C1,C2,C3,C4,C5))
 ~~~~ {#mycode .prolog .numberLines}
-paire(carte(H1, _), carte(H2, _)) :-
-    H1 = H2.
+paire(carte(H, _), carte(H, _)).
 
 %Je pars du principe que l'on donne une main valide et triée
 une_paire(main(C1,C2,C3,C4,C5)) :-
