@@ -176,27 +176,22 @@ remplir3rd(X, Y, [A|Z], [A|T]) :-
 A = [1, 2, 3]
 B = []
 C = []
-Yes
 
 A = [1, 2]
 B = [3]
 C = []
-Yes
 
 A = [1, 2]
 B = []
 C = [3]
-Yes
 
 A = [1, 3]
 B = [2]
 C = []
-Yes
 
 A = [1]
 B = [2, 3]
 C = []
-Yes
 
 A = [1]
 B = [2]
@@ -235,7 +230,14 @@ true .
 true .
 ?:- sous_liste([1,2,3], [1,3]).
 false .
-
+?:- sous_liste([1,2,3], X).
+X = []
+X = [1]
+X = [1, 2]
+X = [1, 2, 3]
+X = [2]
+X = [2, 3]
+X = [3]
 ~~~~
 ##### TODO: rendre toutes les sous-listes possibles.
 

@@ -80,8 +80,6 @@ debute_par([A|X], [A|Y]) :- debute_par(X, Y).
 /* is Y a sublist of X -> sous_liste(+X, ?Y) */
 sous_liste(X, Y) :- debute_par(X, Y).
 sous_liste([A|X], Y) :- sous_liste(X, Y).
-sous_liste(X, []).
-sous_liste(X, X).
 
 /* make a set Y from a list X -> elim(+X, -Y) */
 
@@ -126,9 +124,6 @@ inclus([A|X], Y) :-
     membre(A, Y),
     inclus(X, Y).
 
-inclus2(A, Y):-
-    sous_liste(A, Y).
-
 /* at least an elts of X is not in Y -> non_inclus(+X, +Y) */
 non_inclus([A|X], Y) :-
     compte(A, Y, 0).
@@ -141,5 +136,3 @@ union_ens(X, [], X).
 union_ens(X, Y, Z) :-
     concat(X, Y, S),
     elim(S, Z).
-
-

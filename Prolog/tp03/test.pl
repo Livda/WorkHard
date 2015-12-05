@@ -45,6 +45,7 @@ sous_liste([1,2,3], []).
 sous_liste([1,2,3], [1]).
 sous_liste([1,2,3], [2,3]).
 sous_liste([1,2,3], [1,3]).
+sous_liste([1,2,3], X).
 
 elim([1,2,3], Y).
 elim([3,1,2,3,3], Y).
