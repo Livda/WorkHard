@@ -54,6 +54,9 @@ void sortir_section (int *verrou) {
 ##Question 2.1
 *Donner votre avis sur ce code.*
 
+Dans ce code, on fait de l'attente active ce qui est gourmand en ressource CPU
+et donc qui n'est pas optimisé. Il vaudrait mieux utiliser des sémaphores.
+
 *Pour réaliser une section critique, on propose aussi le code suivant :*
 ```java
 public class SC {
@@ -91,7 +94,9 @@ sur `128 bits`.
 *Quel est le nombre maximum d'entrées d'une table des pages ? Quelle est la
 taille d'espace mémoire nécessaire pour stocker cette table en totalité ?*
 
-On peut adresser 2^^64^^ pages. Cela prend en mémoire 128bits * 2^^64^^.
+On peut adresser 2^^64^^ pages. Cela prend en mémoire 128bits * 2^^64^^ soit
+2,361183241×10^^21^^ bits. (Ca fait beaucoup quand même ... Pas sur de ma
+réponse).
 
 *Pour éviter de stocker la table des pages de manière contiguë en mémoire, on
 décide de la hiérarchiser à son tour. On considère ici une pagination à 3
