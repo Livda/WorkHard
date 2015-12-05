@@ -1,6 +1,6 @@
 ---
 title: TP3 - Listes
-author: François Boschet && Aurélien Fontaine 
+author: François Boschet && Aurélien Fontaine
 date: 4-INFO
 geometry: margin=3cm
 ---
@@ -93,13 +93,16 @@ A = 1 .
 ?:- nieme(3, [1,2,3,4], A).
 A = 4 .
 
-/* is’nt working properly */
-nieme2(N, [A|X], A).
+nieme2(0, [A|X], A).
 nieme2(N, [B|X], A) :-
     A \== B,
     nieme2(M, X, A),
     N is M+1.
 
+?-: nieme2(N, [1,2,3,4], 3).
+N = 2 .
+?-: nieme2(N, [1,2,3,4], 1).
+N = 0 .
 ~~~~
 
 #### - hors_de(+A, +X)
@@ -136,7 +139,7 @@ true .
 
 ~~~~
 
-#### - concat3(+X,+Y,+Z,-T)
+#### - conc3(+X,+Y,+Z,-T)
 
 ~~~~ {#mycode .prolog .numberLines}
 conc3(X, Y, Z, T) :-
@@ -153,9 +156,53 @@ true .
 false .
 ?:- conc3([], [], [], []).
 true.
-
 ~~~~
-##### TODO: conc3(-, -, -, T)
+#### - conc3(-, -, -, T)
+
+~~~~ {#mycode .prolog .numberLines}
+conc3v2([], [], [], []).
+conc3v2(X, Y, Z, T) :-
+    remplir1st(X, Y, Z, T);
+    remplir2nd(X, Y, Z, T);
+    remplir3rd(X, Y, Z, T).
+remplir1st([A|X], Y, Z, [A|T]) :-
+    conc3v2(X, Y, Z, T).
+remplir2nd(X, [A|Y], Z, [A|T]) :-
+    conc3v2(X, Y, Z, T).
+remplir3rd(X, Y, [A|Z], [A|T]) :-
+    conc3v2(X, Y, Z, T).
+
+?- conc3v2(A, B, C, [1, 2, 3])
+A = [1, 2, 3]
+B = []
+C = []
+Yes
+
+A = [1, 2]
+B = [3]
+C = []
+Yes
+
+A = [1, 2]
+B = []
+C = [3]
+Yes
+
+A = [1, 3]
+B = [2]
+C = []
+Yes
+
+A = [1]
+B = [2, 3]
+C = []
+Yes
+
+A = [1]
+B = [2]
+C = [3]
+...
+~~~~
 
 #### - debute_par(+x,?Y)
 
@@ -227,10 +274,7 @@ Y = [] .
 #### tri(+X,-Y)
 ~~~~ {#mycode .prolog .numberLines}
 
-/* It’s supposed to be working. 
-   ( OLD : It looks like Quicksort, but it can't work :'( )
-*/
-tri([], Y).
+tri([], []).
 tri([A|X], Y) :-
     part(A, X, L, R),
     tri(L, LS),
@@ -245,11 +289,12 @@ part(A, [S|X], L, [S|R]) :-
     S > A,
     part(A, X, L, R).
 
-?:- tri([1,2,3,4], Y).
-?:- tri([4,3,2,1], Y).
-?:- tri([3,1,2,4], Y).
-?:- tri([], Y).
-
+?-: tri([1,2,3,4], Y).
+Y = [1, 2, 3, 4]
+?-: tri([4,3,2,1], Y).
+Y = [1, 2, 3, 4]
+?-: tri([3,1,2,4], Y).
+Y = [1, 2, 3, 4]
 ~~~~
 
 # Modélisation des ensembles

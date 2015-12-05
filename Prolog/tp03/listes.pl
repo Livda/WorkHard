@@ -35,8 +35,7 @@ nieme(N, [B|X], A) :-
     N is M+1.
 
 /* second version (-,+,+) i.e. what is the first occurence of A in X*/
-/* TODO: FIX IT (I know this is an antipattern, FU) */
-nieme2(N, [A|X], A).
+nieme2(0, [A|X], A).
 nieme2(N, [B|X], A) :-
     A \== B,
     nieme2(M, X, A),
@@ -61,6 +60,19 @@ conc3(X, Y, Z, T) :-
 concat([], R, R).
 concat([X|L1], L2, [X|L3]) :- concat(L1, L2, L3).
 
+/* Show all the sub-lists X, Y and Z, witch can create T*/
+conc3v2([], [], [], []).
+conc3v2(X, Y, Z, T) :-
+    remplir1st(X, Y, Z, T);
+    remplir2nd(X, Y, Z, T);
+    remplir3rd(X, Y, Z, T).
+remplir1st([A|X], Y, Z, [A|T]) :-
+    conc3v2(X, Y, Z, T).
+remplir2nd(X, [A|Y], Z, [A|T]) :-
+    conc3v2(X, Y, Z, T).
+remplir3rd(X, Y, [A|Z], [A|T]) :-
+    conc3v2(X, Y, Z, T).
+
 /* do X beginning is Y -> debute_par(+X, ?Y) */
 debute_par(X, []).
 debute_par([A|X], [A|Y]) :- debute_par(X, Y).
@@ -68,6 +80,8 @@ debute_par([A|X], [A|Y]) :- debute_par(X, Y).
 /* is Y a sublist of X -> sous_liste(+X, ?Y) */
 sous_liste(X, Y) :- debute_par(X, Y).
 sous_liste([A|X], Y) :- sous_liste(X, Y).
+sous_liste(X, []).
+sous_liste(X, X).
 
 /* make a set Y from a list X -> elim(+X, -Y) */
 
@@ -91,19 +105,19 @@ i_m_alone([A|X], Y, Z) :-
 
 /* Y <- sorted X : tri(+X, ?Y)*/
 /* THIS IS NOT WORKING AND I DON'T KNOW WHY */
-tri([], Y).
+tri([], []).
 tri([A|X], Y) :-
     part(A, X, L, R),
     tri(L, LS),
     tri(R, RS),
-    concat3(LS, [A], RS).
+    conc3(LS, [A], RS, Y).
 
 part(A, [], [], []).
-part(A, [xs|X], [xs|L], R) :-
-    xs =< A,
+part(A, [S|X], [S|L], R) :-
+    S =< A,
     part(A, X, L, R).
-part(A, [xs|X], L, [xs|R]) :-
-    xs > A,
+part(A, [S|X], L, [S|R]) :-
+    S > A,
     part(A, X, L, R).
 
 /* all elts in X are also in Y -> inclus(+X,+Y) */
@@ -111,6 +125,9 @@ inclus([], Y).
 inclus([A|X], Y) :-
     membre(A, Y),
     inclus(X, Y).
+
+inclus2(A, Y):-
+    sous_liste(A, Y).
 
 /* at least an elts of X is not in Y -> non_inclus(+X, +Y) */
 non_inclus([A|X], Y) :-
