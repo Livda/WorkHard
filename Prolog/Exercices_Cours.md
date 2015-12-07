@@ -1,5 +1,11 @@
-%Exercices du cours
-
+---
+title: Exercices de cours - Prolog
+author: Aurélien Fontaine
+date: 2015
+geometry: margin=3cm
+header-includes:
+    - \usepackage{tikz-qtree}
+---
 #Cours 1
 
 ##Petits exos d'application directe
@@ -136,18 +142,18 @@ parent(X, Y) :- pere(X, Y) ; mere(X, Y).
 ##Diapo c1-72
 Dessiner l'arbre de recherche de recherche de `?-grand-pere(X,Y).`
 
-```prolog
-?-grand-pere(X, Y) :- pere(X,Z),pere(Z,Y).
-
-                      grand-pere(X,Y)
-                            |
-                     pere(X,Z),pere(Z,Y)
-        /                 |                   |                 \
-{X=jean, Z=paul}    {X=jean, Z=luc}  {X=jean, Z=gaston}  {x=paul, Z=pierre}
-pere(paul, Y)       pere(luc, Y)     pere(gaston, Y)     pere(pierre,Y)
-    |                   |                  |                    |
-   vide               echec              echec                echec
-```
+\begin{tikzpicture}
+\tikzset{every tree node/.style={align=center,anchor=north}}
+\Tree [
+        .grand-pere(X,Y)
+        [ .pere(X,Z),pere(Z,Y)
+          [ .{X=jean\\Z=paul} [ .pere(paul,Y) vide ] ]
+          [ .{X=jean\\Z=luc} [ .pere(luc,Y) echec ] ]
+          [ .{X=jean\\Z=gaston} [ .pere(gaston,Y) echec ] ]
+          [ .{X=jean\\Z=pierre} [ .pere(pierre,Y) echec ] ]
+        ]
+      ]
+\end{tikzpicture}
 
 ##Diapo c2-5
 
@@ -731,3 +737,151 @@ sauver(X).
 
 La version 1 est la seule correcte. Dans la seconde, tout le monde est sauvé car
 `age(georges, 50). ?-sauver(georges).` rend `Yes`.
+
+#Cours 6
+##Diapo c5-36
+```prolog
+not(P) :-
+  P,
+  !,
+  fail.
+not(P).
+
+grand(pierre).
+grand(paul).
+petit(X) -: not(grand(X)).
+```
+
+###Questions | Réponses
+```
+?-petit(arthur).          | succès (arrive pas à démontrer grand(arthur))
+?-petit(pierre).          | échec
+?-petit(X), X is arthur.  | échec (il teste d'abord avec X sur pierre, puis cut
+                                 et fail)
+```
+
+##Diapo c6-10
+
+```
+S ::= aSB | Ba
+B ::= b | epsilon
+```
+
+Ecrivez l'analyseur correspondant.
+
+```prolog
+s(L) :-
+  concat_3([a], L1, L2, L),
+  s(L1),
+  b(L2).
+s(L) :-
+  concat_2(L1, [a], L),
+  b(L1).
+b([]).
+b([b]).
+```
+
+##Diapo c6-24
+
+```prolog
+s(L) :-
+  concat_2(L1, L2, L),
+  s(L1),
+  b(L2).
+s([a]).       concat([], L, L).
+b([b]).       concat([X|L1], L2, [X|L]):-
+                concat(L1, L2, L3).
+```
+
+Arbre de recherche de `?- s([a,b]).`.
+
+```
+s([a,b])
+|
+concat(L1, L2) #PasEuLeTempsDeRecopier
+```
+
+On modifie `concat/3` pour qu'il ne dérive pas `[]` en 1^^er^^ argument. On
+s'arrête sur l'élément d'avant.
+
+```prolog
+concat([X], L, [X|L]).
+concat([X|L1], L2, [X|L]):-
+  concat(L1, L2, L3).
+```
+
+##Diapo c6-22
+
+```prolog
+s([c|L], L).
+s([a|L], R) :- s(L, [b|R]).
+```
+
+Arbre de recherche de `?- s([a,a,c,b,b], [])`.
+
+```
+s([a,a,c,b,b], [])
+      |
+  L1 = [a,c,b,b]
+  R1 = []
+      |
+s([a,c,b,b], [b])
+      |
+  L2 = [c,b,b]
+  R2 = [b]
+      |
+s([c,b,b], [b,b])
+      |
+  L3 = [b,b]
+      |
+    succes
+```
+
+##Diapo c6-24
+
+```
+E ::= a E F b | a F
+F ::= c d F | F a | epsilon
+```
+
+Ecrivez l'analyseur correspondant.
+
+```prolog
+e([a|L], R) :-
+  e(L, L1),
+  f(L1, [b|R]).
+e([a|L], R) :- f(L, R).
+f([c|d|L], R) :- f(L, R).
+f(L, R) :- f(L, [a|R]).
+f(L, L).
+```
+
+##Diapo c6-34
+
+```
+E ::= T Op1 E | T
+T ::= F Op2 T | F
+F ::= ( E ) | atome
+Op1 ::= + | -
+Opé :: *
+```
+DCG correspondante ?
+
+```prolog
+e --> t, op1, e | t.
+t --> f, op2, t | f.
+f --> ['('], e, [')'], [A], {atom(A)}.
+op1 --> ['+'] | ['-'].
+op2 --> ['*'].
+```
+
+##Diapo c6-39
+
+```prolog
+e --> chiffre
+e --> ['(', plus], l, [')'].
+e --> ['(', mult], l, [')'].
+l --> e, e.
+l --> e, l.
+chiffre --> [c], {integer(C), c>=0, C=<9}.
+```
