@@ -7,30 +7,55 @@ a. *Expliquer la problématique associée à l'exclusion mutuelle ainsi que la
 notion de section critique. Que dire de cela dans le cas de systèmes
 non-péemptifs ?*
 
+Lorsque deux programmes doivent accéder (modifier) à une même ressource, il est
+nécessaire d’empêcher qu’ils y accèdent en même temps. Le code qui n’autorise
+qu’un seul processus est appelé section critique. ... ???
+
 b. *Donner un exemple de stratégie d'ordonnancement qui peut conduire à des
 famines. Expliquez pourquoi.*
+
+Dans le cas d’une stratégie d’ordonnancement basée sur les priorités qui
+prendrait à chaque fois le processus qui a la plus grande priorité, les
+processus les moins prioritaire pourrait être en famine.
 
 c. *On imagine un ordinateur muni de suffisamment de mémoire vive pour stocker
 toutes les données nécessaires à l'ensemble des processus qui s'exécutent en
 même temps. Quel phénomène cela permit-il d'éviter ? L'utilisation de mémoire
 virtuelle est-elle utile ?*
 
+La pagination et les adresses virtuelles. Non.
+
 d. *Expliquer la différence en mécanisme de synchronisation synchrone et
 asynchrone. Donner un exemple de chaque type de mécanisme.*
+
+Vu dans le cours (p38). La synchronisation synchrone est prévisible. La synchronisation asynchrone est imprévisible et peut entraîner un déroutement.
+
+    1. asynchrone = émis par un processus ou le système via des signaux
+    2. synchrone = via des sémaphores et des pipes (pas sur…)
+
 
 e. *Expliquer pourquoi l'ensemble de la mémoire centrale ne peut pas être
 paginée.*
 
+Parce qu’il faut stocker en mémoire la traduction des pages.
+
 f. *Si la valeur de retour de la fonction `getppid()` est 1, cela signifie
 quoi ?*
 
-Le père du processus est `init`.
+Le père du processus s’est terminé avant d’appeler l’instruction getppid(), tous
+ses enfants ont dont été réassignés en tant qu’enfant du processus initial, dont
+le pid est 1.
 
 g. *Comment le système d'exploitation peut être informé de la fin d'un transfert
 vers un périphérique ?*
 
+Le système d'exploitation peut être informé de la fin d'un transfert de données par une interruption levée par le DMA (Direct Memory Access).
+
 h. *Que se passe-t-il lorsqu'un processus tente d'accéder à une page qui n'est
 pas dans la mémoire centrale ?*
+
+Il y a défaut de page. On doit donc charger la page physique correspondante dans
+la mémoire centrale.
 
 #2. Section critique
 
@@ -54,8 +79,11 @@ void sortir_section (int *verrou) {
 ##Question 2.1
 *Donner votre avis sur ce code.*
 
-Dans ce code, on fait de l'attente active ce qui est gourmand en ressource CPU
-et donc qui n'est pas optimisé. Il vaudrait mieux utiliser des sémaphores.
+Lorsque le verrou vient d’être libérer par “sortir_section”, un processus
+pourrait sortir du “while”, s'arrêter à cause du côté aléatoire de
+l’ordonnanceur et laisser un autre processus sortir de la boucle. Au final, on
+se retrouve avec deux processus qui peuvent s’exécuter alors que le verrou est
+occupé.
 
 *Pour réaliser une section critique, on propose aussi le code suivant :*
 ```java
@@ -80,6 +108,13 @@ public class SC {
 ##Question 2.2
 *Donner votre avis sur ce code.*
 
+Le “synchronized” permet de garantir les sections critiques, même un peu trop,
+si un processus est bloqué dans la boucle de “entrer_section” il bloque l’accès
+à tous les autres processus d’exécuter “sortir_section”.
+
+(En java, “sleep(long millis)“, utilise des milisecondes, donc avec “1”  la
+pause est négligeable.)
+
 #3. Pagination
 Lorsque la table des pages est de petite taille (environ une dizaine de pages),
 elle est implémentée avec des registres rapides. Cependant, devant la taille des
@@ -94,9 +129,14 @@ sur `128 bits`.
 *Quel est le nombre maximum d'entrées d'une table des pages ? Quelle est la
 taille d'espace mémoire nécessaire pour stocker cette table en totalité ?*
 
-On peut adresser 2^^64^^ pages. Cela prend en mémoire 128bits * 2^^64^^ soit
-2,361183241×10^^21^^ bits. (Ca fait beaucoup quand même ... Pas sur de ma
-réponse).
+Une page fait 4Ko, soit 4096 octets, soit 2^^12^^ octets. (4Ko = 2^^12^^ o).
+
+Les adresses font 64bits, on a déjà 12 bits pour le déplacement. 64 -12 -> il
+reste 52 bits pour adresser la page. 2^^52^^ = 4.5 10^^15^^ => nb d’entree d’une
+table = 2^52
+
+128bit = 16o = 2^^4^^ => taille d’espace d’une table en totale = 2^^52^^ +2^^4^^
+Ce ne serait pas plutot 2^^52^^ * 128 ici ? (et pas plus ?) soit 572 Petaoctets ?
 
 *Pour éviter de stocker la table des pages de manière contiguë en mémoire, on
 décide de la hiérarchiser à son tour. On considère ici une pagination à 3
@@ -106,8 +146,14 @@ niveaux (segments, livres, pages).*
 *Donner une structure possible pour une adresse c'est à dire l'utilisation des
 différents bits qui la composent.*
 
+52/3 ->  17.3, OUTCH, pas facile d’etre équitable..
+Segments : 18 bits, Livres : 17 bits, Pages, 17 bits. Déplacement dans la page:
+12bits.
+
 ##Question 3.3
 *Quelle est la taille mémoire adressable par un processus ?*
+
+Au pif  : 2^^18^^ * 2^^17^^ * 2^^17^^ * 2^^12^^
 
 ##Question 3.4
 *Représenter les différents éléments intervenant lors de l'accès à une donnée
@@ -119,6 +165,11 @@ Quelles sont les conséquences sur les performances par rapport à un système :
 
 - *avec une mémoire paginée avec une table des pages uniques ?*
 - *sans mémoire paginée ?*
+
+Il y a 4 accès mémoires (segments, livres, pages, déplacement). Soit 3 accès de
+plus qu’une mémoire non paginée et 2 accès de plus qu’une mémoire paginée avec
+une table des pages unique.
+
 
 *Pour limiter la dégradation des performances, on utilise une mémoire cache à
 consultation rapide, appelée TLB (Translation Look-aside Buffer) ou registres
@@ -132,6 +183,8 @@ les registres.*
 ##Question 3.6
 *Quel est le temps moyen effectif d'accès à une donnée dans l'organisation
 multi-niveaux ?*
+
+0.9 * 15 + 0.1 * 100 = 13.5 ns
 
 #4. Pool de Threads
 Pour gérer un ensemble de tâches, `n` threads sont chargés de se répartir les
@@ -148,3 +201,46 @@ threads.
 
 ##Question 4.1
 *Implémenter en Java le pool de threads en utilisant uniquement des sémaphores.*
+
+~~~~ {#mycode .java .numberLines}
+import java.util.ArrayDeque;
+import java.util.concurrent.Semaphore;
+
+public class CustomThreadPool {
+
+    private CustomThread[] tab;
+    private ArrayDeque<Runnable> tasks = new ArrayDeque<Runnable>();
+    private Semaphore mutex = new Semaphore(1);
+    private Semaphore needWork = new Semaphore(0);
+
+    public CustomThreadPool(int nbThreads) {
+     tab = new CustomThread[nbThreads];
+     for (int i = 0; i < nbThreads; i++) {
+         tab[i] = new CustomThread();
+         tab[i].start();
+     }
+    }
+
+    public void addTache(Runnable task) {
+     tasks.addLast(task);
+     needWork.release();
+    }
+
+    private class CustomThread extends Thread {
+     public void run() {
+         while (true) {
+             try {
+                 mutex.acquire();
+                 needWork.acquire();
+             } catch (Exception e) {
+                 break;
+             }
+             Runnable task = tasks.removeFirst();
+             mutex.release();
+
+             task.run();
+         }
+     }
+    }
+}
+~~~~
