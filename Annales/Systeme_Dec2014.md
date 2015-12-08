@@ -9,30 +9,39 @@ non-péemptifs ?*
 
 Lorsque deux programmes doivent accéder (modifier) à une même ressource, il est
 nécessaire d’empêcher qu’ils y accèdent en même temps. Le code qui n’autorise
-qu’un seul processus est appelé section critique. ... ???
+qu’un seul processus est appelé section critique.
+
+Un système non-préemptif ne peut pas être interrompu, donc la notion de section
+critique n'a pas de sens.
 
 b. *Donner un exemple de stratégie d'ordonnancement qui peut conduire à des
 famines. Expliquez pourquoi.*
 
-Dans le cas d’une stratégie d’ordonnancement basée sur les priorités qui
-prendrait à chaque fois le processus qui a la plus grande priorité, les
-processus les moins prioritaire pourrait être en famine.
+Dans le cas d’une stratégie d’ordonnancement basée sur la longueur de la tâche,
+on peut avoir une famine en cas d'une tâche très longue, elle ne s'exécuteras
+jamais s'il y a toujours des tâches courtes.
 
 c. *On imagine un ordinateur muni de suffisamment de mémoire vive pour stocker
 toutes les données nécessaires à l'ensemble des processus qui s'exécutent en
 même temps. Quel phénomène cela permit-il d'éviter ? L'utilisation de mémoire
 virtuelle est-elle utile ?*
 
-La pagination et les adresses virtuelles. Non.
+La pagination et les adresses virtuelles permettent d'éviter le swap (permet
+d'adresser plus d'adresse que la memoire ne le permet). Les addr. virtuelles
+permettent néanmoins de cantonner un processus dans sa propre partie de la
+mémoire (permet de le protéger des autres processus).
 
 d. *Expliquer la différence en mécanisme de synchronisation synchrone et
 asynchrone. Donner un exemple de chaque type de mécanisme.*
 
-Vu dans le cours (p38). La synchronisation synchrone est prévisible. La synchronisation asynchrone est imprévisible et peut entraîner un déroutement.
+Vu dans le cours (p38). La synchronisation synchrone est prévisible. La
+synchronisation asynchrone est imprévisible et peut entraîner un déroutement.
 
-    1. asynchrone = émis par un processus ou le système via des signaux
-    2. synchrone = via des sémaphores et des pipes (pas sur…)
+synchrone : on attend un retour ou un certain état.
+asynchrone : cela peut arriver n'importe quand dans le code.
 
+1. asynchrone = émis par un processus ou le système via des signaux
+2. synchrone = via des sémaphores et des pipes
 
 e. *Expliquer pourquoi l'ensemble de la mémoire centrale ne peut pas être
 paginée.*
@@ -49,7 +58,8 @@ le pid est 1.
 g. *Comment le système d'exploitation peut être informé de la fin d'un transfert
 vers un périphérique ?*
 
-Le système d'exploitation peut être informé de la fin d'un transfert de données par une interruption levée par le DMA (Direct Memory Access).
+Le système d'exploitation peut être informé de la fin d'un transfert de données
+par une interruption levée par le DMA (Direct Memory Access).
 
 h. *Que se passe-t-il lorsqu'un processus tente d'accéder à une page qui n'est
 pas dans la mémoire centrale ?*
@@ -79,11 +89,8 @@ void sortir_section (int *verrou) {
 ##Question 2.1
 *Donner votre avis sur ce code.*
 
-Lorsque le verrou vient d’être libérer par “sortir_section”, un processus
-pourrait sortir du “while”, s'arrêter à cause du côté aléatoire de
-l’ordonnanceur et laisser un autre processus sortir de la boucle. Au final, on
-se retrouve avec deux processus qui peuvent s’exécuter alors que le verrou est
-occupé.
+L'opération `entrer_section` n'est pas atomique et ne permet pas de garantir de
+garantir l'exclusion mutuelle.
 
 *Pour réaliser une section critique, on propose aussi le code suivant :*
 ```java
@@ -108,11 +115,11 @@ public class SC {
 ##Question 2.2
 *Donner votre avis sur ce code.*
 
-Le “synchronized” permet de garantir les sections critiques, même un peu trop,
-si un processus est bloqué dans la boucle de “entrer_section” il bloque l’accès
-à tous les autres processus d’exécuter “sortir_section”.
+Le `synchronized` permet de garantir les sections critiques, même un peu trop,
+si un processus est bloqué dans la boucle de `entrer_section` il bloque l’accès
+à tous les autres processus d’exécuter `sortir_section`.
 
-(En java, “sleep(long millis)“, utilise des milisecondes, donc avec “1”  la
+(En java, `sleep(long millis)`, utilise des milisecondes, donc avec `1`  la
 pause est négligeable.)
 
 #3. Pagination
@@ -135,8 +142,8 @@ Les adresses font 64bits, on a déjà 12 bits pour le déplacement. 64 -12 -> il
 reste 52 bits pour adresser la page. 2^^52^^ = 4.5 10^^15^^ => nb d’entree d’une
 table = 2^52
 
-128bit = 16o = 2^^4^^ => taille d’espace d’une table en totale = 2^^52^^ +2^^4^^
-Ce ne serait pas plutot 2^^52^^ * 128 ici ? (et pas plus ?) soit 572 Petaoctets ?
+128bit = 16o = 2^^4^^ => taille d’espace d’une table en totale = 2^^52^^ *
+2^^4^^ soit 72 Petaoctets ?
 
 *Pour éviter de stocker la table des pages de manière contiguë en mémoire, on
 décide de la hiérarchiser à son tour. On considère ici une pagination à 3
@@ -147,13 +154,14 @@ niveaux (segments, livres, pages).*
 différents bits qui la composent.*
 
 52/3 ->  17.3, OUTCH, pas facile d’etre équitable..
+
 Segments : 18 bits, Livres : 17 bits, Pages, 17 bits. Déplacement dans la page:
 12bits.
 
 ##Question 3.3
 *Quelle est la taille mémoire adressable par un processus ?*
 
-Au pif  : 2^^18^^ * 2^^17^^ * 2^^17^^ * 2^^12^^
+Comme on a des adresses sur 64 bits : 2^^64^^ octets soit 2^^24^^To
 
 ##Question 3.4
 *Représenter les différents éléments intervenant lors de l'accès à une donnée
@@ -184,7 +192,15 @@ les registres.*
 *Quel est le temps moyen effectif d'accès à une donnée dans l'organisation
 multi-niveaux ?*
 
-0.9 * 15 + 0.1 * 100 = 13.5 ns
+Au dessus on a dit qu’on avait 4 accès mémoires pour récupérer une valeur. On
+souhaite rajouter un cache appelé le TLB. Dans 90% des cas, on va hit, et on va
+directement lire la valeur là ou elle est dans la mémoire : 90% * (T[TLB] +
+T[MEM]). Dans les 10% restants, on a fait une requête au TLB, qui n’a pas
+abouti, puis on a fait une requete au segment, livre, page et enfin on récupère
+la valeur (4 accès mémoire). Donc 10% * (T[TLB] + 4 * T[MEM])
+
+On a au final T[MOYEN] = 0.9 * (T[TLB] + T[MEM]) + 0.1 * (T[TLB] + 4 * T[MEM]) =
+145ns
 
 #4. Pool de Threads
 Pour gérer un ensemble de tâches, `n` threads sont chargés de se répartir les
@@ -222,7 +238,9 @@ public class CustomThreadPool {
     }
 
     public void addTache(Runnable task) {
+     mutex.aquire();
      tasks.addLast(task);
+     mutex.release();
      needWork.release();
     }
 
@@ -230,8 +248,8 @@ public class CustomThreadPool {
      public void run() {
          while (true) {
              try {
-                 mutex.acquire();
                  needWork.acquire();
+                 mutex.acquire();
              } catch (Exception e) {
                  break;
              }
