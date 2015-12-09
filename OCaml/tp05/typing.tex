@@ -1,0 +1,82 @@
+\documentclass{article}
+\usepackage[frenchb]{babel}
+\usepackage[utf8]{inputenc}
+
+\title{Compilation - TP5 - Analyse sémantique de \emph{mini-Ocaml}}
+\date{année universitaire 2013-2014}
+
+\newtheorem{question}{Question}[section]
+\newcommand{\Question}[1]{\begin{question}#1\end{question}}
+
+\begin{document}
+\maketitle
+\section{Introduction}
+L'interprète \emph{mini-Ocaml} du TP4 n'est pas typé. Cela se manifeste pas le fait que l'évaluation
+de certains termes peut échouer. Nous allons effectuer les analyses sémantiques nécessaires pour
+détecter ces erreurs statiquement. Dans une mise en oeuvre réelle, ces analyses sémantiques
+sont mises à profit pour éviter des tests inutiles qui ne peuvent pas échoués.
+
+Un squelette vous est fourni ({\tt miniocamltp5.tgz} sous commun). Il fournit en particulier une
+mise en mise d'ensembles de chaînes {\tt strSet.mli} et une interface pour manipuler des environnements de types {\tt typEnv.mli}.
+
+\section{Variables libres}
+
+Pour obtenir la valeur d'une variable, l'interprète la recherche dans l'environnement.  Pour assurer
+que la variable existe, il est nécessaire de s'assurer de l'absence de variables libres.
+
+\Question{Modifier l'analyseur syntaxique de façon à calculer l'ensemble des variables libres d'un
+  terme.}  Ce calcul devra être fait à l'aide d'un attribut synthétisé. Par conséquent, l'analyseur
+syntaxique retournera une paire {\tt Ast.Ml\_expr * StrSet.t}. Dans le cas où la liste de
+variables libres n'est pas vide, l'interprète doit retourner une erreur de la forme {\tt Unbound variables ....}.
+
+\section{Typage}
+
+En général, l'inférence de type simple nécessite de collecter et résoudre des contraintes d'unification.
+%
+Pour simplifier l'inférence, on va annoter le programme avec des types en des endroits stratégiques:
+\begin{itemize}
+\item Chaque occurrence de la liste vide {\tt []} doit être annotée par un type explicite;
+\item Dans un motif, chaque occurrence d'une variable doit aussi être annotée par un type explicite;
+\end{itemize}
+Par exemple, on écrira donc:\\
+\begin{center}
+{\tt let x = 1 in function (y:int) -> x + y }
+\end{center}
+\begin{verbatim}
+(function ([]: int list)             -> 0
+         | (hd:int) :: (tl:int list) -> hd + 1)
+             (2 :: 3 :: 4 :: ([]:int list))
+\end{verbatim}
+
+\Question{Modifier la grammaire pour pouvoir annoter les termes avec des types.}
+On rappelle les priorités suivantes:
+\begin{itemize}
+\item l'opérateur {\tt -> } est associatif à droite;
+\item les opérateurs {\tt list} et {\tt *} sont prioritaires par rapport à {\tt ->};
+\item l'opérateur {\tt *} est prioritaire par rapport à {\tt list}.
+\end{itemize}
+Par exemple: {\tt int -> int -> int} se lit {\tt int -> (int -> int)} ; {\tt int -> int list} se lit {\tt int -> (int list)} et {\tt int * int list} se lit {\tt (int * int) list}.
+
+\Question{Compléter les fonctions de vérification de type ({\tt typing.ml}).}.
+La fonction {\tt typ\_of\_pattern : ml\_pattern -> (string * typ) * typ} prend un motif en entrée et retourne une paire contenant un environnement de
+typage et le type du motif.
+
+Par exemple, le type du motif {\tt ((x:int),(y:int -> bool)) :: (tl:(int * (int -> bool)) list) } est {\tt (int * (int -> bool)) list} et
+l'environnement est de la forme {\tt [(x:int); (y:int -> bool) ; (tl : (int * (int -> bool)) list)]}.
+
+La fonction {\tt wt\_expr : TypEnv.t -> Ast.ml\_expr -> Ast.typ} retourne le type d'une expression
+étant donné un environnement de type pour les variables libres de l'expression.
+%
+En cas d'erreur de type, la fonction retourne une simple exception {\tt failwith "Type error"}.
+
+\Question{Optionnel: Améliorer les messages d'erreur de façon à localiser et expliquer au mieux l'origine de l'erreur.}
+
+
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
