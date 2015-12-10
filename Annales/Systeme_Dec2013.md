@@ -36,7 +36,7 @@ e. *Pourquoi un processus se retrouve dans l'état "suspendu" ?*
 
 On peut mettre un processus en arrière plan via le raccourci `ctrl + z` ou via
 un signal SUSPEND. On peut faire revenir un processus en premier plan avec la
-commande `bg %job`.
+commande `fg %job` ou le faire continuer en arrière plan avec `bg %job`.
 
 f. *Comment entre deux programmes, peut-on identifier un segment de mémoire
 partagée ?*
@@ -59,7 +59,7 @@ i. *Dans un système de traduction d'adresses donné qui requiert de nombreux
 accès mémoire pour traduire les numéros de page virtuelle en numéro de page
 réelle, avec quel mécanisme peut-on espérer accélérer la traduction ?*
 
-On peut accélérer avec une cache.
+On peut accélérer avec un cache.
 
 j. *Comment sont gérés les threads du point de vue de l'ordonnanceur ?*
 
