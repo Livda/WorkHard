@@ -12,6 +12,7 @@ geometry: margin=3cm
 ~~~~ {#mycode .prolog .numberLines}
 membre(A, [A|X]).
 membre(A, [B|X]) :-
+    A \== B,
     membre(A, X).
 
 ?- membre(2, [1,2,3,4]).
@@ -253,23 +254,13 @@ elim([A|X], Y) :-
 elim([A|X], Y) :- elim(X, [A|Y]).*/
 
 
-elim(X, Y) :- i_m_alone(X, Y, []).
-
-i_m_alone([], Y, Y).
-i_m_alone([A|X], Y, Z) :-
-    compte(A, Z, 1),
-    i_m_alone(X, Y, Z).
-i_m_alone([A|X], Y, Z) :-
-    compte(A, Z, 0),
-    i_m_alone(X, Y, [A|Z]).
-
-?:- elim([1,2,3], Y).
-Y = [3, 2, 1] .
-?:- elim([3,1,2,3,3], Y).
-Y = [2, 1, 3]
-?:- elim([], Y).
-Y = [] .
-
+elim([], []);
+elim([A|X], [A|Y]) :-
+    hors_de(A,X),
+    elim(X, Y).
+elim([A|Y], Y) :-
+    membre(A, X),
+    elim(X, Y).
 ~~~~
 #####On en était à "elim" à la fin des 2h.
 
