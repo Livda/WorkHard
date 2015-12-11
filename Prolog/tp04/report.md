@@ -100,6 +100,16 @@ insertion_arbre_ordonne(X, arb_bin(R, G, D1), arb_bin(R, G, D2)) :-
 
 #Question 8
 
+insertion_arbre_ordonne1(+X, +B)
 
 ~~~~ {#mycode .prolog .numberLines}
+insertion_arbre_ordonne1(X, arb_bin(X, vide, vide)).
+insertion_arbre_ordonne1(X, vide) :-
+    insertion_arbre_ordonne1(X, arb_bin(X, vide, vide)).
+insertion_arbre_ordonne1(X, arb_bin(R, G, D)) :-
+    X < R,
+    insertion_arbre_ordonne1(X, G).
+insertion_arbre_ordonne1(X, arb_bin(R, G, D)) :-
+    X > R,
+    insertion_arbre_ordonne1(X, D).
 ~~~~

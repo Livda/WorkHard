@@ -64,6 +64,16 @@ insertion_arbre_ordonne(X, arb_bin(R, G, D1), arb_bin(R, G, D2)) :-
     X > R,
     insertion_arbre_ordonne(X, D1, D2).
 
+insertion_arbre_ordonne1(X, arb_bin(X, vide, vide)).
+insertion_arbre_ordonne1(X, vide) :-
+    insertion_arbre_ordonne1(X, arb_bin(X, vide, vide)).
+insertion_arbre_ordonne1(X, arb_bin(R, G, D)) :-
+    X < R,
+    insertion_arbre_ordonne1(X, G).
+insertion_arbre_ordonne1(X, arb_bin(R, G, D)) :-
+    X > R,
+    insertion_arbre_ordonne1(X, D).
+
 /*
 -------------------------------------------------------------------------------
  Tests
@@ -73,25 +83,32 @@ insertion_arbre_ordonne(X, arb_bin(R, G, D1), arb_bin(R, G, D2)) :-
 % Quelques arbres à copier coller pour vous faire gagner du temps, mais
 % n'hésitez pas à en définir d'autres
 
+test(arbre_vide,vide).
 
-arb_bin(1, arb_bin(2, arb_bin(6, vide, vide), vide), arb_bin(3, arb_bin(4, vide, vide), arb_bin(5, vide, vide))).
+test(arbre1,arb_bin(1, arb_bin(2, arb_bin(6, vide, vide), vide), arb_bin(3, arb_bin(4, vide, vide), arb_bin(5, vide, vide)))).
 
-arb_bin(3, arb_bin(4, vide, vide), arb_bin(5, vide, vide)).
+test(arbre2,arb_bin(3, arb_bin(4, vide, vide), arb_bin(5, vide, vide))).
 
-arb_bin(3, arb_bin(4, vide, vide), arb_bin(5, 7, vide)).
+%%test(arbre3,arb_bin(3, arb_bin(4, vide, vide), arb_bin(5, 7, vide))). on le commente car ce n'est pas un arbre binaire. On a testé cela avant de commenter.
 
-arb_bin(3, arb_bin(4, vide, vide), arb_bin(5, arb_bin(6, vide, vide), arb_bin(7, vide, vide))).
+test(arbre4,arb_bin(3, arb_bin(4, vide, vide), arb_bin(5, arb_bin(6, vide, vide), arb_bin(7, vide, vide)))).
 
-arb_bin(3, arb_bin(5, arb_bin(6, vide, vide), arb_bin(7, vide, vide)), arb_bin(4, vide, vide)).
+test(arbre5,arb_bin(3, arb_bin(5, arb_bin(6, vide, vide), arb_bin(7, vide, vide)), arb_bin(4, vide, vide))).
 
-arb_bin(3, arb_bin(6, vide, vide), arb_bin(5, arb_bin(4, vide, vide), arb_bin(7, vide, vide))).
+test(arbre6,arb_bin(3, arb_bin(6, vide, vide), arb_bin(5, arb_bin(4, vide, vide), arb_bin(7, vide, vide)))).
 
-arb_bin(8, arb_bin(4, arb_bin(2, vide, vide), arb_bin(6, vide, vide)), arb_bin(12, arb_bin(10, vide, vide), vide)).
+test(arbre7,arb_bin(8, arb_bin(4, arb_bin(2, vide, vide), arb_bin(6, vide, vide)), arb_bin(12, arb_bin(10, vide, vide), vide))).
 
-arb_bin(8, arb_bin(4, arb_bin(2, _, _), arb_bin(6, _, _)), arb_bin(12, arb_bin(10, _, _), _)).
+test(arbre8,arb_bin(8, arb_bin(4, arb_bin(2, _, _), arb_bin(6, _, _)), arb_bin(12, arb_bin(10, _, _), _))).
 
-arb_bin(6,arb_bin(2,arb_bin(1,vide,vide),arb_bin(4,vide,vide)),arb_bin(8,vide,arb_bin(10,vide,vide))).
+test(arbre9,arb_bin(6,arb_bin(2,arb_bin(1,vide,vide),arb_bin(4,vide,vide)),arb_bin(8,vide,arb_bin(10,vide,vide)))).
 
-arb_bin(8,arb_bin(2,arb_bin(1,vide,vide),arb_bin(4,vide,vide)),arb_bin(6,vide,arb_bin(10,vide,vide))).
+test(arbre10,arb_bin(8,arb_bin(2,arb_bin(1,vide,vide),arb_bin(4,vide,vide)),arb_bin(6,vide,arb_bin(10,vide,vide)))).
 
-arb_bin(6,arb_bin(2,arb_bin(1,vide,vide),arb_bin(4,vide,vide)),arb_bin(8,arb_bin(2,arb_bin(1,vide,vide),arb_bin(4,vide,vide)),arb_bin(10,vide,vide))).
+test(arbre11,arb_bin(6,arb_bin(2,arb_bin(1,vide,vide),arb_bin(4,vide,vide)),arb_bin(8,arb_bin(2,arb_bin(1,vide,vide),arb_bin(4,vide,vide)),arb_bin(10,vide,vide)))).
+
+test(arbre12, arb_bin(3, arb_bin(4, vide, vide), arb_bin(5, vide, vide))).
+
+test(arbre13, arb_bin(5, arb_bin(6,vide,vide), arb_bin(7,vide,vide))).
+
+test(arbre14, arb_bin(1,vide,vide)).
