@@ -100,3 +100,12 @@ fresh_variables(apply(Fun1, Param1), Assoc, apply(Fun2, Param2)) :-
         fresh_variables(Param1, Assoc, Param2).
 
 %Fun = fun(N, fun(F, if(eq(N, 0), 1, prod(N, apply(apply(F, sub(N, 1)), F))))), Factorial = fun(N, apply(apply(Fun, N), Fun)), evaluate(apply(Factorial, 42), Res).
+
+
+test_bin(0,[]).
+test_bin(1,[1]).
+test_bin(2,[0,1]).
+test_bin(3,[1,1]).
+test_bin(4,[0,0,1]).
+test_bin(5,[1,0,1]).
+test_bin(6,[0,1,1]).
