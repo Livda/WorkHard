@@ -129,6 +129,7 @@ prod(+, +, -): peano number * peano number * peano number
 prod(Op1, Op2, Prod) avec Prod = Op1 * Op2
 
 ~~~~ {#mycode .prolog .numberLines}
+/* TODO FIX IT */
 prod(s(zero), O2, R) :- add(s(zero), O2, R).
 prod(s(01), 02, R) :-
     add(zero, O2, R),
