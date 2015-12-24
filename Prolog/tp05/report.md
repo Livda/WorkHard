@@ -129,11 +129,25 @@ prod(+, +, -): peano number * peano number * peano number
 prod(Op1, Op2, Prod) avec Prod = Op1 * Op2
 
 ~~~~ {#mycode .prolog .numberLines}
-/* TODO FIX IT */
-prod(s(zero), O2, R) :- add(s(zero), O2, R).
-prod(s(01), 02, R) :-
-    add(zero, O2, R),
-    prod(O1, 02, R).
+prod(zero, Y, zero).
+prod(s(X), Y, Prod):-
+	prod(X, Y, Prod1),
+	add(Y, Prod1, Prod).
+~~~~
+
+###Tests
+
+~~~~{.prolog}
+?- test(2,X),test(3,Y),prod(X,Y,Z).
+
+X = s(s(zero)),
+Y = s(s(s(zero))),
+Z = s(s(s(s(s(s(zero)))))).
+
+?- test(2,X),test(0,Y),prod(X,Y,Z).
+X = s(s(zero)),
+Y = Z,
+Z = zero
 ~~~~
 
 ##Question 1.4
@@ -142,10 +156,24 @@ factorial(+, -): peano number * peano number
 factorial(N, Fact) avec Fact = N!
 
 ~~~~ {#mycode .prolog .numberLines}
-factorial(s(zero), s(zero)).
+factorial(zero, s(zero)).
 factorial(s(N), F) :-
-    prod(s(N), s(zero), F),
-    factorial(N, F).
+    factorial(N, A),
+	prod(s(N), A, F).
+~~~~
+
+###Tests
+
+~~~~{.prolog}
+?- test(3,X),factorial(X,Y).
+
+X = s(s(s(zero))),
+Y = s(s(s(s(s(s(zero)))))).
+
+?- test(0,X),factorial(X,Y)
+
+X = zero,
+Y = s(zero)
 ~~~~
 
 #Représentation binaire
