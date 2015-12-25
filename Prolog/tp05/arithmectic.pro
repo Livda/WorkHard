@@ -18,6 +18,27 @@ add_bit_carryin([B1|L1], [], [B3|R], CI) :-
 add_bit_carryin([B1|L1], [B2|L2], [B3|R], CI) :-
     add_bit(B1, B2, CI, B3, CO),
     add_bit_carryin(L1, L2, R, CO).
+	
+sub(A,B,C) :- add(C, B, A).
+
+
+prod(X, Y, Z):-
+	prod2(X, Y, Z, Y).
+
+prod2([], _, [], _).
+prod2([1|X], Y, Z, Off):-
+	prod2(X, Y, W, [0|Off]),
+	add(W, Off, Z).
+prod2([0|X], Y, Z, Off):-
+	prod2(X, Y, Z, [0|Off]).
+
+
+factorial([], [1]).
+factorial([1|M], Z) :-
+	factorial(M, W),
+	prod(M, W, Z).
+factorial([0|M], Z) :-
+	factorial(M, Z).
 
 %%%%%%%%%%% Binary representation
 add_bit(0, 0, 0, 0, 0).

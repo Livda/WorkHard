@@ -206,10 +206,67 @@ add_bit_carryin([B1|L1], [B2|L2], [B3|R], CI) :-
     add_bit_carryin(L1, L2, R, CO).
 ~~~~~
 
+###Tests
+
+~~~~{.prolog}
+?- add([1], [0,0,1,1], Z).
+Z = [1, 0, 1, 1] 
+
+?- add([1,0,1,0], [0,1,0,1], Y).
+Y = [1, 1, 1, 1] 
+
+?- add([1], [1,1,1,1], Z).
+Z = [0, 0, 0, 0, 1] .
+~~~~
+
 ##Question 2.2
 
 sub(?, ?, ?): bit list * bit list * bit list
 sub(Op1, Op2, Sub) avec Sub = Op1 - Op2
 
+/* Fonctionne mais ona toujours le meme probleme avec les tableaux */
 ~~~~ {#mycode .prolog .numberLines}
+sub(A,B,C) :- add(C, B, A).
+~~~~
+
+###Tests
+
+~~~~{.prolog}
+?- sub([1,1], [1,0], Z).
+Z = [_G1603, 1]
+~~~~
+
+##Question 2.3
+
+prod(+, +, -): bit list * bit list * bit list
+prod(Op1, Op2, Prod) avec Prod = Op1 * Op2
+
+Ne fonctionne pas. Mais je n'arrive pas a voir pourquoi.
+
+~~~~ {#mycode .prolog .numberLines}
+prod(X, Y, Z):-
+	prod2(X, Y, Z, Y).
+
+prod_carry([], _, [], _).
+prod_carry([1|X], Y, Z, Off):-
+	prod_carry(X, Y, W, [0|Off]),
+	add(W, Off, Z).
+prod_carry([0|X], Y, Z, Off):-
+	prod_carry(X, Y, Z, [0|Off]).
+~~~~
+
+##Question 2.4
+
+factorial(+, -): bit list * bit list
+factorial(N, Fact) avec Fact = N!
+
+Peut pas tester. :/
+
+~~~~ {#mycode .prolog .numberLines}
+factorial([], [1]).
+factorial([1|M], Z) :-
+	factorial(M, W),
+	prod(M, W, Z).
+factorial([0|M], Z) :-
+	factorial(M, Z).
 ~~~~
