@@ -129,11 +129,25 @@ prod(+, +, -): peano number * peano number * peano number
 prod(Op1, Op2, Prod) avec Prod = Op1 * Op2
 
 ~~~~ {#mycode .prolog .numberLines}
-/* TODO FIX IT */
-prod(s(zero), O2, R) :- add(s(zero), O2, R).
-prod(s(01), 02, R) :-
-    add(zero, O2, R),
-    prod(O1, 02, R).
+prod(zero, Y, zero).
+prod(s(X), Y, Prod):-
+	prod(X, Y, Prod1),
+	add(Y, Prod1, Prod).
+~~~~
+
+###Tests
+
+~~~~{.prolog}
+?- test(2,X),test(3,Y),prod(X,Y,Z).
+
+X = s(s(zero)),
+Y = s(s(s(zero))),
+Z = s(s(s(s(s(s(zero)))))).
+
+?- test(2,X),test(0,Y),prod(X,Y,Z).
+X = s(s(zero)),
+Y = Z,
+Z = zero
 ~~~~
 
 ##Question 1.4
@@ -142,10 +156,24 @@ factorial(+, -): peano number * peano number
 factorial(N, Fact) avec Fact = N!
 
 ~~~~ {#mycode .prolog .numberLines}
-factorial(s(zero), s(zero)).
+factorial(zero, s(zero)).
 factorial(s(N), F) :-
-    prod(s(N), s(zero), F),
-    factorial(N, F).
+    factorial(N, A),
+	prod(s(N), A, F).
+~~~~
+
+###Tests
+
+~~~~{.prolog}
+?- test(3,X),factorial(X,Y).
+
+X = s(s(s(zero))),
+Y = s(s(s(s(s(s(zero)))))).
+
+?- test(0,X),factorial(X,Y)
+
+X = zero,
+Y = s(zero)
 ~~~~
 
 #Représentation binaire
@@ -178,10 +206,67 @@ add_bit_carryin([B1|L1], [B2|L2], [B3|R], CI) :-
     add_bit_carryin(L1, L2, R, CO).
 ~~~~~
 
+###Tests
+
+~~~~{.prolog}
+?- add([1], [0,0,1,1], Z).
+Z = [1, 0, 1, 1] 
+
+?- add([1,0,1,0], [0,1,0,1], Y).
+Y = [1, 1, 1, 1] 
+
+?- add([1], [1,1,1,1], Z).
+Z = [0, 0, 0, 0, 1] .
+~~~~
+
 ##Question 2.2
 
 sub(?, ?, ?): bit list * bit list * bit list
 sub(Op1, Op2, Sub) avec Sub = Op1 - Op2
 
+/* Fonctionne mais ona toujours le meme probleme avec les tableaux */
 ~~~~ {#mycode .prolog .numberLines}
+sub(A,B,C) :- add(C, B, A).
+~~~~
+
+###Tests
+
+~~~~{.prolog}
+?- sub([1,1], [1,0], Z).
+Z = [_G1603, 1]
+~~~~
+
+##Question 2.3
+
+prod(+, +, -): bit list * bit list * bit list
+prod(Op1, Op2, Prod) avec Prod = Op1 * Op2
+
+Ne fonctionne pas. Mais je n'arrive pas a voir pourquoi.
+
+~~~~ {#mycode .prolog .numberLines}
+prod(X, Y, Z):-
+	prod2(X, Y, Z, Y).
+
+prod_carry([], _, [], _).
+prod_carry([1|X], Y, Z, Off):-
+	prod_carry(X, Y, W, [0|Off]),
+	add(W, Off, Z).
+prod_carry([0|X], Y, Z, Off):-
+	prod_carry(X, Y, Z, [0|Off]).
+~~~~
+
+##Question 2.4
+
+factorial(+, -): bit list * bit list
+factorial(N, Fact) avec Fact = N!
+
+Peut pas tester. :/
+
+~~~~ {#mycode .prolog .numberLines}
+factorial([], [1]).
+factorial([1|M], Z) :-
+	factorial(M, W),
+	prod(M, W, Z).
+factorial([0|M], Z) :-
+	factorial(M, Z).
 ~~~~
