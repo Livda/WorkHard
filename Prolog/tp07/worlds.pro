@@ -66,6 +66,14 @@ Yes*/
 /*danna aime coddy*/
 proposition1(W):-member(likes(dana,cody),W).
 
+/*Tests :
+proposition1([likes(cody, dana)]).
+No
+
+proposition1([likes(dana, cody)]).
+Yes
+*/
+
 /*bess n'aime pas dana*/
 proposition2(W):-not(member(likes(bess, dana), W)).
 
@@ -73,7 +81,12 @@ proposition2(W):-not(member(likes(bess, dana), W)).
 proposition3(W):-not(member(likes(coddy, dana), W)).
 
 /*personne n'aime quelqu'un qui ne l'aime pas*/
-proposition4(W):-member(likes(A,B),W),member(likes(B,A),W).
+proposition4(W):-est_aime(W).
+
+est_aime([]).
+est_aime([likes(A, B)|L1]) :-
+    delete(L1, likes(B, A), L2),
+    est_aime(L2).
 
 /*abby aime tous ceux qui aiment bess*/
 proposition5(W):-member(likes(abby,A),W),member(likes(bess,A),W).
