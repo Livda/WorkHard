@@ -50,6 +50,7 @@ remplacer(+SA1, +SA2, +B, -B1)
 remplacer(SA1, SA2, SA1, SA2).
 remplacer(SA1, SA2, vide, vide).
 remplacer(SA1, SA2, arb_bin(R, G1, D1), arb_bin(R, G2, D2)) :-
+    SA1 \== arb_bin(R, G1, D1),
     remplacer(SA1, SA2, G1, G2),
     remplacer(SA1, SA2, D1, D2).
 ~~~~

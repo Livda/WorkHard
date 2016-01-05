@@ -75,6 +75,8 @@ Yes (0.00s cpu, solution 4)
 sub(?, ?, ?): peano number * peano number * peano number
 sub(Op1, Op2, Sub) avec Sub = Op1 - Op2
 
+*On peut utiliser `add` aussi pour cette fonction.*
+
 ~~~~ {#mycode .prolog .numberLines}
 sub(O1, zero, O1).
 sub(s(O1), s(O2), R) :- sub(O1, O2, R).
@@ -183,6 +185,9 @@ Y = s(zero)
 add(?, ?, ?): bit list * bit list * bit list
 add(Op1, Op2, Sum) avec Sum = Op1 + Op2
 
+*Ici il y a autant de manières de faire cette fonction qu'il y a de personne sur
+Terre.*
+
 ~~~~ {#mycode .prolog .numberLines}
 add([], [], []).
 add([1|L1], [1|L2], [0|R]) :-
@@ -210,10 +215,10 @@ add_bit_carryin([B1|L1], [B2|L2], [B3|R], CI) :-
 
 ~~~~{.prolog}
 ?- add([1], [0,0,1,1], Z).
-Z = [1, 0, 1, 1] 
+Z = [1, 0, 1, 1]
 
 ?- add([1,0,1,0], [0,1,0,1], Y).
-Y = [1, 1, 1, 1] 
+Y = [1, 1, 1, 1]
 
 ?- add([1], [1,1,1,1], Z).
 Z = [0, 0, 0, 0, 1] .
@@ -224,7 +229,7 @@ Z = [0, 0, 0, 0, 1] .
 sub(?, ?, ?): bit list * bit list * bit list
 sub(Op1, Op2, Sub) avec Sub = Op1 - Op2
 
-/* Fonctionne mais ona toujours le meme probleme avec les tableaux */
+/* Fonctionne mais on a toujours le meme probleme avec les tableaux */
 ~~~~ {#mycode .prolog .numberLines}
 sub(A,B,C) :- add(C, B, A).
 ~~~~
@@ -241,18 +246,13 @@ Z = [_G1603, 1]
 prod(+, +, -): bit list * bit list * bit list
 prod(Op1, Op2, Prod) avec Prod = Op1 * Op2
 
-Ne fonctionne pas. Mais je n'arrive pas a voir pourquoi.
-
 ~~~~ {#mycode .prolog .numberLines}
-prod(X, Y, Z):-
-	prod2(X, Y, Z, Y).
-
-prod_carry([], _, [], _).
-prod_carry([1|X], Y, Z, Off):-
-	prod_carry(X, Y, W, [0|Off]),
-	add(W, Off, Z).
-prod_carry([0|X], Y, Z, Off):-
-	prod_carry(X, Y, Z, [0|Off]).
+prod([], _, []).
+prod([1|Ns], M, Res) :-
+    prod(Ns, M, P),
+    add(M, [0|P], Res).
+prod([0|Ns], M, [0|Res]) :-
+    prod(Ns, M, Res).
 ~~~~
 
 ##Question 2.4
@@ -264,9 +264,8 @@ Peut pas tester. :/
 
 ~~~~ {#mycode .prolog .numberLines}
 factorial([], [1]).
-factorial([1|M], Z) :-
-	factorial(M, W),
-	prod(M, W, Z).
-factorial([0|M], Z) :-
-	factorial(M, Z).
+factorial(N, Res) :-
+    sub(N, [1], N1),
+    factorial(N1, Res1),
+    prod(N, Res1, Res).
 ~~~~
