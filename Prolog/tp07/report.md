@@ -96,24 +96,53 @@ Yes
 ## Question 1.4
 
 ~~~~ {#mycode .prolog .numberLines}
+/* REALLY REALLY NOT SURE*/
+
+possible_worlds(W) :-
+	people(P),
+	make_all_pairs(P, LP),
+	sub_list(LP, W),
+	proposition1(W),
+	proposition2(W);
+	proposition3(W);
+	proposition4(W);
+	proposition5(W);
+	proposition6(W);
+	proposition7(W).
 ~~~~
 
 ### Tests
 
 ~~~~ {#mycode .prolog .numberLines}
+/* don't know how to render tests properly. :/ */
 ~~~~
 
 ## Question 1.5
 
+I don't know if this is legal :/
 ~~~~ {#mycode .prolog .numberLines}
+possible_worlds(W) :-
+	people(P),
+	make_all_pairs(P, LP),
+	sub_list(LP, W),
+	proposition1(W);!,
+	proposition2(W);!,
+	proposition3(W);!,
+	proposition4(W);!,
+	proposition5(W);!,
+	proposition6(W);!,
+	proposition7(W).
 ~~~~
 
 ### Tests
 
 ~~~~ {#mycode .prolog .numberLines}
+.
 ~~~~
 
 ## Question 1.6
+
+Je n'ai pas compris comment ca fonctionne. :/
 
 ~~~~ {#mycode .prolog .numberLines}
 ~~~~
@@ -124,6 +153,8 @@ Yes
 ~~~~
 
 ## Question 1.7
+
+Sans avoir fait le code, je suppose que changer la taille de la liste influe sur l'ensemble des solutions. Et que l'ordre des litéraux change les resultats de coverage.
 
 ~~~~ {#mycode .prolog .numberLines}
 ~~~~

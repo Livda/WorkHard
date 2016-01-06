@@ -97,6 +97,24 @@ proposition6(W):-member(likes(dana,A),W),member(likes(bess,A),W).
 /*tout le monde aime quelqu'un*/
 proposition7(W).
 
+% Question 1.4
+
+possible_worlds(W) :-
+	people(P),
+	make_all_pairs(P, LP),
+	sub_list(LP, W),
+	proposition1(W);!,
+	proposition2(W);!,
+	proposition3(W);!,
+	proposition4(W);!,
+	proposition5(W);!,
+	proposition6(W);!,
+	proposition7(W).
+	
+	
+	
+	
+
 % Questions 1.6 and 1.7
 test_possible_worlds :-
         possible_worlds(World),
