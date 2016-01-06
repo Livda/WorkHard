@@ -47,3 +47,22 @@ choose([], _, []).
 choose(L, A, Res) :-
     member(A, L),
     delete_fait_a_la_main(L, A, Res).
+
+%% choose([1,2,3], Elt, Rest).
+
+%% Elt = 1
+%% Rest = [2, 3]
+%% Yes (0.00s cpu, solution 1, maybe more) ? ;
+
+%% Elt = 2
+%% Rest = [1, 3]
+%% Yes (0.00s cpu, solution 2, maybe more) ? ;
+
+%% Elt = 3
+%% Rest = [1, 2]
+%% Yes (0.00s cpu, solution 3, maybe more) ? ;
+
+% Question 1.2
+
+chains([], A, A).
+chains(Stones, Acc, Chains).
