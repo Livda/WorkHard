@@ -85,8 +85,14 @@ proposition4(W):-est_aime(W).
 
 est_aime([]).
 est_aime([likes(A, B)|L1]) :-
-    delete(L1, likes(B, A), L2),
+    delete_fait_a_la_main(L1, likes(B, A), L2),
     est_aime(L2).
+
+delete_fait_a_la_main([], A, []).
+delete_fait_a_la_main([A|L], A, L).
+delete_fait_a_la_main([B|L], A, [B|Res]) :-
+    B \== A,
+    delete_fait_a_la_main(L, A, Res).
 
 /*abby aime tous ceux qui aiment bess*/
 proposition5(W):-member(likes(abby,A),W),member(likes(bess,A),W).
@@ -110,10 +116,10 @@ possible_worlds(W) :-
 	proposition5(W);!,
 	proposition6(W);!,
 	proposition7(W).
-	
-	
-	
-	
+
+
+
+
 
 % Questions 1.6 and 1.7
 test_possible_worlds :-

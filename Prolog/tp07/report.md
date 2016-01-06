@@ -26,7 +26,8 @@ pairs_with_an_element(A, [B|L], [likes(B,A),likes(A,B)|Res]) :-
 ~~~~ {#mycode .prolog .numberLines}
 ?- make_all_pairs([1,2,3], A).
 
-A = [likes(2, 1), likes(1, 2), likes(3, 1), likes(1, 3), likes(1, 1), likes(3, 2), likes(2, 3), likes(2, 2), likes(3, 3)]
+A = [likes(2, 1), likes(1, 2), likes(3, 1), likes(1, 3), likes(1, 1),
+likes(3, 2), likes(2, 3), likes(2, 2), likes(3, 3)]
 ~~~~
 
 ## Question 1.2
@@ -71,9 +72,16 @@ proposition4(W) :- est_aime(W).
 
 est_aime([]).
 est_aime([likes(A, B)|L1]) :-
-    delete(L1, likes(B, A), L2),
+    delete_fait_a_la_main(L1, likes(B, A), L2),
     est_aime(L2).
 
+delete_fait_a_la_main([], A, []).
+delete_fait_a_la_main([A|L], A, L).
+delete_fait_a_la_main([B|L], A, [B|Res]) :-
+    B \== A,
+    delete_fait_a_la_main(L, A, Res).
+
+/*La proposition 4 ne fonctionnant pas, on a pas fini les propositions*/
 /*abby aime tous ceux qui aiment bess*/
 proposition5(W) :- member(likes(abby,A),W),member(likes(bess,A),W).
 
