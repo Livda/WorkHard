@@ -56,7 +56,8 @@ expr:
 | LET IDENT EQUAL expr IN expr { Ml_let($2, $4, $6) }
 | LET REC IDENT EQUAL expr IN expr { Ml_letrec($3, $5, $7) }
 | FUNCTION pattern_expr_list             { Ml_fun $2 }
-| application                            { List.fold_left (fun res a -> Ml_app(res, a)) (List.hd $1) (List.tl $1) }
+| application                            { List.fold_left (fun res a ->
+    Ml_app(res, a)) (List.hd $1) (List.tl $1) }
 
 simple_expr:
 | INT   { Ml_int $1 }
@@ -78,7 +79,8 @@ pattern:
 | pattern CONS pattern { Ml_pattern_cons($1, $3) }
 
 application:
- | simple_expr_or_parenthesized_expr simple_expr_or_parenthesized_expr application_next { $1 :: $2 :: $3 }
+ | simple_expr_or_parenthesized_expr simple_expr_or_parenthesized_expr
+ application_next { $1 :: $2 :: $3 }
 
 simple_expr_or_parenthesized_expr:
  | simple_expr                            { $1 }
