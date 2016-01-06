@@ -1,3 +1,4 @@
+---
 title: TP7  - Mondes possibles
 author: François Boschet && Aurélien Fontaine
 date: 4-INFO
@@ -95,20 +96,20 @@ Yes
 
 ## Question 1.4
 
-~~~~ {#mycode .prolog .numberLines}
-/* REALLY REALLY NOT SURE*/
+On suppose que toutes les propositions fonctionnent.
 
+~~~~ {#mycode .prolog .numberLines}
 possible_worlds(W) :-
-	people(P),
-	make_all_pairs(P, LP),
-	sub_list(LP, W),
-	proposition1(W),
-	proposition2(W);
-	proposition3(W);
-	proposition4(W);
-	proposition5(W);
-	proposition6(W);
-	proposition7(W).
+   people(P),
+   make_all_pairs(P, LP),
+   sub_list(LP, W),
+   proposition1(W),
+   proposition2(W),
+   proposition3(W),
+   proposition4(W),
+   proposition5(W),
+   proposition6(W),
+   proposition7(W).
 ~~~~
 
 ### Tests
@@ -119,19 +120,7 @@ possible_worlds(W) :-
 
 ## Question 1.5
 
-I don't know if this is legal :/
 ~~~~ {#mycode .prolog .numberLines}
-possible_worlds(W) :-
-	people(P),
-	make_all_pairs(P, LP),
-	sub_list(LP, W),
-	proposition1(W);!,
-	proposition2(W);!,
-	proposition3(W);!,
-	proposition4(W);!,
-	proposition5(W);!,
-	proposition6(W);!,
-	proposition7(W).
 ~~~~
 
 ### Tests
