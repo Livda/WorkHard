@@ -4,6 +4,8 @@
   let _ =
     List.iter (fun (kwd, tok) -> Hashtbl.add keyword_table kwd tok)
       [
+  "int", TINT;
+  "bool", TBOOL;
 	"let", LET;
 	"in", IN;
 	"function", FUNCTION;

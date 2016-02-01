@@ -18,10 +18,18 @@ let rec typ_of_pattern : ml_pattern -> TypEnv.t * Ast.typ =
 let rec wt_expr (env:TypEnv.t) = function
  | Ml_int i -> Tint
  | Ml_bool b -> Tbool
- | Ml_nil ty   -> failwith "TODO"
- | Ml_pair(e1,e2) -> failwith "TODO"
- | Ml_cons(e1,le1) -> failwith "TODO"
- | Ml_unop(op,e) -> failwith "TODO"
+ | Ml_nil ty   -> TList ty
+ | Ml_pair(e1,e2) -> TPair ((wt_expr env e1), (wt_expr env e2))
+ | Ml_cons(e1,le1) ->
+    let tl = TList (wt_expr env le1) in
+    let te = wt_expr env e1 in
+    (match tl, te with
+    | Tbool, Tbool -> tl
+    | Tint, Tint -> tl
+    | _ -> failwith "List fill with bad type")
+ | Ml_unop(op, e) -> (match op, e with
+    | Ml_fst, Ml_pair(e1, e2) -> (wt_expr env e1)
+    | Ml_snd, Ml_pair(e1, e2) -> (wt_expr env e2))
  | Ml_binop(op,e1,e2) -> failwith "TODO"
  | Ml_var x -> failwith "TODO"
  | Ml_if(e1,e2,e3) -> failwith "TODO"

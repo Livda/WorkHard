@@ -34,7 +34,7 @@
 main:
  | EOF { Printf.printf "\nbye"; exit 0 }
  | LET IDENT EQUAL expr END_OF_EXPRESSION { Ml_definition($2, fst $4), (snd $4) }
- | LET REC IDENT COLON typ EQUAL expr END_OF_EXPRESSION { Ml_definitionrec($3, failwith "let rec type expected", fst $5) , (snd $5) }
+ | LET REC IDENT COLON typ EQUAL expr END_OF_EXPRESSION { Ml_definitionrec($3, $5, fst $7) , (snd $7) }
  | expr END_OF_EXPRESSION { Ml_expr (fst $1) , (snd $1)}
  | error {
     let bol = (Parsing.symbol_start_pos ()).Lexing.pos_bol in
@@ -62,12 +62,12 @@ expr:
  | FUNCTION pattern_expr_list { Ml_fun (fst $2) , (snd $2) }
  | application { List.fold_left (fun res a -> Ml_app(res, a)) (List.hd (fst $1)) (List.tl (fst $1)) , (snd $1) }
  | LET IDENT EQUAL expr IN expr { Ml_let($2, fst $4, fst $6) , StrSet.union (snd $4) (StrSet.remove $2 (snd $6)) }
- | LET REC IDENT typ EQUAL expr IN expr { Ml_letrec($3, failwith "let rec type expected", fst $5, fst $7) , StrSet.union (StrSet.remove $3 (snd $5)) (StrSet.remove $3 (snd $7)) }
+ | LET REC IDENT typ EQUAL expr IN expr { Ml_letrec($3, $4, fst $6, fst $8) , StrSet.union (StrSet.remove $3 (snd $6)) (StrSet.remove $3 (snd $8)) }
 
 simple_expr:
  | INT { Ml_int $1, StrSet.empty }
  | bool { Ml_bool $1, StrSet.empty }
- | LEFT_BRACKET RIGHT_BRACKET COLON typ { Ml_nil (failwith "[] : type expected"), StrSet.empty }
+ | LEFT_BRACKET RIGHT_BRACKET COLON typ { Ml_nil $4, StrSet.empty }
  | IDENT { Ml_var $1 , StrSet.singleton $1 }
 
 bool:
@@ -75,12 +75,12 @@ bool:
  | TRUE  { true }
 
 pattern:
- | IDENT COLON typ { Ml_pattern_var ($1,(failwith "pattern variable: type expected")) , StrSet.singleton $1 }
+ | IDENT COLON typ { Ml_pattern_var ($1, $3) , StrSet.singleton $1 }
  | INT   { Ml_pattern_int $1 , StrSet.empty }
  | bool  { Ml_pattern_bool $1 , StrSet.empty }
  | LEFT_PAREN pattern COMMA pattern RIGHT_PAREN
    {Ml_pattern_pair(fst $2, fst $4), StrSet.union (snd $2) (snd $4) }
- | LEFT_BRACKET RIGHT_BRACKET COLON typ { Ml_pattern_nil (failwith "pattern []: type expected") , StrSet.empty }
+ | LEFT_BRACKET RIGHT_BRACKET COLON typ { (Ml_pattern_nil $4), StrSet.empty }
  | pattern CONS pattern { Ml_pattern_cons(fst $1, fst $3), StrSet.union (snd $1) (snd $3) }
 
 pattern_expr_list:
