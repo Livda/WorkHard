@@ -21,6 +21,6 @@ public class Lost extends Category {
 	 */
 	@Override
 	public String toString() {
-		return "Lost [location=" + location + ", date=" + date + ", contact=" + contact + "]";
+		return location + "," + date + "," + contact.getName();
 	}	
 }

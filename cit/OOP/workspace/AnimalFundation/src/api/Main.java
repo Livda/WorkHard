@@ -12,6 +12,8 @@ public class Main {
 		list.add(animal);
 		AnimalShelter shelter = new AnimalShelter();
 		shelter.setFound(new AnimalList(list));
+		Saver saver = new Saver();
+		saver.save(shelter);
 	}
 
 }

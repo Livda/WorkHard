@@ -26,8 +26,8 @@ public class Adoption extends Category{
 	 */
 	@Override
 	public String toString() {
-		return "Adoption [neutered=" + neutered + ", chipped=" + chipped + ", vaccinated=" + vaccinated + ", date="
-				+ date + ", contact=" + contact + "]";
+		return neutered + "," + chipped + "," + vaccinated + ","
+				+ date + "," + contact.getName();
 	}
 
 	public void print() {

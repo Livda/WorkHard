@@ -163,11 +163,9 @@ public class Animal {
 	 */
 	@Override
 	public String toString() {
-		return "Animal [id=" + id + ", age=" + age + ", colour=" + colour 
-				+ ", gender=" + gender + ", description=" + description 
-				+ ", name=" + name + ", pathToPicture=" + pathToPicture 
-				+ ", breed=" + breed + ", category=" + myCat + ", type=" 
-				+ type + "]";
+		return id + "," + age + "," + colour + "," + gender + "," + description 
+				+ "," + name + "," + pathToPicture + "," + breed + "," 
+				+ myCat.getNameContact() + "," + type;
 	}
 	
 }

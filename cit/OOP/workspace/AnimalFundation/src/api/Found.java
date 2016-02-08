@@ -21,7 +21,7 @@ public class Found extends Category {
 	 */
 	@Override
 	public String toString() {
-		return "Found [location=" + location + ", date=" + date + ", contact=" + contact + "]";
+		return location + "," + date + "," + contact.getName();
 	}
 	
 	
