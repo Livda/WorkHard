@@ -76,7 +76,7 @@ public class MainWindow extends Application {
 	        TextField setPersonName = new TextField();
 	        Text personAdress = new Text("Adress :");
 	        TextArea setPersonAdress = new TextArea();
-	        setPersonAdress.setMaxSize(300, 25);
+	        setPersonAdress.setMaxSize(300, 60);
 	        Text personPhone = new Text("Phone :");
 	        TextField setPersonPhone = new TextField();
 	        Text personEmail = new Text("Email :");
