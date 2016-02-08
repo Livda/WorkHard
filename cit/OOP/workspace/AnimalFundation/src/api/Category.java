@@ -1,7 +1,7 @@
 package api;
 import java.util.Date;
 
-public class Category {
+public abstract class Category {
 	protected Date date;
 	protected Person contact;
 }

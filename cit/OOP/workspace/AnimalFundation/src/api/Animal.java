@@ -166,7 +166,7 @@ public class Animal {
 		return "Animal [id=" + id + ", age=" + age + ", colour=" + colour 
 				+ ", gender=" + gender + ", description=" + description 
 				+ ", name=" + name + ", pathToPicture=" + pathToPicture 
-				+ ", breed=" + breed + ", myCat=" + myCat + ", type=" 
+				+ ", breed=" + breed + ", category=" + myCat + ", type=" 
 				+ type + "]";
 	}
 	
