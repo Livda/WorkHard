@@ -1,10 +1,8 @@
 package api;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -27,11 +25,10 @@ public class Saver {
 	}
 
 	public void save(AnimalShelter as){
-		AnimalList foundAnimal = as.getFound();
 		PrintWriter pw;
 		
 		// Create empty files in case
-		// Some lists are empty
+		// to restart the new save
 		try {
 			pw = new PrintWriter(animals);
 			pw.close();
@@ -59,9 +56,9 @@ public class Saver {
 		Person person;
 		List<Person> pList = new ArrayList<Person>();
 		Animal animal;
-		List<Category> founded = null;
-		List<Category> adopted = null;
-		List<Category> losted = null;
+		List<Category> founded = new ArrayList<Category>();
+		List<Category> adopted = new ArrayList<Category>();
+		List<Category> losted = new ArrayList<Category>();
 		
 		//Load all the persons
 		try {
@@ -97,7 +94,7 @@ public class Saver {
 				Category f = new Found(date, parts[3]);
 				founded.add(f);
 			}
-			System.out.println("Persons loaded successfuly");
+			System.out.println("Found category loaded successfuly");
 		}
 		catch (IOException e) {
 			System.out.println ("Error when trying to read : " 
