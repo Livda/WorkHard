@@ -1,19 +1,19 @@
 package api;
 
-import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class Adoption extends Category{
 	private boolean neutered;
 	private boolean chipped;
 	private boolean vaccinated;
 	
-	public Adoption(Date date, Person contact){
+	public Adoption(GregorianCalendar date, Person contact){
 		this.date = date;
 		this.contact = contact;
 		this.neutered = this.chipped = this.vaccinated = false;
 	}
 	
-	public Adoption(Date date, Person contact, boolean neut, boolean chip, boolean vac){
+	public Adoption(GregorianCalendar date, Person contact, boolean neut, boolean chip, boolean vac){
 		this.date = date;
 		this.contact = contact;
 		this.neutered = neut;
@@ -26,8 +26,7 @@ public class Adoption extends Category{
 	 */
 	@Override
 	public String toString() {
-		return neutered + "," + chipped + "," + vaccinated + ","
-				+ date + "," + contact.getName();
+		return super.toString() + "," + neutered + "," + chipped + "," + vaccinated;
 	}
 
 	public void print() {

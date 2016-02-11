@@ -1,8 +1,9 @@
 package api;
-import java.util.Date;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public abstract class Category {
-	protected Date date;
+	protected GregorianCalendar date;
 	protected Person contact;
 	
 	public String getNameContact() {
@@ -14,6 +15,7 @@ public abstract class Category {
 	}
 	
 	public String toString(){
-		return date + "," + contact.getName();
+		return date.get(Calendar.YEAR) + "," + date.get(Calendar.MONTH) 
+		+ "," + date.get(Calendar.DAY_OF_MONTH) + "," + contact.getName();
 	}
 }

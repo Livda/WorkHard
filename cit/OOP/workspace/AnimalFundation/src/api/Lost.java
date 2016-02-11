@@ -1,16 +1,16 @@
 package api;
 
-import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class Lost extends Category {
 	private String location;
 	
-	public Lost(Date date, String location){
+	public Lost(GregorianCalendar date, String location){
 		this.date = date;
 		this.location = location;
 	}
 	
-	public Lost(Date date, String location, Person contact){
+	public Lost(GregorianCalendar date, String location, Person contact){
 		this.date = date;
 		this.location = location;
 		this.contact = contact;
@@ -21,6 +21,6 @@ public class Lost extends Category {
 	 */
 	@Override
 	public String toString() {
-		return location + "," + date + "," + contact.getName();
+		return super.toString() + "," + location;
 	}	
 }
