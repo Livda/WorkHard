@@ -1,5 +1,6 @@
 package api;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,5 +50,11 @@ public class AnimalList {
 	
 	public void printList() {
 		System.out.println(this);
+	}
+	
+	public void save(File animals, File categoryFile, File persons){
+		for(Animal a : this.list){
+			a.save(animals, categoryFile, persons);
+		}
 	}
 }

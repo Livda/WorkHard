@@ -23,6 +23,10 @@ public class Found extends Category {
 	public String toString() {
 		return super.toString() + location;
 	}
-	
-	
+
+	@Override
+	public void print() {
+		System.out.println(this.toString());
+		
+	}
 }

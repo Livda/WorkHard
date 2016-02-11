@@ -1,5 +1,10 @@
 package api;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Animal {
 	private int id;
 	private int age;
@@ -166,6 +171,23 @@ public class Animal {
 		return id + "," + age + "," + colour + "," + gender + "," + description 
 				+ "," + name + "," + pathToPicture + "," + breed + "," 
 				+ myCat.getNameContact() + "," + type;
+	}
+	
+	public void save(File animals, File categoryFile, File persons){
+		myCat.save(categoryFile, persons);
+
+		BufferedWriter bw;
+		try {
+		bw = new BufferedWriter(new FileWriter(animals, true));
+		bw.write(this.toString());
+		bw.newLine();
+		bw.flush();
+		bw.close();
+		}
+		catch (IOException e){
+			System.out.println("Error when trying to save an animal : " 
+					+ e.getMessage());
+		}
 	}
 	
 }

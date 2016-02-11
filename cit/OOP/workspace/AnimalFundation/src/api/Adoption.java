@@ -30,8 +30,6 @@ public class Adoption extends Category{
 	}
 
 	public void print() {
-		String s = "Adoption :\n";
-		s += "date  : " + date + "\n";
-		System.out.println(s);
+		System.out.println(this.toString());
 	}
 }

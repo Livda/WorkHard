@@ -1,5 +1,10 @@
 package api;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Person {
 	private String name;
 	private String adress;
@@ -62,5 +67,20 @@ public class Person {
 
 	public void print() {
 		System.out.println(this.toString());
+	}
+	
+	public void save(File persons) {
+		BufferedWriter bw;
+		try {
+		bw = new BufferedWriter(new FileWriter(persons, true));
+		bw.write(this.toString());
+		bw.newLine();
+		bw.flush();
+		bw.close();
+		}
+		catch (IOException e){
+			System.out.println("Error when trying to save a person : " 
+					+ e.getMessage());
+		}
 	}
 }
