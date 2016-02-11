@@ -47,7 +47,7 @@ public class PersonBox {
         Text personTitle = new Text("Person");
         personTitle.setFont(Font.font(null, FontWeight.BOLD, 25));
         
-        VBox box = new VBox(20);
+        box = new VBox(20);
         box.getChildren().addAll(personTitle, personGrid);
         box.setAlignment(Pos.TOP_CENTER);
 	}
