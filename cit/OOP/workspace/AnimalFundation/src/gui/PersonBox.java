@@ -23,6 +23,7 @@ public class PersonBox {
         personGrid.add(personName, 0, 0);
 
         TextField setPersonName = new TextField();
+        setPersonName.setPromptText("Ex : John Smith");
         personGrid.add(setPersonName, 1, 0);
         
         Text personAdress = new Text("Adress :");
@@ -30,18 +31,21 @@ public class PersonBox {
         
         TextArea setPersonAdress = new TextArea();
         setPersonAdress.setMaxSize(300, 60);
+        setPersonAdress.setPromptText("Ex : 1, Road of Ireland");
         personGrid.add(setPersonAdress, 1, 1);
         
         Text personPhone = new Text("Phone :");
         personGrid.add(personPhone, 0, 2);
 
         TextField setPersonPhone = new TextField();
+        setPersonPhone.setPromptText("Ex : (021) 000 0000 ");
         personGrid.add(setPersonPhone, 1, 2);
         
         Text personEmail = new Text("Email :");
         personGrid.add(personEmail, 0, 3);
         
         TextField setPersonEmail = new TextField();
+        setPersonEmail.setPromptText("john.smith@mail.com");
         personGrid.add(setPersonEmail, 1, 3);
                 
         Text personTitle = new Text("Person");

@@ -2,6 +2,8 @@ package gui;
 
 import controlers.MainControler;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -18,14 +20,23 @@ public class MainWindow extends Application {
 	        menuBar.prefWidthProperty().bind(primaryStage.widthProperty());	        
 	        
 	        Button adoption = new Button("Adoption");
-	        Button lost = new Button("Lost");
 	        Button found = new Button("Found");
+	        Button lost = new Button("Lost");
 	        HBox mainButtons = new HBox();
 	        mainButtons.setAlignment(Pos.TOP_CENTER);
-	        mainButtons.getChildren().addAll(adoption, lost, found);
+	        mainButtons.getChildren().addAll(adoption, found, lost);
 	        
 	        VBox personBox = new PersonBox().getBox();   
-	        VBox animalBox = new AnimalBox().getBox();
+	        VBox animalBox = new AnimalBox(0).getBox();
+//	        adoption.setOnAction(new EventHandler<ActionEvent>() {
+//				
+//				@Override
+//				public void handle(ActionEvent event) {
+//					
+//				}
+//			});
+//	        found.setOnAction(e -> animalBox = new AnimalBox(1).getBox());
+//	        lost.setOnAction(e -> animalBox = new AnimalBox(2).getBox());
 	        
 	        HBox bottomButtons = new HBox(10);
 	        Button ok = new Button("OK");
@@ -33,13 +44,15 @@ public class MainWindow extends Application {
 	        bottomButtons.getChildren().addAll(ok, cancel);
 	        bottomButtons.setAlignment(Pos.BOTTOM_CENTER);
 	        
+	        HBox mainBox = new HBox(20);
+	        mainBox.getChildren().addAll(personBox, animalBox);
+	        
 	        BorderPane secondLayout = new BorderPane();
 	        secondLayout.setTop(mainButtons);
 	        BorderPane.setMargin(mainButtons, new Insets(10));
-	        secondLayout.setLeft(personBox);
-	        BorderPane.setMargin(personBox, new Insets(10));
-	        secondLayout.setRight(animalBox);
-	        BorderPane.setMargin(animalBox, new Insets(10));
+	        secondLayout.setCenter(mainBox);
+	        mainBox.setAlignment(Pos.CENTER);
+	        BorderPane.setMargin(mainBox, new Insets(10));
 	        secondLayout.setBottom(bottomButtons);
 	        BorderPane.setMargin(bottomButtons, new Insets(10));
 

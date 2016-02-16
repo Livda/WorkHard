@@ -57,7 +57,7 @@ public class Saver {
 		BufferedReader br = null;
 		Person person;
 		List<Person> pList = new ArrayList<Person>();
-		Animal animal;
+		Animal animal = null;
 		List<Category> founded = new ArrayList<Category>();
 		List<Category> adopted = new ArrayList<Category>();
 		List<Category> losted = new ArrayList<Category>();
