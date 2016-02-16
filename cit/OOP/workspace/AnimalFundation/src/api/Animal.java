@@ -170,7 +170,7 @@ public class Animal {
 	public String toString() {
 		return id + "," + age + "," + colour + "," + gender + "," + description 
 				+ "," + name + "," + pathToPicture + "," + breed + "," 
-				+ myCat.getNameContact() + "," + type;
+				+ myCat.toString()+ "," + type;
 	}
 	
 	public void save(File animals, File categoryFile, File persons){

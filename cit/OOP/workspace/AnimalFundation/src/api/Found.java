@@ -21,7 +21,7 @@ public class Found extends Category {
 	 */
 	@Override
 	public String toString() {
-		return super.toString() + location;
+		return "FOUND," + super.toString() + "," + location;
 	}
 
 	@Override

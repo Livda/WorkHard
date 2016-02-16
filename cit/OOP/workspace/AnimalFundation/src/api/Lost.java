@@ -21,7 +21,7 @@ public class Lost extends Category {
 	 */
 	@Override
 	public String toString() {
-		return super.toString() + "," + location;
+		return "LOST," + super.toString() + "," + location;
 	}
 
 	@Override

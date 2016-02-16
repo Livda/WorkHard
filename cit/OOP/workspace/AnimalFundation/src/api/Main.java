@@ -5,7 +5,7 @@ import java.util.*;
 public class Main {
 
 	public static void main(String[] args) {
-		Person p1 = new Person("toto", "1 test street", "+33 6 00 00 00 00", 
+		Person p1 = new Person(1, "toto", "1 test street", "+33 6 00 00 00 00", 
 				"toto@nomail.com");
 		List<Animal> foundList = new ArrayList<Animal>();
 		GregorianCalendar calendar1 = new GregorianCalendar(12, 12, 12);
@@ -13,7 +13,7 @@ public class Main {
 		Animal animal1 = new Animal(1, 15, "red", true, "nice little frog", 
 				"fluffy", null, "super sayan", foundCategory, "not my type");
 		foundList.add(animal1);
-		Person p2 = new Person("lala", "no way", "9390393", "no@mail.com");
+		Person p2 = new Person(2, "lala", "no way", "9390393", "no@mail.com");
 		List<Animal> lostList = new ArrayList<Animal>();
 		GregorianCalendar calendar2 = new GregorianCalendar(13, 13, 13);
 		Category lostCategory = new Lost(calendar2, "somewhere", p2);

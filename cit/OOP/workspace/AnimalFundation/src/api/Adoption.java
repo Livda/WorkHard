@@ -13,7 +13,8 @@ public class Adoption extends Category{
 		this.neutered = this.chipped = this.vaccinated = false;
 	}
 	
-	public Adoption(GregorianCalendar date, Person contact, boolean neut, boolean chip, boolean vac){
+	public Adoption(GregorianCalendar date, Person contact, 
+			boolean neut, boolean chip, boolean vac){
 		this.date = date;
 		this.contact = contact;
 		this.neutered = neut;
@@ -26,7 +27,8 @@ public class Adoption extends Category{
 	 */
 	@Override
 	public String toString() {
-		return super.toString() + "," + neutered + "," + chipped + "," + vaccinated;
+		return "ADOPTION" + super.toString() + "," + neutered + "," + chipped 
+				+ "," + vaccinated;
 	}
 
 	public void print() {

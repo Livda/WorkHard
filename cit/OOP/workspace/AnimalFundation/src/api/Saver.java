@@ -30,8 +30,10 @@ public class Saver {
 		// Create empty files in case
 		// to restart the new save
 		try {
+			//New empty file
 			pw = new PrintWriter(animals);
 			pw.close();
+			
 			pw = new PrintWriter(persons);
 			pw.close();
 			pw = new PrintWriter(found);
@@ -66,7 +68,7 @@ public class Saver {
 			
 			while ((currentLine = br.readLine()) != null) {
 				String[] parts = currentLine.split(",");
-				person = new Person(parts[0], parts[1], parts[2], parts[3]);
+				person = new Person(Integer.parseInt(parts[0]), parts[1], parts[2], parts[3], parts[4]);
 				pList.add(person);
 			}
 			System.out.println("Persons loaded successfuly");

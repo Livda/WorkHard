@@ -6,23 +6,34 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Person {
+	private int id;
 	private String name;
 	private String adress;
 	private String phone;
 	private String email;
 	
 	public Person(){
+		id = -1;
 		name = null;
 		adress = null;
 		phone = null;
 		email = null;
 	}
 	
-	public Person(String name, String adress, String phone, String email){
+	public Person(int id, String name, String adress, String phone, String email){
+		this.id = id;
 		this.name = name;
 		this.adress = adress;
 		this.phone = phone;
 		this.email = email;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	public String getName() {
@@ -62,7 +73,7 @@ public class Person {
 	 */
 	@Override
 	public String toString() {
-		return name + "," + adress + "," + phone + "," + email;
+		return id + "," + name + "," + adress + "," + phone + "," + email;
 	}
 
 	public void print() {

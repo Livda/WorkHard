@@ -12,17 +12,13 @@ public abstract class Category {
 	
 	public abstract void print();
 	
-	public String getNameContact() {
-		return contact.getName();
-	}
-	
 	public Person getContact(){
 		return contact;
 	}
 	
 	public String toString(){
 		return date.get(Calendar.YEAR) + "," + date.get(Calendar.MONTH) 
-		+ "," + date.get(Calendar.DAY_OF_MONTH) + "," + contact.getName();
+		+ "," + date.get(Calendar.DAY_OF_MONTH) + "," + contact.getId();
 	}
 	
 	public void save(File categoryFile, File persons){
