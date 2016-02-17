@@ -2,8 +2,6 @@ package gui;
 
 import controlers.MainControler;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -27,17 +25,8 @@ public class MainWindow extends Application {
 	        mainButtons.getChildren().addAll(adoption, found, lost);
 	        
 	        VBox personBox = new PersonBox().getBox();   
-	        VBox animalBox = new AnimalBox(0).getBox();
-//	        adoption.setOnAction(new EventHandler<ActionEvent>() {
-//				
-//				@Override
-//				public void handle(ActionEvent event) {
-//					
-//				}
-//			});
-//	        found.setOnAction(e -> animalBox = new AnimalBox(1).getBox());
-//	        lost.setOnAction(e -> animalBox = new AnimalBox(2).getBox());
-	        
+	        VBox animalBox = new AnimalBox(1).getBox();
+       
 	        HBox bottomButtons = new HBox(10);
 	        Button ok = new Button("OK");
 	        Button cancel = new Button("Cancel");

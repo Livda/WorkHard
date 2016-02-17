@@ -45,7 +45,7 @@ public class PersonBox {
         personGrid.add(personEmail, 0, 3);
         
         TextField setPersonEmail = new TextField();
-        setPersonEmail.setPromptText("john.smith@mail.com");
+        setPersonEmail.setPromptText("Ex : john.smith@mail.com");
         personGrid.add(setPersonEmail, 1, 3);
                 
         Text personTitle = new Text("Person");

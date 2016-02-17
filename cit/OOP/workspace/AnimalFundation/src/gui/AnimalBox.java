@@ -19,7 +19,7 @@ import javafx.scene.text.Text;
 public class AnimalBox {
 	private VBox box;
 	
-	public AnimalBox(int Category){
+	public AnimalBox(int category){
 	GridPane animalGrid = new GridPane();
     animalGrid.setVgap(10);
     animalGrid.setHgap(10);
@@ -39,6 +39,7 @@ public class AnimalBox {
 
     ChoiceBox<String> yearOrMonth = new ChoiceBox<String>();
     yearOrMonth.getItems().addAll("year(s)", "month(s)");
+    yearOrMonth.getSelectionModel().selectFirst();
     
     HBox setAnimalAge = new HBox(5);
     setAnimalAge.getChildren().addAll(ageNumber, yearOrMonth);
@@ -64,6 +65,7 @@ public class AnimalBox {
     
     ChoiceBox<String> setAnimalBreed = new ChoiceBox<String>();
     setAnimalBreed.getItems().addAll("Dog", "Cat");
+    setAnimalBreed.getSelectionModel().selectFirst();
     animalGrid.add(setAnimalBreed, 1, 4);
     
     Text animalType = new Text("Type :");
@@ -98,8 +100,7 @@ public class AnimalBox {
     box.getChildren().addAll(animalTitle, animalGrid);
     box.setAlignment(Pos.TOP_CENTER);
     
-    switch (Category) {
-    case 0 :
+    if (category == 0) {
     	Text neuteredText = new Text("Neutered :");
     	animalGrid.add(neuteredText, 0, 8);
     	
@@ -112,12 +113,43 @@ public class AnimalBox {
         HBox neutered = new HBox(15);
         neutered.getChildren().addAll(neuteredBox, nonNeuteredBox);
         animalGrid.add(neutered, 1, 8);
-        neutered.setAlignment(Pos.CENTER);        
-    	break;
-    case 1 :
-    	break;
-    case 2 :
-    	break;
+        neutered.setAlignment(Pos.CENTER);   
+        
+        Text chippedText = new Text("Chipped :");
+    	animalGrid.add(chippedText, 0, 9);
+    	
+    	ToggleGroup chippedGroup = new ToggleGroup();
+    	RadioButton chippedBox = new RadioButton("Yes");
+    	chippedBox.setToggleGroup(chippedGroup);
+        chippedBox.setSelected(true);
+        RadioButton nonChippedBox = new RadioButton("No");
+        nonChippedBox.setToggleGroup(chippedGroup);
+        HBox chipped = new HBox(15);
+        chipped.getChildren().addAll(chippedBox, nonChippedBox);
+        animalGrid.add(chipped, 1, 9);
+        chipped.setAlignment(Pos.CENTER);
+        
+        Text vaccinatedText = new Text("Vaccinated :");
+    	animalGrid.add(vaccinatedText, 0, 10);
+    	
+    	ToggleGroup vaccinatedGroup = new ToggleGroup();
+    	RadioButton vaccinatedBox = new RadioButton("Yes");
+    	vaccinatedBox.setToggleGroup(vaccinatedGroup);
+    	vaccinatedBox.setSelected(true);
+        RadioButton nonVaccinatedBox = new RadioButton("No");
+        nonVaccinatedBox.setToggleGroup(vaccinatedGroup);
+        HBox vaccinated = new HBox(15);
+        vaccinated.getChildren().addAll(vaccinatedBox, nonVaccinatedBox);
+        animalGrid.add(vaccinated, 1, 10);
+        vaccinated.setAlignment(Pos.CENTER);   
+    }
+    else {
+    	Text locationText = new Text("Location :");
+    	animalGrid.add(locationText, 0, 8);
+    	
+    	TextField locationField = new TextField();
+    	locationField.setPromptText("Ex : In the dark forest");
+    	animalGrid.add(locationField, 1, 8);
     }
     
 	}
