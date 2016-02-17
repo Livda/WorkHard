@@ -94,4 +94,13 @@ public class Person {
 					+ e.getMessage());
 		}
 	}
+	
+	public static Person load(String[] s){
+		int id = Integer.parseInt(s[0]);
+		String name = s[1];
+		String adress = s[2];
+		String phone = s[3];
+		String email = s[4];
+		return new Person(id, name, adress, phone, email);
+	}
 }

@@ -6,6 +6,7 @@ public class AnimalShelter {
 	private AnimalList adoption;
 	private AnimalList lost;
 	private AnimalList found;
+	
 	/**
 	 * @return the adoption
 	 */
@@ -62,5 +63,13 @@ public class AnimalShelter {
 		if(this.adoption != null) this.adoption.save(animals, adoption, persons);
 		if(this.found != null)this.found.save(animals, found, persons);
 		if(this.lost != null)this.lost.save(animals, lost, persons);
+	}
+	
+	public String toString(){
+		String res = "Animal Shelter :\n";
+		res += "Adoption :\n" + adoption.toString() + "\n";
+		res += "Lost :\n" + lost.toString() + "\n";
+		res += "Found :\n" + found.toString();
+		return res;
 	}
 }

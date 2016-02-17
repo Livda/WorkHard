@@ -170,7 +170,7 @@ public class Animal {
 	public String toString() {
 		return id + "," + age + "," + colour + "," + gender + "," + description 
 				+ "," + name + "," + pathToPicture + "," + breed + "," 
-				+ myCat.toString()+ "," + type;
+				+ myCat.getId()+ "," + type;
 	}
 	
 	public void save(File animals, File categoryFile, File persons){
@@ -188,6 +188,20 @@ public class Animal {
 			System.out.println("Error when trying to save an animal : " 
 					+ e.getMessage());
 		}
+	}
+	
+	public static Animal load(String[] s, Category cat){
+		int id = Integer.parseInt(s[0]);
+		int age = Integer.parseInt(s[1]);
+		String color = s[2];
+		boolean gender = Boolean.parseBoolean(s[3]);
+		String description = s[4];
+		String name = s[5];
+		String pathToPicture = s[6];
+		String breed = s[7];
+		String type = s[9];
+		return new Animal(id, age, color, gender, description, name,
+				pathToPicture, breed, cat, type); 
 	}
 	
 }
