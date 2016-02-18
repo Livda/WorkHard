@@ -5,6 +5,10 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * @author Aurélien Fontaine
+ * @version 1.0
+ */
 public class Animal {
 	private int id;
 	private int age;

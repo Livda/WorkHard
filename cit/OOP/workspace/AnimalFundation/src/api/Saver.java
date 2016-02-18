@@ -8,6 +8,10 @@ import java.io.PrintWriter;
 import java.util.Map;
 import java.util.Hashtable;
 
+/**
+ * @author Aurélien Fontaine
+ * @version 1.0
+ */
 public class Saver {
 	private File adoption;
 	private File lost;

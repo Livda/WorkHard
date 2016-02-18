@@ -3,11 +3,20 @@ package api;
 import java.util.GregorianCalendar;
 import java.util.Map;
 
+/**
+ * @author Aurélien Fontaine
+ * @version 1.0
+ */
 public class Adoption extends Category{
 	private boolean neutered;
 	private boolean chipped;
 	private boolean vaccinated;
 	
+	/*
+	 * Adoption constructor
+	 * @param id The id of the new Adoption category
+	 * @param 
+	 */
 	public Adoption(int id, GregorianCalendar date, Person contact){
 		this.id = id;
 		this.date = date;

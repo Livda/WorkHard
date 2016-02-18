@@ -2,6 +2,10 @@ package api;
 
 import java.io.File;
 
+/**
+ * @author Aurélien Fontaine
+ * @version 1.0
+ */
 public class AnimalShelter {
 	private AnimalList adoption;
 	private AnimalList lost;

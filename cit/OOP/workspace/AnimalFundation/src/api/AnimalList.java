@@ -4,6 +4,10 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Aurélien Fontaine
+ * @version 1.0
+ */
 public class AnimalList {
 	private List<Animal> list;
 

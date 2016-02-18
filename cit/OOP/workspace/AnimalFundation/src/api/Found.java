@@ -3,6 +3,10 @@ package api;
 import java.util.GregorianCalendar;
 import java.util.Map;
 
+/**
+ * @author Aurélien Fontaine
+ * @version 1.0
+ */
 public class Found extends Category {
 	private String location;
 	

@@ -6,6 +6,10 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+/**
+ * @author Aurélien Fontaine
+ * @version 1.0
+ */
 public abstract class Category {
 	protected int id;
 	protected GregorianCalendar date;
