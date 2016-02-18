@@ -1,5 +1,6 @@
 package gui;
 
+import api.Animal;
 import controlers.MainControler;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -36,9 +37,20 @@ public class MainWindow extends Application {
 	        HBox mainBox = new HBox(20);
 	        mainBox.getChildren().addAll(personBox, animalBox);
 	        
+	        TableView<Animal> tableView = new TableViewBox().getBox();
+	        Button editAnimal = new Button("Edit");
+	        Button deleteAnimal = new Button("Delete");
+	        HBox buttonBox = new HBox(15);
+	        buttonBox.getChildren().addAll(editAnimal, deleteAnimal);
+	        buttonBox.setAlignment(Pos.CENTER);
+	        VBox tableBox = new VBox(10);
+	        tableBox.getChildren().addAll(tableView, buttonBox);
+	        
 	        BorderPane secondLayout = new BorderPane();
 	        secondLayout.setTop(mainButtons);
 	        BorderPane.setMargin(mainButtons, new Insets(10));
+	        secondLayout.setLeft(tableBox);
+	        BorderPane.setMargin(tableBox, new Insets(10));
 	        secondLayout.setCenter(mainBox);
 	        mainBox.setAlignment(Pos.CENTER);
 	        BorderPane.setMargin(mainBox, new Insets(10));
@@ -49,7 +61,7 @@ public class MainWindow extends Application {
 	        mainLayout.setTop(menuBar);
 	        mainLayout.setCenter(secondLayout);
 	        
-	        Scene scene = new Scene(mainLayout,800,600);
+	        Scene scene = new Scene(mainLayout,1000,700);
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Animal Shelter");
 			primaryStage.show();
