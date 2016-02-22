@@ -58,6 +58,7 @@ public class Saver {
 		BufferedReader br = null;
 		String currentLine;
 		Person person;
+		Category cat = null;
 		Found f;
 		Adoption a;
 		Lost l;
@@ -171,21 +172,26 @@ public class Saver {
 			while ((currentLine = br.readLine()) != null) {
 				String[] parts = currentLine.split(",");
 				
-				int idCategory = Integer.parseInt(parts[8]);
-				Category cat = aTable.get(idCategory);
-				if (cat != null){
+				int idCategory = Integer.parseInt(parts[9]);
+				char categoryLetter = parts[8].charAt(0);
+				switch (categoryLetter) {
+				case 'a' :
+					cat = aTable.get(idCategory);
 					animal = Animal.load(parts, cat);
 					adoptionList.add(animal);
-				}
-				cat = fTable.get(idCategory);
-				if (cat != null) {
-					animal = Animal.load(parts, cat);
-					foundList.add(animal);
-				}
-				cat = lTable.get(idCategory);
-				if (cat != null) {
+					break;
+				case 'l' :
+					cat = lTable.get(idCategory);
 					animal = Animal.load(parts, cat);
 					lostList.add(animal);
+					break;
+				case 'f' :
+					cat = fTable.get(idCategory);
+					animal = Animal.load(parts, cat);
+					foundList.add(animal);
+					break;
+				default :
+					throw new Exception();
 				}
 			}
 			System.out.println("Animals loaded successfuly");
@@ -193,6 +199,9 @@ public class Saver {
 		catch (IOException e) {
 			System.out.println ("Error when trying to read : " 
 					+ e.getMessage());
+		} 
+		catch (Exception e) {
+			System.out.println("Category letter not recognize");
 		} finally {
 			try {
 				if (br != null) br.close();

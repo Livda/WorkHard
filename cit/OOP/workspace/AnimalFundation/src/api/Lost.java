@@ -22,6 +22,10 @@ public class Lost extends Category {
 		this.location = location;
 		this.contact = contact;
 	}
+	
+	public char getCategoryLetter() {
+		return 'l';
+	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()

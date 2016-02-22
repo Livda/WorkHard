@@ -34,6 +34,10 @@ public class Adoption extends Category{
 		this.vaccinated = vac;
 	}
 	
+	public char getCategoryLetter() {
+		return 'a';
+	}
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */

@@ -22,6 +22,10 @@ public class Found extends Category {
 		this.location = location;
 		this.contact = contact;
 	}
+	
+	public char getCategoryLetter(){
+		return 'f';
+	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()

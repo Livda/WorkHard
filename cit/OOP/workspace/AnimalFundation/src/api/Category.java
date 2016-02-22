@@ -16,6 +16,7 @@ public abstract class Category {
 	protected Person contact;
 	
 	public abstract void print();
+	public abstract char getCategoryLetter();
 	
 	public int getId() {
 		return this.id;
