@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Hashtable;
 
 /**
- * @author Aurélien Fontaine
+ * @author Aurelien Fontaine
  * @version 1.0
  */
 public class Saver {
@@ -19,6 +19,9 @@ public class Saver {
 	private File persons;
 	private File animals;
 
+	/**
+	 * Create a new Saver
+	 */
 	public Saver(){
 		adoption = new File("save/adoption");
 		lost = new File("save/lost");
@@ -26,7 +29,11 @@ public class Saver {
 		persons = new File("save/persons");
 		animals = new File("save/animals");
 	}
-
+	
+	/**
+	 * Save an AnimalShelter
+	 * @param as the AnimalShelter to save
+	 */
 	public void save(AnimalShelter as){
 		PrintWriter pw;
 
@@ -54,6 +61,10 @@ public class Saver {
 		System.out.println("Shelter save successfuly");
 	}
 
+	/**
+	 * Load a AnimalShelter
+	 * @return the AnimalShelter loaded
+	 */
 	public AnimalShelter load(){
 		BufferedReader br = null;
 		String currentLine;

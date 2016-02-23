@@ -4,18 +4,31 @@ import java.util.GregorianCalendar;
 import java.util.Map;
 
 /**
- * @author Aurélien Fontaine
+ * @author Aurelien Fontaine
  * @version 1.0
  */
 public class Found extends Category {
 	private String location;
 	
+	/**
+	 * Found partial constructor
+	 * @param id The id of the Found object
+	 * @param date The date when the animal was founded
+	 * @param location Where the animal was founded
+	 */
 	public Found(int id, GregorianCalendar date, String location){
 		this.id = id;
 		this.date = date;
 		this.location = location;
 	}
 	
+	/**
+	 * Found full constructor
+	 * @param id The id of the Found object
+	 * @param date The date when the animal was founded
+	 * @param contact The person who find the animal
+	 * @param location Where the animal was founded
+	 */
 	public Found(int id, GregorianCalendar date, Person contact, String location){
 		this.id = id;
 		this.date = date;
@@ -27,20 +40,21 @@ public class Found extends Category {
 		return 'f';
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
 	public String toString() {
 		return super.toString() + "," + location;
 	}
 
-	@Override
 	public void print() {
 		System.out.println(this.toString());
 		
 	}
 	
+	/**
+	 * Load an Found object from a String array an a Map with the Person
+	 * @param s The String array
+	 * @param pTable The Map with the Person
+	 * @return the Found object
+	 */
 	public static Found load(String[] s, Map<Integer, Person> pTable){
 		int id = Integer.parseInt(s[0]);
 		int year = Integer.parseInt(s[1]);

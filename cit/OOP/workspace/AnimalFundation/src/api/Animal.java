@@ -6,7 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- * @author Aurélien Fontaine
+ * @author Aurelien Fontaine
  * @version 1.0
  */
 public class Animal {
@@ -18,7 +18,7 @@ public class Animal {
 	private String name;
 	private String pathToPicture;
 	private String breed;
-	private Category myCat;
+	private Category animalCategory;
 	private String type;
 	
 	/**
@@ -118,16 +118,16 @@ public class Animal {
 		this.breed = breed;
 	}
 	/**
-	 * @return the myCat
+	 * @return the Category
 	 */
-	public Category getMyCat() {
-		return myCat;
+	public Category getAnimalCategory() {
+		return animalCategory;
 	}
 	/**
-	 * @param myCat the myCat to set
+	 * @param animalCategory the Category to set
 	 */
-	public void setMyCat(Category myCat) {
-		this.myCat = myCat;
+	public void setAnimalCategory(Category animalCategory) {
+		this.animalCategory = animalCategory;
 	}
 	/**
 	 * @return the type
@@ -142,20 +142,21 @@ public class Animal {
 		this.type = type;
 	}
 	/**
-	 * @param id
-	 * @param age
-	 * @param colour
-	 * @param gender
-	 * @param description
-	 * @param name
-	 * @param pathToPicture
-	 * @param breed
-	 * @param myCat
-	 * @param type
+	 * Animal full constructor
+	 * @param id The id of the Animal object
+	 * @param age the age of the animal
+	 * @param colour the color of the animal
+	 * @param gender male = true, female = false
+	 * @param description a description of the animal
+	 * @param name the name of the animal
+	 * @param pathToPicture where the picture of the animal is store
+	 * @param breed the breed of the animal
+	 * @param animalCategory the Category of animal
+	 * @param type the type of the animal
 	 */
 	public Animal(int id, int age, String colour, boolean gender, 
 			String description, String name, String pathToPicture,
-			String breed, Category myCat, String type) {
+			String breed, Category animalCategory, String type) {
 		this.id = id;
 		this.age = age;
 		this.colour = colour;
@@ -164,21 +165,24 @@ public class Animal {
 		this.name = name;
 		this.pathToPicture = pathToPicture;
 		this.breed = breed;
-		this.myCat = myCat;
+		this.animalCategory = animalCategory;
 		this.type = type;
 	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
+	
 	public String toString() {
 		return id + "," + age + "," + colour + "," + gender + "," + description 
 				+ "," + name + "," + pathToPicture + "," + breed + "," 
-				+ myCat.getCategoryLetter() + "," +  myCat.getId() + "," + type;
+				+ animalCategory.getCategoryLetter() + "," +  animalCategory.getId() + "," + type;
 	}
 	
+	/**
+	 * Save the current animal in a file
+	 * @param animals The file where the animal will be save
+	 * @param categoryFile The file where the category will be save
+	 * @param persons The file where the person will be save
+	 */
 	public void save(File animals, File categoryFile, File persons){
-		myCat.save(categoryFile, persons);
+		animalCategory.save(categoryFile, persons);
 
 		BufferedWriter bw;
 		try {
@@ -194,6 +198,12 @@ public class Animal {
 		}
 	}
 	
+	/**
+	 * Load an Animal from a String array an a Map with the Category
+	 * @param s The String array
+	 * @param cat the Map with the Category
+	 * @return Animal object loaded
+	 */
 	public static Animal load(String[] s, Category cat){
 		int id = Integer.parseInt(s[0]);
 		int age = Integer.parseInt(s[1]);

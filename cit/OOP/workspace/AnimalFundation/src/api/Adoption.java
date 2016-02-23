@@ -4,7 +4,7 @@ import java.util.GregorianCalendar;
 import java.util.Map;
 
 /**
- * @author Aurélien Fontaine
+ * @author Aurelien Fontaine
  * @version 1.0
  */
 public class Adoption extends Category{
@@ -13,9 +13,10 @@ public class Adoption extends Category{
 	private boolean vaccinated;
 	
 	/*
-	 * Adoption constructor
-	 * @param id The id of the new Adoption category
-	 * @param 
+	 * Adoption partial constructor
+	 * @param id The id of the Adoption object
+	 * @param date The date when the animal was adopted
+	 * @param contact The person who adopt the animal
 	 */
 	public Adoption(int id, GregorianCalendar date, Person contact){
 		this.id = id;
@@ -24,6 +25,15 @@ public class Adoption extends Category{
 		this.neutered = this.chipped = this.vaccinated = false;
 	}
 	
+	/**
+	 * Adoption full constructor
+	 * @param id The id of the new Adoption category
+	 * @param date The date when the animal was adopted
+	 * @param contact The person who adopt the animal
+	 * @param neut Is the animal is neutered
+	 * @param chip Is the animal chipped
+	 * @param vac Is the animal vaccinated
+	 */
 	public Adoption(int id, GregorianCalendar date, Person contact, 
 			boolean neut, boolean chip, boolean vac){
 		this.id = id;
@@ -38,10 +48,6 @@ public class Adoption extends Category{
 		return 'a';
 	}
 	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
 	public String toString() {
 		return super.toString() + "," + neutered + "," + chipped 
 				+ "," + vaccinated;
@@ -51,6 +57,12 @@ public class Adoption extends Category{
 		System.out.println(this.toString());
 	}
 	
+	/**
+	 * Load an Adoption object from a String array an a Map with the Person
+	 * @param s The String array
+	 * @param pTable The Map with the Person
+	 * @return the Adoption object
+	 */
 	public static Adoption load(String[] s, Map<Integer, Person> pTable){
 		int id = Integer.parseInt(s[0]);
 		int year = Integer.parseInt(s[1]);

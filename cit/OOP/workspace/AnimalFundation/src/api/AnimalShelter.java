@@ -3,7 +3,7 @@ package api;
 import java.io.File;
 
 /**
- * @author Aurélien Fontaine
+ * @author Aurelien Fontaine
  * @version 1.0
  */
 public class AnimalShelter {
@@ -48,14 +48,18 @@ public class AnimalShelter {
 		this.found = found;
 	}
 	
+	/**
+	 * Create an empty Shelter
+	 */
 	public AnimalShelter() {
 		this.adoption = this.lost = this.found = null;
 	}
 	
 	/**
-	 * @param adoption
-	 * @param lost
-	 * @param found
+	 * AnimalShelter constructor by lists
+	 * @param adoption the Adoption list
+	 * @param lost the Lost list
+	 * @param found the Found list
 	 */
 	public AnimalShelter(AnimalList adoption, AnimalList lost, AnimalList found) {
 		this.adoption = adoption;
@@ -63,6 +67,14 @@ public class AnimalShelter {
 		this.found = found;
 	}
 	
+	/**
+	 * Save the all Shelter in files
+	 * @param adoption The file where the Adoptions will be saved
+	 * @param lost The file where the Losts will be saved
+	 * @param found The file where the Founds will be saved
+	 * @param animals The file where the Animals will be saved
+	 * @param persons The file where the Persons will be saved
+	 */
 	public void save(File adoption, File lost, File found, File animals, File persons){
 		if(this.adoption != null) this.adoption.save(animals, adoption, persons);
 		if(this.found != null) this.found.save(animals, found, persons);

@@ -7,7 +7,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 /**
- * @author Aurélien Fontaine
+ * @author Aurelien Fontaine
  * @version 1.0
  */
 public abstract class Category {
@@ -15,13 +15,29 @@ public abstract class Category {
 	protected GregorianCalendar date;
 	protected Person contact;
 	
+	/**
+	 * Print the current Category in the console
+	 */
 	public abstract void print();
+	
+	/**
+	 * Get the first letter of the Category
+	 * @return The first letter of the category
+	 */
 	public abstract char getCategoryLetter();
 	
+	/**
+	 * Get the id
+	 * @return id
+	 */
 	public int getId() {
 		return this.id;
 	}
 	
+	/**
+	 * Get the contact
+	 * @return contact
+	 */
 	public Person getContact(){
 		return contact;
 	}
@@ -31,6 +47,11 @@ public abstract class Category {
 		+ "," + date.get(Calendar.DAY_OF_MONTH) + "," + contact.getId();
 	}
 	
+	/**
+	 * Save the current Category
+	 * @param categoryFile The File were the Category will be saved
+	 * @param persons The File were the persons will be saved
+	 */
 	public void save(File categoryFile, File persons){
 		contact.save(persons);
 

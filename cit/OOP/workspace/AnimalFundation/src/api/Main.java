@@ -3,7 +3,7 @@ package api;
 import java.util.*;
 
 /**
- * @author Aurélien Fontaine
+ * @author Aurelien Fontaine
  * @version 1.0
  */
 public class Main {
