@@ -36,5 +36,5 @@
 # read x
 # ls -ls $x | awk '
 # {blocs += $1; bytes += $6}
-# END {frag = ((bytes/4000)/blocs)*100 ;
+# END {frag = (1-((bytes/4000)/blocs))*100 ;
 #     print "Internal Fragmentation " frag "%"}'
