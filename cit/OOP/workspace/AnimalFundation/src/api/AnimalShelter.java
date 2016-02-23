@@ -65,8 +65,8 @@ public class AnimalShelter {
 	
 	public void save(File adoption, File lost, File found, File animals, File persons){
 		if(this.adoption != null) this.adoption.save(animals, adoption, persons);
-		if(this.found != null)this.found.save(animals, found, persons);
-		if(this.lost != null)this.lost.save(animals, lost, persons);
+		if(this.found != null) this.found.save(animals, found, persons);
+		if(this.lost != null) this.lost.save(animals, lost, persons);
 	}
 	
 	public String toString(){
