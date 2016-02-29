@@ -169,6 +169,17 @@ public class Animal {
 		this.type = type;
 	}
 	
+	/**
+	 * 
+	 */
+	public Animal() {
+		id = age = -1;
+		name = "Test";
+		colour = description = pathToPicture = breed = null;
+		gender = false; 
+		animalCategory = null;
+		type = null;
+	}
 	public String toString() {
 		return id + "," + age + "," + colour + "," + gender + "," + description 
 				+ "," + name + "," + pathToPicture + "," + breed + "," 

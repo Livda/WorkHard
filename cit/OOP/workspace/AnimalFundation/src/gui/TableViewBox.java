@@ -1,6 +1,11 @@
 package gui;
 
-import api.Animal;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+
+import api.*;
+import controlers.NewHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -12,20 +17,25 @@ import javafx.scene.layout.VBox;
 
 public class TableViewBox {
 	private VBox box;
-	private TableView<Animal> table;
+	private MainWindow main;
+	TableView<Animal> table;
 	
-	@SuppressWarnings({"unchecked", "rawtypes" })
-	public TableViewBox(){
-		TableColumn<Animal,String> firstNameCol = 
+	@SuppressWarnings({"unchecked", "rawtypes"})
+	public TableViewBox(MainWindow main){
+		this.main = main;
+		TableColumn<Animal,String> nameCol = 
 				new TableColumn<Animal,String>("Name");
-		firstNameCol.setCellValueFactory(new PropertyValueFactory("name"));
+		nameCol.setCellValueFactory(new PropertyValueFactory("name"));
         TableColumn<Animal,String> breedCol = 
         		new TableColumn<Animal,String>("Breed");
+        breedCol.setCellValueFactory(new PropertyValueFactory("breed"));
         TableColumn<Animal,String> categoryCol = 
         		new TableColumn<Animal, String>("Category");
-		this.setTable(new TableView<Animal>());
+        categoryCol.setCellValueFactory(
+        		new PropertyValueFactory("animalCategory"));
+        table = new TableView<Animal>();
 		table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-		getTable().getColumns().setAll(firstNameCol, breedCol, categoryCol);
+		table.getColumns().setAll(nameCol, breedCol, categoryCol);
 		
 		CheckBox adoption = new CheckBox("Adoption");
 		adoption.setIndeterminate(false);
@@ -41,6 +51,7 @@ public class TableViewBox {
 		filterBox.setAlignment(Pos.CENTER);
 		
 		Button newAnimal = new Button("New");
+		newAnimal.setOnAction(new NewHandler(main.getMainBox(), 0));
 		Button editAnimal = new Button("Edit");
         Button deleteAnimal = new Button("Delete");
         HBox buttonBox = new HBox(15);
@@ -54,12 +65,16 @@ public class TableViewBox {
 	public VBox getBox(){
 		return box;
 	}
-
-	public TableView<Animal> getTable() {
+	
+	public TableView<Animal> getTable(){
 		return table;
 	}
-
-	public void setTable(TableView<Animal> table) {
-		this.table = table;
+	
+	private class newHandler implements EventHandler <ActionEvent> {
+		public void handle(ActionEvent e){
+			ObservableList<Animal> allData = table.getItems();
+			allData.add(new Animal());
+			table.setItems(allData);
+		}
 	}
 }

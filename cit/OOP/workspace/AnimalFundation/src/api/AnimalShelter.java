@@ -1,6 +1,7 @@
 package api;
 
 import java.io.File;
+import java.util.ArrayList;
 
 /**
  * @author Aurelien Fontaine
@@ -88,4 +89,12 @@ public class AnimalShelter {
 		res += "Found :\n" + found.toString();
 		return res;
 	}
-}
+	
+	public ArrayList<Animal> getAllAnimals(){
+		ArrayList<Animal> list = new ArrayList<Animal>();
+		list.addAll(adoption.getList());
+		list.addAll(lost.getList());
+		list.addAll(found.getList());
+		return list;
+	}
+} 

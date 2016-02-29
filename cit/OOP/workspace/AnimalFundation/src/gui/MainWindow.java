@@ -1,6 +1,6 @@
 package gui;
 
-import controlers.MainControler;
+import api.AnimalShelter;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -10,38 +10,24 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 public class MainWindow extends Application {
-	
+	private AnimalShelter shelter;
+	private VBox mainBox;
+	private TableViewBox table;
+
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			MenuBar menuBar = new MenuBox().getBox();
-	        menuBar.prefWidthProperty().bind(primaryStage.widthProperty());	        
+			shelter = new AnimalShelter();
+			mainBox = new VBox(10);
+			
+			table = new TableViewBox(this);
+	        VBox tableBox = table.getBox();
 	        
-	        Button adoption = new Button("Adoption");
-	        Button found = new Button("Found");
-	        Button lost = new Button("Lost");
-	        HBox mainButtons = new HBox();
-	        mainButtons.setAlignment(Pos.TOP_CENTER);
-	        mainButtons.getChildren().addAll(adoption, found, lost);
-	        
-	        HBox bottomButtons = new HBox(10);
-	        Button ok = new Button("OK");
-	        Button cancel = new Button("Cancel");
-	        bottomButtons.getChildren().addAll(ok, cancel);
-	        bottomButtons.setAlignment(Pos.BOTTOM_CENTER);
-	        
-	        VBox animalBox = new AnimalBox(1).getBox();
-	        VBox personBox = new PersonBox().getBox();   
-	        HBox editBox = new HBox(20);
-	        editBox.getChildren().addAll(animalBox, personBox);
-	        VBox mainBox = new VBox(10);
-	        mainBox.getChildren().addAll(editBox, bottomButtons);
-	        
-	        VBox tableBox = new TableViewBox().getBox();
+			
+			MenuBar menuBar = new MenuBox(this).getBox();
+	        menuBar.prefWidthProperty().bind(primaryStage.widthProperty());
 	        
 	        BorderPane secondLayout = new BorderPane();
-	        secondLayout.setTop(mainButtons);
-	        BorderPane.setMargin(mainButtons, new Insets(10));
 	        secondLayout.setCenter(mainBox);
 	        mainBox.setAlignment(Pos.TOP_CENTER);
 	        BorderPane.setMargin(mainBox, new Insets(10));
@@ -64,8 +50,22 @@ public class MainWindow extends Application {
 	}
 
 	public static void main(String[] args) {
-		MainControler main = new MainControler();
-		main.start();
 		launch(args);
+	}
+	
+	public void setMainBox(VBox box){
+		mainBox = box;
+	}
+	
+	public TableViewBox getTable(){
+		return table;
+	}
+	
+	public VBox getMainBox(){
+		return mainBox;
+	}
+	
+	public AnimalShelter getShelter(){
+		return shelter;
 	}
 }
