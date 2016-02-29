@@ -10,12 +10,13 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 public class PersonBox {
+	private GridPane personGrid;
 	private final double vSpacing = 10;
 	private final double hSpacing = 10;
 	private VBox box;
 	
 	public PersonBox(){
-		GridPane personGrid = new GridPane();
+		personGrid = new GridPane();
         personGrid.setVgap(vSpacing);
         personGrid.setHgap(hSpacing);
         
@@ -58,5 +59,9 @@ public class PersonBox {
 	
 	public VBox getBox(){
 		return box;
+	}
+	
+	public GridPane getPersonGrid(){
+		return personGrid;
 	}
 }

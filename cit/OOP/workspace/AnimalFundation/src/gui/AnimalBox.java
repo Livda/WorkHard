@@ -20,6 +20,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 public class AnimalBox {
+	private GridPane animalGrid;
 	private VBox boxFromMain;
 	private VBox box;
 	private int category;
@@ -28,7 +29,7 @@ public class AnimalBox {
 		this.boxFromMain = boxFromMain;
 		this.category = category;
 		
-		GridPane animalGrid = new GridPane();
+		animalGrid = new GridPane();
 		animalGrid.setVgap(10);
 		animalGrid.setHgap(10);
 
@@ -178,5 +179,9 @@ public class AnimalBox {
 
 	public VBox getBox(){
 		return box;
+	}
+	
+	public GridPane getAnimalGrid(){
+		return animalGrid;
 	}
 }

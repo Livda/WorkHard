@@ -27,12 +27,16 @@ public class NewHandler implements EventHandler<ActionEvent> {
 	}
 	
 	public void handle(ActionEvent event) {
-		VBox animal = new AnimalBox(main, category).getBox();
-		VBox person = new PersonBox().getBox();
+		AnimalBox animalBox = new AnimalBox(main, category);
+		VBox animal = animalBox.getBox();
+		PersonBox personBox = new PersonBox();
+		VBox person = personBox.getBox();
 		HBox box = new HBox(10);
 		box.getChildren().addAll(animal, person);
 		
 		Button okButton = new Button("Ok");
+		okButton.setOnAction(new CreateAnimalHandler(animalBox.getAnimalGrid(), 
+				personBox.getPersonGrid()));
 		Button cancelButton = new Button("Cancel");
 		HBox buttonBox = new HBox(10);
 		buttonBox.getChildren().addAll(okButton, cancelButton);
