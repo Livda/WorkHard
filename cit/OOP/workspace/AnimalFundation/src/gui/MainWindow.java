@@ -10,7 +10,7 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 public class MainWindow extends Application {
-	private AnimalShelter shelter;
+	public static AnimalShelter shelter;
 	private VBox mainBox;
 	private TableViewBox table;
 
