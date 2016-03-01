@@ -15,7 +15,7 @@ public class Main {
 		GregorianCalendar calendar1 = new GregorianCalendar(12, 12, 12);
 		Category foundCategory = new Found(1, calendar1, p1, "in my dreams");
 		Animal animal1 = new Animal(1, 15, "red", true, "nice little frog", 
-				"Fluffy", null, "frog", foundCategory, "not my type");
+				"Fluffy", null, "Frog", foundCategory, "not my type");
 		List<Animal> foundList = new ArrayList<Animal>();
 		foundList.add(animal1);
 		
@@ -24,7 +24,7 @@ public class Main {
 		GregorianCalendar calendar2 = new GregorianCalendar(13, 3, 13);
 		Category lostCategory = new Lost(2, calendar2, p2, "somewhere");
 		Animal animal2 = new Animal(2, 78, "blue", false, "zeuh", 
-				"Compote", null, "cat", lostCategory, "type2");
+				"Compote", null, "Cat", lostCategory, "type2");
 		List<Animal> lostList = new ArrayList<Animal>();
 		lostList.add(animal2);
 		
@@ -34,7 +34,7 @@ public class Main {
 		GregorianCalendar calendar3 = new GregorianCalendar(14, 4, 14);
 		Adoption adoption = new Adoption(3, calendar3, p3, true, true, true);
 		Animal animal3 = new Animal(3, 35, "white", true, "is an animal", 
-				"Rex", null, "dog", adoption, "Doge");
+				"Rex", null, "Dog", adoption, "Doge");
 		List<Animal> adoptionList = new ArrayList<Animal>();
 		adoptionList.add(animal3);
 		
