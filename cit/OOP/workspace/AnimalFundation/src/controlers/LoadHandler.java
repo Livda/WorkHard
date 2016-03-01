@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import api.Animal;
 import api.AnimalShelter;
 import api.Saver;
+import gui.MainWindow;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -19,18 +20,16 @@ import javafx.scene.control.TableView;
  *
  */
 public class LoadHandler implements EventHandler <ActionEvent> {
-	TableView<Animal> table;
-	AnimalShelter shelter;
+	private TableView<Animal> table;
 	
-	public LoadHandler(TableView<Animal> table, AnimalShelter shelter) {
+	public LoadHandler(TableView<Animal> table) {
 		this.table = table;
-		this.shelter = shelter;
 	}
 	
 	public void handle(ActionEvent e) {
 		Saver saver = new Saver();
-		shelter = saver.load();
-		ArrayList<Animal> list = shelter.getAllAnimals();
+		MainWindow.shelter = saver.load();
+		ArrayList<Animal> list = MainWindow.shelter.getAllAnimals();
 		ObservableList<Animal> allData = table.getItems();
 		allData.clear();
 		allData.addAll(list);

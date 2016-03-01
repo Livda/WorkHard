@@ -3,8 +3,8 @@
  */
 package controlers;
 
-import api.AnimalShelter;
 import api.Saver;
+import gui.MainWindow;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
@@ -14,14 +14,9 @@ import javafx.event.EventHandler;
  *
  */
 public class SaveHandler implements EventHandler <ActionEvent> {
-	AnimalShelter shelter;
-	
-	public SaveHandler(AnimalShelter a) {
-		this.shelter = a;
-	}
 	
 	public void handle(ActionEvent e) {
 		Saver save = new Saver();
-		save.save(shelter);
+		save.save(MainWindow.shelter);
 	}
 }

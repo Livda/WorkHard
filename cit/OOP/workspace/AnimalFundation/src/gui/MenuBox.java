@@ -10,21 +10,19 @@ import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.input.KeyCombination;
 
 public class MenuBox {
-	private MainWindow main;
 	private MenuBar box;
 	
 	public MenuBox(MainWindow main){
-		this.main = main;
 		Menu fileMenu = new Menu("File");
 		MenuItem newItem = new MenuItem("New ...");
 		newItem.setAccelerator(KeyCombination.keyCombination("Ctrl+N"));
 		newItem.setOnAction(new NewHandler(main.getMainBox(), 0));
 		MenuItem saveItem = new MenuItem("Save");
 		saveItem.setAccelerator(KeyCombination.keyCombination("Ctrl+S"));
-		saveItem.setOnAction(new SaveHandler(main.getShelter()));
+		saveItem.setOnAction(new SaveHandler());
 		MenuItem loadItem = new MenuItem("Load from files ...");
 		loadItem.setAccelerator(KeyCombination.keyCombination("Ctrl+O"));
-		loadItem.setOnAction(new LoadHandler(main.getTable().getTable(), main.getShelter()));
+		loadItem.setOnAction(new LoadHandler(main.getTable().getTable()));
         MenuItem settingsItem = new MenuItem("Settings");
         MenuItem exitItem = new MenuItem("Exit");
         exitItem.setAccelerator(KeyCombination.keyCombination("Alt+f4"));
