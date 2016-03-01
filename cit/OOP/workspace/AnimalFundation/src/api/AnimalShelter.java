@@ -53,7 +53,9 @@ public class AnimalShelter {
 	 * Create an empty Shelter
 	 */
 	public AnimalShelter() {
-		this.adoption = this.lost = this.found = null;
+		this.adoption = new AnimalList();
+		this.lost = new AnimalList();
+		this.found = new AnimalList();
 	}
 	
 	/**

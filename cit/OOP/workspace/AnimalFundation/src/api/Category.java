@@ -11,6 +11,7 @@ import java.util.GregorianCalendar;
  * @version 1.0
  */
 public abstract class Category {
+	protected static int nextId = 0;
 	protected int id;
 	protected GregorianCalendar date;
 	protected Person contact;

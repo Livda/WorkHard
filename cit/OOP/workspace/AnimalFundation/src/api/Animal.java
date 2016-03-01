@@ -10,6 +10,7 @@ import java.io.IOException;
  * @version 1.0
  */
 public class Animal {
+	private static int nextId = 0;
 	private int id;
 	private int age;
 	private String colour;
@@ -158,6 +159,35 @@ public class Animal {
 			String description, String name, String pathToPicture,
 			String breed, Category animalCategory, String type) {
 		this.id = id;
+		this.age = age;
+		this.colour = colour;
+		this.gender = gender;
+		this.description = description;
+		this.name = name;
+		this.pathToPicture = pathToPicture;
+		this.breed = breed;
+		this.animalCategory = animalCategory;
+		this.type = type;
+	}
+	
+	/**
+	 * Animal full constructor without the id mentioned
+	 * @param id The id of the Animal object
+	 * @param age the age of the animal
+	 * @param colour the color of the animal
+	 * @param gender male = true, female = false
+	 * @param description a description of the animal
+	 * @param name the name of the animal
+	 * @param pathToPicture where the picture of the animal is store
+	 * @param breed the breed of the animal
+	 * @param animalCategory the Category of animal
+	 * @param type the type of the animal
+	 */
+	public Animal(int age, String colour, boolean gender, 
+			String description, String name, String pathToPicture,
+			String breed, Category animalCategory, String type) {
+		this.id = Animal.nextId;
+		Animal.nextId++;
 		this.age = age;
 		this.colour = colour;
 		this.gender = gender;

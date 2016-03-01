@@ -10,6 +10,7 @@ import java.io.IOException;
  * @version 1.0
  */
 public class Person {
+	private static int nextId = 0;
 	private int id;
 	private String name;
 	private String adress;
@@ -37,6 +38,22 @@ public class Person {
 	 */
 	public Person(int id, String name, String adress, String phone, String email){
 		this.id = id;
+		this.name = name;
+		this.adress = adress;
+		this.phone = phone;
+		this.email = email;
+	}
+	
+	/**
+	 * Create a full person without the id mentioned
+	 * @param name the name of the Person
+	 * @param adress the address of the Person
+	 * @param phone the phone number of the Person
+	 * @param email the mail of the Person
+	 */
+	public Person(String name, String adress, String phone, String email){
+		this.id = Person.nextId;
+		Person.nextId++;
 		this.name = name;
 		this.adress = adress;
 		this.phone = phone;
@@ -159,11 +176,10 @@ public class Person {
 	 * @return The new person object loaded
 	 */
 	public static Person load(String[] s){
-		int id = Integer.parseInt(s[0]);
 		String name = s[1];
 		String adress = s[2];
 		String phone = s[3];
 		String email = s[4];
-		return new Person(id, name, adress, phone, email);
+		return new Person(name, adress, phone, email);
 	}
 }

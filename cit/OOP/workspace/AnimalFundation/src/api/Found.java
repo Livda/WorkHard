@@ -36,6 +36,21 @@ public class Found extends Category {
 		this.contact = contact;
 	}
 	
+	/**
+	 * Found full constructor without the id mentioned
+	 * @param id The id of the Found object
+	 * @param date The date when the animal was founded
+	 * @param contact The person who find the animal
+	 * @param location Where the animal was founded
+	 */
+	public Found(GregorianCalendar date, Person contact, String location){
+		this.id = Category.nextId;
+		Category.nextId++;
+		this.date = date;
+		this.location = location;
+		this.contact = contact;
+	}
+	
 	public char getCategoryLetter(){
 		return 'f';
 	}
@@ -60,7 +75,6 @@ public class Found extends Category {
 	 * @return the Found object
 	 */
 	public static Found load(String[] s, Map<Integer, Person> pTable){
-		int id = Integer.parseInt(s[0]);
 		int year = Integer.parseInt(s[1]);
 		int month = Integer.parseInt(s[2]);
 		int day = Integer.parseInt(s[3]);
@@ -68,6 +82,6 @@ public class Found extends Category {
 		int idPerson = Integer.parseInt(s[4]);
 		Person person = pTable.get(idPerson);
 		String location = s[5];
-		return new Found(id, date, person, location);
+		return new Found(date, person, location);
 	}
 }

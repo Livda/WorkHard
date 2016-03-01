@@ -36,6 +36,21 @@ public class Lost extends Category {
 		this.contact = contact;
 	}
 	
+	/**
+	 * Lost full constructor without the id mentionned
+	 * @param id The id of the Lost object
+	 * @param date When the animal was lost
+	 * @param contact Who lost the animal
+	 * @param location Where the animal was lost
+	 */
+	public Lost(GregorianCalendar date, Person contact, String location){
+		this.id = Category.nextId;
+		Category.nextId++;
+		this.date = date;
+		this.location = location;
+		this.contact = contact;
+	}
+	
 	public char getCategoryLetter() {
 		return 'l';
 	}
@@ -60,7 +75,6 @@ public class Lost extends Category {
 	 * @return the Lost object
 	 */
 	public static Lost load(String[] s, Map<Integer, Person> pTable){
-		int id = Integer.parseInt(s[0]);
 		int year = Integer.parseInt(s[1]);
 		int month = Integer.parseInt(s[2]);
 		int day = Integer.parseInt(s[3]);
@@ -68,6 +82,6 @@ public class Lost extends Category {
 		int idPerson = Integer.parseInt(s[4]);
 		Person person = pTable.get(idPerson);
 		String location = s[5];
-		return new Lost(id, date, person, location);
+		return new Lost(date, person, location);
 	}
 }

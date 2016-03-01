@@ -44,6 +44,26 @@ public class Adoption extends Category{
 		this.vaccinated = vac;
 	}
 	
+	/**
+	 * Adoption full constructor without the id mentionned
+	 * @param id The id of the new Adoption category
+	 * @param date The date when the animal was adopted
+	 * @param contact The person who adopt the animal
+	 * @param neut Is the animal is neutered
+	 * @param chip Is the animal chipped
+	 * @param vac Is the animal vaccinated
+	 */
+	public Adoption(GregorianCalendar date, Person contact, 
+			boolean neut, boolean chip, boolean vac){
+		this.id = Category.nextId;
+		Category.nextId++;
+		this.date = date;
+		this.contact = contact;
+		this.neutered = neut;
+		this.chipped = chip;
+		this.vaccinated = vac;
+	}
+	
 	public char getCategoryLetter() {
 		return 'a';
 	}
@@ -68,7 +88,6 @@ public class Adoption extends Category{
 	 * @return the Adoption object
 	 */
 	public static Adoption load(String[] s, Map<Integer, Person> pTable){
-		int id = Integer.parseInt(s[0]);
 		int year = Integer.parseInt(s[1]);
 		int month = Integer.parseInt(s[2]);
 		int day = Integer.parseInt(s[3]);
@@ -78,6 +97,6 @@ public class Adoption extends Category{
 		boolean neutered = Boolean.parseBoolean(s[5]);
 		boolean chipped = Boolean.parseBoolean(s[6]);
 		boolean vaccinated = Boolean.parseBoolean(s[7]);
-		return new Adoption(id, date, person, neutered, chipped, vaccinated);
+		return new Adoption(date, person, neutered, chipped, vaccinated);
 	}
 }
