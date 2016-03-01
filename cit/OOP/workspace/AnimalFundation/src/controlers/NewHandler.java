@@ -38,10 +38,15 @@ public class NewHandler implements EventHandler<ActionEvent> {
 		okButton.setOnAction(new CreateAnimalHandler(animalBox.getAnimalGrid(), 
 				personBox.getPersonGrid()));
 		Button cancelButton = new Button("Cancel");
+		cancelButton.setOnAction(e -> this.empty(e));
 		HBox buttonBox = new HBox(10);
 		buttonBox.getChildren().addAll(okButton, cancelButton);
 		buttonBox.setAlignment(Pos.CENTER);
 		main.getChildren().clear();
 		main.getChildren().addAll(box, buttonBox);
+	}
+	
+	public void empty(ActionEvent e){
+		main.getChildren().clear();
 	}
 }
