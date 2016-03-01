@@ -24,6 +24,7 @@ public class MenuBox {
 		loadItem.setAccelerator(KeyCombination.keyCombination("Ctrl+O"));
 		loadItem.setOnAction(new LoadHandler(main.getTable().getTable()));
         MenuItem settingsItem = new MenuItem("Settings");
+        settingsItem.setDisable(true);
         MenuItem exitItem = new MenuItem("Exit");
         exitItem.setAccelerator(KeyCombination.keyCombination("Alt+f4"));
         exitItem.setOnAction(e -> System.exit(0));
@@ -34,8 +35,10 @@ public class MenuBox {
         Menu editMenu = new Menu("Edit");
         MenuItem undoItem = new MenuItem("Undo");
         undoItem.setAccelerator(KeyCombination.keyCombination("Ctrl+Z"));
+        undoItem.setDisable(true);
         MenuItem redoItem = new MenuItem("Redo");
         redoItem.setAccelerator(KeyCombination.keyCombination("Ctrl+Y"));
+        redoItem.setDisable(true);
         MenuItem copyItem = new MenuItem("Copy");
         copyItem.setAccelerator(KeyCombination.keyCombination("Ctrl+C"));
         MenuItem cutItem = new MenuItem("Cut");
@@ -45,11 +48,13 @@ public class MenuBox {
         editMenu.getItems().addAll(undoItem, redoItem, new SeparatorMenuItem(),
         		copyItem, cutItem, pasteItem);
         
-        Menu helpMenu = new Menu("Help");
-        helpMenu.getItems().add(new MenuItem("There is no help here"));
+        Menu toolMenu = new Menu("Tools");
+        MenuItem bugItem = new MenuItem("Report a bug");
+        bugItem.setDisable(true);
+        toolMenu.getItems().add(bugItem);
         
         box = new MenuBar();
-        box.getMenus().addAll(fileMenu, editMenu, helpMenu);
+        box.getMenus().addAll(fileMenu, editMenu, toolMenu);
 	}
 	
 	public MenuBar getBox(){
