@@ -40,12 +40,16 @@ public class Found extends Category {
 		return 'f';
 	}
 
-	public String toString() {
-		return super.toString() + "," + location;
+	public String toString(){
+		return "Found";
+	}
+	
+	public String toStringForSave() {
+		return super.toStringForSave() + "," + location;
 	}
 
 	public void print() {
-		System.out.println(this.toString());
+		System.out.println(this.toStringForSave());
 		
 	}
 	

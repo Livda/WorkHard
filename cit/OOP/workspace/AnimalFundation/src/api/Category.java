@@ -42,7 +42,7 @@ public abstract class Category {
 		return contact;
 	}
 	
-	public String toString(){
+	public String toStringForSave(){
 		return id + "," + date.get(Calendar.YEAR) + "," + date.get(Calendar.MONTH) 
 		+ "," + date.get(Calendar.DAY_OF_MONTH) + "," + contact.getId();
 	}
@@ -58,7 +58,7 @@ public abstract class Category {
 		BufferedWriter bw;
 		try {
 		bw = new BufferedWriter(new FileWriter(categoryFile, true));
-		bw.write(this.toString());
+		bw.write(this.toStringForSave());
 		bw.newLine();
 		bw.flush();
 		bw.close();

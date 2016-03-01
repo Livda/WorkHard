@@ -40,12 +40,16 @@ public class Lost extends Category {
 		return 'l';
 	}
 
-	public String toString() {
-		return super.toString() + "," + location;
+	public String toString(){
+		return "Lost";
+	}
+	
+	public String toStringForSave() {
+		return super.toStringForSave() + "," + location;
 	}
 
 	public void print() {
-		System.out.println(this.toString());
+		System.out.println(this.toStringForSave());
 		
 	}
 	

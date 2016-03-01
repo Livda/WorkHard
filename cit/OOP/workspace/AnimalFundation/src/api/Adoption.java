@@ -48,13 +48,17 @@ public class Adoption extends Category{
 		return 'a';
 	}
 	
-	public String toString() {
-		return super.toString() + "," + neutered + "," + chipped 
+	public String toString(){
+		return "Adoption";
+	}
+	
+	public String toStringForSave() {
+		return super.toStringForSave() + "," + neutered + "," + chipped 
 				+ "," + vaccinated;
 	}
 
 	public void print() {
-		System.out.println(this.toString());
+		System.out.println(this.toStringForSave());
 	}
 	
 	/**

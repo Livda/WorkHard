@@ -15,7 +15,7 @@ public class Main {
 		GregorianCalendar calendar1 = new GregorianCalendar(12, 12, 12);
 		Category foundCategory = new Found(1, calendar1, p1, "in my dreams");
 		Animal animal1 = new Animal(1, 15, "red", true, "nice little frog", 
-				"Fluffy", null, "super sayan", foundCategory, "not my type");
+				"Fluffy", null, "frog", foundCategory, "not my type");
 		List<Animal> foundList = new ArrayList<Animal>();
 		foundList.add(animal1);
 		
