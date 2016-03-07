@@ -1,5 +1,7 @@
 package gui;
 
+import java.util.ArrayList;
+
 import api.*;
 import controlers.NewHandler;
 import javafx.geometry.Pos;
@@ -68,5 +70,21 @@ public class TableViewBox {
 		AnimalShelter shelter = MainWindow.shelter;
 		table.getItems().clear();
 		table.getItems().addAll(shelter.getAllAnimals());
+	}
+	
+	public void printByCategory(ArrayList<String> categories){
+		ArrayList<Animal> list = new ArrayList<Animal>();
+		AnimalShelter shelter = MainWindow.shelter;
+		if (categories.contains("Adoption")) {
+			list.addAll(shelter.getAdoption().getList());
+		}
+		if (categories.contains("Found")) {
+			list.addAll(shelter.getFound().getList());
+		}
+		if (categories.contains("Lost")) {
+			list.addAll(shelter.getLost().getList());
+		}
+		table.getItems().clear();
+		table.getItems().addAll(list);
 	}
 }
