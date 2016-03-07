@@ -1,6 +1,8 @@
 package gui;
 
+import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -63,5 +65,46 @@ public class PersonBox {
 	
 	public GridPane getPersonGrid(){
 		return personGrid;
+	}
+	
+	public String getName(){
+		Node node = getNodeByRowColumnIndex(0, 1, personGrid);
+		TextField nameField = (TextField) node;
+		String name = nameField.getText();
+		return name;
+	}
+	
+	public String getAdress(){
+		Node node = getNodeByRowColumnIndex(1, 1, personGrid);
+		TextArea adressField = (TextArea) node;
+		String adress = adressField.getText();
+		return adress;
+	}
+	
+	public String getTelephone(){
+		Node node = getNodeByRowColumnIndex(2, 1, personGrid);
+		TextField phoneField = (TextField) node;
+		String phone = phoneField.getText();
+		return phone;
+	}
+	
+	public String getEmail(){
+		Node node = getNodeByRowColumnIndex(3, 1, personGrid);
+		TextField emailField = (TextField) node;
+		String email = emailField.getText();
+		return email;
+	}
+	
+	@SuppressWarnings("static-access")
+	private Node getNodeByRowColumnIndex(final int row, final int column, GridPane gridPane){
+		Node result = null;
+		ObservableList<Node> children = gridPane.getChildren();
+		for (Node node : children){
+			if(gridPane.getRowIndex(node) == row && gridPane.getColumnIndex(node) == column) {
+				result = node;
+				break;
+			}
+		}
+		return result;
 	}
 }

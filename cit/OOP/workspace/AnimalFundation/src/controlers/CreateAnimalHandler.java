@@ -3,14 +3,9 @@
  */
 package controlers;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 import api.Adoption;
 import api.Animal;
-import api.AnimalList;
 import api.AnimalShelter;
 import api.Category;
 import api.Found;
@@ -18,21 +13,9 @@ import api.Lost;
 import api.Person;
 import gui.AnimalBox;
 import gui.MainWindow;
-import javafx.collections.ObservableList;
+import gui.PersonBox;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Node;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
 /**
  * @author Aurelien Fontaine
@@ -41,28 +24,22 @@ import javafx.scene.layout.VBox;
  */
 public class CreateAnimalHandler implements EventHandler<ActionEvent>{
 	private AnimalBox animalBox;
-	private GridPane person;
+	private PersonBox personBox;
 	
-	public CreateAnimalHandler(AnimalBox animalBox, GridPane person){
+	public CreateAnimalHandler(AnimalBox animalBox, PersonBox personBox){
 		this.animalBox = animalBox;
-		this.person = person;
+		this.personBox = personBox;
 	}
 	
 	public void handle(ActionEvent event){
-		Node node;
 		AnimalShelter shelter = MainWindow.shelter;
 		
-		//We take what is in the person Grid
-//		node = getNodeByRowColumnIndex(0, 1, person);
-//		String pName = ((TextField) node).getText();
-//		node = getNodeByRowColumnIndex(1, 1, person);
-//		String adress = ((TextArea) node).getText();
-//		node = getNodeByRowColumnIndex(2, 1, person);
-//		String phone = ((TextField) node).getText();
-//		node = getNodeByRowColumnIndex(3, 1, person);
-//		String email = ((TextField) node).getText();
-//		Person p = new Person(pName, adress, phone, email);
-		Person p = new Person();
+		//We create a person
+		String pName = personBox.getName();
+		String adress = personBox.getAdress();
+		String phone = personBox.getTelephone();
+		String email = personBox.getEmail();
+		Person p = new Person(pName, adress, phone, email);
 		
 		//We create a Category
 		Category newCategory = null;

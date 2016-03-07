@@ -28,11 +28,11 @@ public class AnimalBox {
 	private VBox box;
 
 	public AnimalBox(){
-		
+
 		animalGrid = new GridPane();
 		animalGrid.setVgap(10);
 		animalGrid.setHgap(10);
-		
+
 		categoryPane = new GridPane();
 		categoryPane.setVgap(10);
 		categoryPane.setHgap(10);
@@ -105,10 +105,10 @@ public class AnimalBox {
 		animalTitle.setFont(Font.font(null, FontWeight.BOLD, 25));
 		box.getChildren().addAll(animalTitle, animalGrid, categoryPane);
 		box.setAlignment(Pos.TOP_CENTER);
-		
+
 		Text animalCategory = new Text("Category :");
 		animalGrid.add(animalCategory, 0, 8);
-		
+
 		ToggleGroup categoryGroup = new ToggleGroup();
 		RadioButton adoptionButton = new RadioButton("Adoption");
 		adoptionButton.setToggleGroup(categoryGroup);
@@ -124,55 +124,55 @@ public class AnimalBox {
 		categoryBox.getChildren().addAll(adoptionButton, foundButton, lostButton);
 		categoryBox.setAlignment(Pos.CENTER);
 		animalGrid.add(categoryBox, 1, 8);
-		
+
 		this.setCategory(0);
 	}
 
 	public VBox getBox(){
 		return box;
 	}
-	
+
 	public GridPane getAnimalGrid(){
 		return animalGrid;
 	}
-	
+
 	public String getName(){
 		Node node = getNodeByRowColumnIndex(0, 1, animalGrid);
 		String name = ((TextField) node).getText();
 		return name;
 	}
-	
+
 	public int getAge(){
 		Node node = getNodeByRowColumnIndex(1, 1, animalGrid);
 		int age = Integer.parseInt(((TextField) node).getText());
 		return age;
 	}
-	
+
 	public String getColour(){
 		Node node = getNodeByRowColumnIndex(2, 1, animalGrid);
 		String colour = ((TextField) node).getText();
 		return colour;
 	}
-	
+
 	public String getDescrition(){
 		Node node = getNodeByRowColumnIndex(3, 1, animalGrid);
 		String description = ((TextArea) node).getText();
 		return description;
 	}
-	
+
 	public String getBreed(){
 		Node node = getNodeByRowColumnIndex(4, 1, animalGrid);
 		@SuppressWarnings("unchecked")
 		String breed = (String)((ChoiceBox<String>)node).getValue();
 		return breed;
 	}
-	
+
 	public String getType(){
 		Node node = getNodeByRowColumnIndex(5, 1, animalGrid);
 		String type = ((TextField) node).getText();
 		return type;
 	}
-	
+
 	public boolean getGender(){
 		Node node = getNodeByRowColumnIndex(6, 1, animalGrid);
 		HBox buttonBox = (HBox)node;
@@ -180,14 +180,14 @@ public class AnimalBox {
 		boolean gender = maleButton.isSelected();
 		return gender;
 	}
-	
+
 	public Calendar getDate(){
 		Node node = getNodeByRowColumnIndex(7, 1, animalGrid);
 		LocalDate date = ((DatePicker)node).getValue();
 		Calendar calendar = GregorianCalendar.from(date.atStartOfDay(ZoneId.systemDefault()));
 		return calendar;
 	}
-	
+
 	public String getCategory(){
 		Node node = getNodeByRowColumnIndex(8, 1, animalGrid);
 		HBox categroyBox = ((HBox)node);
@@ -197,14 +197,14 @@ public class AnimalBox {
 		String category = button.getText();
 		return category;
 	}
-	
+
 	public String getLocalisation(){
 		Node node  = getNodeByRowColumnIndex(0, 1, categoryPane);
 		TextField localisationField = (TextField)node;
 		String localisation = localisationField.getText();
 		return localisation;
 	}
-	
+
 	public boolean getNeutered(){
 		Node node = getNodeByRowColumnIndex(0, 1, categoryPane);
 		HBox neuteuredBox = (HBox)node;
@@ -212,7 +212,7 @@ public class AnimalBox {
 		boolean isNeutered = neutered.isSelected();
 		return isNeutered;
 	}
-	
+
 	public boolean getChipped(){
 		Node node = getNodeByRowColumnIndex(1, 1, categoryPane);
 		HBox chippedBox = (HBox)node;
@@ -220,7 +220,7 @@ public class AnimalBox {
 		boolean isChipped = chipped.isSelected();
 		return isChipped;
 	}
-	
+
 	public boolean getVaccinated(){
 		Node node = getNodeByRowColumnIndex(2, 1, categoryPane);
 		HBox vaccinatedBox = (HBox)node;
@@ -228,21 +228,9 @@ public class AnimalBox {
 		boolean isVaccinated = vaccinated.isSelected();
 		return isVaccinated;
 	}
-	
-	
-	@SuppressWarnings("static-access")
-	private Node getNodeByRowColumnIndex(final int row, final int column, GridPane gridPane){
-		Node result = null;
-		ObservableList<Node> children = gridPane.getChildren();
-		for (Node node : children){
-			if(gridPane.getRowIndex(node) == row && gridPane.getColumnIndex(node) == column) {
-				result = node;
-				break;
-			}
-		}
-		return result;
-	}
-	
+
+
+
 	public void setCategory(int i){
 		categoryPane.getChildren().clear();
 		if (i == 0) {
@@ -296,5 +284,18 @@ public class AnimalBox {
 			locationField.setPromptText("Ex : In the dark forest");
 			categoryPane.add(locationField, 1, 0);
 		}
+	}
+
+	@SuppressWarnings("static-access")
+	private Node getNodeByRowColumnIndex(final int row, final int column, GridPane gridPane){
+		Node result = null;
+		ObservableList<Node> children = gridPane.getChildren();
+		for (Node node : children){
+			if(gridPane.getRowIndex(node) == row && gridPane.getColumnIndex(node) == column) {
+				result = node;
+				break;
+			}
+		}
+		return result;
 	}
 }
