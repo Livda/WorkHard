@@ -33,8 +33,7 @@ public class NewHandler implements EventHandler<ActionEvent> {
 		box.getChildren().addAll(animal, person);
 		
 		Button okButton = new Button("Ok");
-		okButton.setOnAction(new CreateAnimalHandler(animalBox, 
-				personBox.getPersonGrid()));
+		okButton.setOnAction(new CreateAnimalHandler(animalBox, personBox));
 		Button cancelButton = new Button("Cancel");
 		cancelButton.setOnAction(e -> this.empty(e));
 		HBox buttonBox = new HBox(10);
