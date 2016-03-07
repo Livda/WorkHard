@@ -1,9 +1,5 @@
 package gui;
 
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-
 import api.*;
 import controlers.NewHandler;
 import javafx.geometry.Pos;
@@ -17,12 +13,10 @@ import javafx.scene.layout.VBox;
 
 public class TableViewBox {
 	private VBox box;
-	private MainWindow main;
 	TableView<Animal> table;
 	
 	@SuppressWarnings({"unchecked", "rawtypes"})
-	public TableViewBox(MainWindow main){
-		this.main = main;
+	public TableViewBox(){
 		TableColumn<Animal,String> nameCol = 
 				new TableColumn<Animal,String>("Name");
 		nameCol.setCellValueFactory(new PropertyValueFactory("name"));
@@ -51,7 +45,7 @@ public class TableViewBox {
 		filterBox.setAlignment(Pos.CENTER);
 		
 		Button newAnimal = new Button("New");
-		newAnimal.setOnAction(new NewHandler(main.getMainBox()));
+		newAnimal.setOnAction(new NewHandler());
 		Button editAnimal = new Button("Edit");
         Button deleteAnimal = new Button("Delete");
         HBox buttonBox = new HBox(15);
@@ -68,14 +62,6 @@ public class TableViewBox {
 	
 	public TableView<Animal> getTable(){
 		return table;
-	}
-	
-	private class newHandler implements EventHandler <ActionEvent> {
-		public void handle(ActionEvent e){
-			ObservableList<Animal> allData = table.getItems();
-			allData.add(new Animal());
-			table.setItems(allData);
-		}
 	}
 	
 	public void printShelter(){

@@ -4,6 +4,7 @@
 package controlers;
 
 import gui.AnimalBox;
+import gui.MainWindow;
 import gui.PersonBox;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -18,10 +19,8 @@ import javafx.scene.layout.VBox;
  *
  */
 public class NewHandler implements EventHandler<ActionEvent> {
-	private VBox main;
 	
-	public NewHandler(VBox main){
-		this.main = main;
+	public NewHandler(){
 	}
 	
 	public void handle(ActionEvent event) {
@@ -39,11 +38,12 @@ public class NewHandler implements EventHandler<ActionEvent> {
 		HBox buttonBox = new HBox(10);
 		buttonBox.getChildren().addAll(okButton, cancelButton);
 		buttonBox.setAlignment(Pos.CENTER);
+		VBox main = MainWindow.mainBox;
 		main.getChildren().clear();
 		main.getChildren().addAll(box, buttonBox);
 	}
 	
 	public void empty(ActionEvent e){
-		main.getChildren().clear();
+		MainWindow.mainBox.getChildren().clear();
 	}
 }

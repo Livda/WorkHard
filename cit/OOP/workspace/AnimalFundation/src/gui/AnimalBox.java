@@ -144,7 +144,13 @@ public class AnimalBox {
 
 	public int getAge(){
 		Node node = getNodeByRowColumnIndex(1, 1, animalGrid);
-		int age = Integer.parseInt(((TextField) node).getText());
+		int age;
+		try {
+		age = Integer.parseInt(((TextField) node).getText());
+		} catch (Exception e) {
+			System.err.println("not an integer");
+			age = -1;
+		}
 		return age;
 	}
 
@@ -228,8 +234,6 @@ public class AnimalBox {
 		boolean isVaccinated = vaccinated.isSelected();
 		return isVaccinated;
 	}
-
-
 
 	public void setCategory(int i){
 		categoryPane.getChildren().clear();

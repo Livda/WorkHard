@@ -12,15 +12,15 @@ import javafx.stage.Stage;
 public class MainWindow extends Application {
 	public static AnimalShelter shelter;
 	public static TableViewBox table;
-	private VBox mainBox;
+	public static VBox mainBox;
 
 	@Override
 	public void start(Stage primaryStage) {
 		try {
 			shelter = new AnimalShelter();
-			mainBox = new VBox(10);
+			mainBox = new VBox(10);	
+			table = new TableViewBox();
 			
-			table = new TableViewBox(this);
 	        VBox tableBox = table.getBox();
 	        
 			MenuBar menuBar = new MenuBox(this).getBox();
