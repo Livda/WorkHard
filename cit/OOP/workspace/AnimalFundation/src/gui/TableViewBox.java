@@ -51,7 +51,7 @@ public class TableViewBox {
 		filterBox.setAlignment(Pos.CENTER);
 		
 		Button newAnimal = new Button("New");
-		newAnimal.setOnAction(new NewHandler(main.getMainBox(), 0));
+		newAnimal.setOnAction(new NewHandler(main.getMainBox()));
 		Button editAnimal = new Button("Edit");
         Button deleteAnimal = new Button("Delete");
         HBox buttonBox = new HBox(15);
@@ -76,5 +76,11 @@ public class TableViewBox {
 			allData.add(new Animal());
 			table.setItems(allData);
 		}
+	}
+	
+	public void printShelter(){
+		AnimalShelter shelter = MainWindow.shelter;
+		table.getItems().clear();
+		table.getItems().addAll(shelter.getAllAnimals());
 	}
 }

@@ -19,15 +19,13 @@ import javafx.scene.layout.VBox;
  */
 public class NewHandler implements EventHandler<ActionEvent> {
 	private VBox main;
-	private int category;
 	
-	public NewHandler(VBox main, int category){
+	public NewHandler(VBox main){
 		this.main = main;
-		this.category = category;
 	}
 	
 	public void handle(ActionEvent event) {
-		AnimalBox animalBox = new AnimalBox(main, category);
+		AnimalBox animalBox = new AnimalBox();
 		VBox animal = animalBox.getBox();
 		PersonBox personBox = new PersonBox();
 		VBox person = personBox.getBox();
@@ -35,7 +33,7 @@ public class NewHandler implements EventHandler<ActionEvent> {
 		box.getChildren().addAll(animal, person);
 		
 		Button okButton = new Button("Ok");
-		okButton.setOnAction(new CreateAnimalHandler(animalBox.getAnimalGrid(), 
+		okButton.setOnAction(new CreateAnimalHandler(animalBox, 
 				personBox.getPersonGrid()));
 		Button cancelButton = new Button("Cancel");
 		cancelButton.setOnAction(e -> this.empty(e));

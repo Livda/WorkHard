@@ -16,13 +16,13 @@ public class MenuBox {
 		Menu fileMenu = new Menu("File");
 		MenuItem newItem = new MenuItem("New ...");
 		newItem.setAccelerator(KeyCombination.keyCombination("Ctrl+N"));
-		newItem.setOnAction(new NewHandler(main.getMainBox(), 0));
+		newItem.setOnAction(new NewHandler(main.getMainBox()));
 		MenuItem saveItem = new MenuItem("Save");
 		saveItem.setAccelerator(KeyCombination.keyCombination("Ctrl+S"));
 		saveItem.setOnAction(new SaveHandler());
 		MenuItem loadItem = new MenuItem("Load from files ...");
 		loadItem.setAccelerator(KeyCombination.keyCombination("Ctrl+O"));
-		loadItem.setOnAction(new LoadHandler(main.getTable().getTable()));
+		loadItem.setOnAction(new LoadHandler(MainWindow.table.getTable()));
         MenuItem settingsItem = new MenuItem("Settings");
         settingsItem.setDisable(true);
         MenuItem exitItem = new MenuItem("Exit");

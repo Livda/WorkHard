@@ -11,10 +11,23 @@ import java.util.GregorianCalendar;
  * @version 1.0
  */
 public abstract class Category {
-	protected static int nextId = 0;
-	protected int id;
-	protected GregorianCalendar date;
-	protected Person contact;
+	private static int nextId = 0;
+	private int id;
+	private GregorianCalendar date;
+	private Person contact;
+	
+	public Category(int id, GregorianCalendar date, Person contact){
+		this.id = id;
+		this.date = date;
+		this.contact = contact;
+	}
+	
+	public Category(GregorianCalendar date, Person contact){
+		this.id = nextId;
+		nextId++;
+		this.date = date;
+		this.contact = contact;
+	}
 	
 	/**
 	 * Print the current Category in the console
@@ -33,6 +46,10 @@ public abstract class Category {
 	 */
 	public int getId() {
 		return this.id;
+	}
+	
+	public GregorianCalendar getDate(){
+		return this.date;
 	}
 	
 	/**

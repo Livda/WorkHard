@@ -99,4 +99,21 @@ public class AnimalShelter {
 		list.addAll(found.getList());
 		return list;
 	}
+	/**
+	 * @param a
+	 */
+	public void add(Animal a) {
+		Category cat = a.getAnimalCategory();
+		switch (cat.getCategoryLetter()) {
+		case 'a' :
+			adoption.add(a);
+			break;
+		case 'f' :
+			found.add(a);
+			break;
+		case 'l' :
+			lost.add(a);
+			break;
+		}
+	}
 } 

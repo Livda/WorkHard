@@ -11,18 +11,6 @@ public class Found extends Category {
 	private String location;
 	
 	/**
-	 * Found partial constructor
-	 * @param id The id of the Found object
-	 * @param date The date when the animal was founded
-	 * @param location Where the animal was founded
-	 */
-	public Found(int id, GregorianCalendar date, String location){
-		this.id = id;
-		this.date = date;
-		this.location = location;
-	}
-	
-	/**
 	 * Found full constructor
 	 * @param id The id of the Found object
 	 * @param date The date when the animal was founded
@@ -30,10 +18,8 @@ public class Found extends Category {
 	 * @param location Where the animal was founded
 	 */
 	public Found(int id, GregorianCalendar date, Person contact, String location){
-		this.id = id;
-		this.date = date;
+		super(id, date, contact);
 		this.location = location;
-		this.contact = contact;
 	}
 	
 	/**
@@ -44,11 +30,8 @@ public class Found extends Category {
 	 * @param location Where the animal was founded
 	 */
 	public Found(GregorianCalendar date, Person contact, String location){
-		this.id = Category.nextId;
-		Category.nextId++;
-		this.date = date;
+		super(date, contact);
 		this.location = location;
-		this.contact = contact;
 	}
 	
 	public char getCategoryLetter(){

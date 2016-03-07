@@ -11,8 +11,8 @@ import javafx.stage.Stage;
 
 public class MainWindow extends Application {
 	public static AnimalShelter shelter;
+	public static TableViewBox table;
 	private VBox mainBox;
-	private TableViewBox table;
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -23,7 +23,6 @@ public class MainWindow extends Application {
 			table = new TableViewBox(this);
 	        VBox tableBox = table.getBox();
 	        
-			
 			MenuBar menuBar = new MenuBox(this).getBox();
 	        menuBar.prefWidthProperty().bind(primaryStage.widthProperty());
 	        
@@ -57,15 +56,7 @@ public class MainWindow extends Application {
 		mainBox = box;
 	}
 	
-	public TableViewBox getTable(){
-		return table;
-	}
-	
 	public VBox getMainBox(){
 		return mainBox;
-	}
-	
-	public AnimalShelter getShelter(){
-		return shelter;
 	}
 }

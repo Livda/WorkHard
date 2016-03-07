@@ -1,11 +1,14 @@
 package gui;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
-import controlers.NewHandler;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import controlers.ChangeCategoryHandler;
+import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
@@ -21,17 +24,18 @@ import javafx.scene.text.Text;
 
 public class AnimalBox {
 	private GridPane animalGrid;
-	private VBox boxFromMain;
+	private GridPane categoryPane;
 	private VBox box;
-	private int category;
 
-	public AnimalBox(VBox boxFromMain, int category){
-		this.boxFromMain = boxFromMain;
-		this.category = category;
+	public AnimalBox(){
 		
 		animalGrid = new GridPane();
 		animalGrid.setVgap(10);
 		animalGrid.setHgap(10);
+		
+		categoryPane = new GridPane();
+		categoryPane.setVgap(10);
+		categoryPane.setHgap(10);
 
 		Text animalName = new Text("Animal name :");
 		animalGrid.add(animalName, 0, 0);
@@ -99,7 +103,7 @@ public class AnimalBox {
 		box = new VBox(20);
 		Text animalTitle = new Text("Animal");
 		animalTitle.setFont(Font.font(null, FontWeight.BOLD, 25));
-		box.getChildren().addAll(animalTitle, animalGrid);
+		box.getChildren().addAll(animalTitle, animalGrid, categoryPane);
 		box.setAlignment(Pos.TOP_CENTER);
 		
 		Text animalCategory = new Text("Category :");
@@ -108,24 +112,142 @@ public class AnimalBox {
 		ToggleGroup categoryGroup = new ToggleGroup();
 		RadioButton adoptionButton = new RadioButton("Adoption");
 		adoptionButton.setToggleGroup(categoryGroup);
-		if (category == 0)	adoptionButton.setSelected(true);
-		adoptionButton.setOnAction(new NewHandler(boxFromMain, 0));
+		adoptionButton.setSelected(true);
+		adoptionButton.setOnAction(new ChangeCategoryHandler(this, 0));
 		RadioButton foundButton = new RadioButton("Found");
 		foundButton.setToggleGroup(categoryGroup);
-		if (category == 1)	foundButton.setSelected(true);
-		foundButton.setOnAction(new NewHandler(boxFromMain, 1));
+		foundButton.setOnAction(new ChangeCategoryHandler(this, 1));
 		RadioButton lostButton = new RadioButton("Lost");
 		lostButton.setToggleGroup(categoryGroup);
-		if (category == 2)	lostButton.setSelected(true);
-		lostButton.setOnAction(new NewHandler(boxFromMain, 2));
+		lostButton.setOnAction(new ChangeCategoryHandler(this, 2));
 		HBox categoryBox = new HBox(10);
 		categoryBox.getChildren().addAll(adoptionButton, foundButton, lostButton);
 		categoryBox.setAlignment(Pos.CENTER);
 		animalGrid.add(categoryBox, 1, 8);
+		
+		this.setCategory(0);
+	}
 
-		if (this.category == 0) {
+	public VBox getBox(){
+		return box;
+	}
+	
+	public GridPane getAnimalGrid(){
+		return animalGrid;
+	}
+	
+	public String getName(){
+		Node node = getNodeByRowColumnIndex(0, 1, animalGrid);
+		String name = ((TextField) node).getText();
+		return name;
+	}
+	
+	public int getAge(){
+		Node node = getNodeByRowColumnIndex(1, 1, animalGrid);
+		int age = Integer.parseInt(((TextField) node).getText());
+		return age;
+	}
+	
+	public String getColour(){
+		Node node = getNodeByRowColumnIndex(2, 1, animalGrid);
+		String colour = ((TextField) node).getText();
+		return colour;
+	}
+	
+	public String getDescrition(){
+		Node node = getNodeByRowColumnIndex(3, 1, animalGrid);
+		String description = ((TextArea) node).getText();
+		return description;
+	}
+	
+	public String getBreed(){
+		Node node = getNodeByRowColumnIndex(4, 1, animalGrid);
+		@SuppressWarnings("unchecked")
+		String breed = (String)((ChoiceBox<String>)node).getValue();
+		return breed;
+	}
+	
+	public String getType(){
+		Node node = getNodeByRowColumnIndex(5, 1, animalGrid);
+		String type = ((TextField) node).getText();
+		return type;
+	}
+	
+	public boolean getGender(){
+		Node node = getNodeByRowColumnIndex(6, 1, animalGrid);
+		HBox buttonBox = (HBox)node;
+		RadioButton maleButton = (RadioButton)buttonBox.getChildren().get(0); 
+		boolean gender = maleButton.isSelected();
+		return gender;
+	}
+	
+	public Calendar getDate(){
+		Node node = getNodeByRowColumnIndex(7, 1, animalGrid);
+		LocalDate date = ((DatePicker)node).getValue();
+		Calendar calendar = GregorianCalendar.from(date.atStartOfDay(ZoneId.systemDefault()));
+		return calendar;
+	}
+	
+	public String getCategory(){
+		Node node = getNodeByRowColumnIndex(8, 1, animalGrid);
+		HBox categroyBox = ((HBox)node);
+		RadioButton button = (RadioButton)categroyBox.getChildren().get(0);
+		ToggleGroup categoryGroup = button.getToggleGroup();
+		button = (RadioButton)categoryGroup.getSelectedToggle();
+		String category = button.getText();
+		return category;
+	}
+	
+	public String getLocalisation(){
+		Node node  = getNodeByRowColumnIndex(0, 1, categoryPane);
+		TextField localisationField = (TextField)node;
+		String localisation = localisationField.getText();
+		return localisation;
+	}
+	
+	public boolean getNeutered(){
+		Node node = getNodeByRowColumnIndex(0, 1, categoryPane);
+		HBox neuteuredBox = (HBox)node;
+		RadioButton neutered = (RadioButton)neuteuredBox.getChildren().get(0);
+		boolean isNeutered = neutered.isSelected();
+		return isNeutered;
+	}
+	
+	public boolean getChipped(){
+		Node node = getNodeByRowColumnIndex(1, 1, categoryPane);
+		HBox chippedBox = (HBox)node;
+		RadioButton chipped = (RadioButton)chippedBox.getChildren().get(0);
+		boolean isChipped = chipped.isSelected();
+		return isChipped;
+	}
+	
+	public boolean getVaccinated(){
+		Node node = getNodeByRowColumnIndex(2, 1, categoryPane);
+		HBox vaccinatedBox = (HBox)node;
+		RadioButton vaccinated = (RadioButton)vaccinatedBox.getChildren().get(0);
+		boolean isVaccinated = vaccinated.isSelected();
+		return isVaccinated;
+	}
+	
+	
+	@SuppressWarnings("static-access")
+	private Node getNodeByRowColumnIndex(final int row, final int column, GridPane gridPane){
+		Node result = null;
+		ObservableList<Node> children = gridPane.getChildren();
+		for (Node node : children){
+			if(gridPane.getRowIndex(node) == row && gridPane.getColumnIndex(node) == column) {
+				result = node;
+				break;
+			}
+		}
+		return result;
+	}
+	
+	public void setCategory(int i){
+		categoryPane.getChildren().clear();
+		if (i == 0) {
 			Text neuteredText = new Text("Neutered :");
-			animalGrid.add(neuteredText, 0, 9);
+			categoryPane.add(neuteredText, 0, 0);
 
 			ToggleGroup neuteredGroup = new ToggleGroup();
 			RadioButton neuteredBox = new RadioButton("Yes");
@@ -135,11 +257,11 @@ public class AnimalBox {
 			nonNeuteredBox.setToggleGroup(neuteredGroup);
 			HBox neutered = new HBox(15);
 			neutered.getChildren().addAll(neuteredBox, nonNeuteredBox);
-			animalGrid.add(neutered, 1, 9);
+			categoryPane.add(neutered, 1, 0);
 			neutered.setAlignment(Pos.CENTER);   
 
 			Text chippedText = new Text("Chipped :");
-			animalGrid.add(chippedText, 0, 10);
+			categoryPane.add(chippedText, 0, 1);
 
 			ToggleGroup chippedGroup = new ToggleGroup();
 			RadioButton chippedBox = new RadioButton("Yes");
@@ -149,11 +271,11 @@ public class AnimalBox {
 			nonChippedBox.setToggleGroup(chippedGroup);
 			HBox chipped = new HBox(15);
 			chipped.getChildren().addAll(chippedBox, nonChippedBox);
-			animalGrid.add(chipped, 1, 10);
+			categoryPane.add(chipped, 1, 1);
 			chipped.setAlignment(Pos.CENTER);
 
 			Text vaccinatedText = new Text("Vaccinated :");
-			animalGrid.add(vaccinatedText, 0, 11);
+			categoryPane.add(vaccinatedText, 0, 2);
 
 			ToggleGroup vaccinatedGroup = new ToggleGroup();
 			RadioButton vaccinatedBox = new RadioButton("Yes");
@@ -163,25 +285,16 @@ public class AnimalBox {
 			nonVaccinatedBox.setToggleGroup(vaccinatedGroup);
 			HBox vaccinated = new HBox(15);
 			vaccinated.getChildren().addAll(vaccinatedBox, nonVaccinatedBox);
-			animalGrid.add(vaccinated, 1, 11);
+			categoryPane.add(vaccinated, 1, 2);
 			vaccinated.setAlignment(Pos.CENTER);   
 		}
 		else {
 			Text locationText = new Text("Location :");
-			animalGrid.add(locationText, 0, 9);
+			categoryPane.add(locationText, 0, 0);
 
 			TextField locationField = new TextField();
 			locationField.setPromptText("Ex : In the dark forest");
-			animalGrid.add(locationField, 1, 9);
+			categoryPane.add(locationField, 1, 0);
 		}
-
-	}
-
-	public VBox getBox(){
-		return box;
-	}
-	
-	public GridPane getAnimalGrid(){
-		return animalGrid;
 	}
 }

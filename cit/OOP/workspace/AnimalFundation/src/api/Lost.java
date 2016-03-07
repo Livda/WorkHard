@@ -11,18 +11,6 @@ public class Lost extends Category {
 	private String location;
 	
 	/**
-	 * Lost partial constructor
-	 * @param id The id of the Lost object
-	 * @param date When the animal was lost
-	 * @param location Where the animal was lost
-	 */
-	public Lost(int id, GregorianCalendar date, String location){
-		this.id = id;
-		this.date = date;
-		this.location = location;
-	}
-	
-	/**
 	 * Lost full constructor
 	 * @param id The id of the Lost object
 	 * @param date When the animal was lost
@@ -30,10 +18,8 @@ public class Lost extends Category {
 	 * @param location Where the animal was lost
 	 */
 	public Lost(int id, GregorianCalendar date, Person contact, String location){
-		this.id = id;
-		this.date = date;
+		super(id, date, contact);
 		this.location = location;
-		this.contact = contact;
 	}
 	
 	/**
@@ -44,11 +30,8 @@ public class Lost extends Category {
 	 * @param location Where the animal was lost
 	 */
 	public Lost(GregorianCalendar date, Person contact, String location){
-		this.id = Category.nextId;
-		Category.nextId++;
-		this.date = date;
+		super(date, contact);
 		this.location = location;
-		this.contact = contact;
 	}
 	
 	public char getCategoryLetter() {

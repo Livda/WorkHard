@@ -12,19 +12,6 @@ public class Adoption extends Category{
 	private boolean chipped;
 	private boolean vaccinated;
 	
-	/*
-	 * Adoption partial constructor
-	 * @param id The id of the Adoption object
-	 * @param date The date when the animal was adopted
-	 * @param contact The person who adopt the animal
-	 */
-	public Adoption(int id, GregorianCalendar date, Person contact){
-		this.id = id;
-		this.date = date;
-		this.contact = contact;
-		this.neutered = this.chipped = this.vaccinated = false;
-	}
-	
 	/**
 	 * Adoption full constructor
 	 * @param id The id of the new Adoption category
@@ -36,9 +23,7 @@ public class Adoption extends Category{
 	 */
 	public Adoption(int id, GregorianCalendar date, Person contact, 
 			boolean neut, boolean chip, boolean vac){
-		this.id = id;
-		this.date = date;
-		this.contact = contact;
+		super(id, date, contact);
 		this.neutered = neut;
 		this.chipped = chip;
 		this.vaccinated = vac;
@@ -55,10 +40,7 @@ public class Adoption extends Category{
 	 */
 	public Adoption(GregorianCalendar date, Person contact, 
 			boolean neut, boolean chip, boolean vac){
-		this.id = Category.nextId;
-		Category.nextId++;
-		this.date = date;
-		this.contact = contact;
+		super(date, contact);
 		this.neutered = neut;
 		this.chipped = chip;
 		this.vaccinated = vac;
