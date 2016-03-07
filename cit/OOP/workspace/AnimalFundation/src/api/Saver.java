@@ -13,6 +13,7 @@ import java.util.Hashtable;
  * @version 1.0
  */
 public class Saver {
+	private String pathToSaveFile;
 	private File adoption;
 	private File lost;
 	private File found;
@@ -23,11 +24,12 @@ public class Saver {
 	 * Create a new Saver
 	 */
 	public Saver(){
-		adoption = new File("save/adoption");
-		lost = new File("save/lost");
-		found = new File("save/found");
-		persons = new File("save/persons");
-		animals = new File("save/animals");
+		pathToSaveFile = "ressources/save/";
+		adoption = new File(pathToSaveFile + "adoption");
+		lost = new File(pathToSaveFile + "lost");
+		found = new File(pathToSaveFile + "found");
+		persons = new File(pathToSaveFile + "persons");
+		animals = new File(pathToSaveFile + "animals");
 	}
 	
 	/**
