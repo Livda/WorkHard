@@ -6,6 +6,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
@@ -39,8 +40,10 @@ public class MainWindow extends Application {
 	        mainLayout.setCenter(secondLayout);
 	        
 	        Scene scene = new Scene(mainLayout,1000,550);
-			primaryStage.setScene(scene);
+	        primaryStage.setScene(scene);
+	        scene.getStylesheets().add("file:ressources/css/textField.css");
 			primaryStage.setTitle("Animal Shelter");
+			primaryStage.getIcons().add(new Image("file:ressources/images/icon.png"));
 			primaryStage.show();
 			
 		} catch(Exception e) {

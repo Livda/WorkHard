@@ -26,6 +26,8 @@ public class AnimalBox {
 	private GridPane animalGrid;
 	private GridPane categoryPane;
 	private VBox box;
+	
+	public static boolean errorInTheFields;
 
 	public AnimalBox(){
 
@@ -138,17 +140,27 @@ public class AnimalBox {
 
 	public String getName(){
 		Node node = getNodeByRowColumnIndex(0, 1, animalGrid);
-		String name = ((TextField) node).getText();
+		TextField nameField = (TextField) node; 
+		String name = nameField.getText();
+		nameField.getStyleClass().remove("error");
+		if (name.equals("")) {
+			errorInTheFields = true;
+			nameField.getStyleClass().add("error");
+			
+		}
 		return name;
 	}
 
 	public int getAge(){
 		Node node = getNodeByRowColumnIndex(1, 1, animalGrid);
+		TextField ageField = (TextField) node;
+		ageField.getStyleClass().remove("error");
 		int age;
 		try {
-		age = Integer.parseInt(((TextField) node).getText());
+		age = Integer.parseInt(ageField.getText());
 		} catch (Exception e) {
-			System.err.println("not an integer");
+			errorInTheFields = true;
+			ageField.getStyleClass().add("error");
 			age = -1;
 		}
 		return age;
@@ -156,13 +168,25 @@ public class AnimalBox {
 
 	public String getColour(){
 		Node node = getNodeByRowColumnIndex(2, 1, animalGrid);
-		String colour = ((TextField) node).getText();
+		TextField colourField = (TextField) node;
+		colourField.getStyleClass().remove("error");
+		String colour = colourField.getText();
+		if (colour.equals("")){
+			errorInTheFields = true;
+			colourField.getStyleClass().add("error");
+		}
 		return colour;
 	}
 
 	public String getDescrition(){
 		Node node = getNodeByRowColumnIndex(3, 1, animalGrid);
-		String description = ((TextArea) node).getText();
+		TextArea descriptionArea = (TextArea) node;
+		descriptionArea.getStyleClass().remove("error");
+		String description = descriptionArea.getText();
+		if (description.equals("")) {
+			errorInTheFields = true;
+			descriptionArea.getStyleClass().add("error");
+		}
 		return description;
 	}
 
@@ -175,7 +199,13 @@ public class AnimalBox {
 
 	public String getType(){
 		Node node = getNodeByRowColumnIndex(5, 1, animalGrid);
-		String type = ((TextField) node).getText();
+		TextField typeField = (TextField) node;
+		typeField.getStyleClass().remove("error");
+		String type = typeField.getText();
+		if (type.equals("")){
+			errorInTheFields = true;
+			typeField.getStyleClass().add("error");
+		}
 		return type;
 	}
 
@@ -206,8 +236,13 @@ public class AnimalBox {
 
 	public String getLocalisation(){
 		Node node  = getNodeByRowColumnIndex(0, 1, categoryPane);
-		TextField localisationField = (TextField)node;
+		TextField localisationField = (TextField) node;
+		localisationField.getStyleClass().remove("error");
 		String localisation = localisationField.getText();
+		if (localisation.equals("")) {
+			errorInTheFields = true;
+			localisationField.getStyleClass().add("error");
+		}
 		return localisation;
 	}
 

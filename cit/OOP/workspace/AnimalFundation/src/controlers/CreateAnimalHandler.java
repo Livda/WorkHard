@@ -33,6 +33,7 @@ public class CreateAnimalHandler implements EventHandler<ActionEvent>{
 	
 	public void handle(ActionEvent event){
 		AnimalShelter shelter = MainWindow.shelter;
+		AnimalBox.errorInTheFields = false;
 		
 		//We create a person
 		String pName = personBox.getName();
@@ -75,7 +76,7 @@ public class CreateAnimalHandler implements EventHandler<ActionEvent>{
 				breed, newCategory, type);
 		
 		//Add the animal to the shelter
-		shelter.add(a);
+		if (!AnimalBox.errorInTheFields) shelter.add(a);
 		
 		//we add the new animal to the TableView
 		MainWindow.table.printShelter();
