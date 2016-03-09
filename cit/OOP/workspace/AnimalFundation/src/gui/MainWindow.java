@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class MainWindow extends Application {
@@ -22,6 +23,8 @@ public class MainWindow extends Application {
 			mainBox = new VBox(10);	
 			table = new TableViewBox();
 			
+			Text nothingHere = new Text("Please select or create an animal");
+			mainBox.getChildren().add(nothingHere);
 	        VBox tableBox = table.getBox();
 	        
 			MenuBar menuBar = new MenuBox(this).getBox();
@@ -29,7 +32,7 @@ public class MainWindow extends Application {
 	        
 	        BorderPane secondLayout = new BorderPane();
 	        secondLayout.setCenter(mainBox);
-	        mainBox.setAlignment(Pos.TOP_CENTER);
+	        mainBox.setAlignment(Pos.CENTER);
 	        BorderPane.setMargin(mainBox, new Insets(10));
 
 	        BorderPane mainLayout = new BorderPane();

@@ -61,7 +61,7 @@ public class Animal {
 	/**
 	 * @return the gender
 	 */
-	public boolean isGender() {
+	public boolean getGender() {
 		return gender;
 	}
 	/**
@@ -257,6 +257,32 @@ public class Animal {
 		String type = s[10];
 		return new Animal(id, age, color, gender, description, name,
 				pathToPicture, breed, cat, type); 
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Animal other = (Animal) obj;
+		if (id != other.id)
+			return false;
+		return true;
 	}
 	
 }

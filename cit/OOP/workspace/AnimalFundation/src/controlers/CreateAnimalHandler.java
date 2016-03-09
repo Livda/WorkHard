@@ -11,7 +11,8 @@ import api.Category;
 import api.Found;
 import api.Lost;
 import api.Person;
-import gui.AnimalBox;
+import gui.AnimalBoxEditable;
+import gui.Box;
 import gui.MainWindow;
 import gui.PersonBox;
 import javafx.event.ActionEvent;
@@ -23,18 +24,18 @@ import javafx.event.EventHandler;
  *
  */
 public class CreateAnimalHandler implements EventHandler<ActionEvent>{
-	private AnimalBox animalBox;
+	private AnimalBoxEditable animalBox;
 	private PersonBox personBox;
 	
-	public CreateAnimalHandler(AnimalBox animalBox, PersonBox personBox){
+	public CreateAnimalHandler(AnimalBoxEditable animalBox, PersonBox personBox){
 		this.animalBox = animalBox;
 		this.personBox = personBox;
 	}
 	
 	public void handle(ActionEvent event){
 		AnimalShelter shelter = MainWindow.shelter;
-		AnimalBox.errorInTheFields = false;
-		
+		Box.errorInTheFields = false;
+
 		//We create a person
 		String pName = personBox.getName();
 		String adress = personBox.getAdress();
@@ -76,9 +77,13 @@ public class CreateAnimalHandler implements EventHandler<ActionEvent>{
 				breed, newCategory, type);
 		
 		//Add the animal to the shelter
-		if (!AnimalBox.errorInTheFields) shelter.add(a);
-		
-		//we add the new animal to the TableView
-		MainWindow.table.printShelter();
+		if (!Box.errorInTheFields) {
+			shelter.add(a);
+			//we add the new animal to the TableView
+			MainWindow.table.printShelter();
+			MainWindow.table.getTable().scrollTo(a);
+			MainWindow.table.getTable();
+			//new EditHandler().handle(event);
+		}
 	}
 }

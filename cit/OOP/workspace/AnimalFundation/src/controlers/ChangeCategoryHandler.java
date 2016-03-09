@@ -3,7 +3,7 @@
  */
 package controlers;
 
-import gui.AnimalBox;
+import gui.AnimalBoxEditable;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
@@ -13,16 +13,16 @@ import javafx.event.EventHandler;
  *
  */
 public class ChangeCategoryHandler implements EventHandler<ActionEvent>{
-	private AnimalBox animalBox;
+	private AnimalBoxEditable animalBox;
 	private int category;
 	
-	public ChangeCategoryHandler(AnimalBox animalBox, int category){
+	public ChangeCategoryHandler(AnimalBoxEditable animalBox, int category){
 		this.animalBox = animalBox;
 		this.category = category;		
 	}
 	
 	public void handle(ActionEvent e) {
-		this.animalBox.setCategory(category);
+		this.animalBox.setCategoryGrid(category);
 	}
 
 }

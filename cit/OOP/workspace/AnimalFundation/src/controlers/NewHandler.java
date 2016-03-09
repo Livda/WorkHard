@@ -3,16 +3,16 @@
  */
 package controlers;
 
-import gui.AnimalBox;
+import gui.AnimalBoxEditable;
 import gui.MainWindow;
 import gui.PersonBox;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 /**
  * @author Aurelien Fontaine
@@ -25,7 +25,7 @@ public class NewHandler implements EventHandler<ActionEvent> {
 	}
 	
 	public void handle(ActionEvent event) {
-		AnimalBox animalBox = new AnimalBox();
+		AnimalBoxEditable animalBox = new AnimalBoxEditable();
 		VBox animal = animalBox.getBox();
 		PersonBox personBox = new PersonBox();
 		VBox person = personBox.getBox();
@@ -46,5 +46,7 @@ public class NewHandler implements EventHandler<ActionEvent> {
 	
 	public void empty(ActionEvent e){
 		MainWindow.mainBox.getChildren().clear();
+		Text nothingHere = new Text("Please select or create an animal");
+		MainWindow.mainBox.getChildren().add(nothingHere);
 	}
 }

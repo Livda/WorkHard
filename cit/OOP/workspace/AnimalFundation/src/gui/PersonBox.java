@@ -1,6 +1,5 @@
 package gui;
 
-import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.TextArea;
@@ -11,13 +10,14 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-public class PersonBox {
+public class PersonBox extends Box {
 	private GridPane personGrid;
 	private final double vSpacing = 10;
 	private final double hSpacing = 10;
 	private VBox box;
 	
 	public PersonBox(){
+		super("Person");
 		personGrid = new GridPane();
         personGrid.setVgap(vSpacing);
         personGrid.setHgap(hSpacing);
@@ -70,41 +70,48 @@ public class PersonBox {
 	public String getName(){
 		Node node = getNodeByRowColumnIndex(0, 1, personGrid);
 		TextField nameField = (TextField) node;
+		nameField.getStyleClass().remove("error");
 		String name = nameField.getText();
+		if (name.equals("")) {
+			errorInTheFields = true;
+			nameField.getStyleClass().add("error");
+		}
 		return name;
 	}
 	
 	public String getAdress(){
 		Node node = getNodeByRowColumnIndex(1, 1, personGrid);
 		TextArea adressField = (TextArea) node;
+		adressField.getStyleClass().remove("error");
 		String adress = adressField.getText();
+		if (adress.equals("")) {
+			errorInTheFields = true;
+			adressField.getStyleClass().add("error");
+		}
 		return adress;
 	}
 	
 	public String getTelephone(){
 		Node node = getNodeByRowColumnIndex(2, 1, personGrid);
 		TextField phoneField = (TextField) node;
+		phoneField.getStyleClass().remove("error");
 		String phone = phoneField.getText();
+		if (phone.equals("")) {
+			errorInTheFields = true;
+			phoneField.getStyleClass().add("error");
+		}
 		return phone;
 	}
 	
 	public String getEmail(){
 		Node node = getNodeByRowColumnIndex(3, 1, personGrid);
 		TextField emailField = (TextField) node;
+		emailField.getStyleClass().remove("error");
 		String email = emailField.getText();
-		return email;
-	}
-	
-	@SuppressWarnings("static-access")
-	private Node getNodeByRowColumnIndex(final int row, final int column, GridPane gridPane){
-		Node result = null;
-		ObservableList<Node> children = gridPane.getChildren();
-		for (Node node : children){
-			if(gridPane.getRowIndex(node) == row && gridPane.getColumnIndex(node) == column) {
-				result = node;
-				break;
-			}
+		if (email.equals("")) {
+			errorInTheFields = true;
+			emailField.getStyleClass().add("error");
 		}
-		return result;
+		return email;
 	}
 }

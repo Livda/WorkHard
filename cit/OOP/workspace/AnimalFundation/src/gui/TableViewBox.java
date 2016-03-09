@@ -3,6 +3,8 @@ package gui;
 import java.util.ArrayList;
 
 import api.*;
+import controlers.DeleteHandler;
+import controlers.EditHandler;
 import controlers.NewHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -49,7 +51,9 @@ public class TableViewBox {
 		Button newAnimal = new Button("New");
 		newAnimal.setOnAction(new NewHandler());
 		Button editAnimal = new Button("Edit");
+		editAnimal.setOnAction(new EditHandler());
         Button deleteAnimal = new Button("Delete");
+        deleteAnimal.setOnAction(new DeleteHandler());
         HBox buttonBox = new HBox(15);
         buttonBox.getChildren().addAll(newAnimal, editAnimal, deleteAnimal);
         buttonBox.setAlignment(Pos.CENTER);

@@ -100,7 +100,8 @@ public class AnimalShelter {
 		return list;
 	}
 	/**
-	 * @param a
+	 * Add an Animal to the shelter
+	 * @param a the animal
 	 */
 	public void add(Animal a) {
 		Category cat = a.getAnimalCategory();
@@ -113,6 +114,25 @@ public class AnimalShelter {
 			break;
 		case 'l' :
 			lost.add(a);
+			break;
+		}
+	}
+	
+	/**
+	 * Remove an animal from the shelter
+	 * @param a the animal
+	 */
+	public void remove(Animal a){
+		Category cat = a.getAnimalCategory();
+		switch (cat.getCategoryLetter()) {
+		case 'a' :
+			adoption.remove(a);
+			break;
+		case 'f' :
+			found.remove(a);
+			break;
+		case 'l' :
+			lost.remove(a);
 			break;
 		}
 	}
