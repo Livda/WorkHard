@@ -1,3 +1,5 @@
 ressources/save
 ressources/images
 doc/
+*.png
+*.ucls
