@@ -1,5 +1,7 @@
 package gui;
 
+import java.util.Locale;
+
 import api.AnimalShelter;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -12,6 +14,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class MainWindow extends Application {
+	public static Locale locale;
 	public static AnimalShelter shelter;
 	public static TableViewBox table;
 	public static VBox mainBox;
@@ -19,6 +22,7 @@ public class MainWindow extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			locale = Locale.getDefault();
 			shelter = new AnimalShelter();
 			mainBox = new VBox(10);	
 			table = new TableViewBox();

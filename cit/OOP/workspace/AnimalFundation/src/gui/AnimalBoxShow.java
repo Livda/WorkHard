@@ -3,8 +3,9 @@
  */
 package gui;
 
-import java.text.SimpleDateFormat;
+import java.text.DateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
@@ -163,8 +164,9 @@ public class AnimalBoxShow extends AnimalBox {
 	public void setDate(Calendar date) {
 		Node node = getNodeByRowColumnIndex(7, 1, animalGrid);
 		Text dateText = (Text) node;
-		SimpleDateFormat formatter=new SimpleDateFormat("DD-MMM-yyyy");  
-		dateText.setText(formatter.format(date.getTime()));
+		DateFormat shortDateFormat = DateFormat.getDateTimeInstance
+				(DateFormat.SHORT, DateFormat.SHORT, MainWindow.locale);
+		dateText.setText(shortDateFormat.format(date.getTime()));
 	}
 
 	/* (non-Javadoc)
@@ -172,8 +174,9 @@ public class AnimalBoxShow extends AnimalBox {
 	 */
 	@Override
 	public void setCategory(String category) {
-		// TODO Auto-generated method stub
-
+		Node node = getNodeByRowColumnIndex(8, 1, animalGrid);
+		Text categoryText = (Text) node;
+		categoryText.setText(category);
 	}
 
 	/* (non-Javadoc)
@@ -181,7 +184,9 @@ public class AnimalBoxShow extends AnimalBox {
 	 */
 	@Override
 	public void setLocalisation(String localisation) {
-		// TODO Auto-generated method stub
+		Node node = getNodeByRowColumnIndex(0, 1, categoryGrid);
+		Text localisationText = (Text) node;
+		localisationText.setText(localisation);
 
 	}
 
@@ -190,8 +195,10 @@ public class AnimalBoxShow extends AnimalBox {
 	 */
 	@Override
 	public void setNeutered(boolean neutered) {
-		// TODO Auto-generated method stub
-
+		Node node = getNodeByRowColumnIndex(0, 1, categoryGrid);
+		Text neuteredText = (Text) node;
+		String text = neutered ? "Yes" : "No";
+		neuteredText.setText(text);
 	}
 
 	/* (non-Javadoc)
@@ -199,8 +206,10 @@ public class AnimalBoxShow extends AnimalBox {
 	 */
 	@Override
 	public void setChipped(boolean chipped) {
-		// TODO Auto-generated method stub
-
+		Node node = getNodeByRowColumnIndex(1, 1, categoryGrid);
+		Text chippedText = (Text) node;
+		String text = chipped ? "Yes" : "No";
+		chippedText.setText(text);
 	}
 
 	/* (non-Javadoc)
@@ -208,8 +217,10 @@ public class AnimalBoxShow extends AnimalBox {
 	 */
 	@Override
 	public void setVaccinated(boolean vaccinated) {
-		// TODO Auto-generated method stub
-
+		Node node = getNodeByRowColumnIndex(2, 1, categoryGrid);
+		Text vaccinatedText = (Text) node;
+		String text = vaccinated ? "Yes" : "No";
+		vaccinatedText.setText(text);
 	}
 
 }

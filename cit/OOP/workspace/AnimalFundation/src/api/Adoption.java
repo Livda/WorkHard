@@ -81,4 +81,46 @@ public class Adoption extends Category{
 		boolean vaccinated = Boolean.parseBoolean(s[7]);
 		return new Adoption(date, person, neutered, chipped, vaccinated);
 	}
+
+	/**
+	 * @return the neutered
+	 */
+	public boolean isNeutered() {
+		return neutered;
+	}
+
+	/**
+	 * @param neutered the neutered to set
+	 */
+	public void setNeutered(boolean neutered) {
+		this.neutered = neutered;
+	}
+
+	/**
+	 * @return the chipped
+	 */
+	public boolean isChipped() {
+		return chipped;
+	}
+
+	/**
+	 * @param chipped the chipped to set
+	 */
+	public void setChipped(boolean chipped) {
+		this.chipped = chipped;
+	}
+
+	/**
+	 * @return the vaccinated
+	 */
+	public boolean isVaccinated() {
+		return vaccinated;
+	}
+
+	/**
+	 * @param vaccinated the vaccinated to set
+	 */
+	public void setVaccinated(boolean vaccinated) {
+		this.vaccinated = vaccinated;
+	}
 }

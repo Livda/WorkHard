@@ -67,4 +67,18 @@ public class Lost extends Category {
 		String location = s[5];
 		return new Lost(date, person, location);
 	}
+
+	/**
+	 * @return the location
+	 */
+	public String getLocation() {
+		return location;
+	}
+
+	/**
+	 * @param location the location to set
+	 */
+	public void setLocation(String location) {
+		this.location = location;
+	}
 }

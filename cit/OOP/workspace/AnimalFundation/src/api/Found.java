@@ -67,4 +67,18 @@ public class Found extends Category {
 		String location = s[5];
 		return new Found(date, person, location);
 	}
+
+	/**
+	 * @return the location
+	 */
+	public String getLocation() {
+		return location;
+	}
+
+	/**
+	 * @param location the location to set
+	 */
+	public void setLocation(String location) {
+		this.location = location;
+	}
 }
