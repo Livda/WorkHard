@@ -201,7 +201,10 @@ public class AnimalBoxEditable extends AnimalBox {
 	}
 	
 	public void setDate(Calendar date){
-		
+		Node node = getNodeByRowColumnIndex(7, 1, animalGrid);
+		DatePicker datePicker = (DatePicker) node; 
+		LocalDate lDate = LocalDate.now();
+		datePicker.setValue(lDate);
 	}
 
 	public String getCategory(){

@@ -4,6 +4,7 @@
 package controlers;
 
 import java.util.GregorianCalendar;
+
 import api.Adoption;
 import api.Animal;
 import api.AnimalShelter;
@@ -23,16 +24,16 @@ import javafx.event.EventHandler;
  * @version 1.0
  *
  */
-public class CreateAnimalHandler implements EventHandler<ActionEvent>{
+public class EditAnimalHandler implements EventHandler<ActionEvent> {
 	private AnimalBoxEditable animalBox;
 	private PersonBoxEditable personBox;
 	
-	public CreateAnimalHandler(AnimalBoxEditable animalBox, PersonBoxEditable personBox){
+	public EditAnimalHandler(AnimalBoxEditable animalBox, PersonBoxEditable personBox){
 		this.animalBox = animalBox;
 		this.personBox = personBox;
 	}
 	
-	public void handle(ActionEvent event){
+	public void handle(ActionEvent e){
 		AnimalShelter shelter = MainWindow.shelter;
 		Box.errorInTheFields = false;
 
@@ -76,14 +77,17 @@ public class CreateAnimalHandler implements EventHandler<ActionEvent>{
 		Animal a = new Animal(age, color, gender, description, aName, null, 
 				breed, newCategory, type);
 		
-		//Add the animal to the shelter
+		Animal old = MainWindow.table.getTable().getSelectionModel().getSelectedItem();
+		//remove the old animal and
+		//add the new animal to the shelter
 		if (!Box.errorInTheFields) {
+			shelter.remove(old);
 			shelter.add(a);
 			//we add the new animal to the TableView
 			MainWindow.table.printShelter();
 			MainWindow.table.getTable().scrollTo(a);
 			//we clear the window
-			new ClearHandler().handle(event);;
+			new ClearHandler().handle(e);;
 		}
 	}
 }

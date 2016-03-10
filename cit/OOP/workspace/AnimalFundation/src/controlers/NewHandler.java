@@ -12,7 +12,6 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 
 /**
  * @author Aurelien Fontaine
@@ -37,18 +36,12 @@ public class NewHandler implements EventHandler<ActionEvent> {
 		Button okButton = new Button("Ok");
 		okButton.setOnAction(new CreateAnimalHandler(animalBox, personBox));
 		Button cancelButton = new Button("Cancel");
-		cancelButton.setOnAction(e -> this.empty(e));
+		cancelButton.setOnAction(new ClearHandler());
 		HBox buttonBox = new HBox(10);
 		buttonBox.getChildren().addAll(okButton, cancelButton);
 		buttonBox.setAlignment(Pos.CENTER);
 		VBox main = MainWindow.mainBox;
 		main.getChildren().clear();
 		main.getChildren().addAll(box, buttonBox);
-	}
-	
-	public void empty(ActionEvent e){
-		MainWindow.mainBox.getChildren().clear();
-		Text nothingHere = new Text("Please select or create an animal");
-		MainWindow.mainBox.getChildren().add(nothingHere);
 	}
 }

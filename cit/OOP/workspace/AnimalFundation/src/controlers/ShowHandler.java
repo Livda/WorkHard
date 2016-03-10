@@ -107,9 +107,16 @@ public class ShowHandler implements EventHandler<ActionEvent> {
 		hBox.setAlignment(Pos.TOP_CENTER);
 		
 		Button editButton = new Button("Edit");
-		editButton.setOnAction(new NewHandler());
+		editButton.setOnAction(new EditHandler());
+		
+		Button deleteButton = new Button("Delete");
+		deleteButton.setOnAction(new DeleteHandler());
+		
+		HBox buttonBox = new HBox(10);
+		buttonBox.getChildren().addAll(editButton, deleteButton);
+		buttonBox.setAlignment(Pos.CENTER);
 		
 		MainWindow.mainBox.getChildren().clear();
-		MainWindow.mainBox.getChildren().addAll(hBox, editButton);
+		MainWindow.mainBox.getChildren().addAll(hBox, buttonBox);
 	}
 }

@@ -91,8 +91,9 @@ public class PersonBoxEditable extends PersonBox {
 	 */
 	@Override
 	public void setName(String name) {
-		// TODO Auto-generated method stub
-
+		Node node = this.getNodeByRowColumnIndex(0, 1, personGrid);
+		TextField nameField = (TextField) node;
+		nameField.setText(name);
 	}
 
 	/* (non-Javadoc)
@@ -100,8 +101,9 @@ public class PersonBoxEditable extends PersonBox {
 	 */
 	@Override
 	public void setAdress(String adress) {
-		// TODO Auto-generated method stub
-
+		Node node = this.getNodeByRowColumnIndex(1, 1, personGrid);
+		TextArea adressArea = (TextArea) node;
+		adressArea.setText(adress);
 	}
 
 	/* (non-Javadoc)
@@ -109,8 +111,9 @@ public class PersonBoxEditable extends PersonBox {
 	 */
 	@Override
 	public void setTelephone(String phone) {
-		// TODO Auto-generated method stub
-
+		Node node = this.getNodeByRowColumnIndex(2, 1, personGrid);
+		TextField phoneField = (TextField) node;
+		phoneField.setText(phone);
 	}
 
 	/* (non-Javadoc)
@@ -118,8 +121,9 @@ public class PersonBoxEditable extends PersonBox {
 	 */
 	@Override
 	public void setEmail(String email) {
-		// TODO Auto-generated method stub
-
+		Node node = this.getNodeByRowColumnIndex(3, 1, personGrid);
+		TextField emailField = (TextField) node;
+		emailField.setText(email);
 	}
 
 }
