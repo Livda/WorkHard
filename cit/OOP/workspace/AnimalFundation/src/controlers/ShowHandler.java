@@ -14,6 +14,7 @@ import gui.AnimalBoxShow;
 import gui.MainWindow;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 
 /**
@@ -82,7 +83,10 @@ public class ShowHandler implements EventHandler<ActionEvent> {
 			}
 		}
 		
+		Button editButton = new Button("Edit");
+		editButton.setOnAction(new NewHandler(selected));
+		
 		MainWindow.mainBox.getChildren().clear();
-		MainWindow.mainBox.getChildren().add(show.getvBox());
+		MainWindow.mainBox.getChildren().addAll(show.getvBox(), editButton);
 	}
 }

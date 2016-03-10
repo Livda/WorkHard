@@ -5,7 +5,6 @@ package gui;
 
 import java.text.DateFormat;
 import java.util.Calendar;
-import java.util.Locale;
 
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;

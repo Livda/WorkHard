@@ -3,6 +3,7 @@
  */
 package controlers;
 
+import api.Animal;
 import gui.AnimalBoxEditable;
 import gui.MainWindow;
 import gui.PersonBox;
@@ -20,14 +21,21 @@ import javafx.scene.text.Text;
  *
  */
 public class NewHandler implements EventHandler<ActionEvent> {
+	private AnimalBoxEditable animalBox;
+	private PersonBox personBox;
 	
 	public NewHandler(){
 	}
 	
+	public NewHandler(Animal a){
+		this.handle(new ActionEvent());
+		this.setAnimal(a);
+	}
+	
 	public void handle(ActionEvent event) {
-		AnimalBoxEditable animalBox = new AnimalBoxEditable();
+		animalBox = new AnimalBoxEditable();
 		VBox animal = animalBox.getBox();
-		PersonBox personBox = new PersonBox();
+		personBox = new PersonBox();
 		VBox person = personBox.getBox();
 		HBox box = new HBox(10);
 		box.getChildren().addAll(animal, person);
@@ -48,5 +56,19 @@ public class NewHandler implements EventHandler<ActionEvent> {
 		MainWindow.mainBox.getChildren().clear();
 		Text nothingHere = new Text("Please select or create an animal");
 		MainWindow.mainBox.getChildren().add(nothingHere);
+	}
+	
+	private void setAnimal(Animal a){
+		String aName = a.getName();
+		animalBox.setName(aName);
+		
+		int age = a.getAge();
+		animalBox.setAge(age);
+		
+		String description = a.getDescription();
+		animalBox.setDescription(description);
+		
+		String breed = a.getBreed();
+		animalBox.setBreed(breed);
 	}
 }

@@ -156,9 +156,11 @@ public class AnimalBoxEditable extends AnimalBox {
 		return breed;
 	}
 	
-	//TODO : complete this method
 	public void setBreed(String breed){
-		//Node node = getNodeByRowColumnIndex(4, 1, animalGrid);
+		Node node = getNodeByRowColumnIndex(4, 1, animalGrid);
+		@SuppressWarnings("unchecked")
+		ChoiceBox<String> breedChoice = (ChoiceBox<String>) node;
+		breedChoice.getSelectionModel().select(breed);
 	}
 
 	public String getType(){
@@ -198,7 +200,6 @@ public class AnimalBoxEditable extends AnimalBox {
 		return calendar;
 	}
 	
-	//TODO : complete this method
 	public void setDate(Calendar date){
 		
 	}
