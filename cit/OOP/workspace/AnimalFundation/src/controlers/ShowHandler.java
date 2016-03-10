@@ -10,12 +10,16 @@ import api.Animal;
 import api.Category;
 import api.Found;
 import api.Lost;
+import api.Person;
 import gui.AnimalBoxShow;
 import gui.MainWindow;
+import gui.PersonBoxShow;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.HBox;
 
 /**
  * @author Aurelien Fontaine
@@ -27,66 +31,85 @@ public class ShowHandler implements EventHandler<ActionEvent> {
 	public void handle(ActionEvent e){
 		TableView<Animal> table = MainWindow.table.getTable();
 		Animal selected = table.getSelectionModel().getSelectedItem();
-		AnimalBoxShow show = new AnimalBoxShow();
+		AnimalBoxShow animalShow = new AnimalBoxShow();
+		PersonBoxShow personShow = new PersonBoxShow();
 		
 		String name = selected.getName();
-		show.setName(name);
+		animalShow.setName(name);
 
 		int age = selected.getAge();
-		show.setAge(age);
+		animalShow.setAge(age);
 
 		String colour = selected.getColour();
-		show.setColour(colour);
+		animalShow.setColour(colour);
 
 		String description = selected.getDescription();
-		show.setDescription(description);
+		animalShow.setDescription(description);
 
 		String breed = selected.getBreed();
-		show.setBreed(breed);
+		animalShow.setBreed(breed);
 
 		String type = selected.getType();
-		show.setType(type);
+		animalShow.setType(type);
 
 		boolean gender = selected.getGender();
-		show.setGender(gender);
+		animalShow.setGender(gender);
 
 		Category category = selected.getAnimalCategory();
 		String categoryText = category.toString();
-		show.setCategory(categoryText);
+		animalShow.setCategory(categoryText);
 
 		Calendar date = category.getDate();
-		show.setDate(date);
+		animalShow.setDate(date);
 
 		if (categoryText.equals("Adoption")){
 			int categoryInt = 0;
-			show.setCategoryGrid(categoryInt);
+			animalShow.setCategoryGrid(categoryInt);
 			Adoption adoption = (Adoption) category;
 			boolean neutered = adoption.isNeutered();
-			show.setNeutered(neutered);
+			animalShow.setNeutered(neutered);
 			
 			boolean chipped = adoption.isChipped();
-			show.setChipped(chipped);
+			animalShow.setChipped(chipped);
 			
 			boolean vaccinated = adoption.isVaccinated();
-			show.setVaccinated(vaccinated);
+			animalShow.setVaccinated(vaccinated);
 		} else {
 			int categoryInt = 1;
-			show.setCategoryGrid(categoryInt);
+			animalShow.setCategoryGrid(categoryInt);
 			if (category.getCategoryLetter() == 'f') {
 				Found found = (Found) category;
 				String localisation = found.getLocation();
-				show.setLocalisation(localisation);
+				animalShow.setLocalisation(localisation);
 			} else {
 				Lost lost = (Lost) category;
 				String localisation = lost.getLocation();
-				show.setLocalisation(localisation);
+				animalShow.setLocalisation(localisation);
 			}
 		}
 		
+		Person person = category.getContact();
+		
+		String pName = person.getName();
+		personShow.setName(pName);
+		
+		String adress = person.getAdress();
+		personShow.setAdress(adress);
+		
+		String phone = person.getPhone();
+		personShow.setTelephone(phone);
+		
+		String email = person.getEmail();
+		personShow.setEmail(email);
+		
+		HBox hBox = new HBox(50);
+		hBox.getChildren().addAll(animalShow.getBox(), personShow.getBox());
+		hBox.setAlignment(Pos.TOP_CENTER);
+		
 		Button editButton = new Button("Edit");
-		editButton.setOnAction(new NewHandler(selected));
+		editButton.setOnAction(new NewHandler());
 		
 		MainWindow.mainBox.getChildren().clear();
-		MainWindow.mainBox.getChildren().addAll(show.getvBox(), editButton);
+		MainWindow.mainBox.getChildren().addAll(hBox, editButton);
 	}
 }

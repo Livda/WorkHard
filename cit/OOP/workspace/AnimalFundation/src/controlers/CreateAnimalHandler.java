@@ -14,7 +14,7 @@ import api.Person;
 import gui.AnimalBoxEditable;
 import gui.Box;
 import gui.MainWindow;
-import gui.PersonBox;
+import gui.PersonBoxEditable;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
@@ -25,9 +25,9 @@ import javafx.event.EventHandler;
  */
 public class CreateAnimalHandler implements EventHandler<ActionEvent>{
 	private AnimalBoxEditable animalBox;
-	private PersonBox personBox;
+	private PersonBoxEditable personBox;
 	
-	public CreateAnimalHandler(AnimalBoxEditable animalBox, PersonBox personBox){
+	public CreateAnimalHandler(AnimalBoxEditable animalBox, PersonBoxEditable personBox){
 		this.animalBox = animalBox;
 		this.personBox = personBox;
 	}
