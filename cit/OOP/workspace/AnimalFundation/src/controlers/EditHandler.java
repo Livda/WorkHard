@@ -5,8 +5,11 @@ package controlers;
 
 import java.util.GregorianCalendar;
 
+import api.Adoption;
 import api.Animal;
 import api.Category;
+import api.Found;
+import api.Lost;
 import api.Person;
 import gui.AnimalBoxEditable;
 import gui.MainWindow;
@@ -52,6 +55,34 @@ public class EditHandler implements EventHandler<ActionEvent> {
 		
 		GregorianCalendar date = c.getDate();
 		animalBox.setDate(date);
+		
+		String category = c.toString();
+		animalBox.setCategory(category);
+		
+		char letter = c.getCategoryLetter();
+		switch (letter){
+		case 'a' :
+			Adoption aCat = (Adoption)c;
+			boolean neutered = aCat.isNeutered();
+			animalBox.setNeutered(neutered);
+			
+			boolean chipped = aCat.isChipped();
+			animalBox.setChipped(chipped);
+			
+			boolean vaccinated = aCat.isVaccinated();
+			animalBox.setVaccinated(vaccinated);
+			break;
+		case 'f':
+			Found fCat = (Found)c;
+			String fLocalisation = fCat.getLocation();
+			animalBox.setLocalisation(fLocalisation);
+			break;
+		case 'l':
+			Lost lCat = (Lost)c;
+			String lLocalisation = lCat.getLocation();
+			animalBox.setLocalisation(lLocalisation);
+			
+		}
 		
 		//Fill the person box
 		String pName = p.getName();

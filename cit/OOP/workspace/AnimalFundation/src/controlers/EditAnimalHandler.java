@@ -33,7 +33,7 @@ public class EditAnimalHandler implements EventHandler<ActionEvent> {
 		this.personBox = personBox;
 	}
 	
-	public void handle(ActionEvent e){
+	public void handle(ActionEvent event){
 		AnimalShelter shelter = MainWindow.shelter;
 		Box.errorInTheFields = false;
 
@@ -87,7 +87,7 @@ public class EditAnimalHandler implements EventHandler<ActionEvent> {
 			MainWindow.table.printShelter();
 			MainWindow.table.getTable().scrollTo(a);
 			//we clear the window
-			new ClearHandler().handle(e);;
+			new ClearHandler().handle(event);;
 		}
 	}
 }

@@ -202,8 +202,10 @@ public class AnimalBoxEditable extends AnimalBox {
 	
 	public void setDate(Calendar date){
 		Node node = getNodeByRowColumnIndex(7, 1, animalGrid);
-		DatePicker datePicker = (DatePicker) node; 
-		LocalDate lDate = LocalDate.now();
+		DatePicker datePicker = (DatePicker) node;
+		GregorianCalendar gc = (GregorianCalendar) date;
+		LocalDate lDate = gc.getTime().toInstant().atZone(
+				ZoneId.systemDefault()).toLocalDate(); 
 		datePicker.setValue(lDate);
 	}
 
@@ -232,6 +234,7 @@ public class AnimalBoxEditable extends AnimalBox {
 			i = 2;
 			break;
 		}
+		setCategoryGrid(i);
 		RadioButton button = (RadioButton)categroyBox.getChildren().get(i);
 		button.setSelected(true);
 	}
