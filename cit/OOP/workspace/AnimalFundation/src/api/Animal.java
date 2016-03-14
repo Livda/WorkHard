@@ -288,4 +288,23 @@ public class Animal {
 		return true;
 	}
 	
+	public void fillReport(File report){
+		BufferedWriter bw;
+		try {
+			bw = new BufferedWriter(new FileWriter(report, true));
+			bw.write(this.getName() + " & " + this.getAge() + " & " + this.getDescription()
+			+ " & " + this.getColour() + " & " + this.getBreed() + " & " + this.getType()
+			+ " & " + this.getAnimalCategory().toString() + "\\\\");
+			bw.newLine();
+			bw.write("\\hline");
+			bw.newLine();
+			bw.flush();
+			bw.close();
+		}
+		catch (IOException e){
+			System.out.println("Error when trying to put an animal in the report : " 
+					+ e.getMessage());
+		}
+	}
+	
 }

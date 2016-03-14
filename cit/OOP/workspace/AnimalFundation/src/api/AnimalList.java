@@ -80,4 +80,12 @@ public class AnimalList {
 			a.save(animals, categoryFile, persons);
 		}
 	}
+	
+	public List<Person> getAllPersons(){
+		List<Person> persons = new ArrayList<Person>();
+		for(Animal a : list){
+			persons.add(a.getAnimalCategory().getContact());
+		}
+		return persons;
+	}
 }

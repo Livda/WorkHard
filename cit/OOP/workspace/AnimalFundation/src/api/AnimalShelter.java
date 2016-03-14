@@ -11,6 +11,7 @@ public class AnimalShelter {
 	private AnimalList adoption;
 	private AnimalList lost;
 	private AnimalList found;
+	private ArrayList<Person> persons;
 	
 	/**
 	 * @return the adoption
@@ -53,6 +54,7 @@ public class AnimalShelter {
 	 * Create an empty Shelter
 	 */
 	public AnimalShelter() {
+		this.persons = new ArrayList<Person>();
 		this.adoption = new AnimalList();
 		this.lost = new AnimalList();
 		this.found = new AnimalList();
@@ -65,9 +67,14 @@ public class AnimalShelter {
 	 * @param found the Found list
 	 */
 	public AnimalShelter(AnimalList adoption, AnimalList lost, AnimalList found) {
+		ArrayList<Person> persons = new ArrayList<Person>();
 		this.adoption = adoption;
+		persons.addAll(adoption.getAllPersons());
 		this.lost = lost;
+		persons.addAll(lost.getAllPersons());
 		this.found = found;
+		persons.addAll(found.getAllPersons());
+		this.persons = persons;
 	}
 	
 	/**
@@ -99,12 +106,18 @@ public class AnimalShelter {
 		list.addAll(found.getList());
 		return list;
 	}
+	
+	public ArrayList<Person> getAllPersons(){
+		return persons;
+	}
 	/**
 	 * Add an Animal to the shelter
 	 * @param a the animal
 	 */
 	public void add(Animal a) {
 		Category cat = a.getAnimalCategory();
+		Person p = cat.getContact();
+		persons.add(p);
 		switch (cat.getCategoryLetter()) {
 		case 'a' :
 			adoption.add(a);

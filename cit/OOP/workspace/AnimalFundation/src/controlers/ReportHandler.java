@@ -12,8 +12,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
+import api.Animal;
 import api.Person;
+import gui.MainWindow;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
@@ -42,22 +45,18 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 			BufferedReader br = new BufferedReader(isr);
 			String line;
 
-			System.out.printf("Output of running of pdflatex");
-
 			while ((line = br.readLine()) != null) {
 				System.out.println(line);
 			}
-			process = new ProcessBuilder(
-					"pdflatex", 
-					"-output-directory=report",
-					"report/report.tex").start();
+			br.close();
+			
+			process = new ProcessBuilder("evince", "report/report.pdf").start();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
 	private void fillPerson(){
-		Person p = new Person("toto", "lol", "3456789", "lich@fhjk");
 		BufferedWriter bw;
 		try {
 			bw = new BufferedWriter(new FileWriter(report, true));
@@ -81,7 +80,10 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 			System.out.println("Error when trying to initialise the person part : " 
 					+ e.getMessage());
 		}
-		p.fillReport(report);
+		ArrayList<Person> list = MainWindow.shelter.getAllPersons();
+		for(Person p : list){
+			p.fillReport(report);
+		}
 		try {
 			bw = new BufferedWriter(new FileWriter(report, true));
 			bw.write("\\end{tabular}");
@@ -98,7 +100,46 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 	}
 
 	private void fillAnimal(){
-
+		BufferedWriter bw;
+		try {
+			bw = new BufferedWriter(new FileWriter(report, true));
+			bw.write("\\part{Animals}");
+			bw.newLine();
+			bw.write("\\begin{center}");
+			bw.newLine();
+			bw.write("\\begin{tabular}{|c|c|p{5cm}|c|c|c|c|}");
+			bw.newLine();
+			bw.write("\\hline");
+			bw.newLine();
+			bw.write("\\textbf{Name} & \\textbf{Age} & \\textbf{Description} & \\textbf{Colour}"
+					+ "& \\textbf{Breed} & \\textbf{Type} & \\textbf{Category} \\\\");
+			bw.newLine();
+			bw.write("\\hline");
+			bw.newLine();
+			bw.flush();
+			bw.close();
+		}
+		catch (IOException e){
+			System.out.println("Error when trying to initialise the animal part : " 
+					+ e.getMessage());
+		}
+		ArrayList<Animal> list = MainWindow.shelter.getAllAnimals();
+		for(Animal a : list){
+			a.fillReport(report);
+		}
+		try {
+			bw = new BufferedWriter(new FileWriter(report, true));
+			bw.write("\\end{tabular}");
+			bw.newLine();
+			bw.write("\\end{center}");
+			bw.newLine();
+			bw.flush();
+			bw.close();
+		}
+		catch (IOException e){
+				System.out.println("Error when trying to finish the animal part : " 
+						+ e.getMessage());
+		}
 	}
 
 	private void initialise(){
