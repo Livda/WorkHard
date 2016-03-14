@@ -2,6 +2,7 @@ package gui;
 
 import controlers.LoadHandler;
 import controlers.NewHandler;
+import controlers.ReportHandler;
 import controlers.SaveHandler;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -51,7 +52,9 @@ public class MenuBox {
         Menu toolMenu = new Menu("Tools");
         MenuItem bugItem = new MenuItem("Report a bug");
         bugItem.setDisable(true);
-        toolMenu.getItems().add(bugItem);
+        MenuItem reportItem = new MenuItem("Generate a report");
+        reportItem.setOnAction(new ReportHandler());
+        toolMenu.getItems().addAll(bugItem, reportItem);
         
         box = new MenuBar();
         box.getMenus().addAll(fileMenu, editMenu, toolMenu);

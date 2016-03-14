@@ -182,4 +182,22 @@ public class Person {
 		String email = s[4];
 		return new Person(name, adress, phone, email);
 	}
+	
+	public void fillReport(File report){
+		BufferedWriter bw;
+		try {
+			bw = new BufferedWriter(new FileWriter(report, true));
+			bw.write(this.getName() + " & " + this.getAdress() + " & " + this.getPhone()
+			+ " & " + this.getEmail() + "\\\\");
+			bw.newLine();
+			bw.write("\\hline");
+			bw.newLine();
+			bw.flush();
+			bw.close();
+		}
+		catch (IOException e){
+			System.out.println("Error when trying to put a person in the report : " 
+					+ e.getMessage());
+		}
+	}
 }

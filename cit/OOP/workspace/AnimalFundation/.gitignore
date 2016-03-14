@@ -3,3 +3,4 @@ ressources/images
 doc/
 *.png
 *.ucls
+/report/report.*

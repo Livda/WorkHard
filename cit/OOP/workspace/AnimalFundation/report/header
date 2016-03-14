@@ -1,0 +1,18 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage{lastpage}
+\usepackage{graphicx, moreverb, fullpage, fancyhdr, lipsum}
+\pagestyle{fancy}
+\author{Aurélien Fontaine}
+\title{Animal Shelter report}
+
+\lhead{Shelter report}
+\rhead{}
+\lfoot{By Aurélien Fontaine}
+\cfoot{\thepage \hspace*{1pt} of \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\setlength{\headsep}{0.2cm}
+\setlength{\headheight}{0.5cm}
+
+\begin{document}
