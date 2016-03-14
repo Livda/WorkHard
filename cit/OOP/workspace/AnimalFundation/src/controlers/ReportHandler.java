@@ -36,6 +36,7 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 			this.fillAnimal();
 			this.fillPerson();
 			this.finish();
+			//TODO ask the user for his pdflatex
 			Process process = new ProcessBuilder(
 					"pdflatex", 
 					"-output-directory=report",
@@ -50,6 +51,7 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 			}
 			br.close();
 			
+			//TODO ask the user for his PDF reader
 			process = new ProcessBuilder("evince", "report/report.pdf").start();
 		} catch (IOException e) {
 			e.printStackTrace();

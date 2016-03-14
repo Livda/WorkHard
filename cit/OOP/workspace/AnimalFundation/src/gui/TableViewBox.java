@@ -1,9 +1,8 @@
 package gui;
 
-import java.util.ArrayList;
-
 import api.*;
 import controlers.DeleteHandler;
+import controlers.FilterHandler;
 import controlers.ShowHandler;
 import controlers.NewHandler;
 import javafx.geometry.Pos;
@@ -38,12 +37,15 @@ public class TableViewBox {
 		CheckBox adoption = new CheckBox("Adoption");
 		adoption.setIndeterminate(false);
 		adoption.setSelected(true);
+		adoption.setOnAction(new FilterHandler());
 		CheckBox found = new CheckBox("Found");
 		found.setIndeterminate(false);
 		found.setSelected(true);
+		found.setOnAction(new FilterHandler());
 		CheckBox lost = new CheckBox("Lost");
 		lost.setIndeterminate(false);
 		lost.setSelected(true);
+		lost.setOnAction(new FilterHandler());
 		HBox filterBox = new HBox(10);
 		filterBox.getChildren().addAll(adoption, found, lost);
 		filterBox.setAlignment(Pos.CENTER);
@@ -74,21 +76,5 @@ public class TableViewBox {
 		AnimalShelter shelter = MainWindow.shelter;
 		table.getItems().clear();
 		table.getItems().addAll(shelter.getAllAnimals());
-	}
-	
-	public void printByCategory(ArrayList<String> categories){
-		ArrayList<Animal> list = new ArrayList<Animal>();
-		AnimalShelter shelter = MainWindow.shelter;
-		if (categories.contains("Adoption")) {
-			list.addAll(shelter.getAdoption().getList());
-		}
-		if (categories.contains("Found")) {
-			list.addAll(shelter.getFound().getList());
-		}
-		if (categories.contains("Lost")) {
-			list.addAll(shelter.getLost().getList());
-		}
-		table.getItems().clear();
-		table.getItems().addAll(list);
 	}
 }

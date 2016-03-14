@@ -112,8 +112,11 @@ public class ShowHandler implements EventHandler<ActionEvent> {
 		Button deleteButton = new Button("Delete");
 		deleteButton.setOnAction(new DeleteHandler());
 		
+		Button cancleButton = new Button("Cancel");
+		cancleButton.setOnAction(new ClearHandler());
+		
 		HBox buttonBox = new HBox(10);
-		buttonBox.getChildren().addAll(editButton, deleteButton);
+		buttonBox.getChildren().addAll(editButton, deleteButton, cancleButton);
 		buttonBox.setAlignment(Pos.CENTER);
 		
 		MainWindow.mainBox.getChildren().clear();

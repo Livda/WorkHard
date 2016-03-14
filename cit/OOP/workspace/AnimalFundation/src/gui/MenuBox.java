@@ -53,6 +53,7 @@ public class MenuBox {
         MenuItem bugItem = new MenuItem("Report a bug");
         bugItem.setDisable(true);
         MenuItem reportItem = new MenuItem("Generate a report");
+        reportItem.setAccelerator(KeyCombination.keyCombination("Ctrl+P"));
         reportItem.setOnAction(new ReportHandler());
         toolMenu.getItems().addAll(bugItem, reportItem);
         
