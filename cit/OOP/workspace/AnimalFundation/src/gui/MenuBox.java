@@ -1,8 +1,8 @@
 package gui;
 
+import controlers.ChooseReportHandler;
 import controlers.LoadHandler;
 import controlers.NewHandler;
-import controlers.ReportHandler;
 import controlers.SaveHandler;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -54,7 +54,7 @@ public class MenuBox {
         bugItem.setDisable(true);
         MenuItem reportItem = new MenuItem("Generate a report");
         reportItem.setAccelerator(KeyCombination.keyCombination("Ctrl+P"));
-        reportItem.setOnAction(new ReportHandler());
+        reportItem.setOnAction(new ChooseReportHandler());
         toolMenu.getItems().addAll(bugItem, reportItem);
         
         box = new MenuBar();
