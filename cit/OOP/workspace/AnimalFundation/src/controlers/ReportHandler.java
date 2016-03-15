@@ -13,6 +13,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import api.Animal;
 import api.Person;
@@ -83,6 +84,7 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 					+ e.getMessage());
 		}
 		ArrayList<Person> list = MainWindow.shelter.getAllPersons();
+		Collections.sort(list);
 		for(Person p : list){
 			p.fillReport(report);
 		}
@@ -126,6 +128,7 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 					+ e.getMessage());
 		}
 		ArrayList<Animal> list = MainWindow.shelter.getAllAnimals();
+		Collections.sort(list);
 		for(Animal a : list){
 			a.fillReport(report);
 		}

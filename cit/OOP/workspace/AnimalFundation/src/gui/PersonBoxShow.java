@@ -50,6 +50,7 @@ public class PersonBoxShow extends PersonBox {
 	public void setAdress(String adress) {
 		Node node = this.getNodeByRowColumnIndex(1, 1, personGrid);
 		Text adressText = (Text) node;
+		adressText.setWrappingWidth(200);
 		adressText.setText(adress);
 	}
 

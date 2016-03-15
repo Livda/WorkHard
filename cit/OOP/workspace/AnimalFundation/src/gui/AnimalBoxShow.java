@@ -121,8 +121,10 @@ public class AnimalBoxShow extends AnimalBox {
 	@Override
 	public void setDescription(String description) {
 		Node node = getNodeByRowColumnIndex(3, 1, animalGrid);
-		Text descrptionText = (Text) node;
-		descrptionText.setText(description);
+		Text descriptionText = (Text) node;
+		descriptionText.setWrappingWidth(250);
+		descriptionText.setText(description);
+		
 	}
 
 	/* (non-Javadoc)

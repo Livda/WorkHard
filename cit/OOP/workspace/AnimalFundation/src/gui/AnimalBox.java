@@ -2,6 +2,7 @@ package gui;
 
 import java.util.Calendar;
 
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -46,6 +47,12 @@ public abstract class AnimalBox extends Box {
 
 		Text animalCategory = new Text("Category :");
 		animalGrid.add(animalCategory, 0, 8);
+		
+		ColumnConstraints col1 = new ColumnConstraints();
+		col1.setPercentWidth(26);
+		ColumnConstraints col2 = new ColumnConstraints();
+		col2.setPercentWidth(74);
+		categoryGrid.getColumnConstraints().addAll(col1, col2);
 	}
 
 	public VBox getBox(){

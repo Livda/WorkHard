@@ -9,7 +9,7 @@ import java.io.IOException;
  * @author Aurelien Fontaine
  * @version 1.0
  */
-public class Person {
+public class Person implements Comparable<Person> {
 	private static int nextId = 0;
 	private int id;
 	private String name;
@@ -199,5 +199,13 @@ public class Person {
 			System.out.println("Error when trying to put a person in the report : " 
 					+ e.getMessage());
 		}
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
+	@Override
+	public int compareTo(Person o) {
+		return this.name.compareTo(o.getName());
 	}
 }

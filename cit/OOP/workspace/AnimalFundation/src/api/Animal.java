@@ -9,7 +9,7 @@ import java.io.IOException;
  * @author Aurelien Fontaine
  * @version 1.0
  */
-public class Animal {
+public class Animal implements Comparable<Animal>{
 	private static int nextId = 0;
 	private int id;
 	private int age;
@@ -304,6 +304,18 @@ public class Animal {
 		catch (IOException e){
 			System.out.println("Error when trying to put an animal in the report : " 
 					+ e.getMessage());
+		}
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
+	@Override
+	public int compareTo(Animal o) {
+		int res = this.name.compareTo(o.getName());
+		if (res == 0){
+			return this.id < o.getId() ? -1 : 1;
+		} else {
+			return res;
 		}
 	}
 	
