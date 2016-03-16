@@ -28,6 +28,7 @@ public class MenuBox {
         settingsItem.setDisable(true);
         MenuItem exitItem = new MenuItem("Exit");
         exitItem.setAccelerator(KeyCombination.keyCombination("Alt+f4"));
+        exitItem.setAccelerator(KeyCombination.keyCombination("Ctrl+W"));
         exitItem.setOnAction(e -> System.exit(0));
         fileMenu.getItems().addAll(newItem, saveItem, loadItem, new SeparatorMenuItem(),
         		settingsItem, new SeparatorMenuItem(),

@@ -2,6 +2,7 @@ package api;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Aurelien Fontaine
@@ -101,9 +102,12 @@ public class AnimalShelter {
 	
 	public ArrayList<Animal> getAllAnimals(){
 		ArrayList<Animal> list = new ArrayList<Animal>();
-		list.addAll(adoption.getList());
-		list.addAll(lost.getList());
-		list.addAll(found.getList());
+		List<Animal> temp = adoption.getList();
+		list.addAll(temp);
+		temp = lost.getList();
+		list.addAll(temp);
+		temp = found.getList();
+		list.addAll(temp);
 		return list;
 	}
 	

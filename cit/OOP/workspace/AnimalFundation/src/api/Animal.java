@@ -4,12 +4,13 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Comparator;
 
 /**
  * @author Aurelien Fontaine
  * @version 1.0
  */
-public class Animal implements Comparable<Animal>{
+public class Animal implements Comparable<Animal>, Comparator<Animal>{
 	private static int nextId = 0;
 	private int id;
 	private int age;
@@ -317,6 +318,12 @@ public class Animal implements Comparable<Animal>{
 		} else {
 			return res;
 		}
+	}
+	
+	public int compare(Animal a1, Animal a2){
+		String cat1 = a1.getAnimalCategory().toString();
+		String cat2 = a2.getAnimalCategory().toString();
+		return cat1.compareTo(cat2); 
 	}
 	
 }

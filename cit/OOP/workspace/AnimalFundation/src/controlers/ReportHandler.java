@@ -20,6 +20,8 @@ import api.Person;
 import gui.MainWindow;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.RadioButton;
+import javafx.scene.layout.HBox;
 
 /**
  * @author Aurelien Fontaine
@@ -30,6 +32,13 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 	private static File header = new File("report/header");
 	private static File footer = new File("report/footer");
 	private static File report = new File("report/report.tex");
+	private String option;
+	
+	public ReportHandler(HBox sortBox){
+		RadioButton selected = (RadioButton)sortBox.getChildren().get(0);
+		option = selected.isSelected() ? "Name" : "Category";
+		System.out.println(option);
+	}
 
 	public void handle(ActionEvent event){
 		try {
@@ -128,7 +137,12 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 					+ e.getMessage());
 		}
 		ArrayList<Animal> list = MainWindow.shelter.getAllAnimals();
-		Collections.sort(list);
+		
+		if (option.equals("Name")){
+			Collections.sort(list);			
+		} else {
+			Collections.sort(list, new Animal());
+		}
 		for(Animal a : list){
 			a.fillReport(report);
 		}

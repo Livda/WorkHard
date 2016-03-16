@@ -26,14 +26,7 @@ public class ChooseReportHandler implements EventHandler<ActionEvent> {
 		VBox box = new ChooseReportBox().getMainBox();
 		Scene scene = new Scene(box);
 		dialog.setScene(scene);
+		dialog.setTitle("Selection");
 		dialog.show();
-	}
-	
-	public void close(ActionEvent event){
-		dialog.close();
-	}
-	
-	public void generate(ActionEvent event){
-		
 	}
 }

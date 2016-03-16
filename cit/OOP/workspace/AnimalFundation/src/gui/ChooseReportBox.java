@@ -26,6 +26,7 @@ public class ChooseReportBox {
 	
 	public ChooseReportBox(){
 		this.mainBox = new VBox(10);
+		mainBox.setAlignment(Pos.CENTER);
 		VBox.setMargin(mainBox, new Insets(20));
 		
 		Text chooseYourSort = new Text("Choose the way you want to sort "
@@ -46,8 +47,7 @@ public class ChooseReportBox {
 		sortBox.setAlignment(Pos.CENTER);
 		
 		Button generateButton = new Button("Generate report");
-		generateButton.setOnAction(new ReportHandler());
-		generateButton.setAlignment(Pos.CENTER);
+		generateButton.setOnAction(new ReportHandler(sortBox));
 		
 		mainBox.getChildren().addAll(chooseYourSort, sortBox, generateButton);
 	}
