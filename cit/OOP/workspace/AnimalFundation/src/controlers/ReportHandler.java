@@ -35,8 +35,8 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 	private String option;
 	
 	public ReportHandler(HBox sortBox){
-		RadioButton selected = (RadioButton)sortBox.getChildren().get(0);
-		option = selected.isSelected() ? "Name" : "Category";
+		RadioButton firstButton = (RadioButton)sortBox.getChildren().get(0);
+		option = firstButton.isSelected() ? "Name" : "Category";
 		System.out.println(option);
 	}
 
