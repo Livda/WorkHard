@@ -15,6 +15,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Stage;
 
 /**
  * @author Aurelien Fontaine
@@ -24,7 +25,7 @@ import javafx.scene.text.TextAlignment;
 public class ChooseReportBox {
 	private VBox mainBox;
 	
-	public ChooseReportBox(){
+	public ChooseReportBox(Stage stage){
 		this.mainBox = new VBox(10);
 		mainBox.setAlignment(Pos.CENTER);
 		VBox.setMargin(mainBox, new Insets(20));
@@ -46,9 +47,14 @@ public class ChooseReportBox {
 		sortBox.getChildren().addAll(byName, byCategory);
 		sortBox.setAlignment(Pos.CENTER);
 		
+		HBox buttonBox = new HBox(10);
 		Button generateButton = new Button("Generate report");
-		mainBox.getChildren().addAll(chooseYourSort, sortBox, generateButton);
+		Button cancelButton = new Button("Cancel");
+		cancelButton.setOnAction(e -> stage.close());
+		buttonBox.getChildren().addAll(generateButton, cancelButton);
+		buttonBox.setAlignment(Pos.CENTER);
 		
+		mainBox.getChildren().addAll(chooseYourSort, sortBox, buttonBox);
 		generateButton.setOnAction(new ReportHandler(sortBox));
 	}
 	

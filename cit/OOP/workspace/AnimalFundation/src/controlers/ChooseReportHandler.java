@@ -17,16 +17,16 @@ import javafx.stage.StageStyle;
  *
  */
 public class ChooseReportHandler implements EventHandler<ActionEvent> {
-	private Stage dialog;
+	private Stage stagePopUp;
 
 	public void handle(ActionEvent event){
-		dialog = new Stage();
-		dialog.initStyle(StageStyle.UTILITY);
+		stagePopUp = new Stage();
+		stagePopUp.initStyle(StageStyle.UTILITY);
 		
-		VBox box = new ChooseReportBox().getMainBox();
+		VBox box = new ChooseReportBox(stagePopUp).getMainBox();
 		Scene scene = new Scene(box);
-		dialog.setScene(scene);
-		dialog.setTitle("Selection");
-		dialog.show();
+		stagePopUp.setScene(scene);
+		stagePopUp.setTitle("Report selection");
+		stagePopUp.show();
 	}
 }
