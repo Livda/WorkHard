@@ -47,9 +47,9 @@ public class ChooseReportBox {
 		sortBox.setAlignment(Pos.CENTER);
 		
 		Button generateButton = new Button("Generate report");
-		generateButton.setOnAction(new ReportHandler(sortBox));
-		
 		mainBox.getChildren().addAll(chooseYourSort, sortBox, generateButton);
+		
+		generateButton.setOnAction(new ReportHandler(sortBox));
 	}
 	
 	public VBox getMainBox(){

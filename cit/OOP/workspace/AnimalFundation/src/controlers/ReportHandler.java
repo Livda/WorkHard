@@ -32,12 +32,11 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 	private static File header = new File("report/header");
 	private static File footer = new File("report/footer");
 	private static File report = new File("report/report.tex");
+	HBox sortBox;
 	private String option;
 	
 	public ReportHandler(HBox sortBox){
-		RadioButton firstButton = (RadioButton)sortBox.getChildren().get(0);
-		option = firstButton.isSelected() ? "Name" : "Category";
-		System.out.println(option);
+		this.sortBox = sortBox;
 	}
 
 	public void handle(ActionEvent event){
@@ -136,6 +135,11 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 			System.out.println("Error when trying to initialise the animal part : " 
 					+ e.getMessage());
 		}
+		
+		RadioButton firstButton = (RadioButton)sortBox.getChildren().get(0);
+		option = firstButton.isSelected() ? "Name" : "Category";
+		System.out.println(option);
+		
 		ArrayList<Animal> list = MainWindow.shelter.getAllAnimals();
 		
 		if (option.equals("Name")){
