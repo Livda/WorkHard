@@ -121,7 +121,7 @@ public class AnimalShelter {
 	public void add(Animal a) {
 		Category cat = a.getAnimalCategory();
 		Person p = cat.getContact();
-		persons.add(p);
+		if (persons.contains(p)) persons.add(p);
 		switch (cat.getCategoryLetter()) {
 		case 'a' :
 			adoption.add(a);

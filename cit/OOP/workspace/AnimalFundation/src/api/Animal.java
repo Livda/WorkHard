@@ -321,9 +321,9 @@ public class Animal implements Comparable<Animal>, Comparator<Animal>{
 	}
 	
 	public int compare(Animal a1, Animal a2){
-		String cat1 = a1.getAnimalCategory().toString();
-		String cat2 = a2.getAnimalCategory().toString();
-		return cat1.compareTo(cat2); 
+		char cat1 = a1.getAnimalCategory().getCategoryLetter();
+		char cat2 = a2.getAnimalCategory().getCategoryLetter();
+		return cat1 - cat2; 
 	}
 	
 }
