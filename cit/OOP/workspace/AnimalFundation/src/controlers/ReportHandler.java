@@ -22,6 +22,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.RadioButton;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 
 /**
  * @author Aurelien Fontaine
@@ -34,9 +35,11 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 	private static File report = new File("report/report.tex");
 	HBox sortBox;
 	private String option;
+	private Stage stage;
 	
-	public ReportHandler(HBox sortBox){
+	public ReportHandler(HBox sortBox,Stage stage){
 		this.sortBox = sortBox;
+		this.stage = stage;
 	}
 
 	public void handle(ActionEvent event){
@@ -65,6 +68,7 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		stage.close();
 	}
 
 	private void fillPerson(){
