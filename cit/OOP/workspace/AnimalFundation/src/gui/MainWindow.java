@@ -31,7 +31,7 @@ public class MainWindow extends Application {
 			mainBox.getChildren().add(nothingHere);
 	        VBox tableBox = table.getBox();
 	        
-			MenuBar menuBar = new MenuBox(this).getBox();
+			MenuBar menuBar = new MenuBox().getBox();
 	        menuBar.prefWidthProperty().bind(primaryStage.widthProperty());
 	        
 	        BorderPane secondLayout = new BorderPane();

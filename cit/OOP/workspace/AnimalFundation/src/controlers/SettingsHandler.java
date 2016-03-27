@@ -3,7 +3,7 @@
  */
 package controlers;
 
-import gui.ChooseReportBox;
+import gui.SettingsBox;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -16,16 +16,17 @@ import javafx.stage.StageStyle;
  * @version 1.0
  *
  */
-public class ChooseReportHandler implements EventHandler<ActionEvent> {
-
+public class SettingsHandler implements EventHandler<ActionEvent>{
+	
 	public void handle(ActionEvent event){
-		Stage stagePopUp = new Stage();
-		stagePopUp.initStyle(StageStyle.UTILITY);
+		Stage settingsPopUp = new Stage();
+		settingsPopUp.initStyle(StageStyle.UTILITY);
 		
-		VBox box = new ChooseReportBox(stagePopUp).getMainBox();
+		VBox box = new SettingsBox(settingsPopUp).getMainGrid();
 		Scene scene = new Scene(box);
-		stagePopUp.setScene(scene);
-		stagePopUp.setTitle("Report selection");
-		stagePopUp.show();
+		settingsPopUp.setScene(scene);
+		settingsPopUp.setTitle("Settings");
+		settingsPopUp.show();
 	}
+
 }

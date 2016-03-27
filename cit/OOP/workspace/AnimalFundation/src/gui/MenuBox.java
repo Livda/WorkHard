@@ -4,6 +4,7 @@ import controlers.ChooseReportHandler;
 import controlers.LoadHandler;
 import controlers.NewHandler;
 import controlers.SaveHandler;
+import controlers.SettingsHandler;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -13,7 +14,7 @@ import javafx.scene.input.KeyCombination;
 public class MenuBox {
 	private MenuBar box;
 	
-	public MenuBox(MainWindow main){
+	public MenuBox(){
 		Menu fileMenu = new Menu("File");
 		MenuItem newItem = new MenuItem("New ...");
 		newItem.setAccelerator(KeyCombination.keyCombination("Ctrl+N"));
@@ -25,7 +26,7 @@ public class MenuBox {
 		loadItem.setAccelerator(KeyCombination.keyCombination("Ctrl+O"));
 		loadItem.setOnAction(new LoadHandler());
         MenuItem settingsItem = new MenuItem("Settings");
-        settingsItem.setDisable(true);
+        settingsItem.setOnAction(new SettingsHandler());
         MenuItem exitItem = new MenuItem("Exit");
         exitItem.setAccelerator(KeyCombination.keyCombination("Alt+f4"));
         exitItem.setAccelerator(KeyCombination.keyCombination("Ctrl+W"));
