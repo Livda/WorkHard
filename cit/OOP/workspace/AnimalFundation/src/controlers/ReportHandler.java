@@ -30,6 +30,8 @@ import javafx.stage.Stage;
  *
  */
 public class ReportHandler implements EventHandler<ActionEvent> {
+	public static String pathToPdfLatex = "/usr/bin/pdflatex";
+	public static String pathToPdfReader = "/usr/bin/evince";
 	private static File header = new File("report/header");
 	private static File footer = new File("report/footer");
 	private static File report = new File("report/report.tex");
@@ -48,9 +50,8 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 			this.fillAnimal();
 			this.fillPerson();
 			this.finish();
-			//TODO ask the user for his pdflatex
 			Process process = new ProcessBuilder(
-					"pdflatex", 
+					pathToPdfLatex, 
 					"-output-directory=report",
 					"report/report.tex").start();
 			InputStream is = process.getInputStream();
@@ -63,8 +64,7 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 			}
 			br.close();
 			
-			//TODO ask the user for his PDF reader
-			process = new ProcessBuilder("evince", "report/report.pdf").start();
+			process = new ProcessBuilder(pathToPdfReader, "report/report.pdf").start();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -75,7 +75,7 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 		BufferedWriter bw;
 		try {
 			bw = new BufferedWriter(new FileWriter(report, true));
-			bw.write("\\part{Persons}");
+			bw.write("\\part{" + "Persons" + "}");
 			bw.newLine();
 			bw.write("\\begin{center}");
 			bw.newLine();
@@ -83,8 +83,8 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 			bw.newLine();
 			bw.write("\\hline");
 			bw.newLine();
-			bw.write("\\textbf{Name} & \\textbf{Adress} & \\textbf{Phone} & "
-					+ "\\textbf{Email} \\\\");
+			bw.write("\\textbf{" + "Name" + "} & \\textbf{" + "Adress"+ "} & \\textbf{"
+					+ "Phone" + "} & " + "\\textbf{" + "Email" + "} \\\\");
 			bw.newLine();
 			bw.write("\\hline");
 			bw.newLine();
@@ -119,7 +119,7 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 		BufferedWriter bw;
 		try {
 			bw = new BufferedWriter(new FileWriter(report, true));
-			bw.write("\\part{Animals}");
+			bw.write("\\part{" + "Animals" + "}");
 			bw.newLine();
 			bw.write("\\begin{center}");
 			bw.newLine();
@@ -127,8 +127,10 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 			bw.newLine();
 			bw.write("\\hline");
 			bw.newLine();
-			bw.write("\\textbf{Name} & \\textbf{Age} & \\textbf{Description} & \\textbf{Colour}"
-					+ "& \\textbf{Breed} & \\textbf{Type} & \\textbf{Category} \\\\");
+			bw.write("\\textbf{" + "Name" + "} & \\textbf{" + "Age" + "} & \\textbf{"
+					+ "Description" + "} & \\textbf{" + "Colour" + "}& \\textbf{"
+					+ "Breed" + "} & \\textbf{" + "Type" + "} & \\textbf{" + "Category"
+					+ "} \\\\");
 			bw.newLine();
 			bw.write("\\hline");
 			bw.newLine();
