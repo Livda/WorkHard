@@ -37,8 +37,13 @@ public class SetSettingsHandler implements EventHandler<ActionEvent> {
 		ChoiceBox<String> languages = (ChoiceBox<String>) node;
 		String language = languages.getSelectionModel().getSelectedItem();
 		System.out.println(language);
-		if (language == "French") {
+		switch (language) {
+		case "English" :
+			MainWindow.locale = new Locale("us");
+			break;
+		case "French" :
 			MainWindow.locale = new Locale("fr");
+			break;
 		}
 		
 		//Set the path to the latex compiler
