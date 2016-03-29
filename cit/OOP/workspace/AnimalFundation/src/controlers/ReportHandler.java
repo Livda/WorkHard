@@ -35,7 +35,7 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 	private static File header = new File("report/header");
 	private static File footer = new File("report/footer");
 	private static File report = new File("report/report.tex");
-	HBox sortBox;
+	private HBox sortBox;
 	private String option;
 	private Stage stage;
 	
