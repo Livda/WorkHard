@@ -13,6 +13,7 @@ import api.Lost;
 import api.Person;
 import gui.AnimalBoxShow;
 import gui.MainWindow;
+import gui.Messages;
 import gui.PersonBoxShow;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -106,13 +107,13 @@ public class ShowHandler implements EventHandler<ActionEvent> {
 		hBox.getChildren().addAll(animalShow.getBox(), personShow.getBox());
 		hBox.setAlignment(Pos.TOP_CENTER);
 		
-		Button editButton = new Button("Edit");
+		Button editButton = new Button(Messages.getString("edit"));
 		editButton.setOnAction(new EditHandler());
 		
-		Button deleteButton = new Button("Delete");
+		Button deleteButton = new Button(Messages.getString("delete"));
 		deleteButton.setOnAction(new DeleteHandler());
 		
-		Button cancleButton = new Button("Cancel");
+		Button cancleButton = new Button(Messages.getString("cancel"));
 		cancleButton.setOnAction(new ClearHandler());
 		
 		HBox buttonBox = new HBox(10);

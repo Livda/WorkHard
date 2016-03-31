@@ -5,6 +5,7 @@ package controlers;
 
 import gui.AnimalBoxEditable;
 import gui.MainWindow;
+import gui.Messages;
 import gui.PersonBoxEditable;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -33,9 +34,9 @@ public class NewHandler implements EventHandler<ActionEvent> {
 		HBox box = new HBox(10);
 		box.getChildren().addAll(animal, person);
 		
-		Button okButton = new Button("Ok");
+		Button okButton = new Button(Messages.getString("ok"));
 		okButton.setOnAction(new CreateAnimalHandler(animalBox, personBox));
-		Button cancelButton = new Button("Cancel");
+		Button cancelButton = new Button(Messages.getString("cancel"));
 		cancelButton.setOnAction(new ClearHandler());
 		HBox buttonBox = new HBox(10);
 		buttonBox.getChildren().addAll(okButton, cancelButton);

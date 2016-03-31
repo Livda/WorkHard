@@ -21,28 +21,28 @@ public class TableViewBox {
 	@SuppressWarnings({"unchecked", "rawtypes"})
 	public TableViewBox(){
 		TableColumn<Animal,String> nameCol = 
-				new TableColumn<Animal,String>("Name");
+				new TableColumn<Animal,String>(Messages.getString("name"));
 		nameCol.setCellValueFactory(new PropertyValueFactory("name"));
         TableColumn<Animal,String> breedCol = 
-        		new TableColumn<Animal,String>("Breed");
+        		new TableColumn<Animal,String>(Messages.getString("breed"));
         breedCol.setCellValueFactory(new PropertyValueFactory("breed"));
         TableColumn<Animal,String> categoryCol = 
-        		new TableColumn<Animal, String>("Category");
+        		new TableColumn<Animal, String>(Messages.getString("category"));
         categoryCol.setCellValueFactory(
         		new PropertyValueFactory("animalCategory"));
         table = new TableView<Animal>();
 		table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		table.getColumns().setAll(nameCol, breedCol, categoryCol);
 		
-		CheckBox adoption = new CheckBox("Adoption");
+		CheckBox adoption = new CheckBox(Messages.getString("adoption"));
 		adoption.setIndeterminate(false);
 		adoption.setSelected(true);
 		adoption.setOnAction(new FilterHandler());
-		CheckBox found = new CheckBox("Found");
+		CheckBox found = new CheckBox(Messages.getString("found"));
 		found.setIndeterminate(false);
 		found.setSelected(true);
 		found.setOnAction(new FilterHandler());
-		CheckBox lost = new CheckBox("Lost");
+		CheckBox lost = new CheckBox(Messages.getString("lost"));
 		lost.setIndeterminate(false);
 		lost.setSelected(true);
 		lost.setOnAction(new FilterHandler());
@@ -50,11 +50,11 @@ public class TableViewBox {
 		filterBox.getChildren().addAll(adoption, found, lost);
 		filterBox.setAlignment(Pos.CENTER);
 		
-		Button newAnimal = new Button("New");
+		Button newAnimal = new Button(Messages.getString("new"));
 		newAnimal.setOnAction(new NewHandler());
-		Button editAnimal = new Button("View");
+		Button editAnimal = new Button(Messages.getString("view"));
 		editAnimal.setOnAction(new ShowHandler());
-        Button deleteAnimal = new Button("Delete");
+        Button deleteAnimal = new Button(Messages.getString("delete"));
         deleteAnimal.setOnAction(new DeleteHandler());
         HBox buttonBox = new HBox(15);
         buttonBox.getChildren().addAll(newAnimal, editAnimal, deleteAnimal);

@@ -4,6 +4,7 @@
 package controlers;
 
 import gui.ChooseReportBox;
+import gui.Messages;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -25,7 +26,7 @@ public class ChooseReportHandler implements EventHandler<ActionEvent> {
 		VBox box = new ChooseReportBox(stagePopUp).getMainBox();
 		Scene scene = new Scene(box);
 		stagePopUp.setScene(scene);
-		stagePopUp.setTitle("Report selection");
+		stagePopUp.setTitle(Messages.getString("report_selection"));
 		stagePopUp.show();
 	}
 }

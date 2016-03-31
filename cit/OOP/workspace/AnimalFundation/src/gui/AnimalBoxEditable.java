@@ -34,22 +34,23 @@ public class AnimalBoxEditable extends AnimalBox {
 		super();
 		this.animalGrid = this.getAnimalGrid();
 		this.categoryGrid = this.getCategoryGrid();
+		String example = Messages.getString("example");
 		
 		TextField setAnimalName = new TextField();
-		setAnimalName.setPromptText("Ex : Leonard");
+		setAnimalName.setPromptText(example + Messages.getString("animal_name_example"));
 		animalGrid.add(setAnimalName, 1, 0);
 		
 		TextField ageNumber = new TextField();
-		ageNumber.setPromptText("Ex : 2");
+		ageNumber.setPromptText(example + Messages.getString("age_example"));
 		animalGrid.add(ageNumber, 1, 1);
 		
 		TextField setAnimalColor = new TextField();
-		setAnimalColor.setPromptText("Ex : Black & White");
+		setAnimalColor.setPromptText(example + Messages.getString("color_example"));
 		animalGrid.add(setAnimalColor, 1, 2);
 		
 		TextArea description = new TextArea();
 		description.setMaxSize(300, 50);
-		description.setPromptText("Likes to be pet");
+		description.setPromptText(example + Messages.getString("description_example"));
 		animalGrid.add(description, 1, 3);
 		
 		ChoiceBox<String> setAnimalBreed = new ChoiceBox<String>();
@@ -58,14 +59,14 @@ public class AnimalBoxEditable extends AnimalBox {
 		animalGrid.add(setAnimalBreed, 1, 4);
 		
 		TextField setAnimalType = new TextField();
-		setAnimalType.setPromptText("Ex : Shiba Inu");
+		setAnimalType.setPromptText(example + Messages.getString("type_example"));
 		animalGrid.add(setAnimalType, 1, 5);
 		
 		ToggleGroup genderGroup = new ToggleGroup();
-		RadioButton maleBox = new RadioButton("Male");
+		RadioButton maleBox = new RadioButton(Messages.getString("male"));
 		maleBox.setToggleGroup(genderGroup);
 		maleBox.setSelected(true);
-		RadioButton femaleBox = new RadioButton("Female");
+		RadioButton femaleBox = new RadioButton(Messages.getString("female"));
 		femaleBox.setToggleGroup(genderGroup);
 		HBox gender = new HBox(15);
 		gender.getChildren().addAll(maleBox, femaleBox);
@@ -304,53 +305,54 @@ public class AnimalBoxEditable extends AnimalBox {
 	public void setCategoryGrid(int i){
 		categoryGrid.getChildren().clear();
 		if (i == 0) {
-			Text neuteredText = new Text("Neutered :");
+			Text neuteredText = new Text(Messages.getString("neutered") + " :");
 			categoryGrid.add(neuteredText, 0, 0);
 
 			ToggleGroup neuteredGroup = new ToggleGroup();
-			RadioButton neuteredBox = new RadioButton("Yes");
+			RadioButton neuteredBox = new RadioButton(Messages.getString("yes"));
 			neuteredBox.setToggleGroup(neuteredGroup);
 			neuteredBox.setSelected(true);
-			RadioButton nonNeuteredBox = new RadioButton("No");
+			RadioButton nonNeuteredBox = new RadioButton(Messages.getString("no"));
 			nonNeuteredBox.setToggleGroup(neuteredGroup);
 			HBox neutered = new HBox(15);
 			neutered.getChildren().addAll(neuteredBox, nonNeuteredBox);
 			categoryGrid.add(neutered, 1, 0);
 			neutered.setAlignment(Pos.CENTER);   
 
-			Text chippedText = new Text("Chipped :");
+			Text chippedText = new Text(Messages.getString("chipped") + " :");
 			categoryGrid.add(chippedText, 0, 1);
 
 			ToggleGroup chippedGroup = new ToggleGroup();
-			RadioButton chippedBox = new RadioButton("Yes");
+			RadioButton chippedBox = new RadioButton(Messages.getString("yes"));
 			chippedBox.setToggleGroup(chippedGroup);
 			chippedBox.setSelected(true);
-			RadioButton nonChippedBox = new RadioButton("No");
+			RadioButton nonChippedBox = new RadioButton(Messages.getString("no"));
 			nonChippedBox.setToggleGroup(chippedGroup);
 			HBox chipped = new HBox(15);
 			chipped.getChildren().addAll(chippedBox, nonChippedBox);
 			categoryGrid.add(chipped, 1, 1);
 			chipped.setAlignment(Pos.CENTER);
 
-			Text vaccinatedText = new Text("Vaccinated :");
+			Text vaccinatedText = new Text(Messages.getString("vaccinated") + " :");
 			categoryGrid.add(vaccinatedText, 0, 2);
 
 			ToggleGroup vaccinatedGroup = new ToggleGroup();
-			RadioButton vaccinatedBox = new RadioButton("Yes");
+			RadioButton vaccinatedBox = new RadioButton(Messages.getString("yes"));
 			vaccinatedBox.setToggleGroup(vaccinatedGroup);
 			vaccinatedBox.setSelected(true);
-			RadioButton nonVaccinatedBox = new RadioButton("No");
+			RadioButton nonVaccinatedBox = new RadioButton(Messages.getString("no"));
 			nonVaccinatedBox.setToggleGroup(vaccinatedGroup);
 			HBox vaccinated = new HBox(15);
 			vaccinated.getChildren().addAll(vaccinatedBox, nonVaccinatedBox);
 			categoryGrid.add(vaccinated, 1, 2);
 			vaccinated.setAlignment(Pos.CENTER);   
 		} else {
-			Text locationText = new Text("Location :");
+			Text locationText = new Text(Messages.getString("location") + " :");
 			categoryGrid.add(locationText, 0, 0);
 
+			String example = Messages.getString("example");
 			TextField locationField = new TextField();
-			locationField.setPromptText("Ex : In the dark forest");
+			locationField.setPromptText(example + Messages.getString("location_example"));
 			categoryGrid.add(locationField, 1, 0);
 		}
 	}

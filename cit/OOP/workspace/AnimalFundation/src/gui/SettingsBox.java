@@ -32,7 +32,7 @@ public class SettingsBox {
 		grid.setVgap(10);
 		grid.setHgap(10);
 		
-		Text languageText = new Text("Language" + " :");
+		Text languageText = new Text(Messages.getString("language") + " :");
 		grid.add(languageText, 0, 0);
 		
 		ChoiceBox<String> language = new ChoiceBox<>();
@@ -40,21 +40,21 @@ public class SettingsBox {
 		language.getSelectionModel().selectFirst();
 		grid.add(language, 1, 0);
 		
-		Text latexText = new Text("Path to pdflatex");
+		Text latexText = new Text(Messages.getString("path_to_latex"));
 		grid.add(latexText, 2, 0);
 		TextField latex = new TextField("/usr/bin/pdflatex");
 		grid.add(latex, 3, 0);
 		
-		Text pdfText = new Text ("Path to pdf reader");
+		Text pdfText = new Text (Messages.getString("path_to_pdfreader"));
 		grid.add(pdfText, 2, 1);
 		TextField pdfReader = new TextField("/usr/bin/evince");
 		grid.add(pdfReader, 3, 1);
 		
 		HBox buttonBox = new HBox(10);
 		buttonBox.setAlignment(Pos.CENTER);
-		Button okButton = new Button("Ok");
+		Button okButton = new Button(Messages.getString("ok"));
 		okButton.setOnAction(new SetSettingsHandler(stage, grid));
-		Button cancelButton = new Button("Cancel");
+		Button cancelButton = new Button(Messages.getString("cancel"));
 		cancelButton.setOnAction(e -> stage.close());
 		buttonBox.getChildren().addAll(okButton, cancelButton);
 		mainBox.getChildren().addAll(grid, buttonBox);

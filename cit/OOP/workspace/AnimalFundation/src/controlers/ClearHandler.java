@@ -4,6 +4,7 @@
 package controlers;
 
 import gui.MainWindow;
+import gui.Messages;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.text.Text;
@@ -17,7 +18,7 @@ public class ClearHandler implements EventHandler<ActionEvent> {
 
 	public void handle(ActionEvent e){
 		MainWindow.mainBox.getChildren().clear();
-		Text nothingHere = new Text("Please select or create an animal");
+		Text nothingHere = new Text(Messages.getString("select_create_animal"));
 		MainWindow.mainBox.getChildren().add(nothingHere);
 	}
 }

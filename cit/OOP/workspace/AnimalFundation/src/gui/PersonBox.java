@@ -13,16 +13,16 @@ public abstract class PersonBox extends Box {
         personGrid.setVgap(10);
         personGrid.setHgap(10);
         
-        Text personName = new Text("Name :");
+        Text personName = new Text(Messages.getString("name") + " :");
         personGrid.add(personName, 0, 0);
         
-        Text personAdress = new Text("Adress :");
+        Text personAdress = new Text(Messages.getString("adress") + " :");
         personGrid.add(personAdress, 0, 1);
         
-        Text personPhone = new Text("Phone :");
+        Text personPhone = new Text(Messages.getString("phone") + " :");
         personGrid.add(personPhone, 0, 2);
         
-        Text personEmail = new Text("Email :");
+        Text personEmail = new Text(Messages.getString("email") + " :");
         personGrid.add(personEmail, 0, 3);
 	}
 	

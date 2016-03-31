@@ -13,7 +13,7 @@ public abstract class AnimalBox extends Box {
 	private VBox vBox;
 
 	public AnimalBox() {
-		super("Animal");
+		super(Messages.getString("animal"));
 		animalGrid = this.getGrid();
 		categoryGrid = new GridPane();
 		categoryGrid.setVgap(10);
@@ -21,31 +21,31 @@ public abstract class AnimalBox extends Box {
 		vBox = this.getvBox();
 		vBox.getChildren().add(2, categoryGrid);
 
-		Text animalName = new Text("Animal name :");
+		Text animalName = new Text(Messages.getString("animal_name") + " :");
 		animalGrid.add(animalName, 0, 0);
 
-		Text animalAge = new Text("Age :");
+		Text animalAge = new Text(Messages.getString("age") + " :");
 		animalGrid.add(animalAge, 0, 1);
 
-		Text animalColor = new Text("Color :");
+		Text animalColor = new Text(Messages.getString("color") + " :");
 		animalGrid.add(animalColor, 0, 2);
 
-		Text animalDescription = new Text("Description :");
+		Text animalDescription = new Text(Messages.getString("description") + " :");
 		animalGrid.add(animalDescription, 0, 3);
 
-		Text animalBreed = new Text("Breed :");
+		Text animalBreed = new Text(Messages.getString("breed") + " :");
 		animalGrid.add(animalBreed, 0, 4);
 
-		Text animalType = new Text("Type :");
+		Text animalType = new Text(Messages.getString("type") + " :");
 		animalGrid.add(animalType, 0, 5);
 		
-		Text animalGender = new Text("Gender :");
+		Text animalGender = new Text(Messages.getString("gender") + " :");
 		animalGrid.add(animalGender, 0, 6);
 
-		Text date = new Text("Date :");
+		Text date = new Text(Messages.getString("date") + " :");
 		animalGrid.add(date, 0, 7);
 
-		Text animalCategory = new Text("Category :");
+		Text animalCategory = new Text(Messages.getString("category") + " :");
 		animalGrid.add(animalCategory, 0, 8);
 		
 		ColumnConstraints col1 = new ColumnConstraints();

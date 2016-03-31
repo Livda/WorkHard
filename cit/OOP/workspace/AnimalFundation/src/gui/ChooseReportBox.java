@@ -30,15 +30,14 @@ public class ChooseReportBox {
 		mainBox.setAlignment(Pos.CENTER);
 		VBox.setMargin(mainBox, new Insets(20));
 		
-		Text chooseYourSort = new Text("Choose the way you want to sort "
-				+ "the animal in the report");
+		Text chooseYourSort = new Text(Messages.getString("choose_sort"));
 		chooseYourSort.setWrappingWidth(300);
 		chooseYourSort.setTextAlignment(TextAlignment.CENTER);
 		chooseYourSort.setFont(Font.font(null, FontWeight.BOLD, 15));
 		
-		RadioButton byName = new RadioButton("Name");
+		RadioButton byName = new RadioButton(Messages.getString("name"));
 		byName.setSelected(true);
-		RadioButton byCategory = new RadioButton("Category");
+		RadioButton byCategory = new RadioButton(Messages.getString("category"));
 		ToggleGroup sortGroup = new ToggleGroup();
 		byName.setToggleGroup(sortGroup);
 		byCategory.setToggleGroup(sortGroup);
@@ -48,8 +47,8 @@ public class ChooseReportBox {
 		sortBox.setAlignment(Pos.CENTER);
 		
 		HBox buttonBox = new HBox(10);
-		Button generateButton = new Button("Generate report");
-		Button cancelButton = new Button("Cancel");
+		Button generateButton = new Button(Messages.getString("generate_report"));
+		Button cancelButton = new Button(Messages.getString("cancel"));
 		cancelButton.setOnAction(e -> stage.close());
 		buttonBox.getChildren().addAll(generateButton, cancelButton);
 		buttonBox.setAlignment(Pos.CENTER);

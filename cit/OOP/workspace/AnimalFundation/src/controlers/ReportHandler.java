@@ -18,6 +18,7 @@ import java.util.Collections;
 import api.Animal;
 import api.Person;
 import gui.MainWindow;
+import gui.Messages;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.RadioButton;
@@ -75,7 +76,7 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 		BufferedWriter bw;
 		try {
 			bw = new BufferedWriter(new FileWriter(report, true));
-			bw.write("\\part{" + "Persons" + "}");
+			bw.write("\\part{" + Messages.getString("persons") + "}");
 			bw.newLine();
 			bw.write("\\begin{center}");
 			bw.newLine();
@@ -83,8 +84,9 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 			bw.newLine();
 			bw.write("\\hline");
 			bw.newLine();
-			bw.write("\\textbf{" + "Name" + "} & \\textbf{" + "Adress"+ "} & \\textbf{"
-					+ "Phone" + "} & " + "\\textbf{" + "Email" + "} \\\\");
+			bw.write("\\textbf{" + Messages.getString("name") + "} & \\textbf{" + 
+			Messages.getString("adress") + "} & \\textbf{" + Messages.getString("phone")
+			+ "} & " + "\\textbf{" + Messages.getString("email") + "} \\\\");
 			bw.newLine();
 			bw.write("\\hline");
 			bw.newLine();
@@ -119,7 +121,7 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 		BufferedWriter bw;
 		try {
 			bw = new BufferedWriter(new FileWriter(report, true));
-			bw.write("\\part{" + "Animals" + "}");
+			bw.write("\\part{" + Messages.getString("animals") + "}");
 			bw.newLine();
 			bw.write("\\begin{center}");
 			bw.newLine();
@@ -127,10 +129,12 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 			bw.newLine();
 			bw.write("\\hline");
 			bw.newLine();
-			bw.write("\\textbf{" + "Name" + "} & \\textbf{" + "Age" + "} & \\textbf{"
-					+ "Description" + "} & \\textbf{" + "Colour" + "}& \\textbf{"
-					+ "Breed" + "} & \\textbf{" + "Type" + "} & \\textbf{" + "Category"
-					+ "} \\\\");
+			bw.write("\\textbf{" + Messages.getString("name") + "} & \\textbf{" + 
+					Messages.getString("age") + "} & \\textbf{"	+ 
+					Messages.getString("description") + "} & \\textbf{" + 
+					Messages.getString("color") + "}& \\textbf{" + Messages.getString("breed") + 
+					"} & \\textbf{" + Messages.getString("type") + "} & \\textbf{" + 
+					Messages.getString("category") + "} \\\\");
 			bw.newLine();
 			bw.write("\\hline");
 			bw.newLine();
@@ -144,7 +148,6 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 		
 		RadioButton firstButton = (RadioButton)sortBox.getChildren().get(0);
 		option = firstButton.isSelected() ? "Name" : "Category";
-		System.out.println(option);
 		
 		ArrayList<Animal> list = MainWindow.shelter.getAllAnimals();
 		

@@ -19,22 +19,23 @@ public class PersonBoxEditable extends PersonBox {
 	public PersonBoxEditable() {
 		super();
 		personGrid = this.getPersonGrid();
+		String example = Messages.getString("example");
 		
 		TextField setPersonName = new TextField();
-        setPersonName.setPromptText("Ex : John Smith");
+        setPersonName.setPromptText(example + Messages.getString("name_example"));
         personGrid.add(setPersonName, 1, 0);
 
         TextArea setPersonAdress = new TextArea();
         setPersonAdress.setMaxSize(300, 60);
-        setPersonAdress.setPromptText("Ex : 1, Road of Ireland");
+        setPersonAdress.setPromptText(example + Messages.getString("adress_example"));
         personGrid.add(setPersonAdress, 1, 1);
 
         TextField setPersonPhone = new TextField();
-        setPersonPhone.setPromptText("Ex : (021) 000 0000 ");
+        setPersonPhone.setPromptText(example + Messages.getString("phone_example"));
         personGrid.add(setPersonPhone, 1, 2);
         
         TextField setPersonEmail = new TextField();
-        setPersonEmail.setPromptText("Ex : john.smith@mail.com");
+        setPersonEmail.setPromptText(example + Messages.getString("email_example"));
         personGrid.add(setPersonEmail, 1, 3);
 	}
 	

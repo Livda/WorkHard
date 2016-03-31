@@ -58,25 +58,25 @@ public class AnimalBoxShow extends AnimalBox {
 	public void setCategoryGrid(int i) {
 		categoryGrid.getChildren().clear();
 		if (i == 0) {
-			Text neuteredText = new Text("Neutered :");
+			Text neuteredText = new Text(Messages.getString("neutered") + " :");
 			categoryGrid.add(neuteredText, 0, 0);
 
 			Text neuteredField = new Text();
 			categoryGrid.add(neuteredField, 1, 0);
 
-			Text chippedText = new Text("Chipped :");
+			Text chippedText = new Text(Messages.getString("chipped") + " :");
 			categoryGrid.add(chippedText, 0, 1);
 
 			Text chippedField = new Text();
 			categoryGrid.add(chippedField, 1, 1);
 
-			Text vaccinatedText = new Text("Vaccinated :");
+			Text vaccinatedText = new Text(Messages.getString("vaccinated") + " :");
 			categoryGrid.add(vaccinatedText, 0, 2);
 
 			Text vaccinatedField = new Text();
 			categoryGrid.add(vaccinatedField, 1, 2);
 		} else {
-			Text locationText = new Text("Location :");
+			Text locationText = new Text(Messages.getString("location") + " :");
 			categoryGrid.add(locationText, 0, 0);
 
 			Text locationField = new Text();
@@ -134,7 +134,7 @@ public class AnimalBoxShow extends AnimalBox {
 	public void setBreed(String breed) {
 		Node node = getNodeByRowColumnIndex(4, 1, animalGrid);
 		Text breedText = (Text) node;
-		breedText.setText(breed);
+		breedText.setText(Messages.getString(breed));
 	}
 
 	/* (non-Javadoc)
@@ -154,7 +154,8 @@ public class AnimalBoxShow extends AnimalBox {
 	public void setGender(boolean gender) {
 		Node node = getNodeByRowColumnIndex(6, 1, animalGrid);
 		Text genderText = (Text) node;
-		String genderString = gender ? "Male" : "Female";
+		String genderString = gender ? Messages.getString("male") : 
+			Messages.getString("female");
 		genderText.setText(genderString);
 	}
 
@@ -198,7 +199,7 @@ public class AnimalBoxShow extends AnimalBox {
 	public void setNeutered(boolean neutered) {
 		Node node = getNodeByRowColumnIndex(0, 1, categoryGrid);
 		Text neuteredText = (Text) node;
-		String text = neutered ? "Yes" : "No";
+		String text = neutered ? Messages.getString("yes") : Messages.getString("no");
 		neuteredText.setText(text);
 	}
 
@@ -209,7 +210,7 @@ public class AnimalBoxShow extends AnimalBox {
 	public void setChipped(boolean chipped) {
 		Node node = getNodeByRowColumnIndex(1, 1, categoryGrid);
 		Text chippedText = (Text) node;
-		String text = chipped ? "Yes" : "No";
+		String text = chipped ? Messages.getString("yes") : Messages.getString("no");
 		chippedText.setText(text);
 	}
 
@@ -220,7 +221,7 @@ public class AnimalBoxShow extends AnimalBox {
 	public void setVaccinated(boolean vaccinated) {
 		Node node = getNodeByRowColumnIndex(2, 1, categoryGrid);
 		Text vaccinatedText = (Text) node;
-		String text = vaccinated ? "Yes" : "No";
+		String text = vaccinated ? Messages.getString("yes") : Messages.getString("no");
 		vaccinatedText.setText(text);
 	}
 
