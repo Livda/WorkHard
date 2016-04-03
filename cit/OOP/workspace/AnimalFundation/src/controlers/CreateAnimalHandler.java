@@ -78,6 +78,9 @@ public class CreateAnimalHandler implements EventHandler<ActionEvent>{
 		
 		//Add the animal to the shelter
 		if (!Box.errorInTheFields) {
+			if (shelter.getAllPersons().contains(p)) {
+				//TODO ask for an update
+			}
 			shelter.add(a);
 			//we add the new animal to the TableView
 			MainWindow.table.printShelter();

@@ -121,7 +121,7 @@ public class AnimalShelter {
 	public void add(Animal a) {
 		Category cat = a.getAnimalCategory();
 		Person p = cat.getContact();
-		if (persons.contains(p)) persons.add(p);
+		if (!persons.contains(p)) persons.add(p);
 		switch (cat.getCategoryLetter()) {
 		case 'a' :
 			adoption.add(a);
@@ -133,6 +133,16 @@ public class AnimalShelter {
 			lost.add(a);
 			break;
 		}
+	}
+	
+	/**
+	 * Update the attributes of the Person in the list by the Person passed on parameter
+	 * @param p the Person to take the attributes
+	 */
+	public void updatePerson(Person p){
+		int index = persons.indexOf(p);
+		Person update = persons.get(index);
+		update.updatePerson(p);
 	}
 	
 	/**
