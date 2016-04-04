@@ -3,6 +3,8 @@
  */
 package gui;
 
+import java.util.Locale;
+
 import controlers.SetSettingsHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -36,8 +38,16 @@ public class SettingsBox {
 		grid.add(languageText, 0, 0);
 		
 		ChoiceBox<String> language = new ChoiceBox<>();
-		language.getItems().addAll("English", "French");
-		language.getSelectionModel().selectFirst();
+		String locale = Locale.getDefault().getLanguage();
+		language.getItems().addAll(Messages.getString("english"), Messages.getString("french"));
+		switch(locale) {
+		case "us" :
+			language.getSelectionModel().select(0);
+			break;
+		case "fr" :
+			language.getSelectionModel().select(1);
+			break;
+		}
 		grid.add(language, 1, 0);
 		
 		Text latexText = new Text(Messages.getString("path_to_latex"));
