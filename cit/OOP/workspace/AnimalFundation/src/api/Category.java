@@ -53,6 +53,13 @@ public abstract class Category {
 	}
 	
 	/**
+	 * @param contact the contact to set
+	 */
+	public void setContact(Person contact) {
+		this.contact = contact;
+	}
+
+	/**
 	 * Get the contact
 	 * @return contact
 	 */
