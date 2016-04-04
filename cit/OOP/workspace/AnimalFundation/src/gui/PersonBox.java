@@ -8,7 +8,7 @@ public abstract class PersonBox extends Box {
 	private GridPane personGrid;
 	
 	public PersonBox(){
-		super("Person");
+		super(Messages.getString("person"));
 		personGrid = this.getGrid();
         personGrid.setVgap(10);
         personGrid.setHgap(10);
