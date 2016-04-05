@@ -12,7 +12,7 @@ public class Adoption extends Category{
 	private boolean chipped;
 	private boolean vaccinated;
 	private boolean reserved;
-	private enum status {inTraining, ready};
+	//private enum status {inTraining, ready};
 	
 	
 	/**

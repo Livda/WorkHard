@@ -15,6 +15,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import api.AgeComparator;
 import api.Animal;
 import api.Person;
 import gui.MainWindow;
@@ -22,7 +23,7 @@ import gui.Messages;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.RadioButton;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -36,11 +37,10 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 	private static File header = new File("report/header");
 	private static File footer = new File("report/footer");
 	private static File report = new File("report/report.tex");
-	private HBox sortBox;
-	private String option;
+	private VBox sortBox;
 	private Stage stage;
 	
-	public ReportHandler(HBox sortBox,Stage stage){
+	public ReportHandler(VBox sortBox,Stage stage){
 		this.sortBox = sortBox;
 		this.stage = stage;
 	}
@@ -48,8 +48,14 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 	public void handle(ActionEvent event){
 		try {
 			this.initialise();
-			this.fillAnimal();
-			this.fillPerson();
+			
+			RadioButton firstButton = (RadioButton)sortBox.getChildren().get(0);
+			String option = firstButton.isSelected() ? "animals": "persons";
+			if (option.equals("animals")) {
+				this.fillAnimal();				
+			} else {
+				this.fillPerson();				
+			}
 			this.finish();
 			Process process = new ProcessBuilder(
 					pathToPdfLatex, 
@@ -76,7 +82,7 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 		BufferedWriter bw;
 		try {
 			bw = new BufferedWriter(new FileWriter(report, true));
-			bw.write("\\part{" + Messages.getString("persons") + "}");
+			bw.write("\\part*{" + Messages.getString("persons") + "}");
 			bw.newLine();
 			bw.write("\\begin{center}");
 			bw.newLine();
@@ -121,7 +127,7 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 		BufferedWriter bw;
 		try {
 			bw = new BufferedWriter(new FileWriter(report, true));
-			bw.write("\\part{" + Messages.getString("animals") + "}");
+			bw.write("\\part*{" + Messages.getString("animals") + "}");
 			bw.newLine();
 			bw.write("\\begin{center}");
 			bw.newLine();
@@ -146,16 +152,8 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 					+ e.getMessage());
 		}
 		
-		RadioButton firstButton = (RadioButton)sortBox.getChildren().get(0);
-		option = firstButton.isSelected() ? "Name" : "Category";
-		
 		ArrayList<Animal> list = MainWindow.shelter.getAllAnimals();
-		
-		if (option.equals("Name")){
-			Collections.sort(list);			
-		} else {
-			Collections.sort(list, new Animal());
-		}
+		Collections.sort(list, new AgeComparator());			
 		for(Animal a : list){
 			a.fillReport(report);
 		}

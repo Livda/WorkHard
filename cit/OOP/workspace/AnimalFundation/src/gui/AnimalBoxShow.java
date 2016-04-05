@@ -5,6 +5,7 @@ package gui;
 
 import java.text.DateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
@@ -167,7 +168,7 @@ public class AnimalBoxShow extends AnimalBox {
 		Node node = getNodeByRowColumnIndex(7, 1, animalGrid);
 		Text dateText = (Text) node;
 		DateFormat shortDateFormat = DateFormat.getDateTimeInstance
-				(DateFormat.SHORT, DateFormat.SHORT, MainWindow.locale);
+				(DateFormat.SHORT, DateFormat.SHORT, Locale.getDefault());
 		dateText.setText(shortDateFormat.format(date.getTime()));
 	}
 
