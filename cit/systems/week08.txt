@@ -1,0 +1,15 @@
+# User privilege specification
+root ALL=(ALL) ALL
+
+bob ALL = NOPASSWD : /usr/sbin/useradd
+alice ALL = NOPASSWD : /usr/bin/passwd
+%myGroup, steve ALL = NOPASSWD : /usr/sbin/useradd
+bob ALL = NOPASSWD : /usr/bin/passwd, !/usr/bin/passwd *root*
+bob ALL = NOPASSWD : /bin/su , /bin/su *root*
+
+ADMIN ALL = NOPASSWD : TASK
+
+# User alias specification
+User_Alias ADMINS = jane, mary, bob
+# Cmnd alias specification
+Cmnd_Alias TASK = /usr/sbin/useradd, /usr/bin
