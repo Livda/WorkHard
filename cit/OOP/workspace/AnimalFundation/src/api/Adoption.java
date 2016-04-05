@@ -11,6 +11,9 @@ public class Adoption extends Category{
 	private boolean neutered;
 	private boolean chipped;
 	private boolean vaccinated;
+	private boolean reserved;
+	private enum status {inTraining, ready};
+	
 	
 	/**
 	 * Adoption full constructor
@@ -122,5 +125,19 @@ public class Adoption extends Category{
 	 */
 	public void setVaccinated(boolean vaccinated) {
 		this.vaccinated = vaccinated;
+	}
+
+	/**
+	 * @return the reserved
+	 */
+	public boolean isReserved() {
+		return reserved;
+	}
+
+	/**
+	 * @param reserved the reserved to set
+	 */
+	public void setReserved(boolean reserved) {
+		this.reserved = reserved;
 	}
 }

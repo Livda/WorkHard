@@ -4,13 +4,12 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Comparator;
 
 /**
  * @author Aurelien Fontaine
  * @version 1.0
  */
-public class Animal implements Comparable<Animal>, Comparator<Animal>{
+public class Animal implements Comparable<Animal>{
 	private static int nextId = 0;
 	private int id;
 	private int age;
@@ -201,7 +200,7 @@ public class Animal implements Comparable<Animal>, Comparator<Animal>{
 	}
 	
 	/**
-	 * 
+	 * Empty constructor for tests
 	 */
 	public Animal() {
 		id = age = -1;
@@ -211,10 +210,13 @@ public class Animal implements Comparable<Animal>, Comparator<Animal>{
 		animalCategory = null;
 		type = null;
 	}
+	
+	@Override
 	public String toString() {
 		return id + "," + age + "," + colour + "," + gender + "," + description 
 				+ "," + name + "," + pathToPicture + "," + breed + "," 
-				+ animalCategory.getCategoryLetter() + "," +  animalCategory.getId() + "," + type;
+				+ animalCategory.getCategoryLetter() + "," +  animalCategory.getId() + "," 
+				+ type;
 	}
 	
 	/**
@@ -307,23 +309,9 @@ public class Animal implements Comparable<Animal>, Comparator<Animal>{
 					+ e.getMessage());
 		}
 	}
-	/* (non-Javadoc)
-	 * @see java.lang.Comparable#compareTo(java.lang.Object)
-	 */
+	
 	@Override
 	public int compareTo(Animal o) {
-		int res = this.name.compareTo(o.getName());
-		if (res == 0){
-			return this.id < o.getId() ? -1 : 1;
-		} else {
-			return res;
-		}
+		return this.name.compareTo(o.name);
 	}
-	
-	public int compare(Animal a1, Animal a2){
-		char cat1 = a1.getAnimalCategory().getCategoryLetter();
-		char cat2 = a2.getAnimalCategory().getCategoryLetter();
-		return cat1 - cat2; 
-	}
-	
 }
