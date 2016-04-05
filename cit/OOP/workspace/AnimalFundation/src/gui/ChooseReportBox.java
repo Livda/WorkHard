@@ -3,10 +3,13 @@
  */
 package gui;
 
+import java.time.LocalDate;
+
 import controlers.ReportHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
@@ -26,10 +29,10 @@ public class ChooseReportBox {
 	public ChooseReportBox(Stage stage){	
 		
 		//General reports
-		Text allAnimalText = new Text("General reports");
-		RadioButton allAnimals = new RadioButton("All the animals");
+		Text allAnimalText = new Text(Messages.getString("general_reports"));
+		RadioButton allAnimals = new RadioButton(Messages.getString("all_animals"));
 		allAnimals.setSelected(true);
-		RadioButton allSponsors = new RadioButton("All the sponsors");
+		RadioButton allSponsors = new RadioButton(Messages.getString("all_sponsors"));
 		ToggleGroup generalGroup = new ToggleGroup();
 		allAnimals.setToggleGroup(generalGroup);
 		allSponsors.setToggleGroup(generalGroup);
@@ -51,12 +54,12 @@ public class ChooseReportBox {
 		generalGenerateButton.setOnAction(new ReportHandler(sortBox, stage));
 		
 		//Adoption report
-		Text adoptionText = new Text("Adoption reports");
+		Text adoptionText = new Text(Messages.getString("adoption_reports"));
 		
-		RadioButton adoptionByName = new RadioButton("Ready for adoption sort by name");
+		RadioButton adoptionByName = new RadioButton(Messages.getString("ready_adoption_name"));
 		adoptionByName.setSelected(true);
-		RadioButton adoptionByAge = new RadioButton("Ready for adoption sort by age");
-		RadioButton adoptionPuppies = new RadioButton("Puppies in training");
+		RadioButton adoptionByAge = new RadioButton(Messages.getString("ready_adoption_age"));
+		RadioButton adoptionPuppies = new RadioButton(Messages.getString("puppies_training"));
 		ToggleGroup adoptionGroup = new ToggleGroup();
 		adoptionByName.setToggleGroup(adoptionGroup);
 		adoptionByAge.setToggleGroup(adoptionGroup);
@@ -75,12 +78,11 @@ public class ChooseReportBox {
 				adoptionPuppies, adoptionButtonBox);
 		
 		//Found report
-		Text foundText = new Text("Found reports");
-		RadioButton foundLocation = new RadioButton("In a certain location");
+		Text foundText = new Text(Messages.getString("found_reports"));
+		RadioButton foundLocation = new RadioButton(Messages.getString("in_location"));
 		foundLocation.setSelected(true);
-		RadioButton foundDate = new RadioButton("Between certain dates");
-		RadioButton foundBoth = new RadioButton("In a certain location + between certain "
-				+ "dates");
+		RadioButton foundDate = new RadioButton(Messages.getString("between_dates"));
+		RadioButton foundBoth = new RadioButton(Messages.getString("location_and_dates"));
 		ToggleGroup foundGroup = new ToggleGroup();
 		foundLocation.setToggleGroup(foundGroup);
 		foundDate.setToggleGroup(foundGroup);
@@ -88,6 +90,11 @@ public class ChooseReportBox {
 		
 		TextField foundLocationField = new TextField();
 		foundLocationField.setPromptText(Messages.getString("location"));
+		
+		DatePicker begin = new DatePicker(LocalDate.now());
+		begin.setDisable(true);
+		DatePicker end = new DatePicker(LocalDate.now().plusDays(1));
+		end.setDisable(true);
 		
 		HBox foundButtonBox = new HBox(10);
 		Button foundGenerateButton = new Button(Messages.getString("generate_report"));
@@ -98,14 +105,14 @@ public class ChooseReportBox {
 		
 		VBox foundBox = new VBox(10);
 		foundBox.setAlignment(Pos.TOP_CENTER);
-		foundBox.getChildren().addAll(foundText, foundLocation, foundLocationField,
-				foundDate, foundBoth, foundButtonBox);
+		foundBox.getChildren().addAll(foundText, foundLocation, foundDate, foundBoth, 
+				foundLocationField, begin, end, foundButtonBox);
 		
 		//Lost report
-		Text lostText = new Text("Lost reports");
-		RadioButton location = new RadioButton("All animals lost in a certain location");
+		Text lostText = new Text(Messages.getString("lost_reports"));
+		RadioButton location = new RadioButton(Messages.getString("all_lost_location"));
 		location.setSelected(true);
-		RadioButton catLocation = new RadioButton("Cats lost in a certain location");
+		RadioButton catLocation = new RadioButton(Messages.getString("cats_lost_location"));
 		ToggleGroup lostGroup = new ToggleGroup();
 		location.setToggleGroup(lostGroup);
 		catLocation.setToggleGroup(lostGroup);
