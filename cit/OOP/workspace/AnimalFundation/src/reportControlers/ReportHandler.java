@@ -1,7 +1,7 @@
 /**
  * 
  */
-package controlers;
+package reportControlers;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -14,6 +14,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import api.AgeComparator;
 import api.Animal;
@@ -39,16 +40,15 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 	private static File report = new File("report/report.tex");
 	private VBox sortBox;
 	private Stage stage;
-	
+
 	public ReportHandler(VBox sortBox,Stage stage){
 		this.sortBox = sortBox;
 		this.stage = stage;
 	}
 
 	public void handle(ActionEvent event){
-		try {
 			this.initialise();
-			
+
 			RadioButton firstButton = (RadioButton)sortBox.getChildren().get(0);
 			String option = firstButton.isSelected() ? "animals": "persons";
 			if (option.equals("animals")) {
@@ -57,6 +57,11 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 				this.fillPerson();				
 			}
 			this.finish();
+			process();
+	}
+
+	private void process(){
+		try {
 			Process process = new ProcessBuilder(
 					pathToPdfLatex, 
 					"-output-directory=report",
@@ -70,7 +75,7 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 				System.out.println(line);
 			}
 			br.close();
-			
+
 			process = new ProcessBuilder(pathToPdfReader, "report/report.pdf").start();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -91,8 +96,8 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 			bw.write("\\hline");
 			bw.newLine();
 			bw.write("\\textbf{" + Messages.getString("name") + "} & \\textbf{" + 
-			Messages.getString("adress") + "} & \\textbf{" + Messages.getString("phone")
-			+ "} & " + "\\textbf{" + Messages.getString("email") + "} \\\\");
+					Messages.getString("adress") + "} & \\textbf{" + Messages.getString("phone")
+					+ "} & " + "\\textbf{" + Messages.getString("email") + "} \\\\");
 			bw.newLine();
 			bw.write("\\hline");
 			bw.newLine();
@@ -118,58 +123,20 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 			bw.close();
 		}
 		catch (IOException e){
-				System.out.println("Error when trying to finish the person part : " 
-						+ e.getMessage());
+			System.out.println("Error when trying to finish the person part : " 
+					+ e.getMessage());
 		}
 	}
 
 	private void fillAnimal(){
-		BufferedWriter bw;
-		try {
-			bw = new BufferedWriter(new FileWriter(report, true));
-			bw.write("\\part*{" + Messages.getString("animals") + "}");
-			bw.newLine();
-			bw.write("\\begin{center}");
-			bw.newLine();
-			bw.write("\\begin{tabular}{|c|c|p{5cm}|c|c|c|c|}");
-			bw.newLine();
-			bw.write("\\hline");
-			bw.newLine();
-			bw.write("\\textbf{" + Messages.getString("name") + "} & \\textbf{" + 
-					Messages.getString("age") + "} & \\textbf{"	+ 
-					Messages.getString("description") + "} & \\textbf{" + 
-					Messages.getString("color") + "}& \\textbf{" + Messages.getString("breed") + 
-					"} & \\textbf{" + Messages.getString("type") + "} & \\textbf{" + 
-					Messages.getString("category") + "} \\\\");
-			bw.newLine();
-			bw.write("\\hline");
-			bw.newLine();
-			bw.flush();
-			bw.close();
-		}
-		catch (IOException e){
-			System.out.println("Error when trying to initialise the animal part : " 
-					+ e.getMessage());
-		}
-		
+		this.initialiseAnimalPart();
+
 		ArrayList<Animal> list = MainWindow.shelter.getAllAnimals();
 		Collections.sort(list, new AgeComparator());			
 		for(Animal a : list){
 			a.fillReport(report);
 		}
-		try {
-			bw = new BufferedWriter(new FileWriter(report, true));
-			bw.write("\\end{tabular}");
-			bw.newLine();
-			bw.write("\\end{center}");
-			bw.newLine();
-			bw.flush();
-			bw.close();
-		}
-		catch (IOException e){
-				System.out.println("Error when trying to finish the animal part : " 
-						+ e.getMessage());
-		}
+		this.endAnimalPart();
 	}
 
 	private void initialise(){
@@ -201,7 +168,7 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 					+ e.getMessage());
 		}
 	}
-	
+
 	private void finish(){
 		BufferedReader br;
 		BufferedWriter bw;
@@ -220,5 +187,64 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 			System.out.println("Error when trying to finish the report file : " 
 					+ e.getMessage());
 		}
+	}
+
+	private void initialiseAnimalPart(){
+		BufferedWriter bw;
+		try {
+			bw = new BufferedWriter(new FileWriter(report, true));
+			bw.write("\\part*{" + Messages.getString("animals") + "}");
+			bw.newLine();
+			bw.write("\\begin{center}");
+			bw.newLine();
+			bw.write("\\begin{tabular}{|c|c|p{5cm}|c|c|c|c|}");
+			bw.newLine();
+			bw.write("\\hline");
+			bw.newLine();
+			bw.write("\\textbf{" + Messages.getString("name") + "} & \\textbf{" + 
+					Messages.getString("age") + "} & \\textbf{"	+ 
+					Messages.getString("description") + "} & \\textbf{" + 
+					Messages.getString("color") + "}& \\textbf{" + Messages.getString("breed") + 
+					"} & \\textbf{" + Messages.getString("type") + "} & \\textbf{" + 
+					Messages.getString("category") + "} \\\\");
+			bw.newLine();
+			bw.write("\\hline");
+			bw.newLine();
+			bw.flush();
+			bw.close();
+		}
+		catch (IOException e){
+			System.out.println("Error when trying to initialise the animal part : " 
+					+ e.getMessage());
+		}
+	}
+
+	private void endAnimalPart() {
+		BufferedWriter bw;
+		try {
+			bw = new BufferedWriter(new FileWriter(report, true));
+			bw.write("\\end{tabular}");
+			bw.newLine();
+			bw.write("\\end{center}");
+			bw.newLine();
+			bw.flush();
+			bw.close();
+		}
+		catch (IOException e){
+			System.out.println("Error when trying to finish the animal part : " 
+					+ e.getMessage());
+		}
+	}
+
+	public void fillAnimalByList(List<Animal> list){
+		initialise();
+		initialiseAnimalPart();
+		Collections.sort(list);
+		for (Animal a : list) {
+			a.fillReport(report);
+		}
+		endAnimalPart();
+		finish();
+		process();
 	}
 }

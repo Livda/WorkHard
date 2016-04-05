@@ -5,7 +5,6 @@ package gui;
 
 import java.time.LocalDate;
 
-import controlers.ReportHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -17,6 +16,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import reportControlers.LostHandler;
+import reportControlers.ReportHandler;
 
 /**
  * @author Aurelien Fontaine
@@ -109,6 +110,7 @@ public class ChooseReportBox {
 				foundLocationField, begin, end, foundButtonBox);
 		
 		//Lost report
+		boolean cat = false;
 		Text lostText = new Text(Messages.getString("lost_reports"));
 		RadioButton location = new RadioButton(Messages.getString("all_lost_location"));
 		location.setSelected(true);
@@ -122,6 +124,7 @@ public class ChooseReportBox {
 		
 		HBox lostButtonBox = new HBox(10);
 		Button lostGenerateButton = new Button(Messages.getString("generate_report"));
+		lostGenerateButton.setOnAction(new LostHandler(stage, lostLocation, cat));
 		Button lostCancelButton = new Button(Messages.getString("cancel"));
 		lostCancelButton.setOnAction(e -> stage.close());
 		lostButtonBox.getChildren().addAll(lostGenerateButton, lostCancelButton);

@@ -13,6 +13,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import reportControlers.ReportHandler;
 
 /**
  * @author Aurelien Fontaine
