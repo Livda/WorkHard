@@ -16,6 +16,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import reportControlers.FoundHandler;
 import reportControlers.LostHandler;
 import reportControlers.ReportHandler;
 
@@ -79,16 +80,6 @@ public class ChooseReportBox {
 				adoptionPuppies, adoptionButtonBox);
 		
 		//Found report
-		Text foundText = new Text(Messages.getString("found_reports"));
-		RadioButton foundLocation = new RadioButton(Messages.getString("in_location"));
-		foundLocation.setSelected(true);
-		RadioButton foundDate = new RadioButton(Messages.getString("between_dates"));
-		RadioButton foundBoth = new RadioButton(Messages.getString("location_and_dates"));
-		ToggleGroup foundGroup = new ToggleGroup();
-		foundLocation.setToggleGroup(foundGroup);
-		foundDate.setToggleGroup(foundGroup);
-		foundBoth.setToggleGroup(foundGroup);
-		
 		TextField foundLocationField = new TextField();
 		foundLocationField.setPromptText(Messages.getString("location"));
 		
@@ -97,8 +88,24 @@ public class ChooseReportBox {
 		DatePicker end = new DatePicker(LocalDate.now().plusDays(1));
 		end.setDisable(true);
 		
+		FoundHandler foundHandler = new FoundHandler(foundLocationField, begin, end, stage);
+
+		Text foundText = new Text(Messages.getString("found_reports"));
+		RadioButton foundLocation = new RadioButton(Messages.getString("in_location"));
+		foundLocation.setSelected(true);
+		foundLocation.setOnAction(e -> foundHandler.setOnlyLocation());
+		RadioButton foundDate = new RadioButton(Messages.getString("between_dates"));
+		foundDate.setOnAction(e -> foundHandler.setOnlyBetweenDates());
+		RadioButton foundBoth = new RadioButton(Messages.getString("location_and_dates"));
+		foundBoth.setOnAction(e -> foundHandler.setLocationAndDates());
+		ToggleGroup foundGroup = new ToggleGroup();
+		foundLocation.setToggleGroup(foundGroup);
+		foundDate.setToggleGroup(foundGroup);
+		foundBoth.setToggleGroup(foundGroup);
+		
 		HBox foundButtonBox = new HBox(10);
 		Button foundGenerateButton = new Button(Messages.getString("generate_report"));
+		foundGenerateButton.setOnAction(foundHandler);
 		Button foundCancelButton = new Button(Messages.getString("cancel"));
 		foundCancelButton.setOnAction(e -> stage.close());
 		foundButtonBox.getChildren().addAll(foundGenerateButton, foundCancelButton);

@@ -22,7 +22,7 @@ public class MainWindow extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Locale.setDefault(new Locale("en"));
+			Locale.setDefault(new Locale("fr"));
 			shelter = new AnimalShelter();
 			mainBox = new VBox(10);	
 			table = new TableViewBox();
