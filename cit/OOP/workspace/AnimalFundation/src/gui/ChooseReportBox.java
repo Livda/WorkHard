@@ -17,6 +17,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import reportControlers.FoundHandler;
+import reportControlers.GeneralHandler;
 import reportControlers.LostHandler;
 import reportControlers.ReportHandler;
 
@@ -45,6 +46,7 @@ public class ChooseReportBox {
 		
 		HBox generalButtonBox = new HBox(10);
 		Button generalGenerateButton = new Button(Messages.getString("generate_report"));
+		generalGenerateButton.setOnAction(new GeneralHandler(allAnimals, allSponsors, stage));
 		Button generalCancelButton = new Button(Messages.getString("cancel"));
 		generalCancelButton.setOnAction(e -> stage.close());
 		generalButtonBox.getChildren().addAll(generalGenerateButton, generalCancelButton);
@@ -53,7 +55,6 @@ public class ChooseReportBox {
 		VBox generalBox = new VBox(10);
 		generalBox.setAlignment(Pos.TOP_CENTER);
 		generalBox.getChildren().addAll(allAnimalText, sortBox, generalButtonBox);
-		generalGenerateButton.setOnAction(new ReportHandler(sortBox, stage));
 		
 		//Adoption report
 		Text adoptionText = new Text(Messages.getString("adoption_reports"));

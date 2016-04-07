@@ -83,17 +83,17 @@ public class FoundHandler implements EventHandler<ActionEvent> {
 		}
 		switch (option){
 		case 1:
-			new ReportHandler(null, stage).fillAnimalByList(locationList);
+			new ReportHandler(stage).fillAnimalByList(locationList);
 			break;
 		case 2:
-			new ReportHandler(null, stage).fillAnimalByList(datesList);
+			new ReportHandler(stage).fillAnimalByList(datesList);
 			break;
 		case 3:
 			List<Animal> res = new ArrayList<Animal>();
 			for(Animal a : locationList){
 				if (datesList.contains(a)) res.add(a);
 			}
-			new ReportHandler(null, stage).fillAnimalByList(res);
+			new ReportHandler(stage).fillAnimalByList(res);
 			break;
 		}
 	}

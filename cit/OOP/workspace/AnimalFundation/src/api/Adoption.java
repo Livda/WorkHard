@@ -11,8 +11,9 @@ public class Adoption extends Category{
 	private boolean neutered;
 	private boolean chipped;
 	private boolean vaccinated;
+	//TODO integrate this new attributes in the code
 	private boolean reserved;
-	//private enum status {inTraining, ready};
+	private boolean ready;
 	
 	
 	/**
@@ -139,5 +140,19 @@ public class Adoption extends Category{
 	 */
 	public void setReserved(boolean reserved) {
 		this.reserved = reserved;
+	}
+
+	/**
+	 * @return the ready
+	 */
+	public boolean isReady() {
+		return ready;
+	}
+
+	/**
+	 * @param ready the ready to set
+	 */
+	public void setReady(boolean ready) {
+		this.ready = ready;
 	}
 }

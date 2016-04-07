@@ -48,7 +48,7 @@ public class LostHandler implements EventHandler<ActionEvent> {
 				}
 			}
 		}
-		new ReportHandler(null, stage).fillAnimalByList(res);
+		new ReportHandler(stage).fillAnimalByList(res);
 	}
 	
 }

@@ -38,26 +38,13 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 	private static File header = new File("report/header");
 	private static File footer = new File("report/footer");
 	private static File report = new File("report/report.tex");
-	private VBox sortBox;
 	private Stage stage;
 
-	public ReportHandler(VBox sortBox,Stage stage){
-		this.sortBox = sortBox;
+	public ReportHandler(Stage stage){
 		this.stage = stage;
 	}
 
 	public void handle(ActionEvent event){
-			this.initialise();
-
-			RadioButton firstButton = (RadioButton)sortBox.getChildren().get(0);
-			String option = firstButton.isSelected() ? "animals": "persons";
-			if (option.equals("animals")) {
-				this.fillAnimal();				
-			} else {
-				this.fillPerson();				
-			}
-			this.finish();
-			process();
 	}
 
 	private void process(){
@@ -126,17 +113,6 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 			System.out.println("Error when trying to finish the person part : " 
 					+ e.getMessage());
 		}
-	}
-
-	private void fillAnimal(){
-		this.initialiseAnimalPart();
-
-		ArrayList<Animal> list = MainWindow.shelter.getAllAnimals();
-		Collections.sort(list, new AgeComparator());			
-		for(Animal a : list){
-			a.fillReport(report);
-		}
-		this.endAnimalPart();
 	}
 
 	private void initialise(){
@@ -244,6 +220,13 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 			a.fillReport(report);
 		}
 		endAnimalPart();
+		finish();
+		process();
+	}
+	
+	public void fillAllPerson(){
+		initialise();
+		fillPerson();
 		finish();
 		process();
 	}
