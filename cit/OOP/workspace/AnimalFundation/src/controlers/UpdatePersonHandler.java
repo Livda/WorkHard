@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package controlers;
 
@@ -26,34 +26,34 @@ public class UpdatePersonHandler implements EventHandler<ActionEvent> {
 	private Animal animal;
 	private Stage stage;
 	private static UpdatePersonHandler INSTANCE = null;
-	
+
 	private UpdatePersonHandler(Animal a, Person p){
 		this.animal = a;
 		this.person = p;
 	}
-	
+
 	public static UpdatePersonHandler getInstance(Animal a, Person p) {
 		if (INSTANCE == null) INSTANCE = new UpdatePersonHandler(a, p);
 		return INSTANCE;
 	}
-	
+
 	public void handle(ActionEvent event){
 		stage = new Stage();
 		stage.initStyle(StageStyle.UTILITY);
-		
+
 		VBox box = new UpdatePersonBox(animal, person).getMainBox();
 		Scene scene = new Scene(box);
 		stage.setScene(scene);
 		stage.setTitle(Messages.getString("update_person"));
 		stage.show();
 	}
-	
+
 	public void update(ActionEvent event) {
 		AnimalShelter shelter = MainWindow.shelter;
 		shelter.updatePerson(person);
 		stage.close();
 	}
-	
+
 	public void keep(ActionEvent event) {
 		AnimalShelter shelter = MainWindow.shelter;
 		int index = shelter.getAllPersons().indexOf(person);

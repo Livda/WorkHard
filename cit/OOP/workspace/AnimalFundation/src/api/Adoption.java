@@ -13,8 +13,8 @@ public class Adoption extends Category{
 	private boolean vaccinated;
 	private boolean reserved;
 	private boolean ready;
-	
-	
+
+
 	/**
 	 * Adoption full constructor
 	 * @param id The id of the new Adoption category
@@ -24,14 +24,14 @@ public class Adoption extends Category{
 	 * @param chip Is the animal chipped
 	 * @param vac Is the animal vaccinated
 	 */
-	public Adoption(int id, LocalDate date, Person contact, 
+	public Adoption(int id, LocalDate date, Person contact,
 			boolean neut, boolean chip, boolean vac){
 		super(id, date, contact);
 		this.neutered = neut;
 		this.chipped = chip;
 		this.vaccinated = vac;
 	}
-	
+
 	/**
 	 * Adoption full constructor without the id mentionned
 	 * @param id The id of the new Adoption category
@@ -41,7 +41,7 @@ public class Adoption extends Category{
 	 * @param chip Is the animal chipped
 	 * @param vac Is the animal vaccinated
 	 */
-	public Adoption(LocalDate date, Person contact, 
+	public Adoption(LocalDate date, Person contact,
 			boolean neut, boolean chip, boolean vac, boolean reserved, boolean ready){
 		super(date, contact);
 		this.neutered = neut;
@@ -50,24 +50,24 @@ public class Adoption extends Category{
 		this.reserved = reserved;
 		this.ready = ready;
 	}
-	
+
 	public char getCategoryLetter() {
 		return 'a';
 	}
-	
+
 	public String toString(){
 		return "Adoption";
 	}
-	
+
 	public String toStringForSave() {
-		return super.toStringForSave() + "," + neutered + "," + chipped 
+		return super.toStringForSave() + "," + neutered + "," + chipped
 				+ "," + vaccinated + "," + reserved + "," + ready;
 	}
 
 	public void print() {
 		System.out.println(this.toStringForSave());
 	}
-	
+
 	/**
 	 * Load an Adoption object from a String array an a Map with the Person
 	 * @param s The String array
@@ -78,7 +78,7 @@ public class Adoption extends Category{
 		int year = Integer.parseInt(s[1]);
 		int month = Integer.parseInt(s[2]);
 		int day = Integer.parseInt(s[3]);
-		LocalDate date = LocalDate.of(year, month, day); 
+		LocalDate date = LocalDate.of(year, month, day);
 		int idPerson = Integer.parseInt(s[4]);
 		Person person = pTable.get(idPerson);
 		boolean neutered = Boolean.parseBoolean(s[5]);

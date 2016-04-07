@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package controlers;
 
@@ -14,7 +14,7 @@ import javafx.event.EventHandler;
  *
  */
 public class SaveHandler implements EventHandler <ActionEvent> {
-	
+
 	public void handle(ActionEvent e) {
 		Saver save = new Saver();
 		save.save(MainWindow.shelter);

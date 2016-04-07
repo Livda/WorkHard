@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package reportControlers;
 
@@ -14,7 +14,7 @@ import javafx.event.EventHandler;
 public class BoxHandler implements EventHandler<ActionEvent> {
 
 	public void handle(ActionEvent event){
-		
+
 	}
-	
+
 }

@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package gui;
 
@@ -26,39 +26,39 @@ import javafx.scene.text.Text;
 public class AnimalBoxEditable extends AnimalBox {
 	private GridPane animalGrid;
 	private GridPane categoryGrid;
-	
+
 	public AnimalBoxEditable(){
 		super();
 		this.animalGrid = this.getAnimalGrid();
 		this.categoryGrid = this.getCategoryGrid();
 		String example = Messages.getString("example");
-		
+
 		TextField setAnimalName = new TextField();
 		setAnimalName.setPromptText(example + Messages.getString("animal_name_example"));
 		animalGrid.add(setAnimalName, 1, 0);
-		
+
 		NumberTextField ageNumber = new NumberTextField();
 		ageNumber.setPromptText(example + Messages.getString("age_example"));
 		animalGrid.add(ageNumber, 1, 1);
-		
+
 		TextField setAnimalColor = new TextField();
 		setAnimalColor.setPromptText(example + Messages.getString("color_example"));
 		animalGrid.add(setAnimalColor, 1, 2);
-		
+
 		TextArea description = new TextArea();
 		description.setMaxSize(300, 50);
 		description.setPromptText(example + Messages.getString("description_example"));
 		animalGrid.add(description, 1, 3);
-		
+
 		ChoiceBox<String> setAnimalBreed = new ChoiceBox<String>();
 		setAnimalBreed.getItems().addAll("Dog", "Cat");
 		setAnimalBreed.getSelectionModel().selectFirst();
 		animalGrid.add(setAnimalBreed, 1, 4);
-		
+
 		TextField setAnimalType = new TextField();
 		setAnimalType.setPromptText(example + Messages.getString("type_example"));
 		animalGrid.add(setAnimalType, 1, 5);
-		
+
 		ToggleGroup genderGroup = new ToggleGroup();
 		RadioButton maleBox = new RadioButton(Messages.getString("male"));
 		maleBox.setToggleGroup(genderGroup);
@@ -69,10 +69,10 @@ public class AnimalBoxEditable extends AnimalBox {
 		gender.getChildren().addAll(maleBox, femaleBox);
 		animalGrid.add(gender, 1, 6);
 		gender.setAlignment(Pos.CENTER);
-		
+
 		DatePicker datePicker = new DatePicker(LocalDate.now());
 		animalGrid.add(datePicker, 1, 7);
-				
+
 		ToggleGroup categoryGroup = new ToggleGroup();
 		RadioButton adoptionButton = new RadioButton("Adoption");
 		adoptionButton.setToggleGroup(categoryGroup);
@@ -90,21 +90,21 @@ public class AnimalBoxEditable extends AnimalBox {
 		animalGrid.add(categoryBox, 1, 8);
 		this.setCategoryGrid(0);
 	}
-	
+
 	public String getName(){
 		Node node = getNodeByRowColumnIndex(0, 1, animalGrid);
-		TextField nameField = (TextField) node; 
+		TextField nameField = (TextField) node;
 		this.testEmptyField(nameField);
 		String name = nameField.getText();
 		return name;
 	}
-	
+
 	public void setName(String name){
 		Node node = getNodeByRowColumnIndex(0, 1, animalGrid);
-		TextField nameField = (TextField) node; 
+		TextField nameField = (TextField) node;
 		nameField.setText(name);
 	}
-	
+
 	public int getAge(){
 		Node node = getNodeByRowColumnIndex(1, 1, animalGrid);
 		TextField ageField = (TextField) node;
@@ -112,13 +112,13 @@ public class AnimalBoxEditable extends AnimalBox {
 		int age = error ? -1 : Integer.parseInt(ageField.getText());
 		return age;
 	}
-	
+
 	public void setAge(int age){
 		Node node = getNodeByRowColumnIndex(1, 1, animalGrid);
 		TextField ageField = (TextField) node;
 		ageField.setText(String.valueOf(age));
 	}
-	
+
 	public String getColour(){
 		Node node = getNodeByRowColumnIndex(2, 1, animalGrid);
 		TextField colourField = (TextField) node;
@@ -126,7 +126,7 @@ public class AnimalBoxEditable extends AnimalBox {
 		String colour = colourField.getText();
 		return colour;
 	}
-	
+
 	public void setColour(String colour){
 		Node node = getNodeByRowColumnIndex(2, 1, animalGrid);
 		TextField colourField = (TextField) node;
@@ -140,7 +140,7 @@ public class AnimalBoxEditable extends AnimalBox {
 		String description = descriptionArea.getText();
 		return description;
 	}
-	
+
 	public void setDescription(String description){
 		Node node = getNodeByRowColumnIndex(3, 1, animalGrid);
 		TextArea descriptionArea = (TextArea) node;
@@ -153,7 +153,7 @@ public class AnimalBoxEditable extends AnimalBox {
 		String breed = (String)((ChoiceBox<String>)node).getValue();
 		return breed;
 	}
-	
+
 	public void setBreed(String breed){
 		Node node = getNodeByRowColumnIndex(4, 1, animalGrid);
 		@SuppressWarnings("unchecked")
@@ -168,7 +168,7 @@ public class AnimalBoxEditable extends AnimalBox {
 		String type = typeField.getText();
 		return type;
 	}
-	
+
 	public void setType(String type) {
 		Node node = getNodeByRowColumnIndex(5, 1, animalGrid);
 		TextField typeField = (TextField) node;
@@ -178,11 +178,11 @@ public class AnimalBoxEditable extends AnimalBox {
 	public boolean getGender(){
 		Node node = getNodeByRowColumnIndex(6, 1, animalGrid);
 		HBox buttonBox = (HBox)node;
-		RadioButton maleButton = (RadioButton)buttonBox.getChildren().get(0); 
+		RadioButton maleButton = (RadioButton)buttonBox.getChildren().get(0);
 		boolean gender = maleButton.isSelected();
 		return gender;
 	}
-	
+
 	public void setGender(boolean gender) {
 		Node node = getNodeByRowColumnIndex(6, 1, animalGrid);
 		HBox buttonBox = (HBox)node;
@@ -196,7 +196,7 @@ public class AnimalBoxEditable extends AnimalBox {
 		LocalDate date = ((DatePicker)node).getValue();
 		return date;
 	}
-	
+
 	public void setDate(LocalDate date){
 		Node node = getNodeByRowColumnIndex(7, 1, animalGrid);
 		DatePicker datePicker = (DatePicker) node;
@@ -212,7 +212,7 @@ public class AnimalBoxEditable extends AnimalBox {
 		String category = button.getText();
 		return category;
 	}
-	
+
 	public void setCategory(String category){
 		Node node = getNodeByRowColumnIndex(8, 1, animalGrid);
 		HBox categroyBox = ((HBox)node);
@@ -240,7 +240,7 @@ public class AnimalBoxEditable extends AnimalBox {
 		String location = locationField.getText();
 		return location;
 	}
-	
+
 	public void setLocation(String location){
 		Node node  = getNodeByRowColumnIndex(0, 1, categoryGrid);
 		TextField locationField = (TextField) node;
@@ -254,7 +254,7 @@ public class AnimalBoxEditable extends AnimalBox {
 		boolean isNeutered = neutered.isSelected();
 		return isNeutered;
 	}
-	
+
 	public void setNeutered(boolean neutered){
 		Node node = getNodeByRowColumnIndex(0, 1, categoryGrid);
 		HBox neuteuredBox = (HBox)node;
@@ -270,7 +270,7 @@ public class AnimalBoxEditable extends AnimalBox {
 		boolean isChipped = chipped.isSelected();
 		return isChipped;
 	}
-	
+
 	public void setChipped(boolean chipped){
 		Node node = getNodeByRowColumnIndex(1, 1, categoryGrid);
 		HBox chippedBox = (HBox)node;
@@ -286,7 +286,7 @@ public class AnimalBoxEditable extends AnimalBox {
 		boolean isVaccinated = vaccinated.isSelected();
 		return isVaccinated;
 	}
-	
+
 	public void setVaccinated(boolean vaccinated){
 		Node node = getNodeByRowColumnIndex(2, 1, categoryGrid);
 		HBox vaccinatedBox = (HBox)node;
@@ -294,7 +294,7 @@ public class AnimalBoxEditable extends AnimalBox {
 		RadioButton vaccinatedButton = (RadioButton)vaccinatedBox.getChildren().get(i);
 		vaccinatedButton.setSelected(true);
 	}
-	
+
 	public boolean getReserved(){
 		Node node = getNodeByRowColumnIndex(3, 1, categoryGrid);
 		HBox reservedBox = (HBox)node;
@@ -302,7 +302,7 @@ public class AnimalBoxEditable extends AnimalBox {
 		boolean isReserved = reserved.isSelected();
 		return isReserved;
 	}
-	
+
 	public void setReserved(boolean reserved){
 		Node node = getNodeByRowColumnIndex(3, 1, categoryGrid);
 		HBox reservedBox = (HBox) node;
@@ -310,7 +310,7 @@ public class AnimalBoxEditable extends AnimalBox {
 		RadioButton reservedButton = (RadioButton)reservedBox.getChildren().get(i);
 		reservedButton.setSelected(true);
 	}
-	
+
 	public boolean getReady(){
 		Node node = getNodeByRowColumnIndex(4, 1, categoryGrid);
 		HBox readyBox = (HBox) node;
@@ -318,7 +318,7 @@ public class AnimalBoxEditable extends AnimalBox {
 		boolean isReady = ready.isSelected();
 		return isReady;
 	}
-	
+
 	public void setReady(boolean ready){
 		Node node = getNodeByRowColumnIndex(4, 1, categoryGrid);
 		HBox readyBox = (HBox) node;
@@ -326,7 +326,7 @@ public class AnimalBoxEditable extends AnimalBox {
 		RadioButton readyButton = (RadioButton) readyBox.getChildren().get(i);
 		readyButton.setSelected(true);
 	}
-	
+
 	public void setCategoryGrid(int i){
 		categoryGrid.getChildren().clear();
 		if (i == 0) {
@@ -342,7 +342,7 @@ public class AnimalBoxEditable extends AnimalBox {
 			HBox neutered = new HBox(15);
 			neutered.getChildren().addAll(neuteredBox, nonNeuteredBox);
 			categoryGrid.add(neutered, 1, 0);
-			neutered.setAlignment(Pos.CENTER);   
+			neutered.setAlignment(Pos.CENTER);
 
 			Text chippedText = new Text(Messages.getString("chipped") + " :");
 			categoryGrid.add(chippedText, 0, 1);
@@ -371,10 +371,10 @@ public class AnimalBoxEditable extends AnimalBox {
 			vaccinated.getChildren().addAll(vaccinatedBox, nonVaccinatedBox);
 			categoryGrid.add(vaccinated, 1, 2);
 			vaccinated.setAlignment(Pos.CENTER);
-			
+
 			Text reservedText = new Text(Messages.getString("reserved") + " :");
 			categoryGrid.add(reservedText, 0, 3);
-			
+
 			ToggleGroup reservedGroup = new ToggleGroup();
 			RadioButton reservedButton = new RadioButton(Messages.getString("yes"));
 			reservedButton.setToggleGroup(reservedGroup);
@@ -385,10 +385,10 @@ public class AnimalBoxEditable extends AnimalBox {
 			reservedBox.setAlignment(Pos.CENTER);
 			reservedBox.getChildren().addAll(reservedButton, notReservedButton);
 			categoryGrid.add(reservedBox, 1, 3);
-			
+
 			Text readyText = new Text(Messages.getString("ready") + " :");
 			categoryGrid.add(readyText, 0, 4);
-			
+
 			ToggleGroup readyGroup = new ToggleGroup();
 			RadioButton readyButton = new RadioButton(Messages.getString("yes"));
 			readyButton.setToggleGroup(readyGroup);
@@ -409,7 +409,7 @@ public class AnimalBoxEditable extends AnimalBox {
 			categoryGrid.add(locationField, 1, 0);
 		}
 	}
-	
+
 	private class NumberTextField extends TextField
 	{
 

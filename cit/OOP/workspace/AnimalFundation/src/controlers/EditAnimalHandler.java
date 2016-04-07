@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package controlers;
 
@@ -27,12 +27,12 @@ import javafx.event.EventHandler;
 public class EditAnimalHandler implements EventHandler<ActionEvent> {
 	private AnimalBoxEditable animalBox;
 	private PersonBoxEditable personBox;
-	
+
 	public EditAnimalHandler(AnimalBoxEditable animalBox, PersonBoxEditable personBox){
 		this.animalBox = animalBox;
 		this.personBox = personBox;
 	}
-	
+
 	public void handle(ActionEvent event){
 		AnimalShelter shelter = MainWindow.shelter;
 		Box.errorInTheFields = false;
@@ -43,7 +43,7 @@ public class EditAnimalHandler implements EventHandler<ActionEvent> {
 		String phone = personBox.getTelephone();
 		String email = personBox.getEmail();
 		Person p = new Person(pName, adress, phone, email);
-		
+
 		//We create a Category
 		Category newCategory = null;
 		LocalDate date = animalBox.getDate();
@@ -66,7 +66,7 @@ public class EditAnimalHandler implements EventHandler<ActionEvent> {
 			newCategory = new Lost(date, p, lLocal);
 			break;
 		}
-		
+
 		//We create an Animal
 		String aName = animalBox.getName();
 		int age = animalBox.getAge();
@@ -75,10 +75,10 @@ public class EditAnimalHandler implements EventHandler<ActionEvent> {
 		String breed = animalBox.getBreed();
 		String type = animalBox.getType();
 		boolean gender = animalBox.getGender();
-		
-		Animal a = new Animal(age, color, gender, description, aName, null, 
+
+		Animal a = new Animal(age, color, gender, description, aName, null,
 				breed, newCategory, type);
-		
+
 		Animal old = MainWindow.table.getTable().getSelectionModel().getSelectedItem();
 		//remove the old animal and
 		//add the new animal to the shelter

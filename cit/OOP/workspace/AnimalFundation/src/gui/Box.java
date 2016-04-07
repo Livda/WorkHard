@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package gui;
 
@@ -23,9 +23,9 @@ import javafx.scene.text.Text;
 public abstract class Box {
 	private GridPane grid;
 	private VBox vBox;
-	
+
 	public static boolean errorInTheFields;
-	
+
 	@SuppressWarnings("static-access")
 	protected Node getNodeByRowColumnIndex(final int row, final int column, GridPane gridPane){
 		Node result = null;
@@ -38,7 +38,7 @@ public abstract class Box {
 		}
 		return result;
 	}
-	
+
 	public Box(String title) {
 		this.grid = new GridPane();
 		this.grid.setVgap(10);
@@ -77,13 +77,13 @@ public abstract class Box {
 	public void setvBox(VBox vBox) {
 		this.vBox = vBox;
 	}
-	
+
 	public void setTitle(String title){
 		Text titleText = new Text(title);
 		titleText.setFont(Font.font(null, FontWeight.BOLD, 25));
 		this.vBox.getChildren().add(0, titleText);;
 	}
-	
+
 	public boolean testEmptyField(TextField field){
 		boolean test;
 		String text = field.getText();
@@ -97,7 +97,7 @@ public abstract class Box {
 		}
 		return test;
 	}
-	
+
 	public void testEmptyArea(TextArea area){
 		String text = area.getText();
 		if(text.equals("")){

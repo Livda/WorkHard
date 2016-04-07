@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package controlers;
 
@@ -22,7 +22,7 @@ public class ChooseReportHandler implements EventHandler<ActionEvent> {
 	public void handle(ActionEvent event){
 		Stage stagePopUp = new Stage();
 		stagePopUp.initStyle(StageStyle.UTILITY);
-		
+
 		HBox box = new ChooseReportBox(stagePopUp).getMainBox();
 		Scene scene = new Scene(box);
 		stagePopUp.setScene(scene);

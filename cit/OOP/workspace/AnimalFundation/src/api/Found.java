@@ -9,7 +9,7 @@ import java.util.Map;
  */
 public class Found extends Category {
 	private String location;
-	
+
 	/**
 	 * Found full constructor
 	 * @param id The id of the Found object
@@ -21,7 +21,7 @@ public class Found extends Category {
 		super(id, date, contact);
 		this.location = location;
 	}
-	
+
 	/**
 	 * Found full constructor without the id mentioned
 	 * @param id The id of the Found object
@@ -33,7 +33,7 @@ public class Found extends Category {
 		super(date, contact);
 		this.location = location;
 	}
-	
+
 	public char getCategoryLetter(){
 		return 'f';
 	}
@@ -41,16 +41,16 @@ public class Found extends Category {
 	public String toString(){
 		return "Found";
 	}
-	
+
 	public String toStringForSave() {
 		return super.toStringForSave() + "," + location;
 	}
 
 	public void print() {
 		System.out.println(this.toStringForSave());
-		
+
 	}
-	
+
 	/**
 	 * Load an Found object from a String array an a Map with the Person
 	 * @param s The String array

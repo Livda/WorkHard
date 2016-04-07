@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package gui;
 
@@ -23,18 +23,18 @@ import javafx.scene.text.TextAlignment;
  */
 public class UpdatePersonBox {
 	private VBox mainBox;
-	
+
 	public UpdatePersonBox(Animal a, Person p){
 		mainBox = new VBox(10);
 		VBox.setMargin(mainBox, new Insets(20));
-		
+
 		String name = p.getName();
 		Text updateText = new Text(name + " " + Messages.getString("warning_update_person"));
 		updateText.setWrappingWidth(300);
 		updateText.setTextAlignment(TextAlignment.CENTER);
 		updateText.setFont(Font.font(null, FontWeight.BOLD, 15));
-		
-		
+
+
 		UpdatePersonHandler handler = UpdatePersonHandler.getInstance(a, p);
 		Button updateButton = new Button(Messages.getString("update"));
 		updateButton.setOnAction(e -> handler.update(e));
@@ -43,10 +43,10 @@ public class UpdatePersonBox {
 		HBox buttonBox = new HBox(10);
 		buttonBox.setAlignment(Pos.CENTER);
 		buttonBox.getChildren().addAll(updateButton, keepButton);
-		
+
 		mainBox.getChildren().addAll(updateText, buttonBox);
 	}
-	
+
 	public VBox getMainBox(){
 		return mainBox;
 	}

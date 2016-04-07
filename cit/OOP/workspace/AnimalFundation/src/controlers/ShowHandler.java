@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package controlers;
 
@@ -34,7 +34,7 @@ public class ShowHandler implements EventHandler<ActionEvent> {
 		Animal selected = table.getSelectionModel().getSelectedItem();
 		AnimalBoxShow animalShow = new AnimalBoxShow();
 		PersonBoxShow personShow = new PersonBoxShow();
-		
+
 		String name = selected.getName();
 		animalShow.setName(name);
 
@@ -69,16 +69,16 @@ public class ShowHandler implements EventHandler<ActionEvent> {
 			Adoption adoption = (Adoption) category;
 			boolean neutered = adoption.isNeutered();
 			animalShow.setNeutered(neutered);
-			
+
 			boolean chipped = adoption.isChipped();
 			animalShow.setChipped(chipped);
-			
+
 			boolean vaccinated = adoption.isVaccinated();
 			animalShow.setVaccinated(vaccinated);
-			
+
 			boolean reserved = adoption.isReserved();
 			animalShow.setReserved(reserved);
-			
+
 			boolean ready = adoption.isReady();
 			animalShow.setReady(ready);
 		} else {
@@ -94,38 +94,38 @@ public class ShowHandler implements EventHandler<ActionEvent> {
 				animalShow.setLocation(localisation);
 			}
 		}
-		
+
 		Person person = category.getContact();
-		
+
 		String pName = person.getName();
 		personShow.setName(pName);
-		
+
 		String adress = person.getAdress();
 		personShow.setAdress(adress);
-		
+
 		String phone = person.getPhone();
 		personShow.setTelephone(phone);
-		
+
 		String email = person.getEmail();
 		personShow.setEmail(email);
-		
+
 		HBox hBox = new HBox(50);
 		hBox.getChildren().addAll(animalShow.getBox(), personShow.getBox());
 		hBox.setAlignment(Pos.TOP_CENTER);
-		
+
 		Button editButton = new Button(Messages.getString("edit"));
 		editButton.setOnAction(new EditHandler());
-		
+
 		Button deleteButton = new Button(Messages.getString("delete"));
 		deleteButton.setOnAction(new DeleteHandler());
-		
+
 		Button cancleButton = new Button(Messages.getString("cancel"));
 		cancleButton.setOnAction(new ClearHandler());
-		
+
 		HBox buttonBox = new HBox(10);
 		buttonBox.getChildren().addAll(editButton, deleteButton, cancleButton);
 		buttonBox.setAlignment(Pos.CENTER);
-		
+
 		MainWindow.mainBox.getChildren().clear();
 		MainWindow.mainBox.getChildren().addAll(hBox, buttonBox);
 	}

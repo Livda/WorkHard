@@ -1,6 +1,7 @@
 package api;
 
 import java.io.File;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class AnimalShelter {
 	private AnimalList lost;
 	private AnimalList found;
 	private ArrayList<Person> persons;
-	
+
 	/**
 	 * @return the adoption
 	 */
@@ -50,7 +51,7 @@ public class AnimalShelter {
 	public void setFound(AnimalList found) {
 		this.found = found;
 	}
-	
+
 	/**
 	 * Create an empty Shelter
 	 */
@@ -60,7 +61,7 @@ public class AnimalShelter {
 		this.lost = new AnimalList();
 		this.found = new AnimalList();
 	}
-	
+
 	/**
 	 * AnimalShelter constructor by lists
 	 * @param adoption the Adoption list
@@ -77,7 +78,7 @@ public class AnimalShelter {
 		persons.addAll(found.getAllPersons());
 		this.persons = persons;
 	}
-	
+
 	/**
 	 * Save the all Shelter in files
 	 * @param adoption The file where the Adoptions will be saved
@@ -91,7 +92,7 @@ public class AnimalShelter {
 		if(this.found != null) this.found.save(animals, found, persons);
 		if(this.lost != null) this.lost.save(animals, lost, persons);
 	}
-	
+
 	public String toString(){
 		String res = "Animal Shelter :\n";
 		res += "Adoption :\n" + adoption.toString() + "\n";
@@ -99,7 +100,7 @@ public class AnimalShelter {
 		res += "Found :\n" + found.toString();
 		return res;
 	}
-	
+
 	public ArrayList<Animal> getAllAnimals(){
 		ArrayList<Animal> list = new ArrayList<Animal>();
 		List<Animal> temp = adoption.getList();
@@ -110,7 +111,7 @@ public class AnimalShelter {
 		list.addAll(temp);
 		return list;
 	}
-	
+
 	public ArrayList<Person> getAllPersons(){
 		return persons;
 	}
@@ -134,7 +135,7 @@ public class AnimalShelter {
 			break;
 		}
 	}
-	
+
 	/**
 	 * Update the attributes of the Person in the list by the Person passed on parameter
 	 * @param p the Person to take the attributes
@@ -144,7 +145,7 @@ public class AnimalShelter {
 		Person update = persons.get(index);
 		update.updatePerson(p);
 	}
-	
+
 	/**
 	 * Remove an animal from the shelter
 	 * @param a the animal
@@ -163,4 +164,20 @@ public class AnimalShelter {
 			break;
 		}
 	}
-} 
+	
+	public void update(){
+		List<Animal> found = this.found.getList();
+		for(Animal a : found){
+			Found category =(Found) a.getAnimalCategory();
+			LocalDate aMonthAgo = LocalDate.now().minusMonths(1);
+			if (category.getDate().isBefore(aMonthAgo)){
+				Person p = category.getContact();
+				Adoption adoption = new Adoption(LocalDate.now(), p, false, false, false,
+						false, false);
+				a.setAnimalCategory(adoption);;
+				this.adoption.add(a);
+				this.found.remove(a);
+			}
+		}
+	}
+}

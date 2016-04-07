@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package gui;
 
@@ -15,12 +15,12 @@ import javafx.scene.layout.GridPane;
  */
 public class PersonBoxEditable extends PersonBox {
 	private GridPane personGrid;
-	
+
 	public PersonBoxEditable() {
 		super();
 		personGrid = this.getPersonGrid();
 		String example = Messages.getString("example");
-		
+
 		TextField setPersonName = new TextField();
         setPersonName.setPromptText(example + Messages.getString("name_example"));
         personGrid.add(setPersonName, 1, 0);
@@ -33,12 +33,12 @@ public class PersonBoxEditable extends PersonBox {
         TextField setPersonPhone = new TextField();
         setPersonPhone.setPromptText(example + Messages.getString("phone_example"));
         personGrid.add(setPersonPhone, 1, 2);
-        
+
         TextField setPersonEmail = new TextField();
         setPersonEmail.setPromptText(example + Messages.getString("email_example"));
         personGrid.add(setPersonEmail, 1, 3);
 	}
-	
+
 	public String getName(){
 		Node node = getNodeByRowColumnIndex(0, 1, personGrid);
 		TextField nameField = (TextField) node;
@@ -50,7 +50,7 @@ public class PersonBoxEditable extends PersonBox {
 		}
 		return name;
 	}
-	
+
 	public String getAdress(){
 		Node node = getNodeByRowColumnIndex(1, 1, personGrid);
 		TextArea adressField = (TextArea) node;
@@ -62,7 +62,7 @@ public class PersonBoxEditable extends PersonBox {
 		}
 		return adress;
 	}
-	
+
 	public String getTelephone(){
 		Node node = getNodeByRowColumnIndex(2, 1, personGrid);
 		TextField phoneField = (TextField) node;
@@ -74,7 +74,7 @@ public class PersonBoxEditable extends PersonBox {
 		}
 		return phone;
 	}
-	
+
 	public String getEmail(){
 		Node node = getNodeByRowColumnIndex(3, 1, personGrid);
 		TextField emailField = (TextField) node;

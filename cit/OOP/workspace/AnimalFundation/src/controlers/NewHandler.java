@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package controlers;
 
@@ -22,7 +22,7 @@ import javafx.scene.layout.VBox;
 public class NewHandler implements EventHandler<ActionEvent> {
 	private AnimalBoxEditable animalBox;
 	private PersonBoxEditable personBox;
-	
+
 	public void handle(ActionEvent event) {
 		animalBox = new AnimalBoxEditable();
 		VBox animal = animalBox.getBox();
@@ -30,7 +30,7 @@ public class NewHandler implements EventHandler<ActionEvent> {
 		VBox person = personBox.getBox();
 		HBox box = new HBox(10);
 		box.getChildren().addAll(animal, person);
-		
+
 		Button okButton = new Button(Messages.getString("ok"));
 		okButton.setOnAction(new CreateAnimalHandler(animalBox, personBox));
 		Button cancelButton = new Button(Messages.getString("cancel"));

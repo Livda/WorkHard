@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package gui;
 
@@ -25,7 +25,7 @@ import javafx.stage.Stage;
 public class SettingsBox {
 	private VBox mainBox;
 	private GridPane grid;
-	
+
 	public SettingsBox(Stage stage){
 		mainBox = new VBox(10);
 		VBox.setMargin(mainBox, new Insets(20));
@@ -33,10 +33,10 @@ public class SettingsBox {
 		grid.setAlignment(Pos.CENTER);
 		grid.setVgap(10);
 		grid.setHgap(10);
-		
+
 		Text languageText = new Text(Messages.getString("language") + " :");
 		grid.add(languageText, 0, 0);
-		
+
 		ChoiceBox<String> language = new ChoiceBox<>();
 		String locale = Locale.getDefault().getLanguage();
 		language.getItems().addAll(Messages.getString("english"), Messages.getString("french"));
@@ -49,17 +49,17 @@ public class SettingsBox {
 			break;
 		}
 		grid.add(language, 1, 0);
-		
+
 		Text latexText = new Text(Messages.getString("path_to_latex"));
 		grid.add(latexText, 2, 0);
 		TextField latex = new TextField("/usr/bin/pdflatex");
 		grid.add(latex, 3, 0);
-		
+
 		Text pdfText = new Text (Messages.getString("path_to_pdfreader"));
 		grid.add(pdfText, 2, 1);
 		TextField pdfReader = new TextField("/usr/bin/evince");
 		grid.add(pdfReader, 3, 1);
-		
+
 		HBox buttonBox = new HBox(10);
 		buttonBox.setAlignment(Pos.CENTER);
 		Button okButton = new Button(Messages.getString("ok"));
@@ -69,7 +69,7 @@ public class SettingsBox {
 		buttonBox.getChildren().addAll(okButton, cancelButton);
 		mainBox.getChildren().addAll(grid, buttonBox);
 	}
-	
+
 	public VBox getMainGrid(){
 		return mainBox;
 	}

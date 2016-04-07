@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package controlers;
 
@@ -26,12 +26,12 @@ import javafx.event.EventHandler;
 public class CreateAnimalHandler implements EventHandler<ActionEvent>{
 	private AnimalBoxEditable animalBox;
 	private PersonBoxEditable personBox;
-	
+
 	public CreateAnimalHandler(AnimalBoxEditable animalBox, PersonBoxEditable personBox){
 		this.animalBox = animalBox;
 		this.personBox = personBox;
 	}
-	
+
 	public void handle(ActionEvent event){
 		AnimalShelter shelter = MainWindow.shelter;
 		Box.errorInTheFields = false;
@@ -42,7 +42,7 @@ public class CreateAnimalHandler implements EventHandler<ActionEvent>{
 		String phone = personBox.getTelephone();
 		String email = personBox.getEmail();
 		Person p = new Person(pName, adress, phone, email);
-		
+
 		//We create a Category
 		Category newCategory = null;
 		LocalDate date = animalBox.getDate();
@@ -65,7 +65,7 @@ public class CreateAnimalHandler implements EventHandler<ActionEvent>{
 			newCategory = new Lost(date, p, lLocal);
 			break;
 		}
-		
+
 		//We create an Animal
 		String aName = animalBox.getName();
 		int age = animalBox.getAge();
@@ -74,14 +74,14 @@ public class CreateAnimalHandler implements EventHandler<ActionEvent>{
 		String breed = animalBox.getBreed();
 		String type = animalBox.getType();
 		boolean gender = animalBox.getGender();
-		
-		Animal a = new Animal(age, color, gender, description, aName, null, 
+
+		Animal a = new Animal(age, color, gender, description, aName, null,
 				breed, newCategory, type);
-		
+
 		//Add the animal to the shelter
 		if (!Box.errorInTheFields) {
 			if (shelter.getAllPersons().contains(p)) {
-				UpdatePersonHandler.getInstance(a, p).handle(event);; 
+				UpdatePersonHandler.getInstance(a, p).handle(event);;
 			}
 			shelter.add(a);
 			//we add the new animal to the TableView

@@ -24,16 +24,16 @@ public class MainWindow extends Application {
 		try {
 			Locale.setDefault(new Locale("en"));
 			shelter = new AnimalShelter();
-			mainBox = new VBox(10);	
+			mainBox = new VBox(10);
 			table = new TableViewBox();
-			
+
 			Text nothingHere = new Text(Messages.getString("select_create_animal")); //$NON-NLS-1$
 			mainBox.getChildren().add(nothingHere);
 	        VBox tableBox = table.getBox();
-	        
+
 			MenuBar menuBar = new MenuBox().getBox();
 	        menuBar.prefWidthProperty().bind(primaryStage.widthProperty());
-	        
+
 	        BorderPane secondLayout = new BorderPane();
 	        secondLayout.setCenter(mainBox);
 	        mainBox.setAlignment(Pos.CENTER);
@@ -45,27 +45,27 @@ public class MainWindow extends Application {
 	        BorderPane.setMargin(tableBox, new Insets(10));
 	        mainLayout.setTop(menuBar);
 	        mainLayout.setCenter(secondLayout);
-	        
+
 	        Scene scene = new Scene(mainLayout,1000,600);
 	        primaryStage.setScene(scene);
 	        scene.getStylesheets().add("file:ressources/css/textField.css"); //$NON-NLS-1$
 			primaryStage.setTitle(Messages.getString("animal_shelter")); //$NON-NLS-1$
 			primaryStage.getIcons().add(new Image("file:ressources/images/icon.png")); //$NON-NLS-1$
 			primaryStage.show();
-			
+
 		} catch(Exception e) {
 			e.printStackTrace();
-		}	
+		}
 	}
 
 	public static void main(String[] args) {
 		launch(args);
 	}
-	
+
 	public void setMainBox(VBox box){
 		mainBox = box;
 	}
-	
+
 	public VBox getMainBox(){
 		return mainBox;
 	}

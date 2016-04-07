@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package gui;
 
@@ -28,9 +28,9 @@ import reportControlers.LostHandler;
  */
 public class ChooseReportBox {
 	private HBox mainBox;
-	
-	public ChooseReportBox(Stage stage){	
-		
+
+	public ChooseReportBox(Stage stage){
+
 		//General reports
 		Text allAnimalText = new Text(Messages.getString("general_reports"));
 		RadioButton allAnimals = new RadioButton(Messages.getString("all_animals"));
@@ -39,11 +39,11 @@ public class ChooseReportBox {
 		ToggleGroup generalGroup = new ToggleGroup();
 		allAnimals.setToggleGroup(generalGroup);
 		allSponsors.setToggleGroup(generalGroup);
-		
+
 		VBox sortBox = new VBox(10);
 		sortBox.getChildren().addAll(allAnimals, allSponsors);
 		sortBox.setAlignment(Pos.CENTER);
-		
+
 		HBox generalButtonBox = new HBox(10);
 		Button generalGenerateButton = new Button(Messages.getString("generate_report"));
 		generalGenerateButton.setOnAction(new GeneralHandler(allAnimals, allSponsors, stage));
@@ -51,14 +51,14 @@ public class ChooseReportBox {
 		generalCancelButton.setOnAction(e -> stage.close());
 		generalButtonBox.getChildren().addAll(generalGenerateButton, generalCancelButton);
 		generalButtonBox.setAlignment(Pos.CENTER);
-		
+
 		VBox generalBox = new VBox(10);
 		generalBox.setAlignment(Pos.TOP_CENTER);
 		generalBox.getChildren().addAll(allAnimalText, sortBox, generalButtonBox);
-		
+
 		//Adoption report
 		Text adoptionText = new Text(Messages.getString("adoption_reports"));
-		
+
 		RadioButton adoptionByName = new RadioButton(Messages.getString("ready_adoption_name"));
 		adoptionByName.setSelected(true);
 		RadioButton adoptionByAge = new RadioButton(Messages.getString("ready_adoption_age"));
@@ -67,7 +67,7 @@ public class ChooseReportBox {
 		adoptionByName.setToggleGroup(adoptionGroup);
 		adoptionByAge.setToggleGroup(adoptionGroup);
 		adoptionPuppies.setToggleGroup(adoptionGroup);
-		
+
 		RadioButton cat = new RadioButton(Messages.getString("Cat"));
 		RadioButton dog = new RadioButton(Messages.getString("Dog"));
 		ToggleGroup breedGroup = new ToggleGroup();
@@ -76,12 +76,12 @@ public class ChooseReportBox {
 		HBox breed = new HBox(10);
 		breed.setAlignment(Pos.CENTER);
 		breed.getChildren().addAll(cat, dog);
-		AdoptionHandler adoptionHandler = new AdoptionHandler(cat, dog, adoptionByName, 
+		AdoptionHandler adoptionHandler = new AdoptionHandler(cat, dog, adoptionByName,
 				adoptionByAge, adoptionPuppies, stage);
 		adoptionByName.setOnAction(e -> adoptionHandler.disableBreed());
 		adoptionByAge.setOnAction(e -> adoptionHandler.enableBreed());
 		adoptionPuppies.setOnAction(e -> adoptionHandler.disableBreed());
-		
+
 		HBox adoptionButtonBox = new HBox(10);
 		Button adoptionGenerateButton = new Button(Messages.getString("generate_report"));
 		adoptionGenerateButton.setOnAction(adoptionHandler);
@@ -89,21 +89,21 @@ public class ChooseReportBox {
 		adoptionCancelButton.setOnAction(e -> stage.close());
 		adoptionButtonBox.getChildren().addAll(adoptionGenerateButton, adoptionCancelButton);
 		adoptionButtonBox.setAlignment(Pos.CENTER);
-		
+
 		VBox adoptionBox = new VBox(10);
 		adoptionBox.setAlignment(Pos.TOP_CENTER);
 		adoptionBox.getChildren().addAll(adoptionText, adoptionByName, adoptionByAge, breed,
 				adoptionPuppies, adoptionButtonBox);
-		
+
 		//Found report
 		TextField foundLocationField = new TextField();
 		foundLocationField.setPromptText(Messages.getString("location"));
-		
+
 		DatePicker begin = new DatePicker(LocalDate.now());
 		begin.setDisable(true);
 		DatePicker end = new DatePicker(LocalDate.now().plusDays(1));
 		end.setDisable(true);
-		
+
 		FoundHandler foundHandler = new FoundHandler(foundLocationField, begin, end, stage);
 
 		Text foundText = new Text(Messages.getString("found_reports"));
@@ -118,7 +118,7 @@ public class ChooseReportBox {
 		foundLocation.setToggleGroup(foundGroup);
 		foundDate.setToggleGroup(foundGroup);
 		foundBoth.setToggleGroup(foundGroup);
-		
+
 		HBox foundButtonBox = new HBox(10);
 		Button foundGenerateButton = new Button(Messages.getString("generate_report"));
 		foundGenerateButton.setOnAction(foundHandler);
@@ -126,12 +126,12 @@ public class ChooseReportBox {
 		foundCancelButton.setOnAction(e -> stage.close());
 		foundButtonBox.getChildren().addAll(foundGenerateButton, foundCancelButton);
 		foundButtonBox.setAlignment(Pos.CENTER);
-		
+
 		VBox foundBox = new VBox(10);
 		foundBox.setAlignment(Pos.TOP_CENTER);
-		foundBox.getChildren().addAll(foundText, foundLocation, foundDate, foundBoth, 
+		foundBox.getChildren().addAll(foundText, foundLocation, foundDate, foundBoth,
 				foundLocationField, begin, end, foundButtonBox);
-		
+
 		//Lost report
 		boolean isCat = false;
 		Text lostText = new Text(Messages.getString("lost_reports"));
@@ -141,10 +141,10 @@ public class ChooseReportBox {
 		ToggleGroup lostGroup = new ToggleGroup();
 		location.setToggleGroup(lostGroup);
 		catLocation.setToggleGroup(lostGroup);
-		
+
 		TextField lostLocation = new TextField();
 		lostLocation.setPromptText(Messages.getString("location"));
-		
+
 		HBox lostButtonBox = new HBox(10);
 		Button lostGenerateButton = new Button(Messages.getString("generate_report"));
 		lostGenerateButton.setOnAction(new LostHandler(stage, lostLocation, isCat));
@@ -153,7 +153,7 @@ public class ChooseReportBox {
 		lostButtonBox.getChildren().addAll(lostGenerateButton, lostCancelButton);
 		lostButtonBox.setAlignment(Pos.CENTER);
 		VBox lostBox = new VBox(10);
-		lostBox.getChildren().addAll(lostText, location, catLocation, lostLocation, 
+		lostBox.getChildren().addAll(lostText, location, catLocation, lostLocation,
 				lostButtonBox);
 		lostBox.setAlignment(Pos.TOP_CENTER);
 
@@ -165,7 +165,7 @@ public class ChooseReportBox {
 		HBox.setMargin(generalBox, new Insets(10));
 		HBox.setMargin(adoptionBox, new Insets(10));
 	}
-	
+
 	public HBox getMainBox(){
 		return this.mainBox;
 	}

@@ -38,7 +38,7 @@ public abstract class AnimalBox extends Box {
 
 		Text animalType = new Text(Messages.getString("type") + " :");
 		animalGrid.add(animalType, 0, 5);
-		
+
 		Text animalGender = new Text(Messages.getString("gender") + " :");
 		animalGrid.add(animalGender, 0, 6);
 
@@ -47,7 +47,7 @@ public abstract class AnimalBox extends Box {
 
 		Text animalCategory = new Text(Messages.getString("category") + " :");
 		animalGrid.add(animalCategory, 0, 8);
-		
+
 		ColumnConstraints col1 = new ColumnConstraints();
 		col1.setPercentWidth(26);
 		ColumnConstraints col2 = new ColumnConstraints();
@@ -62,12 +62,12 @@ public abstract class AnimalBox extends Box {
 	public GridPane getAnimalGrid(){
 		return animalGrid;
 	}
-	
+
 	public GridPane getCategoryGrid(){
 		return categoryGrid;
 	}
 	public abstract void setCategoryGrid(int i);
-	
+
 	public abstract void setName(String name);
 	public abstract void setAge(int age);
 	public abstract void setColour(String colour);
@@ -83,5 +83,5 @@ public abstract class AnimalBox extends Box {
 	public abstract void setVaccinated(boolean vaccinated);
 	public abstract void setReserved(boolean reserved);
 	public abstract void setReady(boolean ready);
-	
+
 }

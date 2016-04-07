@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package gui;
 
@@ -77,19 +77,19 @@ public class AnimalBoxShow extends AnimalBox {
 
 			Text vaccinatedField = new Text();
 			categoryGrid.add(vaccinatedField, 1, 2);
-			
+
 			Text reservedText = new Text(Messages.getString("reserved") + " :");
 			categoryGrid.add(reservedText, 0, 3);
-			
+
 			Text reservedField = new Text();
 			categoryGrid.add(reservedField, 1, 3);
-			
+
 			Text readyText = new Text(Messages.getString("ready") + " :");
 			categoryGrid.add(readyText, 0, 4);
-			
+
 			Text readyField = new Text();
 			categoryGrid.add(readyField, 1, 4);
-			
+
 		} else {
 			Text locationText = new Text(Messages.getString("location") + " :");
 			categoryGrid.add(locationText, 0, 0);
@@ -105,7 +105,7 @@ public class AnimalBoxShow extends AnimalBox {
 	@Override
 	public void setName(String name) {
 		Node node = getNodeByRowColumnIndex(0, 1, animalGrid);
-		Text nameText = (Text) node; 
+		Text nameText = (Text) node;
 		nameText.setText(name);
 	}
 
@@ -125,7 +125,7 @@ public class AnimalBoxShow extends AnimalBox {
 	@Override
 	public void setColour(String colour) {
 		Node node = getNodeByRowColumnIndex(2, 1, animalGrid);
-		Text colourText = (Text) node; 
+		Text colourText = (Text) node;
 		colourText.setText(colour);
 
 	}
@@ -139,7 +139,7 @@ public class AnimalBoxShow extends AnimalBox {
 		Text descriptionText = (Text) node;
 		descriptionText.setWrappingWidth(250);
 		descriptionText.setText(description);
-		
+
 	}
 
 	/* (non-Javadoc)
@@ -169,7 +169,7 @@ public class AnimalBoxShow extends AnimalBox {
 	public void setGender(boolean gender) {
 		Node node = getNodeByRowColumnIndex(6, 1, animalGrid);
 		Text genderText = (Text) node;
-		String genderString = gender ? Messages.getString("male") : 
+		String genderString = gender ? Messages.getString("male") :
 			Messages.getString("female");
 		genderText.setText(genderString);
 	}

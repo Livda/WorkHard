@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package controlers;
 
@@ -17,11 +17,11 @@ import javafx.stage.StageStyle;
  *
  */
 public class SettingsHandler implements EventHandler<ActionEvent>{
-	
+
 	public void handle(ActionEvent event){
 		Stage settingsPopUp = new Stage();
 		settingsPopUp.initStyle(StageStyle.UTILITY);
-		
+
 		VBox box = new SettingsBox(settingsPopUp).getMainGrid();
 		Scene scene = new Scene(box);
 		settingsPopUp.setScene(scene);

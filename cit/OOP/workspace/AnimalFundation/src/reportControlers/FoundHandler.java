@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package reportControlers;
 
@@ -29,26 +29,26 @@ public class FoundHandler implements EventHandler<ActionEvent> {
 	private DatePicker begin;
 	private DatePicker end;
 	private Stage stage;
-	
+
 	public FoundHandler(TextField location, DatePicker begin, DatePicker end, Stage stage){
 		this.location = location;
 		this.begin = begin;
 		this.end = end;
 		this.stage = stage;
 	}
-	
+
 	public void setOnlyLocation(){
 		location.setDisable(false);
 		begin.setDisable(true);
 		end.setDisable(true);
 	}
-	
+
 	public void setOnlyBetweenDates(){
 		location.setDisable(true);
 		begin.setDisable(false);
 		end.setDisable(false);
 	}
-	
+
 	public void setLocationAndDates(){
 		location.setDisable(false);
 		begin.setDisable(false);

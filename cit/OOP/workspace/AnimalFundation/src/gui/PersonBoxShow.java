@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package gui;
 
@@ -14,23 +14,23 @@ import javafx.scene.text.Text;
  */
 public class PersonBoxShow extends PersonBox {
 	private GridPane personGrid;
-	
+
 	public PersonBoxShow() {
 		super();
 		personGrid = this.getPersonGrid();
-		
+
 		Text nameText = new Text();
 		personGrid.add(nameText, 1, 0);
-		
+
 		Text adressText = new Text();
 		personGrid.add(adressText, 1, 1);
-		
+
 		Text phoneText = new Text();
 		personGrid.add(phoneText, 1, 2);
-		
+
 		Text emailText = new Text();
 		personGrid.add(emailText, 1, 3);
-		
+
 	}
 
 	/* (non-Javadoc)

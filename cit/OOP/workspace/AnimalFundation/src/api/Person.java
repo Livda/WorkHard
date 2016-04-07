@@ -17,7 +17,7 @@ public class Person implements Comparable<Person> {
 	private String adress;
 	private String phone;
 	private String email;
-	
+
 	/**
 	 * Create an empty person
 	 */
@@ -28,7 +28,7 @@ public class Person implements Comparable<Person> {
 		phone = null;
 		email = null;
 	}
-	
+
 	/**
 	 * Create a full person
 	 * @param id the id of the Person
@@ -44,7 +44,7 @@ public class Person implements Comparable<Person> {
 		this.phone = phone;
 		this.email = email;
 	}
-	
+
 	/**
 	 * Create a full person without the id mentioned
 	 * @param name the name of the Person
@@ -60,7 +60,7 @@ public class Person implements Comparable<Person> {
 		this.phone = phone;
 		this.email = email;
 	}
-	
+
 	/**
 	 * Update the attributes of a Person but not the id nether the name
 	 * @param p the Person to take the attributes
@@ -70,7 +70,7 @@ public class Person implements Comparable<Person> {
 		this.phone = p.getPhone();
 		this.email = p.getEmail();
 	}
-	
+
 	/**
 	 * get the id
 	 * @return id
@@ -86,7 +86,7 @@ public class Person implements Comparable<Person> {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	/**
 	 * get the name
 	 * @return name
@@ -94,7 +94,7 @@ public class Person implements Comparable<Person> {
 	public String getName() {
 		return name;
 	}
-	
+
 	/**
 	 * set the name
 	 * @param name
@@ -161,7 +161,7 @@ public class Person implements Comparable<Person> {
 	public void print() {
 		System.out.println(this.toString());
 	}
-	
+
 	/**
 	 * Save the person in a file
 	 * @param persons the file where the person will be saved
@@ -176,11 +176,11 @@ public class Person implements Comparable<Person> {
 		bw.close();
 		}
 		catch (IOException e){
-			System.out.println("Error when trying to save a person : " 
+			System.out.println("Error when trying to save a person : "
 					+ e.getMessage());
 		}
 	}
-	
+
 	/**
 	 * Load a person from a String array
 	 * @param s The array
@@ -193,7 +193,7 @@ public class Person implements Comparable<Person> {
 		String email = s[4];
 		return new Person(name, adress, phone, email);
 	}
-	
+
 	public void fillReport(File report){
 		BufferedWriter bw;
 		try {
@@ -207,7 +207,7 @@ public class Person implements Comparable<Person> {
 			bw.close();
 		}
 		catch (IOException e){
-			System.out.println("Error when trying to put a person in the report : " 
+			System.out.println("Error when trying to put a person in the report : "
 					+ e.getMessage());
 		}
 	}

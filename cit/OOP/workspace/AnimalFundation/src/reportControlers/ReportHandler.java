@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package reportControlers;
 
@@ -47,7 +47,7 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 	private void process(){
 		try {
 			Process process = new ProcessBuilder(
-					pathToPdfLatex, 
+					pathToPdfLatex,
 					"-output-directory=report",
 					"report/report.tex").start();
 			InputStream is = process.getInputStream();
@@ -79,7 +79,7 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 			bw.newLine();
 			bw.write("\\hline");
 			bw.newLine();
-			bw.write("\\textbf{" + Messages.getString("name") + "} & \\textbf{" + 
+			bw.write("\\textbf{" + Messages.getString("name") + "} & \\textbf{" +
 					Messages.getString("adress") + "} & \\textbf{" + Messages.getString("phone")
 					+ "} & " + "\\textbf{" + Messages.getString("email") + "} \\\\");
 			bw.newLine();
@@ -89,7 +89,7 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 			bw.close();
 		}
 		catch (IOException e){
-			System.out.println("Error when trying to initialise the person part : " 
+			System.out.println("Error when trying to initialise the person part : "
 					+ e.getMessage());
 		}
 		ArrayList<Person> list = MainWindow.shelter.getAllPersons();
@@ -107,7 +107,7 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 			bw.close();
 		}
 		catch (IOException e){
-			System.out.println("Error when trying to finish the person part : " 
+			System.out.println("Error when trying to finish the person part : "
 					+ e.getMessage());
 		}
 	}
@@ -119,7 +119,7 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 			pw.close();
 		}
 		catch (IOException e) {
-			System.out.println ("Error when trying to write : " 
+			System.out.println ("Error when trying to write : "
 					+ e.getMessage());
 		}
 
@@ -132,12 +132,12 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 			while ((currentLine = br.readLine()) != null) {
 				bw.write(currentLine);
 				bw.newLine();
-				bw.flush();				
+				bw.flush();
 			}
 			bw.close();
 		}
 		catch (IOException e){
-			System.out.println("Error when trying to initialise the report file : " 
+			System.out.println("Error when trying to initialise the report file : "
 					+ e.getMessage());
 		}
 	}
@@ -152,12 +152,12 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 			while ((currentLine = br.readLine()) != null) {
 				bw.write(currentLine);
 				bw.newLine();
-				bw.flush();				
+				bw.flush();
 			}
 			bw.close();
 		}
 		catch (IOException e){
-			System.out.println("Error when trying to finish the report file : " 
+			System.out.println("Error when trying to finish the report file : "
 					+ e.getMessage());
 		}
 	}
@@ -174,11 +174,11 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 			bw.newLine();
 			bw.write("\\hline");
 			bw.newLine();
-			bw.write("\\textbf{" + Messages.getString("name") + "} & \\textbf{" + 
-					Messages.getString("age") + "} & \\textbf{"	+ 
-					Messages.getString("description") + "} & \\textbf{" + 
-					Messages.getString("color") + "}& \\textbf{" + Messages.getString("breed") + 
-					"} & \\textbf{" + Messages.getString("type") + "} & \\textbf{" + 
+			bw.write("\\textbf{" + Messages.getString("name") + "} & \\textbf{" +
+					Messages.getString("age") + "} & \\textbf{"	+
+					Messages.getString("description") + "} & \\textbf{" +
+					Messages.getString("color") + "}& \\textbf{" + Messages.getString("breed") +
+					"} & \\textbf{" + Messages.getString("type") + "} & \\textbf{" +
 					Messages.getString("category") + "} \\\\");
 			bw.newLine();
 			bw.write("\\hline");
@@ -187,7 +187,7 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 			bw.close();
 		}
 		catch (IOException e){
-			System.out.println("Error when trying to initialise the animal part : " 
+			System.out.println("Error when trying to initialise the animal part : "
 					+ e.getMessage());
 		}
 	}
@@ -204,7 +204,7 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 			bw.close();
 		}
 		catch (IOException e){
-			System.out.println("Error when trying to finish the animal part : " 
+			System.out.println("Error when trying to finish the animal part : "
 					+ e.getMessage());
 		}
 	}
@@ -219,7 +219,7 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 		finish();
 		process();
 	}
-	
+
 	public void fillAllPerson(){
 		initialise();
 		fillPerson();

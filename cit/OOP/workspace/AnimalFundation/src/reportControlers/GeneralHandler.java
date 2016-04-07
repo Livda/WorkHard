@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package reportControlers;
 
@@ -20,7 +20,7 @@ import javafx.stage.Stage;
  *
  */
 public class GeneralHandler implements EventHandler<ActionEvent> {
-	
+
 	private RadioButton animals;
 	private RadioButton persons;
 	private Stage stage;
@@ -30,7 +30,7 @@ public class GeneralHandler implements EventHandler<ActionEvent> {
 		this.persons = persons;
 		this.stage = stage;
 	}
-	
+
 	public void handle(ActionEvent event){
 		if (animals.isSelected()){
 			List<Animal> list = MainWindow.shelter.getAllAnimals();

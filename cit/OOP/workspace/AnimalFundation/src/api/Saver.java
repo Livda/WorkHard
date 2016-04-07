@@ -31,7 +31,7 @@ public class Saver {
 		persons = new File(pathToSaveFile + "persons");
 		animals = new File(pathToSaveFile + "animals");
 	}
-	
+
 	/**
 	 * Save an AnimalShelter
 	 * @param as the AnimalShelter to save
@@ -55,7 +55,7 @@ public class Saver {
 			pw.close();
 		}
 		catch (IOException e) {
-			System.out.println ("Error when trying to write : " 
+			System.out.println ("Error when trying to write : "
 					+ e.getMessage());
 		}
 
@@ -97,7 +97,7 @@ public class Saver {
 			System.out.println("Persons loaded successfuly");
 		}
 		catch (IOException e) {
-			System.out.println ("Error when trying to read : " 
+			System.out.println ("Error when trying to read : "
 					+ e.getMessage());
 		} finally {
 			try {
@@ -113,7 +113,7 @@ public class Saver {
 			br = new BufferedReader(new FileReader(found));
 
 			while ((currentLine = br.readLine()) != null) {
-				String[] parts = currentLine.split(",");	
+				String[] parts = currentLine.split(",");
 				int id = Integer.parseInt(parts[0]);
 				f = Found.load(parts, pTable);
 				fTable.put(id, f);
@@ -121,7 +121,7 @@ public class Saver {
 			System.out.println("Found category loaded successfuly");
 		}
 		catch (IOException e) {
-			System.out.println ("Error when trying to read : " 
+			System.out.println ("Error when trying to read : "
 					+ e.getMessage());
 		} finally {
 			try {
@@ -145,7 +145,7 @@ public class Saver {
 			System.out.println("Adoption category loaded successfuly");
 		}
 		catch (IOException e) {
-			System.out.println ("Error when trying to read : " 
+			System.out.println ("Error when trying to read : "
 					+ e.getMessage());
 		} finally {
 			try {
@@ -169,7 +169,7 @@ public class Saver {
 			System.out.println("Lost category loaded successfuly");
 		}
 		catch (IOException e) {
-			System.out.println ("Error when trying to read : " 
+			System.out.println ("Error when trying to read : "
 					+ e.getMessage());
 		} finally {
 			try {
@@ -179,12 +179,12 @@ public class Saver {
 				e.printStackTrace();
 			}
 		}
-		
+
 		try {
 			br = new BufferedReader(new FileReader(animals));
 			while ((currentLine = br.readLine()) != null) {
 				String[] parts = currentLine.split(",");
-				
+
 				int idCategory = Integer.parseInt(parts[9]);
 				char categoryLetter = parts[8].charAt(0);
 				switch (categoryLetter) {
@@ -210,9 +210,9 @@ public class Saver {
 			System.out.println("Animals loaded successfuly");
 		}
 		catch (IOException e) {
-			System.out.println ("Error when trying to read : " 
+			System.out.println ("Error when trying to read : "
 					+ e.getMessage());
-		} 
+		}
 		catch (Exception e) {
 			System.out.println("Category letter not recognize");
 		} finally {
@@ -223,7 +223,7 @@ public class Saver {
 				e.printStackTrace();
 			}
 		}
-		
+
 		AnimalShelter as = new AnimalShelter(adoptionList, lostList, foundList);
 		System.out.println("Animal Shelter loaded sucessfuly");
 		return as;

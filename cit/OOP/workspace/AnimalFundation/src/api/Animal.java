@@ -21,7 +21,7 @@ public class Animal implements Comparable<Animal>{
 	private String breed;
 	private Category animalCategory;
 	private String type;
-	
+
 	/**
 	 * @return the id
 	 */
@@ -155,7 +155,7 @@ public class Animal implements Comparable<Animal>{
 	 * @param animalCategory the Category of animal
 	 * @param type the type of the animal
 	 */
-	public Animal(int id, int age, String colour, boolean gender, 
+	public Animal(int id, int age, String colour, boolean gender,
 			String description, String name, String pathToPicture,
 			String breed, Category animalCategory, String type) {
 		this.id = id;
@@ -169,7 +169,7 @@ public class Animal implements Comparable<Animal>{
 		this.animalCategory = animalCategory;
 		this.type = type;
 	}
-	
+
 	/**
 	 * Animal full constructor without the id mentioned
 	 * @param id The id of the Animal object
@@ -183,7 +183,7 @@ public class Animal implements Comparable<Animal>{
 	 * @param animalCategory the Category of animal
 	 * @param type the type of the animal
 	 */
-	public Animal(int age, String colour, boolean gender, 
+	public Animal(int age, String colour, boolean gender,
 			String description, String name, String pathToPicture,
 			String breed, Category animalCategory, String type) {
 		this.id = Animal.nextId;
@@ -198,7 +198,7 @@ public class Animal implements Comparable<Animal>{
 		this.animalCategory = animalCategory;
 		this.type = type;
 	}
-	
+
 	/**
 	 * Empty constructor for tests
 	 */
@@ -206,19 +206,19 @@ public class Animal implements Comparable<Animal>{
 		id = age = -1;
 		name = "Test";
 		colour = description = pathToPicture = breed = null;
-		gender = false; 
+		gender = false;
 		animalCategory = null;
 		type = null;
 	}
-	
+
 	@Override
 	public String toString() {
-		return id + "," + age + "," + colour + "," + gender + "," + description 
-				+ "," + name + "," + pathToPicture + "," + breed + "," 
-				+ animalCategory.getCategoryLetter() + "," +  animalCategory.getId() + "," 
+		return id + "," + age + "," + colour + "," + gender + "," + description
+				+ "," + name + "," + pathToPicture + "," + breed + ","
+				+ animalCategory.getCategoryLetter() + "," +  animalCategory.getId() + ","
 				+ type;
 	}
-	
+
 	/**
 	 * Save the current animal in a file
 	 * @param animals The file where the animal will be save
@@ -237,11 +237,11 @@ public class Animal implements Comparable<Animal>{
 		bw.close();
 		}
 		catch (IOException e){
-			System.out.println("Error when trying to save an animal : " 
+			System.out.println("Error when trying to save an animal : "
 					+ e.getMessage());
 		}
 	}
-	
+
 	/**
 	 * Load an Animal from a String array an a Map with the Category
 	 * @param s The String array
@@ -259,7 +259,7 @@ public class Animal implements Comparable<Animal>{
 		String breed = s[7];
 		String type = s[10];
 		return new Animal(id, age, color, gender, description, name,
-				pathToPicture, breed, cat, type); 
+				pathToPicture, breed, cat, type);
 	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
@@ -290,7 +290,7 @@ public class Animal implements Comparable<Animal>{
 			return false;
 		return true;
 	}
-	
+
 	public void fillReport(File report){
 		BufferedWriter bw;
 		try {
@@ -305,11 +305,11 @@ public class Animal implements Comparable<Animal>{
 			bw.close();
 		}
 		catch (IOException e){
-			System.out.println("Error when trying to put an animal in the report : " 
+			System.out.println("Error when trying to put an animal in the report : "
 					+ e.getMessage());
 		}
 	}
-	
+
 	@Override
 	public int compareTo(Animal o) {
 		return this.name.compareTo(o.name);

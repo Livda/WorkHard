@@ -13,7 +13,7 @@ import javafx.scene.input.KeyCombination;
 
 public class MenuBox {
 	private MenuBar box;
-	
+
 	public MenuBox(){
 		Menu fileMenu = new Menu(Messages.getString("file"));
 		MenuItem newItem = new MenuItem(Messages.getString("new_file"));
@@ -34,7 +34,7 @@ public class MenuBox {
         fileMenu.getItems().addAll(newItem, saveItem, loadItem, new SeparatorMenuItem(),
         		settingsItem, new SeparatorMenuItem(),
         		exitItem);
-        
+
         Menu editMenu = new Menu(Messages.getString("edit"));
         MenuItem undoItem = new MenuItem(Messages.getString("undo"));
         undoItem.setAccelerator(KeyCombination.keyCombination("Ctrl+Z"));
@@ -50,7 +50,7 @@ public class MenuBox {
         pasteItem.setAccelerator(KeyCombination.keyCombination("Ctrl+V"));
         editMenu.getItems().addAll(undoItem, redoItem, new SeparatorMenuItem(),
         		copyItem, cutItem, pasteItem);
-        
+
         Menu toolMenu = new Menu(Messages.getString("tools"));
         MenuItem bugItem = new MenuItem(Messages.getString("report_bug"));
         bugItem.setDisable(true);
@@ -58,11 +58,11 @@ public class MenuBox {
         reportItem.setAccelerator(KeyCombination.keyCombination("Ctrl+P"));
         reportItem.setOnAction(new ChooseReportHandler());
         toolMenu.getItems().addAll(bugItem, reportItem);
-        
+
         box = new MenuBar();
         box.getMenus().addAll(fileMenu, editMenu, toolMenu);
 	}
-	
+
 	public MenuBar getBox(){
 		return box;
 	}

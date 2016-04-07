@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package reportControlers;
 
@@ -38,7 +38,7 @@ public class AdoptionHandler implements EventHandler<ActionEvent> {
 		this.puppies = adoptionPuppies;
 		this.stage = stage;
 	}
-	
+
 	public void handle(ActionEvent event){
 		List<Animal> list = MainWindow.shelter.getAdoption().getList();
 		List<Animal> res = new ArrayList<Animal>();
@@ -78,12 +78,12 @@ public class AdoptionHandler implements EventHandler<ActionEvent> {
 		}
 		new ReportHandler(stage).fillAnimalByList(res);
 	}
-	
+
 	public void disableBreed(){
 		cat.setDisable(true);
 		dog.setDisable(true);
 	}
-	
+
 	public void enableBreed(){
 		cat.setDisable(false);
 		dog.setDisable(false);

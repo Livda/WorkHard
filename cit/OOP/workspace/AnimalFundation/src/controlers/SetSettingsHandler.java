@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package controlers;
 
@@ -23,7 +23,7 @@ import reportControlers.ReportHandler;
 public class SetSettingsHandler implements EventHandler<ActionEvent> {
 	private Stage stage;
 	private GridPane grid;
-	
+
 	public SetSettingsHandler(Stage stage, GridPane grid){
 		this.stage = stage;
 		this.grid = grid;
@@ -45,19 +45,19 @@ public class SetSettingsHandler implements EventHandler<ActionEvent> {
 			Locale.setDefault(new Locale("fr"));
 			break;
 		}
-		
+
 		//Set the path to the latex compiler
 		node = getNodeByRowColumnIndex(0, 3, grid);
 		ReportHandler.pathToPdfLatex = ((TextField) node).getText();
-		
+
 		//Set the path to the PDF Reader
 		node = getNodeByRowColumnIndex(1, 3, grid);
 		ReportHandler.pathToPdfReader = ((TextField) node).getText();
-		
+
 		//Close the pop up window
 		stage.close();
 	}
-	
+
 	@SuppressWarnings("static-access")
 	protected Node getNodeByRowColumnIndex(final int row, final int column, GridPane gridPane){
 		Node result = null;

@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package controlers;
 
@@ -26,55 +26,55 @@ import javafx.scene.layout.HBox;
  *
  */
 public class EditHandler implements EventHandler<ActionEvent> {
-	
+
 	public void handle(ActionEvent e){
 		AnimalBoxEditable animalBox = new AnimalBoxEditable();
 		PersonBoxEditable personBox = new PersonBoxEditable();
 		Animal a = MainWindow.table.getTable().getSelectionModel().getSelectedItem();
 		Category c = a.getAnimalCategory();
 		Person p = c.getContact();
-		
+
 		//Fill the animal box
 		String aName = a.getName();
 		animalBox.setName(aName);
-		
+
 		int age = a.getAge();
 		animalBox.setAge(age);
-		
+
 		String colour = a.getColour();
 		animalBox.setColour(colour);
-		
+
 		String description = a.getDescription();
 		animalBox.setDescription(description);
-		
+
 		String breed = a.getBreed();
 		animalBox.setBreed(breed);
-		
+
 		String type = a.getType();
 		animalBox.setType(type);
-		
+
 		LocalDate date = c.getDate();
 		animalBox.setDate(date);
-		
+
 		String category = c.toString();
 		animalBox.setCategory(category);
-		
+
 		char letter = c.getCategoryLetter();
 		switch (letter){
 		case 'a' :
 			Adoption aCat = (Adoption)c;
 			boolean neutered = aCat.isNeutered();
 			animalBox.setNeutered(neutered);
-			
+
 			boolean chipped = aCat.isChipped();
 			animalBox.setChipped(chipped);
-			
+
 			boolean vaccinated = aCat.isVaccinated();
 			animalBox.setVaccinated(vaccinated);
-			
+
 			boolean reserved = aCat.isReserved();
 			animalBox.setReserved(reserved);
-			
+
 			boolean ready = aCat.isReady();
 			animalBox.setReady(ready);
 			break;
@@ -87,25 +87,25 @@ public class EditHandler implements EventHandler<ActionEvent> {
 			Lost lCat = (Lost)c;
 			String lLocalisation = lCat.getLocation();
 			animalBox.setLocation(lLocalisation);
-			
+
 		}
-		
+
 		//Fill the person box
 		String pName = p.getName();
 		personBox.setName(pName);
-		
+
 		String adress = p.getAdress();
 		personBox.setAdress(adress);
-		
+
 		String phone = p.getPhone();
 		personBox.setTelephone(phone);
-		
+
 		String email = p.getEmail();
 		personBox.setEmail(email);
-		
+
 		HBox hBox = new HBox(10);
 		hBox.getChildren().addAll(animalBox.getBox(), personBox.getvBox());
-		
+
 		Button okButton = new Button("Ok");
 		okButton.setOnAction(new EditAnimalHandler(animalBox, personBox));
 		Button cancelButton = new Button("Cancel");
@@ -113,7 +113,7 @@ public class EditHandler implements EventHandler<ActionEvent> {
 		HBox buttonBox = new HBox(10);
 		buttonBox.setAlignment(Pos.CENTER);
 		buttonBox.getChildren().addAll(okButton, cancelButton);
-		
+
 		MainWindow.mainBox.getChildren().clear();
 		MainWindow.mainBox.getChildren().addAll(hBox, buttonBox);
 	}

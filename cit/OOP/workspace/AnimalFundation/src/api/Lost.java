@@ -9,7 +9,7 @@ import java.util.Map;
  */
 public class Lost extends Category {
 	private String location;
-	
+
 	/**
 	 * Lost full constructor
 	 * @param id The id of the Lost object
@@ -21,7 +21,7 @@ public class Lost extends Category {
 		super(id, date, contact);
 		this.location = location;
 	}
-	
+
 	/**
 	 * Lost full constructor without the id mentionned
 	 * @param id The id of the Lost object
@@ -33,7 +33,7 @@ public class Lost extends Category {
 		super(date, contact);
 		this.location = location;
 	}
-	
+
 	public char getCategoryLetter() {
 		return 'l';
 	}
@@ -41,16 +41,16 @@ public class Lost extends Category {
 	public String toString(){
 		return "Lost";
 	}
-	
+
 	public String toStringForSave() {
 		return super.toStringForSave() + "," + location;
 	}
 
 	public void print() {
 		System.out.println(this.toStringForSave());
-		
+
 	}
-	
+
 	/**
 	 * Load an Lost object from a String array an a Map with the Person
 	 * @param s The String array

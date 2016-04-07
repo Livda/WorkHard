@@ -15,31 +15,31 @@ public abstract class Category {
 	//TODO change to LocalDate
 	private LocalDate date;
 	private Person contact;
-	
+
 	public Category(int id, LocalDate date, Person contact){
 		this.id = id;
 		this.date = date;
 		this.contact = contact;
 	}
-	
+
 	public Category(LocalDate date, Person contact){
 		this.id = nextId;
 		nextId++;
 		this.date = date;
 		this.contact = contact;
 	}
-	
+
 	/**
 	 * Print the current Category in the console
 	 */
 	public abstract void print();
-	
+
 	/**
 	 * Get the first letter of the Category
 	 * @return The first letter of the category
 	 */
 	public abstract char getCategoryLetter();
-	
+
 	/**
 	 * Get the id
 	 * @return id
@@ -47,11 +47,11 @@ public abstract class Category {
 	public int getId() {
 		return this.id;
 	}
-	
+
 	public LocalDate getDate(){
 		return this.date;
 	}
-	
+
 	/**
 	 * @param contact the contact to set
 	 */
@@ -66,12 +66,12 @@ public abstract class Category {
 	public Person getContact(){
 		return contact;
 	}
-	
+
 	public String toStringForSave(){
 		return id + "," + date.getYear() + "," + date.getMonthValue()
 		+ "," + date.getDayOfMonth() + "," + contact.getId();
 	}
-	
+
 	/**
 	 * Save the current Category
 	 * @param categoryFile The File were the Category will be saved
@@ -89,7 +89,7 @@ public abstract class Category {
 		bw.close();
 		}
 		catch (IOException e){
-			System.out.println("Error when trying to save a category : " 
+			System.out.println("Error when trying to save a category : "
 					+ e.getMessage());
 		}
 	}

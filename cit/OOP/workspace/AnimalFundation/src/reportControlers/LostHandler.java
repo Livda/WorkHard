@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package reportControlers;
 
@@ -25,18 +25,18 @@ public class LostHandler implements EventHandler<ActionEvent> {
 	private Stage stage;
 	private TextField locationToFind;
 	private boolean printCat;
-	
+
 	public LostHandler(Stage stage, TextField location, boolean cat){
 		this.stage = stage;
 		this.locationToFind = location;
 		this.printCat = cat;
 	}
-	
+
 	public void handle(ActionEvent event){
 		AnimalShelter shelter = MainWindow.shelter;
-		
+
 		String locationFind = locationToFind.getText();
-		
+
 		List<Animal> list = shelter.getLost().getList();
 		List<Animal> res = new ArrayList<Animal>();
 		for (Animal a : list){
@@ -52,5 +52,5 @@ public class LostHandler implements EventHandler<ActionEvent> {
 		Collections.sort(res);
 		new ReportHandler(stage).fillAnimalByList(res);
 	}
-	
+
 }

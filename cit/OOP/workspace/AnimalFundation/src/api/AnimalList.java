@@ -36,14 +36,14 @@ public class AnimalList {
 	public AnimalList(){
 		this.list = new ArrayList<Animal>();
 	}
-	
+
 	/**
 	 * @param list
 	 */
 	public AnimalList(List<Animal> list) {
 		this.list = list;
 	}
-	
+
 	/**
 	 * Add an animal to the list
 	 * @param a The animal to add
@@ -52,7 +52,7 @@ public class AnimalList {
 	public boolean add(Animal a) {
 		return list.add(a);
 	}
-	
+
 	/**
 	 * Remove an animal from the list
 	 * @param a The animal to remove
@@ -61,14 +61,14 @@ public class AnimalList {
 	public boolean remove(Animal a) {
 		return list.remove(a);
 	}
-	
+
 	/**
 	 * Print in the console the animal
 	 */
 	public void printList() {
 		System.out.println(this);
 	}
-	
+
 	/**
 	 * Save the animal in a file
 	 * @param animals The file were the animal will be saved
@@ -80,7 +80,7 @@ public class AnimalList {
 			a.save(animals, categoryFile, persons);
 		}
 	}
-	
+
 	public List<Person> getAllPersons(){
 		List<Person> persons = new ArrayList<Person>();
 		for(Animal a : list){

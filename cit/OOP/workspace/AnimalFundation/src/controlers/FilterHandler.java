@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package controlers;
 
@@ -31,7 +31,7 @@ public class FilterHandler implements EventHandler<ActionEvent> {
 		CheckBox adoption = (CheckBox) filterBox.getChildren().get(0);
 		CheckBox found = (CheckBox) filterBox.getChildren().get(1);
 		CheckBox lost = (CheckBox) filterBox.getChildren().get(2);
-		
+
 		ArrayList<Animal> list = new ArrayList<Animal>();
 		AnimalShelter shelter = MainWindow.shelter;
 		if (adoption.isSelected()) {

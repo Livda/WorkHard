@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package controlers;
 
@@ -15,12 +15,12 @@ import javafx.event.EventHandler;
 public class ChangeCategoryHandler implements EventHandler<ActionEvent>{
 	private AnimalBoxEditable animalBox;
 	private int category;
-	
+
 	public ChangeCategoryHandler(AnimalBoxEditable animalBox, int category){
 		this.animalBox = animalBox;
-		this.category = category;		
+		this.category = category;
 	}
-	
+
 	public void handle(ActionEvent e) {
 		this.animalBox.setCategoryGrid(category);
 	}
