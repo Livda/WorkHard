@@ -169,7 +169,7 @@ public class AnimalBoxShow extends AnimalBox {
 		Node node = getNodeByRowColumnIndex(7, 1, animalGrid);
 		Text dateText = (Text) node;
 		DateTimeFormatter dateFormater = DateTimeFormatter.ofLocalizedDate(
-		        FormatStyle.SHORT).withLocale(Locale.getDefault());
+		        FormatStyle.LONG).withLocale(Locale.getDefault());
 		dateText.setText(date.format(dateFormater));
 	}
 
