@@ -43,11 +43,13 @@ public class Adoption extends Category{
 	 * @param vac Is the animal vaccinated
 	 */
 	public Adoption(LocalDate date, Person contact, 
-			boolean neut, boolean chip, boolean vac){
+			boolean neut, boolean chip, boolean vac, boolean reserved, boolean ready){
 		super(date, contact);
 		this.neutered = neut;
 		this.chipped = chip;
 		this.vaccinated = vac;
+		this.reserved = reserved;
+		this.ready = ready;
 	}
 	
 	public char getCategoryLetter() {
@@ -60,7 +62,7 @@ public class Adoption extends Category{
 	
 	public String toStringForSave() {
 		return super.toStringForSave() + "," + neutered + "," + chipped 
-				+ "," + vaccinated;
+				+ "," + vaccinated + "," + reserved + "," + ready;
 	}
 
 	public void print() {
@@ -83,7 +85,9 @@ public class Adoption extends Category{
 		boolean neutered = Boolean.parseBoolean(s[5]);
 		boolean chipped = Boolean.parseBoolean(s[6]);
 		boolean vaccinated = Boolean.parseBoolean(s[7]);
-		return new Adoption(date, person, neutered, chipped, vaccinated);
+		boolean reserved = Boolean.parseBoolean(s[8]);
+		boolean ready = Boolean.parseBoolean(s[9]);
+		return new Adoption(date, person, neutered, chipped, vaccinated, reserved, ready);
 	}
 
 	/**

@@ -28,15 +28,23 @@ public class Main {
 		Person p3 = new Person(3, "tutu", "42 street Murphy", "01234567889",
 				"tutu@cit.ie");
 		LocalDate calendar3 = LocalDate.of(2014, 4, 14);
-		Adoption adoption = new Adoption(3, calendar3, p3, true, true, true);
+		Adoption adoption = new Adoption(calendar3, p3, true, true, true, true, false);
 		Animal animal3 = new Animal(3, 35, "white", true, "is an animal", 
 				"Rex", null, "Dog", adoption, "Doge");
+		
+		//Animal 4 - Adopted
+		Person p4 = new Person(4, "theking", "adress not found", "1234567", "mail@gogo.com");
+		LocalDate date4 = LocalDate.of(2013, 5, 30);
+		Adoption adoption2 = new Adoption(date4, p4, true, false, false, false, true);
+		Animal animal4 = new Animal(5, "black", true, "no description", "Roxy", null,
+				"Cat", adoption2, "Labrador");
 		
 		//Shelter
 		AnimalShelter shelter = new AnimalShelter();
 		shelter.add(animal1);
 		shelter.add(animal2);
 		shelter.add(animal3);
+		shelter.add(animal4);
 		Saver saver = new Saver();
 		saver.save(shelter);
 		System.out.println(saver.load().toString());
