@@ -27,6 +27,7 @@ public class ChooseReportHandler implements EventHandler<ActionEvent> {
 		Scene scene = new Scene(box);
 		stagePopUp.setScene(scene);
 		stagePopUp.setTitle(Messages.getString("report_selection"));
+		stagePopUp.setHeight(300);
 		stagePopUp.show();
 	}
 }
