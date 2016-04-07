@@ -16,15 +16,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import api.AgeComparator;
 import api.Animal;
 import api.Person;
 import gui.MainWindow;
 import gui.Messages;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.RadioButton;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -215,7 +212,6 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 	public void fillAnimalByList(List<Animal> list){
 		initialise();
 		initialiseAnimalPart();
-		Collections.sort(list);
 		for (Animal a : list) {
 			a.fillReport(report);
 		}

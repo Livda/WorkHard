@@ -3,8 +3,10 @@
  */
 package reportControlers;
 
+import java.util.Collections;
 import java.util.List;
 
+import api.AgeComparator;
 import api.Animal;
 import gui.MainWindow;
 import javafx.event.ActionEvent;
@@ -32,6 +34,7 @@ public class GeneralHandler implements EventHandler<ActionEvent> {
 	public void handle(ActionEvent event){
 		if (animals.isSelected()){
 			List<Animal> list = MainWindow.shelter.getAllAnimals();
+			Collections.sort(list, new AgeComparator());
 			new ReportHandler(stage).fillAnimalByList(list);
 		}
 		if (persons.isSelected()){

@@ -4,6 +4,7 @@
 package reportControlers;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import api.Animal;
@@ -48,6 +49,7 @@ public class LostHandler implements EventHandler<ActionEvent> {
 				}
 			}
 		}
+		Collections.sort(res);
 		new ReportHandler(stage).fillAnimalByList(res);
 	}
 	

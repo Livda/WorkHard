@@ -5,11 +5,13 @@ package reportControlers;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import api.Animal;
 import api.AnimalShelter;
 import api.Found;
+import api.GenderComparator;
 import gui.MainWindow;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -83,9 +85,11 @@ public class FoundHandler implements EventHandler<ActionEvent> {
 		}
 		switch (option){
 		case 1:
+			Collections.sort(locationList);
 			new ReportHandler(stage).fillAnimalByList(locationList);
 			break;
 		case 2:
+			Collections.sort(datesList, new GenderComparator());
 			new ReportHandler(stage).fillAnimalByList(datesList);
 			break;
 		case 3:
@@ -93,6 +97,7 @@ public class FoundHandler implements EventHandler<ActionEvent> {
 			for(Animal a : locationList){
 				if (datesList.contains(a)) res.add(a);
 			}
+			Collections.sort(res);
 			new ReportHandler(stage).fillAnimalByList(res);
 			break;
 		}

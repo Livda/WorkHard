@@ -19,7 +19,6 @@ import javafx.stage.Stage;
 import reportControlers.FoundHandler;
 import reportControlers.GeneralHandler;
 import reportControlers.LostHandler;
-import reportControlers.ReportHandler;
 
 /**
  * @author Aurelien Fontaine
