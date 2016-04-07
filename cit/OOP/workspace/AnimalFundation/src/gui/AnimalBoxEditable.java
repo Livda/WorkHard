@@ -4,9 +4,6 @@
 package gui;
 
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 import controlers.ChangeCategoryHandler;
 import javafx.geometry.Pos;
@@ -194,20 +191,16 @@ public class AnimalBoxEditable extends AnimalBox {
 		genderButton.setSelected(gender);
 	}
 
-	public Calendar getDate(){
+	public LocalDate getDate(){
 		Node node = getNodeByRowColumnIndex(7, 1, animalGrid);
 		LocalDate date = ((DatePicker)node).getValue();
-		Calendar calendar = GregorianCalendar.from(date.atStartOfDay(ZoneId.systemDefault()));
-		return calendar;
+		return date;
 	}
 	
-	public void setDate(Calendar date){
+	public void setDate(LocalDate date){
 		Node node = getNodeByRowColumnIndex(7, 1, animalGrid);
 		DatePicker datePicker = (DatePicker) node;
-		GregorianCalendar gc = (GregorianCalendar) date;
-		LocalDate lDate = gc.getTime().toInstant().atZone(
-				ZoneId.systemDefault()).toLocalDate(); 
-		datePicker.setValue(lDate);
+		datePicker.setValue(date);
 	}
 
 	public String getCategory(){
@@ -248,10 +241,10 @@ public class AnimalBoxEditable extends AnimalBox {
 		return localisation;
 	}
 	
-	public void setLocalisation(String localisation){
+	public void setLocation(String location){
 		Node node  = getNodeByRowColumnIndex(0, 1, categoryGrid);
 		TextField localisationField = (TextField) node;
-		localisationField.setText(localisation);
+		localisationField.setText(location);
 	}
 
 	public boolean getNeutered(){

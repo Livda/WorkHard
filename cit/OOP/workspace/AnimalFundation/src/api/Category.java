@@ -3,8 +3,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
 
 /**
  * @author Aurelien Fontaine
@@ -13,16 +12,17 @@ import java.util.GregorianCalendar;
 public abstract class Category {
 	private static int nextId = 0;
 	private int id;
-	private GregorianCalendar date;
+	//TODO change to LocalDate
+	private LocalDate date;
 	private Person contact;
 	
-	public Category(int id, GregorianCalendar date, Person contact){
+	public Category(int id, LocalDate date, Person contact){
 		this.id = id;
 		this.date = date;
 		this.contact = contact;
 	}
 	
-	public Category(GregorianCalendar date, Person contact){
+	public Category(LocalDate date, Person contact){
 		this.id = nextId;
 		nextId++;
 		this.date = date;
@@ -48,7 +48,7 @@ public abstract class Category {
 		return this.id;
 	}
 	
-	public GregorianCalendar getDate(){
+	public LocalDate getDate(){
 		return this.date;
 	}
 	
@@ -68,8 +68,8 @@ public abstract class Category {
 	}
 	
 	public String toStringForSave(){
-		return id + "," + date.get(Calendar.YEAR) + "," + date.get(Calendar.MONTH) 
-		+ "," + date.get(Calendar.DAY_OF_MONTH) + "," + contact.getId();
+		return id + "," + date.getYear() + "," + date.getMonthValue()
+		+ "," + date.getDayOfMonth() + "," + contact.getId();
 	}
 	
 	/**

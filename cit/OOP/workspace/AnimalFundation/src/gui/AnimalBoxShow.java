@@ -3,8 +3,9 @@
  */
 package gui;
 
-import java.text.DateFormat;
-import java.util.Calendar;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.Locale;
 
 import javafx.scene.Node;
@@ -164,12 +165,12 @@ public class AnimalBoxShow extends AnimalBox {
 	 * @see gui.AnimalBox#setDate(java.util.Calendar)
 	 */
 	@Override
-	public void setDate(Calendar date) {
+	public void setDate(LocalDate date) {
 		Node node = getNodeByRowColumnIndex(7, 1, animalGrid);
 		Text dateText = (Text) node;
-		DateFormat shortDateFormat = DateFormat.getDateTimeInstance
-				(DateFormat.SHORT, DateFormat.SHORT, Locale.getDefault());
-		dateText.setText(shortDateFormat.format(date.getTime()));
+		DateTimeFormatter dateFormater = DateTimeFormatter.ofLocalizedDate(
+		        FormatStyle.SHORT).withLocale(Locale.getDefault());
+		dateText.setText(date.format(dateFormater));
 	}
 
 	/* (non-Javadoc)
@@ -186,10 +187,10 @@ public class AnimalBoxShow extends AnimalBox {
 	 * @see gui.AnimalBox#setLocalisation(java.lang.String)
 	 */
 	@Override
-	public void setLocalisation(String localisation) {
+	public void setLocation(String location) {
 		Node node = getNodeByRowColumnIndex(0, 1, categoryGrid);
 		Text localisationText = (Text) node;
-		localisationText.setText(localisation);
+		localisationText.setText(location);
 
 	}
 

@@ -1,6 +1,6 @@
 package api;
 
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
 import java.util.Map;
 
 /**
@@ -17,7 +17,7 @@ public class Lost extends Category {
 	 * @param contact Who lost the animal
 	 * @param location Where the animal was lost
 	 */
-	public Lost(int id, GregorianCalendar date, Person contact, String location){
+	public Lost(int id, LocalDate date, Person contact, String location){
 		super(id, date, contact);
 		this.location = location;
 	}
@@ -29,7 +29,7 @@ public class Lost extends Category {
 	 * @param contact Who lost the animal
 	 * @param location Where the animal was lost
 	 */
-	public Lost(GregorianCalendar date, Person contact, String location){
+	public Lost(LocalDate date, Person contact, String location){
 		super(date, contact);
 		this.location = location;
 	}
@@ -61,7 +61,7 @@ public class Lost extends Category {
 		int year = Integer.parseInt(s[1]);
 		int month = Integer.parseInt(s[2]);
 		int day = Integer.parseInt(s[3]);
-		GregorianCalendar date = new GregorianCalendar(year, month, day);
+		LocalDate date = LocalDate.of(year, month, day);
 		int idPerson = Integer.parseInt(s[4]);
 		Person person = pTable.get(idPerson);
 		String location = s[5];

@@ -1,6 +1,6 @@
 package api;
 
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
 import java.util.Map;
 
 /**
@@ -24,7 +24,7 @@ public class Adoption extends Category{
 	 * @param chip Is the animal chipped
 	 * @param vac Is the animal vaccinated
 	 */
-	public Adoption(int id, GregorianCalendar date, Person contact, 
+	public Adoption(int id, LocalDate date, Person contact, 
 			boolean neut, boolean chip, boolean vac){
 		super(id, date, contact);
 		this.neutered = neut;
@@ -41,7 +41,7 @@ public class Adoption extends Category{
 	 * @param chip Is the animal chipped
 	 * @param vac Is the animal vaccinated
 	 */
-	public Adoption(GregorianCalendar date, Person contact, 
+	public Adoption(LocalDate date, Person contact, 
 			boolean neut, boolean chip, boolean vac){
 		super(date, contact);
 		this.neutered = neut;
@@ -76,7 +76,7 @@ public class Adoption extends Category{
 		int year = Integer.parseInt(s[1]);
 		int month = Integer.parseInt(s[2]);
 		int day = Integer.parseInt(s[3]);
-		GregorianCalendar date = new GregorianCalendar(year, month, day);
+		LocalDate date = LocalDate.of(year, month, day); 
 		int idPerson = Integer.parseInt(s[4]);
 		Person person = pTable.get(idPerson);
 		boolean neutered = Boolean.parseBoolean(s[5]);

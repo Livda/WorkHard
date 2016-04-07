@@ -1,6 +1,6 @@
 package api;
 
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
 import java.util.Map;
 
 /**
@@ -17,7 +17,7 @@ public class Found extends Category {
 	 * @param contact The person who find the animal
 	 * @param location Where the animal was founded
 	 */
-	public Found(int id, GregorianCalendar date, Person contact, String location){
+	public Found(int id, LocalDate date, Person contact, String location){
 		super(id, date, contact);
 		this.location = location;
 	}
@@ -29,7 +29,7 @@ public class Found extends Category {
 	 * @param contact The person who find the animal
 	 * @param location Where the animal was founded
 	 */
-	public Found(GregorianCalendar date, Person contact, String location){
+	public Found(LocalDate date, Person contact, String location){
 		super(date, contact);
 		this.location = location;
 	}
@@ -61,7 +61,7 @@ public class Found extends Category {
 		int year = Integer.parseInt(s[1]);
 		int month = Integer.parseInt(s[2]);
 		int day = Integer.parseInt(s[3]);
-		GregorianCalendar date = new GregorianCalendar(year, month, day);
+		LocalDate date = LocalDate.of(year, month, day);
 		int idPerson = Integer.parseInt(s[4]);
 		Person person = pTable.get(idPerson);
 		String location = s[5];

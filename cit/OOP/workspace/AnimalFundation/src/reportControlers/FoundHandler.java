@@ -3,13 +3,8 @@
  */
 package reportControlers;
 
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import api.Animal;
@@ -76,15 +71,11 @@ public class FoundHandler implements EventHandler<ActionEvent> {
 				}
 			}
 			if (!begin.isDisable()){
-				GregorianCalendar animalCalendar = category.getDate();
-				Date animalDate = animalCalendar.getTime();
-				Instant instant = Instant.ofEpochMilli(animalDate.getTime());
-				LocalDate animalLocalDate = LocalDateTime.ofInstant
-						(instant, ZoneId.systemDefault()).toLocalDate();
+				LocalDate animalDate = category.getDate();
 				LocalDate beginDate = begin.getValue();
 				LocalDate endDate = end.getValue();
-				boolean isBefore = animalLocalDate.isAfter(beginDate);
-				boolean isAfter = animalLocalDate.isBefore(endDate);
+				boolean isBefore = animalDate.isAfter(beginDate);
+				boolean isAfter = animalDate.isBefore(endDate);
 				if (isBefore && isAfter) {
 					datesList.add(a);
 				}

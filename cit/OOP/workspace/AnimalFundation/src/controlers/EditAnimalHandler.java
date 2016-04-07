@@ -3,7 +3,7 @@
  */
 package controlers;
 
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
 
 import api.Adoption;
 import api.Animal;
@@ -46,7 +46,7 @@ public class EditAnimalHandler implements EventHandler<ActionEvent> {
 		
 		//We create a Category
 		Category newCategory = null;
-		GregorianCalendar date = (GregorianCalendar) animalBox.getDate();
+		LocalDate date = animalBox.getDate();
 		String category = animalBox.getCategory();
 		switch (category) {
 		case "Adoption" :

@@ -3,7 +3,7 @@
  */
 package controlers;
 
-import java.util.Calendar;
+import java.time.LocalDate;
 
 import api.Adoption;
 import api.Animal;
@@ -60,7 +60,7 @@ public class ShowHandler implements EventHandler<ActionEvent> {
 		String categoryText = category.toString();
 		animalShow.setCategory(categoryText);
 
-		Calendar date = category.getDate();
+		LocalDate date = category.getDate();
 		animalShow.setDate(date);
 
 		if (categoryText.equals("Adoption")){
@@ -81,11 +81,11 @@ public class ShowHandler implements EventHandler<ActionEvent> {
 			if (category.getCategoryLetter() == 'f') {
 				Found found = (Found) category;
 				String localisation = found.getLocation();
-				animalShow.setLocalisation(localisation);
+				animalShow.setLocation(localisation);
 			} else {
 				Lost lost = (Lost) category;
 				String localisation = lost.getLocation();
-				animalShow.setLocalisation(localisation);
+				animalShow.setLocation(localisation);
 			}
 		}
 		

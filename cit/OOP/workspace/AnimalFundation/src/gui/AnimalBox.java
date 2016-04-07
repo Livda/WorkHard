@@ -1,6 +1,6 @@
 package gui;
 
-import java.util.Calendar;
+import java.time.LocalDate;
 
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -75,9 +75,9 @@ public abstract class AnimalBox extends Box {
 	public abstract void setBreed(String breed);
 	public abstract void setType(String type);
 	public abstract void setGender(boolean gender);
-	public abstract void setDate(Calendar date);
+	public abstract void setDate(LocalDate date);
 	public abstract void setCategory(String category);
-	public abstract void setLocalisation(String localisation);
+	public abstract void setLocation(String location);
 	public abstract void setNeutered(boolean neutered);
 	public abstract void setChipped(boolean chipped);
 	public abstract void setVaccinated(boolean vaccinated);

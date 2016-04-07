@@ -3,7 +3,7 @@
  */
 package controlers;
 
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
 
 import api.Adoption;
 import api.Animal;
@@ -53,7 +53,7 @@ public class EditHandler implements EventHandler<ActionEvent> {
 		String type = a.getType();
 		animalBox.setType(type);
 		
-		GregorianCalendar date = c.getDate();
+		LocalDate date = c.getDate();
 		animalBox.setDate(date);
 		
 		String category = c.toString();
@@ -75,12 +75,12 @@ public class EditHandler implements EventHandler<ActionEvent> {
 		case 'f':
 			Found fCat = (Found)c;
 			String fLocalisation = fCat.getLocation();
-			animalBox.setLocalisation(fLocalisation);
+			animalBox.setLocation(fLocalisation);
 			break;
 		case 'l':
 			Lost lCat = (Lost)c;
 			String lLocalisation = lCat.getLocation();
-			animalBox.setLocalisation(lLocalisation);
+			animalBox.setLocation(lLocalisation);
 			
 		}
 		
