@@ -75,6 +75,12 @@ public class ShowHandler implements EventHandler<ActionEvent> {
 			
 			boolean vaccinated = adoption.isVaccinated();
 			animalShow.setVaccinated(vaccinated);
+			
+			boolean reserved = adoption.isReserved();
+			animalShow.setReserved(reserved);
+			
+			boolean ready = adoption.isReady();
+			animalShow.setReady(ready);
 		} else {
 			int categoryInt = 1;
 			animalShow.setCategoryGrid(categoryInt);

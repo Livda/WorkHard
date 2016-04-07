@@ -11,7 +11,6 @@ public class Adoption extends Category{
 	private boolean neutered;
 	private boolean chipped;
 	private boolean vaccinated;
-	//TODO integrate this new attributes in the code
 	private boolean reserved;
 	private boolean ready;
 	

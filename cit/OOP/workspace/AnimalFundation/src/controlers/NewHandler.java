@@ -23,9 +23,6 @@ public class NewHandler implements EventHandler<ActionEvent> {
 	private AnimalBoxEditable animalBox;
 	private PersonBoxEditable personBox;
 	
-	public NewHandler(){
-	}
-	
 	public void handle(ActionEvent event) {
 		animalBox = new AnimalBoxEditable();
 		VBox animal = animalBox.getBox();

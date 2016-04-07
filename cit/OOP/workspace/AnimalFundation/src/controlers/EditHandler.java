@@ -71,6 +71,12 @@ public class EditHandler implements EventHandler<ActionEvent> {
 			
 			boolean vaccinated = aCat.isVaccinated();
 			animalBox.setVaccinated(vaccinated);
+			
+			boolean reserved = aCat.isReserved();
+			animalBox.setReserved(reserved);
+			
+			boolean ready = aCat.isReady();
+			animalBox.setReady(ready);
 			break;
 		case 'f':
 			Found fCat = (Found)c;

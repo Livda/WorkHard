@@ -77,6 +77,19 @@ public class AnimalBoxShow extends AnimalBox {
 
 			Text vaccinatedField = new Text();
 			categoryGrid.add(vaccinatedField, 1, 2);
+			
+			Text reservedText = new Text(Messages.getString("reserved") + " :");
+			categoryGrid.add(reservedText, 0, 3);
+			
+			Text reservedField = new Text();
+			categoryGrid.add(reservedField, 1, 3);
+			
+			Text readyText = new Text(Messages.getString("ready") + " :");
+			categoryGrid.add(readyText, 0, 4);
+			
+			Text readyField = new Text();
+			categoryGrid.add(readyField, 1, 4);
+			
 		} else {
 			Text locationText = new Text(Messages.getString("location") + " :");
 			categoryGrid.add(locationText, 0, 0);
@@ -225,6 +238,28 @@ public class AnimalBoxShow extends AnimalBox {
 		Text vaccinatedText = (Text) node;
 		String text = vaccinated ? Messages.getString("yes") : Messages.getString("no");
 		vaccinatedText.setText(text);
+	}
+
+	/* (non-Javadoc)
+	 * @see gui.AnimalBox#setReserved(boolean)
+	 */
+	@Override
+	public void setReserved(boolean reserved) {
+		Node node = getNodeByRowColumnIndex(3, 1, categoryGrid);
+		Text reservedText = (Text) node;
+		String text = reserved ? Messages.getString("yes") : Messages.getString("no");
+		reservedText.setText(text);
+	}
+
+	/* (non-Javadoc)
+	 * @see gui.AnimalBox#setReady(boolean)
+	 */
+	@Override
+	public void setReady(boolean ready) {
+		Node node = getNodeByRowColumnIndex(4, 1, categoryGrid);
+		Text readyText = (Text) node;
+		String text = ready ? Messages.getString("yes") : Messages.getString("no");
+		readyText.setText(text);
 	}
 
 }

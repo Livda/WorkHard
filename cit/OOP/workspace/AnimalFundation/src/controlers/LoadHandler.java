@@ -14,9 +14,6 @@ import javafx.event.EventHandler;
  *
  */
 public class LoadHandler implements EventHandler <ActionEvent> {
-
-	public LoadHandler() {
-	}
 	
 	public void handle(ActionEvent e) {
 		Saver saver = new Saver();

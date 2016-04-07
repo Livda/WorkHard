@@ -53,14 +53,16 @@ public class EditAnimalHandler implements EventHandler<ActionEvent> {
 			boolean neutered = animalBox.getNeutered();
 			boolean chipped = animalBox.getChipped();
 			boolean vaccinated = animalBox.getNeutered();
-			newCategory = new Adoption(date, p, neutered, chipped, vaccinated, false, false);
+			boolean reserved = animalBox.getReserved();
+			boolean ready = animalBox.getReady();
+			newCategory = new Adoption(date, p, neutered, chipped, vaccinated, reserved, ready);
 			break;
 		case "Found" :
-			String fLocal = animalBox.getLocalisation();
+			String fLocal = animalBox.getLocation();
 			newCategory = new Found(date, p, fLocal);
 			break;
 		case "Lost" :
-			String lLocal = animalBox.getLocalisation();
+			String lLocal = animalBox.getLocation();
 			newCategory = new Lost(date, p, lLocal);
 			break;
 		}

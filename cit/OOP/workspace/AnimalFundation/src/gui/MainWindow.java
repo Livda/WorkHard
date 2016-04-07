@@ -22,7 +22,7 @@ public class MainWindow extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Locale.setDefault(new Locale("fr"));
+			Locale.setDefault(new Locale("en"));
 			shelter = new AnimalShelter();
 			mainBox = new VBox(10);	
 			table = new TableViewBox();
@@ -46,7 +46,7 @@ public class MainWindow extends Application {
 	        mainLayout.setTop(menuBar);
 	        mainLayout.setCenter(secondLayout);
 	        
-	        Scene scene = new Scene(mainLayout,1000,550);
+	        Scene scene = new Scene(mainLayout,1000,600);
 	        primaryStage.setScene(scene);
 	        scene.getStylesheets().add("file:ressources/css/textField.css"); //$NON-NLS-1$
 			primaryStage.setTitle(Messages.getString("animal_shelter")); //$NON-NLS-1$

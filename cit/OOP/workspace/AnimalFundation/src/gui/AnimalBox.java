@@ -81,5 +81,7 @@ public abstract class AnimalBox extends Box {
 	public abstract void setNeutered(boolean neutered);
 	public abstract void setChipped(boolean chipped);
 	public abstract void setVaccinated(boolean vaccinated);
+	public abstract void setReserved(boolean reserved);
+	public abstract void setReady(boolean ready);
 	
 }

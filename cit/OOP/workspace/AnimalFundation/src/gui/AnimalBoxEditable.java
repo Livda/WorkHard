@@ -233,18 +233,18 @@ public class AnimalBoxEditable extends AnimalBox {
 		button.setSelected(true);
 	}
 
-	public String getLocalisation(){
+	public String getLocation(){
 		Node node  = getNodeByRowColumnIndex(0, 1, categoryGrid);
-		TextField localisationField = (TextField) node;
-		this.testEmptyField(localisationField);
-		String localisation = localisationField.getText();
-		return localisation;
+		TextField locationField = (TextField) node;
+		this.testEmptyField(locationField);
+		String location = locationField.getText();
+		return location;
 	}
 	
 	public void setLocation(String location){
 		Node node  = getNodeByRowColumnIndex(0, 1, categoryGrid);
-		TextField localisationField = (TextField) node;
-		localisationField.setText(location);
+		TextField locationField = (TextField) node;
+		locationField.setText(location);
 	}
 
 	public boolean getNeutered(){
@@ -295,6 +295,38 @@ public class AnimalBoxEditable extends AnimalBox {
 		vaccinatedButton.setSelected(true);
 	}
 	
+	public boolean getReserved(){
+		Node node = getNodeByRowColumnIndex(3, 1, categoryGrid);
+		HBox reservedBox = (HBox)node;
+		RadioButton reserved = (RadioButton)reservedBox.getChildren().get(0);
+		boolean isReserved = reserved.isSelected();
+		return isReserved;
+	}
+	
+	public void setReserved(boolean reserved){
+		Node node = getNodeByRowColumnIndex(3, 1, categoryGrid);
+		HBox reservedBox = (HBox) node;
+		int i = reserved ? 0 : 1;
+		RadioButton reservedButton = (RadioButton)reservedBox.getChildren().get(i);
+		reservedButton.setSelected(true);
+	}
+	
+	public boolean getReady(){
+		Node node = getNodeByRowColumnIndex(4, 1, categoryGrid);
+		HBox readyBox = (HBox) node;
+		RadioButton ready = (RadioButton)readyBox.getChildren().get(0);
+		boolean isReady = ready.isSelected();
+		return isReady;
+	}
+	
+	public void setReady(boolean ready){
+		Node node = getNodeByRowColumnIndex(4, 1, categoryGrid);
+		HBox readyBox = (HBox) node;
+		int i = ready ? 0 : 1;
+		RadioButton readyButton = (RadioButton) readyBox.getChildren().get(i);
+		readyButton.setSelected(true);
+	}
+	
 	public void setCategoryGrid(int i){
 		categoryGrid.getChildren().clear();
 		if (i == 0) {
@@ -338,7 +370,35 @@ public class AnimalBoxEditable extends AnimalBox {
 			HBox vaccinated = new HBox(15);
 			vaccinated.getChildren().addAll(vaccinatedBox, nonVaccinatedBox);
 			categoryGrid.add(vaccinated, 1, 2);
-			vaccinated.setAlignment(Pos.CENTER);   
+			vaccinated.setAlignment(Pos.CENTER);
+			
+			Text reservedText = new Text(Messages.getString("reserved") + " :");
+			categoryGrid.add(reservedText, 0, 3);
+			
+			ToggleGroup reservedGroup = new ToggleGroup();
+			RadioButton reservedButton = new RadioButton(Messages.getString("yes"));
+			reservedButton.setToggleGroup(reservedGroup);
+			reservedButton.setSelected(true);
+			RadioButton notReservedButton = new RadioButton(Messages.getString("no"));
+			notReservedButton.setToggleGroup(reservedGroup);
+			HBox reservedBox = new HBox(15);
+			reservedBox.setAlignment(Pos.CENTER);
+			reservedBox.getChildren().addAll(reservedButton, notReservedButton);
+			categoryGrid.add(reservedBox, 1, 3);
+			
+			Text readyText = new Text(Messages.getString("ready") + " :");
+			categoryGrid.add(readyText, 0, 4);
+			
+			ToggleGroup readyGroup = new ToggleGroup();
+			RadioButton readyButton = new RadioButton(Messages.getString("yes"));
+			readyButton.setToggleGroup(readyGroup);
+			readyButton.setSelected(true);
+			RadioButton notReadyButton = new RadioButton(Messages.getString("no"));
+			notReadyButton.setToggleGroup(readyGroup);
+			HBox readyBox = new HBox(15);
+			readyBox.setAlignment(Pos.CENTER);
+			readyBox.getChildren().addAll(readyButton, notReadyButton);
+			categoryGrid.add(readyBox, 1, 4);
 		} else {
 			Text locationText = new Text(Messages.getString("location") + " :");
 			categoryGrid.add(locationText, 0, 0);
