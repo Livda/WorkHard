@@ -16,6 +16,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import reportControlers.AdoptionHandler;
 import reportControlers.FoundHandler;
 import reportControlers.GeneralHandler;
 import reportControlers.LostHandler;
@@ -67,8 +68,23 @@ public class ChooseReportBox {
 		adoptionByAge.setToggleGroup(adoptionGroup);
 		adoptionPuppies.setToggleGroup(adoptionGroup);
 		
+		RadioButton cat = new RadioButton(Messages.getString("Cat"));
+		RadioButton dog = new RadioButton(Messages.getString("Dog"));
+		ToggleGroup breedGroup = new ToggleGroup();
+		cat.setToggleGroup(breedGroup);
+		dog.setToggleGroup(breedGroup);
+		HBox breed = new HBox(10);
+		breed.setAlignment(Pos.CENTER);
+		breed.getChildren().addAll(cat, dog);
+		AdoptionHandler adoptionHandler = new AdoptionHandler(cat, dog, adoptionByName, 
+				adoptionByAge, adoptionPuppies, stage);
+		adoptionByName.setOnAction(e -> adoptionHandler.disableBreed());
+		adoptionByAge.setOnAction(e -> adoptionHandler.enableBreed());
+		adoptionPuppies.setOnAction(e -> adoptionHandler.disableBreed());
+		
 		HBox adoptionButtonBox = new HBox(10);
 		Button adoptionGenerateButton = new Button(Messages.getString("generate_report"));
+		adoptionGenerateButton.setOnAction(adoptionHandler);
 		Button adoptionCancelButton = new Button(Messages.getString("cancel"));
 		adoptionCancelButton.setOnAction(e -> stage.close());
 		adoptionButtonBox.getChildren().addAll(adoptionGenerateButton, adoptionCancelButton);
@@ -76,7 +92,7 @@ public class ChooseReportBox {
 		
 		VBox adoptionBox = new VBox(10);
 		adoptionBox.setAlignment(Pos.TOP_CENTER);
-		adoptionBox.getChildren().addAll(adoptionText, adoptionByName, adoptionByAge, 
+		adoptionBox.getChildren().addAll(adoptionText, adoptionByName, adoptionByAge, breed,
 				adoptionPuppies, adoptionButtonBox);
 		
 		//Found report
@@ -117,7 +133,7 @@ public class ChooseReportBox {
 				foundLocationField, begin, end, foundButtonBox);
 		
 		//Lost report
-		boolean cat = false;
+		boolean isCat = false;
 		Text lostText = new Text(Messages.getString("lost_reports"));
 		RadioButton location = new RadioButton(Messages.getString("all_lost_location"));
 		location.setSelected(true);
@@ -131,7 +147,7 @@ public class ChooseReportBox {
 		
 		HBox lostButtonBox = new HBox(10);
 		Button lostGenerateButton = new Button(Messages.getString("generate_report"));
-		lostGenerateButton.setOnAction(new LostHandler(stage, lostLocation, cat));
+		lostGenerateButton.setOnAction(new LostHandler(stage, lostLocation, isCat));
 		Button lostCancelButton = new Button(Messages.getString("cancel"));
 		lostCancelButton.setOnAction(e -> stage.close());
 		lostButtonBox.getChildren().addAll(lostGenerateButton, lostCancelButton);
