@@ -1,4 +1,8 @@
-
+/**
+ * 
+ * @author Ignacio Castiñeiras
+ *
+ */
 public class myGolombRuler {
 
 	//--------------------------------------------------
@@ -7,9 +11,11 @@ public class myGolombRuler {
 	private myStack<Integer> rulers;
 	private myList<Boolean> differences;
 
-	//-------------------------------------------------------------------
-	// Start Constructor
-	//-------------------------------------------------------------------
+	/**
+	 * Create a <tt>myGolomRuler</tt> of the size given
+	 * in parameter.
+	 * @param n the size of the <tt>myGolomRuler</tt>.
+	 */
 	public myGolombRuler(int n){
 		//1. Initialise the attributes
 		this.rulers = new myStack_as_myList<Integer>();
@@ -29,9 +35,12 @@ public class myGolombRuler {
 		this.rulers.my_push(0);
 	}
 
-	//-------------------------------------------------------------------
-	// Copy Constructor
-	//-------------------------------------------------------------------
+	/**
+	 * Constructs a list containing the elements of the specified
+	 * <tt>myGolomRuler</tt>.
+	 * @param g the <tt>myGolomRuler</tt> whose elements are to 
+	 * 			be placed into this <tt>myGolomRuler</tt>.
+	 */
 	public myGolombRuler(myGolombRuler g){
 		//1. Initialise the attributes
 		this.rulers = new myStack_as_myList<Integer>();
@@ -69,9 +78,12 @@ public class myGolombRuler {
 		}
 	}
 
-	//-------------------------------------------------------------------
-	// successfulCandidate
-	//-------------------------------------------------------------------
+	/**
+	 * Check if the integer passed in parameter is a 
+	 * successful candidate for this <tt>myGolomRuler</tt>. 
+	 * @param m the integer checked
+	 * @return <tt>true</tt> if it is a successful candidate
+	 */
 	public boolean successfulCandidate(int m){
 		boolean res;
 		//check if stack is empty
@@ -101,9 +113,11 @@ public class myGolombRuler {
 		}
 	}
 
-	//-------------------------------------------------------------------
-	// updateDifferences
-	//-------------------------------------------------------------------
+	/**
+	 * Update the difference list with the mode given for the mark given
+	 * @param mark 
+	 * @param mode
+	 */
 	public void updateDifferences(int mark, boolean mode){
 		//check if stack is empty
 		if (!this.rulers.my_is_empty()){
@@ -124,9 +138,11 @@ public class myGolombRuler {
 		}
 	}	
 
-	//-------------------------------------------------------------------
-	// addMark
-	//-------------------------------------------------------------------
+	/**
+	 * Try to add a mark to this <tt>myGolomRuler</tt>.
+	 * @param mark 
+	 * @return <tt>true</tt> if the mark is added.
+	 */
 	public boolean addMark(int mark){
 		boolean res = successfulCandidate(mark);
 
@@ -138,9 +154,11 @@ public class myGolombRuler {
 		return res;
 	}
 
-	//-------------------------------------------------------------------
-	// removeMark
-	//-------------------------------------------------------------------
+	/**
+	 * Try to remove a mark to this <tt>myGolomRuler</tt>.
+	 * @param mark 
+	 * @return <tt>true</tt> if the mark is remove.
+	 */
 	public boolean removeMark(){
 		boolean res = !(this.rulers.my_is_empty());
 
@@ -153,9 +171,11 @@ public class myGolombRuler {
 		return res;
 	}
 
-	//-------------------------------------------------------------------
-	// getLastMark
-	//-------------------------------------------------------------------
+	/**
+	 * Get the last mark of this <tt>myGolomRuler</tt>. 
+	 * @return the last mark
+	 * @throws myException if the stack is empty
+	 */
 	public int getLastMark() throws myException{
 		if (this.rulers.my_is_empty() == false)
 			return this.rulers.my_peek();
@@ -163,9 +183,9 @@ public class myGolombRuler {
 			throw new myException("Rulers is empty");			
 	}
 
-	//-------------------------------------------------------------------
-	// displaySolution
-	//-------------------------------------------------------------------
+	/**
+	 * Display this <tt>myGolomRuler</tt>.
+	 */
 	public void displayContent(){
 		System.out.println("---RULER---");
 		displayRulers();
@@ -174,9 +194,9 @@ public class myGolombRuler {
 		System.out.println();
 	}
 
-	//-------------------------------------------------------------------
-	// displayRulers
-	//-------------------------------------------------------------------
+	/**
+	 * Display the ruler of this <tt>myGolomRuler</tt>.
+	 */
 	public void displayRulers(){
 		//check if the stack is empty
 		boolean empty = this.rulers.my_is_empty();
@@ -194,9 +214,9 @@ public class myGolombRuler {
 		}
 	}
 
-	//-------------------------------------------------------------------
-	// displayDifferences
-	//-------------------------------------------------------------------
+	/**
+	 * Display the differences of this <tt>myGolomRuler</tt>.
+	 */
 	public void displayDifferences(){
 		String res = "";
 		int size = this.differences.my_get_length();

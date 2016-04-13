@@ -1,10 +1,10 @@
-
+/**
+ * 
+ * @author Ignacio Castiñeiras
+ *
+ * @param <T>
+ */
 public interface myList<T> {
-	
-	//-------------------------------------------------------------------
-	// Create an empty MyList: create_empty
-	//-------------------------------------------------------------------
-	//public myList create_empty(); --> Java does not support constructors in interfaces
 
 	/**
 	 * <b><i>Basic Operation</b></i>

@@ -24,16 +24,24 @@ public class myGolombSolver {
 		this.current = new myGolombRuler(n);
 	}
 				
-	//-------------------------------------------------------------------
-	// getBestSolution
-	//-------------------------------------------------------------------
+	/**
+	 * Return the best solution of this <tt>myGolombSolver</tt>
+	 * @return the best soltuion <tt>myGolombSolver</tt>
+	 */
 	public myGolombRuler getBestSolution(){
 		return this.bestSolution;
 	}
 	
-	//-------------------------------------------------------------------
-	// exploreSearchSpace
-	//-------------------------------------------------------------------
+	/**
+	 * This method tries exhaustively all possible combinations of 
+	 * numbers (from 1 to ub) to be added
+	 * as marks to current. By trying all possible combinations, it finds 
+	 * all possible feasible Golomb rulers of size n.
+	 * @param k the Golomb ruler hosted in current already contains k 
+	 * marks (with [1 < k ≤ n])
+	 * @param n size of the <tt>myGolombRuler</tt>
+	 * @param ub the upper bound
+	 */
 	public void exploreSearchSpace(int k, int n, int ub){
 		if (k < n) {
 			for(int i = 1; i < ub ; i++) {

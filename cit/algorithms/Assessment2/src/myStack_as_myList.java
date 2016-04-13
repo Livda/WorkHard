@@ -1,31 +1,30 @@
-
+/**
+ * The <code>Stack</code> class represents a last-in-first-out
+ * (LIFO) stack of objects. The usual
+ * <tt>push</tt> and <tt>pop</tt> operations are provided, as well as a
+ * method to <tt>peek</tt> at the top item on the stack, and a method to test
+ * for whether the stack is <tt>empty</tt>.
+ * @author Ignacio Castiñeiras
+ * @param <T>
+ */
 
 public class myStack_as_myList<T> implements myStack<T> {
-
-	//--------------------------------------------------
-	// Attributes
-	//--------------------------------------------------
+	/**
+	 * internal list
+	 */
 	private myList<T> myInternalList;
-	
-	//-------------------------------------------------------------------
-	// Create an empty myStack: my_create_empty
-	//-------------------------------------------------------------------
-	//public myList my_create_empty(){}
 
+	/**
+	 * Create an empty stack
+	 */
 	public myStack_as_myList(){
 		this.myInternalList = new myListArrayList<T>();
 	}
-		
-	//-------------------------------------------------------------------
-	// Basic Operation --> Check if myStack is empty: my_is_empty
-	//-------------------------------------------------------------------	
+
 	public boolean my_is_empty(){
 		return (this.myInternalList.my_get_length() == 0);
 	}
 	
-	//-------------------------------------------------------------------
-	// Basic Operation --> Get top element from myStack: my_peek
-	//-------------------------------------------------------------------
 	public T my_peek() throws myException{
 		try{
 			return this.myInternalList.my_get_element(0);
@@ -34,10 +33,7 @@ public class myStack_as_myList<T> implements myStack<T> {
 			throw new myException("Trying to Access to an Empty myStack");
 		}
 	}
-		
-	//-------------------------------------------------------------------
-	// Basic Operation --> Add element to top of myStack: my_push 
-	//-------------------------------------------------------------------
+
 	public void my_push(T element) throws myException{
 		try{
 			this.myInternalList.my_add_element(0, element);
@@ -47,9 +43,6 @@ public class myStack_as_myList<T> implements myStack<T> {
 		}		
 	}
 	
-	//-------------------------------------------------------------------
-	// Basic Operation --> Remove element from top of myStack: my_pop 
-	//-------------------------------------------------------------------	
 	public void my_pop() throws myException{
 		try{
 			this.myInternalList.my_remove_element(0);
