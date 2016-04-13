@@ -1,10 +1,11 @@
 package gui;
 
-import api.*;
+import api.Animal;
+import api.AnimalShelter;
 import controlers.DeleteHandler;
 import controlers.FilterHandler;
-import controlers.ShowHandler;
 import controlers.NewHandler;
+import controlers.ShowHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;

@@ -5,8 +5,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Map;
 import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * @author Aurelien Fontaine
@@ -225,6 +225,7 @@ public class Saver {
 		}
 
 		AnimalShelter as = new AnimalShelter(adoptionList, lostList, foundList);
+		as.update();
 		System.out.println("Animal Shelter loaded sucessfuly");
 		return as;
 	}

@@ -5,6 +5,7 @@ package controlers;
 
 import java.util.Locale;
 
+import gui.MainWindow;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -39,10 +40,13 @@ public class SetSettingsHandler implements EventHandler<ActionEvent> {
 		System.out.println(language);
 		switch (language) {
 		case "English" :
-			Locale.setDefault(new Locale("us"));
+			Locale.setDefault(new Locale("en"));
 			break;
 		case "French" :
-			Locale.setDefault(new Locale("fr"));
+			MainWindow.getStage().close();
+			MainWindow reload = new MainWindow();
+			MainWindow.locale = new Locale("fr");
+			reload.start(new Stage());
 			break;
 		}
 

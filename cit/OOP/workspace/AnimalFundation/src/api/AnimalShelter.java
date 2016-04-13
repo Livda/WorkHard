@@ -166,7 +166,7 @@ public class AnimalShelter {
 	}
 	
 	public void update(){
-		List<Animal> found = this.found.getList();
+		List<Animal> found = new ArrayList<Animal>(this.found.getList());
 		for(Animal a : found){
 			Found category =(Found) a.getAnimalCategory();
 			LocalDate aMonthAgo = LocalDate.now().minusMonths(1);

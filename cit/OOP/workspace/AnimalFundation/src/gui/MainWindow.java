@@ -7,25 +7,32 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.MenuBar;
 import javafx.scene.image.Image;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class MainWindow extends Application {
-	public static Locale locale;
+	public static Locale locale = null;
 	public static AnimalShelter shelter;
 	public static TableViewBox table;
 	public static VBox mainBox;
+	private static Stage stage;
 
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Locale.setDefault(new Locale("en"));
+			if (locale == null) {
+				Locale.setDefault(new Locale("en"));				
+			} else {
+				Locale.setDefault(locale);
+			}
 			shelter = new AnimalShelter();
 			mainBox = new VBox(10);
 			table = new TableViewBox();
+			stage = primaryStage;
 
 			Text nothingHere = new Text(Messages.getString("select_create_animal")); //$NON-NLS-1$
 			mainBox.getChildren().add(nothingHere);
@@ -68,5 +75,9 @@ public class MainWindow extends Application {
 
 	public VBox getMainBox(){
 		return mainBox;
+	}
+	
+	public static Stage getStage(){
+		return stage;
 	}
 }

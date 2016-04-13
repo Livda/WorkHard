@@ -41,7 +41,7 @@ public class SettingsBox {
 		String locale = Locale.getDefault().getLanguage();
 		language.getItems().addAll(Messages.getString("english"), Messages.getString("french"));
 		switch(locale) {
-		case "us" :
+		case "en" :
 			language.getSelectionModel().select(0);
 			break;
 		case "fr" :
