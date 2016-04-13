@@ -35,7 +35,7 @@ public class myMain_A02_Part1 {
 	// MAIN METHOD 
 	//-------------------------------------------------------------------	
 	public static void main(String[] args) {
-		computeOptimalGolombRuler(4);
+		computeOptimalGolombRuler(6);
 	}
 		
 }

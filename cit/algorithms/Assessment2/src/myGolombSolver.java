@@ -44,10 +44,15 @@ public class myGolombSolver {
 	 */
 	public void exploreSearchSpace(int k, int n, int ub){
 		if (k < n) {
-			for(int i = 1; i < ub ; i++) {
+			// the function should be optimized with the advice
+			// of Ignacio Castiñeiras
+			int top = this.current.getLastMark();
+			int best = this.bestSolution.getLastMark();
+			int opti = best - ((n-k)*(n-k-1))/2;
+			for(int i = top + 1; i < opti ; i++) {
 				boolean tryAdd = this.current.addMark(i);
 				if (tryAdd) {
-					exploreSearchSpace(k+1, n, ub);
+					exploreSearchSpace(k+1, n, best);
 					this.current.removeMark();
 				}
 			}
