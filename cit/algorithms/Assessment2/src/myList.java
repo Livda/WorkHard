@@ -5,25 +5,44 @@ public interface myList<T> {
 	// Create an empty MyList: create_empty
 	//-------------------------------------------------------------------
 	//public myList create_empty(); --> Java does not support constructors in interfaces
-		
-	//-------------------------------------------------------------------
-	// Basic Operation --> Get number of elements in MyList: my_get_length
-	//-------------------------------------------------------------------	
+
+	/**
+	 * <b><i>Basic Operation</b></i>
+	 * <p>Get number of elements in <tt>MyList</tt>.
+	 * 
+	 * @return the number of elements in the list
+	 */
 	public int my_get_length();
 	
-	//-------------------------------------------------------------------
-	// Basic Operation --> Get element at of MyList at a concrete position: my_get_element
-	//-------------------------------------------------------------------
+	/**
+	 * <b><i>Basic Operation</b></i>
+	 * <p>Returns the element at the specified position in this list
+	 * 
+	 * @param index index of the element to return
+	 * @return the element at the specified position in this list
+	 * @throws myException if the index is out of range (<tt>index 
+	 * &lt; 0 || index &gt; size()</tt>)
+	 */
 	public T my_get_element(int index) throws myException;
 		
-	//-------------------------------------------------------------------
-	// Basic Operation --> Add element to MyList at a concrete position: my_add_element 
-	//-------------------------------------------------------------------
+	/**
+	 * <b><i>Basic Operation</b></i>
+	 * <p>Inserts the specified element at the specified position in this
+     * list.
+	 * @param index index at which the specified element is to be inserted
+	 * @param element element to be inserted
+	 * @throws myException if the index is out of range (<tt>index 
+	 * &lt; 0 || index &gt; size()</tt>)
+	 */
 	public void my_add_element(int index, T element) throws myException;
 	
-	//-------------------------------------------------------------------
-	// Basic Operation --> Remove element of MyList at a concrete position: my_remove_element 
-	//-------------------------------------------------------------------	
+	/**
+	 * <b><i>Basic Operation</b></i>
+	 * <p>Removes the element at the specified position in this list.
+	 * @param index the index of the element to be removed
+	 * @throws myException if the index is out of range (<tt>index 
+	 * &lt; 0 || index &gt; size()</tt>)
+	 */
 	public void my_remove_element(int index) throws myException;
 	
 }
