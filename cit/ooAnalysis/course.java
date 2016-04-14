@@ -25,3 +25,5 @@ public class RoarSound implements ISoundBehaviour {
 
     }
 }
+
+//Delegation is used when we want to use SOME of the methods of a class.
