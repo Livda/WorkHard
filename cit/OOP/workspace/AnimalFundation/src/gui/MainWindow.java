@@ -34,7 +34,7 @@ public class MainWindow extends Application {
 			table = new TableViewBox();
 			stage = primaryStage;
 
-			Text nothingHere = new Text(Messages.getString("select_create_animal")); //$NON-NLS-1$
+			Text nothingHere = new Text(Messages.getString("select_create_animal"));
 			mainBox.getChildren().add(nothingHere);
 	        VBox tableBox = table.getBox();
 
@@ -55,9 +55,9 @@ public class MainWindow extends Application {
 
 	        Scene scene = new Scene(mainLayout,1000,600);
 	        primaryStage.setScene(scene);
-	        scene.getStylesheets().add("file:ressources/css/textField.css"); //$NON-NLS-1$
-			primaryStage.setTitle(Messages.getString("animal_shelter")); //$NON-NLS-1$
-			primaryStage.getIcons().add(new Image("file:ressources/images/icon.png")); //$NON-NLS-1$
+	        scene.getStylesheets().add("file:ressources/css/textField.css");
+			primaryStage.setTitle(Messages.getString("animal_shelter"));
+			primaryStage.getIcons().add(new Image("file:ressources/images/icon.png"));
 			primaryStage.show();
 
 		} catch(Exception e) {
