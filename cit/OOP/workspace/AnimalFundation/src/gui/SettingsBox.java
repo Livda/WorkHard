@@ -38,6 +38,7 @@ public class SettingsBox {
 		grid.add(languageText, 0, 0);
 
 		ChoiceBox<String> language = new ChoiceBox<>();
+		language.setDisable(true);
 		String locale = Locale.getDefault().getLanguage();
 		language.getItems().addAll(Messages.getString("english"), Messages.getString("french"));
 		switch(locale) {
