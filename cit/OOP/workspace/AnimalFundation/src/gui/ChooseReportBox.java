@@ -69,7 +69,9 @@ public class ChooseReportBox {
 		adoptionPuppies.setToggleGroup(adoptionGroup);
 
 		RadioButton cat = new RadioButton(Messages.getString("Cat"));
+		cat.setDisable(true);
 		RadioButton dog = new RadioButton(Messages.getString("Dog"));
+		dog.setDisable(true);
 		ToggleGroup breedGroup = new ToggleGroup();
 		cat.setToggleGroup(breedGroup);
 		dog.setToggleGroup(breedGroup);
