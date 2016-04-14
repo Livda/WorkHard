@@ -25,7 +25,7 @@ public class MainWindow extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			if (locale == null) {
-				Locale.setDefault(new Locale("en"));				
+				Locale.setDefault(new Locale("fr"));				
 			} else {
 				Locale.setDefault(locale);
 			}

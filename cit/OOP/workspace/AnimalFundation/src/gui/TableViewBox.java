@@ -6,6 +6,7 @@ import controlers.DeleteHandler;
 import controlers.FilterHandler;
 import controlers.NewHandler;
 import controlers.ShowHandler;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -26,11 +27,12 @@ public class TableViewBox {
 		nameCol.setCellValueFactory(new PropertyValueFactory("name"));
         TableColumn<Animal,String> breedCol =
         		new TableColumn<Animal,String>(Messages.getString("breed"));
-        breedCol.setCellValueFactory(new PropertyValueFactory("breed"));
+        breedCol.setCellValueFactory(cellData -> new SimpleStringProperty(Messages.getString(
+        		cellData.getValue().getBreed())));
         TableColumn<Animal,String> categoryCol =
         		new TableColumn<Animal, String>(Messages.getString("category"));
-        categoryCol.setCellValueFactory(
-        		new PropertyValueFactory("animalCategory"));
+        categoryCol.setCellValueFactory(cellData -> new SimpleStringProperty(Messages.getString(
+        		cellData.getValue().getAnimalCategory().toString().toLowerCase())));
         table = new TableView<Animal>();
 		table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		table.getColumns().setAll(nameCol, breedCol, categoryCol);

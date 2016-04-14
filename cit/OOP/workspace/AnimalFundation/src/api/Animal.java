@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import gui.Messages;
+
 /**
  * @author Aurelien Fontaine
  * @version 1.0
@@ -110,6 +112,7 @@ public class Animal implements Comparable<Animal>{
 	 * @return the breed
 	 */
 	public String getBreed() {
+		//TODO Messages.getString(breed)
 		return breed;
 	}
 	/**
