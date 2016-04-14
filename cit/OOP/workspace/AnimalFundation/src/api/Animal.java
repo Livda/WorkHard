@@ -5,8 +5,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import gui.Messages;
-
 /**
  * @author Aurelien Fontaine
  * @version 1.0
