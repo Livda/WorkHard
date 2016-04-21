@@ -121,8 +121,22 @@ _Request queue: 67, 146, 55, 161, 88, 91, 121, 181, 133_
 ###ii)Circular cicle
 
 ##c) With reference to RAID, what is meant by the terms redundancy, data striping and mirroring? (__6 marks__)
+__Redundancy :__ The same information is present in multiple places or can be
+restored by multiple mays.
 
-##d) (d) Outline the main features of RAID 2. How does RAID 2 check for errors? (__4 marks__)
+__Data striping :__ The date could be writtent on different disk to increase the
+speed of writing.
+
+__Mirroring :__ Is the duplication of all the information. Two disks will
+contain the same data, so we can access one or the other to get the same data.
+
+##d) Outline the main features of RAID 2. How does RAID 2 check for errors? (__4 marks__)
+This system uses parity bits to check for errors and to detect them (if
+possible). Parity bits are calculated as follows. Assume an array has four bits
+(a bit can be 1 or 0). The sum of the four bits is calculated and if the sum is
+even than the parity bit is 0 – if the sum is odd then the parity bit is 1. For
+example, the parity bit for 0110 is even because 0 + 1 + 1 + 0 = 10 i.e. even,
+parity bit is 0.
 
 ##e) Name three items from a Linux passwd file record. (__3 marks__)
 
