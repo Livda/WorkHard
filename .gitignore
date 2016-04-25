@@ -248,6 +248,7 @@ _build/
 *.gz
 *.fls
 *.out
+*.toc
 
 ##OCaml generation
 *.cm*
