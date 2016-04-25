@@ -418,8 +418,16 @@ public class myBinarySearchTreeImpl<T1 extends Comparable<? super T1>, T2> imple
 	// 17. Assignment 2 - Operation 1 --> Count how many nodes are there at level k of myBinarySearchTree: my_count_at_level
 	//-------------------------------------------------------------------	
 	public int my_count_at_level(int level){
-		int res = 0;
+		if (level == 1){
+			return 1;
+		}
 
+		int res = 0;
+		myBinarySearchTree<T1, T2> left = this.my_left_tree();
+		myBinarySearchTree<T1, T2> right = this.my_right_tree();
+		if(!left.my_is_empty()) res += left.my_count_at_level(level-1);
+		if (!right.my_is_empty()) res += right.my_count_at_level(level-1);
+		
 		return res;				
 	}
 
@@ -427,18 +435,60 @@ public class myBinarySearchTreeImpl<T1 extends Comparable<? super T1>, T2> imple
 	// 18. Assignment 2 - Operation 2 --> Check if myBinarySearchTree is balanced: my_is_balanced
 	//-------------------------------------------------------------------	
 	public boolean my_is_balanced(){
-		boolean res = false;
+		myBinarySearchTree<T1, T2> left = this.my_left_tree();
+		myBinarySearchTree<T1, T2> right = this.my_right_tree();
 		
-		return res;	
+		int leftLength;
+		if (left.my_is_empty()){
+			leftLength = 0;
+		} else {
+			leftLength = left.my_length();
+		}
+		
+		int rightLength;
+		if (right.my_is_empty()){
+			rightLength = 0;
+		} else {
+			rightLength = right.my_length();
+		}
+		
+		int difference = Math.abs(leftLength - rightLength);
+		if (difference > 1){
+			return false;
+		} else {
+			boolean res = true;
+			if (!left.my_is_empty()) res &= left.my_is_balanced();
+			if (!right.my_is_empty()) res &= right.my_is_balanced();
+			return res;
+		}
 	}
 	
 	//-------------------------------------------------------------------
 	// 19. Assignment 2 - Operation 3 --> Count how many nodes are smaller in myBinarySearchTree: my_count_smaller_nodes
 	//-------------------------------------------------------------------	
 	public int my_count_smaller_nodes(T1 key){
-		int res = 0;
-
-		return res;		
-	}	
-	
+		myBinarySearchTree<T1, T2> left = this.my_left_tree();
+		myBinarySearchTree<T1, T2> right = this.my_right_tree();
+		
+		T1 rootKey = this.root.getKey();
+		int compare = key.compareTo(rootKey);
+		
+		
+		if(compare > 0){
+			int res = 1;
+			if (!left.my_is_empty()){
+				res += left.my_count_smaller_nodes(key);
+			}
+			if (!right.my_is_empty()){
+				res += right.my_count_smaller_nodes(key);
+			}
+			return res;
+		} else {
+			if (left.my_is_empty()){
+				return 0;
+			} else {
+				return left.my_count_smaller_nodes(key);
+			}
+		}
+	}
 }
