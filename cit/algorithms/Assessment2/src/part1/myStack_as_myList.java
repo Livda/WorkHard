@@ -1,3 +1,4 @@
+package part1;
 /**
  * The <code>Stack</code> class represents a last-in-first-out
  * (LIFO) stack of objects. The usual

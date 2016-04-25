@@ -1,3 +1,4 @@
+package part1;
 
 public class myMain_A02_Part1 {
 			

@@ -1,3 +1,4 @@
+package part1;
 /**
  * {@code MyException} is an exception create for the needs of the labs
  * @author Ignacio Castiñeiras

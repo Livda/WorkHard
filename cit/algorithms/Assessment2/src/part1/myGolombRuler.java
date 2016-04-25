@@ -1,3 +1,4 @@
+package part1;
 /**
  * 
  * @author Ignacio Castiñeiras
