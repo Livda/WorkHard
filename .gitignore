@@ -257,3 +257,5 @@ main.native
 
 *.pdf
 *.tar.xz
+*.jpg
+*.png

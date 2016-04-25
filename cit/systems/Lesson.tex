@@ -1,4 +1,14 @@
-\documentclass{rapport}
+\documentclass[10pt,a4paper,openany]{book}
+\usepackage{hyperref,fullpage,graphicx}
+
+%redefinition of the colour of the links
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=blue
+}
 
 \title{Lesson OS}
 \author{Gerard Mac Sweeney}
@@ -7,16 +17,186 @@
 \tableofcontents
 
     \chapter{Generalities}
-    \section{Lecturer informations}
-    \textbf{Name :} Gerard Mac Sweeney
+    \section*{Lecturer informations}
+    \paragraph*{Name :} Gerard Mac Sweeney
+    \paragraph*{Office :} B224L
+    \paragraph*{Mail :}
+    \href{mailto:gerard.macsweeney@cit.ie}{gerard.macsweeney@cit.ie}
 
-    \textbf{Office :} B224L
+    \section*{Assessment}
+    \paragraph*{Continuous Assessment:} 30 \% - two labs exercises
+    \paragraph*{Final Exam:} 70 \%
 
-    \textbf{Mail :} \href{mailto:gerard.macsweeney@cit.ie}{gerard.macsweeney@cit.ie}
+    \chapter{Review of Operating Systems Fundamentals}
 
-    \section{Assessment}
+    \section{Introduction}
+    Operating systems have 2 main roles :
 
-    \textbf{Continuous Assessment:} 30 \% - two labs exercises
+    \subsection*{An interface}
+    This is a suite of programs which together provide an \textit{interface} between the user and the hardware. The OS manages the complex interactions required by a running program when dealing with processor(s) (CPU), main memory (RAM), secondary storage (disks, tapes), printers, keyboards, screens, network cards, etc. It also presents the user/application programmer with a simplified (but effective) view of these complex interactions.
 
-    \textbf{Final Exam:} 70 \%
+    \subsection*{A manager}
+    The OS also \textit{manages} the allocation of machine resources to running programs. These resources include the processor, memory and storage. It must manage this allocation fairly and efficiently.
+
+    \section{Goals of an OS}
+    \begin{itemize}
+    \item Make the computer convenient to use.
+    \item Manage the use of hardware resources efficiently \& fairly and co-ordinate it's use by programs.
+    \item Allow easy expansion.
+    \item Provides a workable interface for use.
+    \item Operates and controls use of I/O devices and allocate resources of the system to the programs. For example CPU time, main memory space, disk space, I/O devices, etc.
+    \item OS must manage conflicts fairly and efficiently and controls access to and use of the system; security from damage; protection of processes.
+    \end{itemize}
+
+    \section{Operating System Services}
+    The OS provides services to users and programmers. The user accesses these services through either systems programs or application programs. The programmers (both systems programmers and application programmers) call on these services.
+
+    In general, the services provided include :
+    \subsection*{Program Development}
+    The OS offers a variety of services and facilities such as editors and debuggers. These assist developers in creating programs and although strictly not part of the core of the OS – they are generally supplied with the operating system.
+
+    \subsection*{I/O operations}
+    All input and output from/to devices is handled by OS. The OS provides a uniform interface to these.
+
+    \subsection*{Controlled access to files}
+    The OS will open, close, create, delete, and move files about on disk/tape. On a system with multiple users, it may provide protection to individual users’ data.
+
+    \subsection*{System Access}
+    For shared or public systems, the OS controls access to the system as a whole.
+
+    \subsection*{Error detection}
+    The OS watches for errors in: - h/w (e.g. power failure, disk head crash); I/O devices (e.g. printer out of paper); - programs (e.g. arithmetic overflow, division by zero).
+
+    \subsection*{Resource allocation}
+    Any resource required by programs are requested from OS.
+
+    \subsection*{Accounting}
+    The OS keeps track of resource use for payment, protection or statistical purposes. Protection accounting allows system to record damage done. Statistics are used in trying to improve service.
+
+    \subsection*{Protection}
+    As well as ensuring private data is kept private (e.g. mailboxes, personnel records) the OS protects programs from each other (especially other OS programs).
+
+    \section{Computer System Overview}
+    \subsection{Basic Elements}
+    \paragraph*{The Processor -}
+    The Central Processor Unit (CPU) controls the operation of the computer and performs data processing tasks. The processor can be divided into two major components the \textbf{arithmetic logic unit} (A.L.U.) and the \textbf{control unit}(C.U.).
+
+    \paragraph*{Main Memory -}
+    This stores data and programs. It is volatile – often referred to as RAM.
+
+    \paragraph*{I/O Modules -}
+    These move data between the computer and external devices.
+
+    \paragraph*{System Bus -}
+    The enables communication among processor, memory and external devices.
+
+    \paragraph*{Storage -}
+    This provides non-volatile permanent storage.
+
+    \subsection{Top Level View of the System}
+    \href{http://voer.edu.vn/file/11893}{\includegraphics[width=15cm]{topLevel.png}}
+
+    The Processor consist of :
+    \begin{itemize}
+    \item \textbf{ALU} - Arithmetic Logic Unit which performs operations (add, sub, etc.).
+    \item \textbf{CU} - Control Unit which co-ordinates operation of the various CPU components.
+    \end{itemize}
+    Other components include :
+    \begin{itemize}
+    \item A \textbf{Clock} that synchronizes the CPU and the entire system.
+    \item \textbf{Registers} which store information to control operations, these include:
+        \begin{itemize}
+        \item \textbf{IR} - Instruction Register which contains the instruction last fetched;
+        \item \textbf{PC} - Program Counter which contains the memory address of the next instruction to be fetched;
+        \item \textbf{MAR} - Memory Address Register which contains the address for the next read/write;
+        \item \textbf{MBR} - Memory Buffer Register which contains the data to be written to memory OR contains the data to be read  from memory;
+        \item \textbf{I/OAR} - I/O Address Register which specifies an i/o device;
+        \item \textbf{I/OBR} - I/O Buffer Register which is used for exchange of data to/from the i/o module;
+        \end{itemize}
+    \end{itemize}
+
+    \subsection{Memory Hierarchy}
+    \href{http://cse1.net/recaps/img/4-hierarchy.jpg}{\includegraphics[width=15cm]{hierarchy.jpg}}
+
+    \href{http://computer.howstuffworks.com/virtual-memory.html}{Interesting link to see}.
+
+    \textbf{Cache Memory} is smaller and faster than main memory - here frequently accessed data can be stored for rapid access. It is possible to have multiple layers of cache.
+
+    \begin{center}
+    \href{https://static.lwn.net/images/cpumemory/cpumemory.1.png}{\includegraphics[width=200pt]{cpumemory.png}}
+    \end{center}
+
+    The processor first checks the cache - if not found in cache, the block of memory containing the needed information is moved to the cache.
+
+    \subsection{Virtual Memory}
+    Virtual memory is a technique to enable disk space to enhance main memory. Programs which require more memory than available can be run. It means that more applications can run concurrently. Managing memory is a significant part of an operating systems’ role. The operating system determines the amount of memory available for each activity and for how long that memory is available.
+
+    \subsection{The Fetch Execute Cycle}
+    Each instruction / data is fetched from memory and executed followed by the next instruction, etc. This is how the processor gets things done.
+
+    The program counter specifies a memory location $\rightarrow$ An instruction is fetched from this location $\rightarrow$ The program counter is incremented $\rightarrow$ The instruction is executed. $\rightarrow$ Repeat
+
+    However, there are a number of exceptions (e.g. input waiting to be picked up) to this cycle known as interrupts.
+
+    \subsection{Interrupts}
+    \begin{itemize}
+    \item Occur in the normal sequence of processing.
+    \item Improve processing efficiency.
+    \item Allow the processor to execute other instructions while an I/O operation is in progress.
+    \item Cause a suspension of processes which can be resumed later.
+    \end{itemize}
+
+    \subsubsection*{The Interrupt cycle}
+    \begin{itemize}
+    \item Processor checks for interrupts
+    \item If no interrupts fetch the next instruction for the current program
+    \item If an interrupt is pending, suspend execution of the current program, and execute the interrupt handler
+    \end{itemize}
+    The Interrupt cycle might look like this:
+
+    \href{http://cnx.org/resources/5fcfce2d72b6cc577496bbca9730397b3227d743/graphics7.jpg}{\includegraphics[width=15cm]{interruptcycle.jpg}}
+
+    \subsubsection*{Interrupt Handler}
+    \begin{itemize}
+    \item This program determines nature of the interrupt and performs whatever actions are needed.
+    \item Control is transferred to this program.
+    \item Generally part of the operating system.
+    \end{itemize}
+
+    \subsubsection*{Multiple Interrupts}
+    \begin{itemize}
+    \item Higher priority interrupts may cause lower-priority interrupts to wait
+    \item Causes a lower-priority interrupt handler to be interrupted
+    \end{itemize}
+
+    Multi-Interrupts might occur as \textbf{sequence} interrupt or \textbf{nested} interrupt.
+
+    \href{http://cnx.org/resources/32a82e21d46f5b23027905acb42bdd19dc38a5b3/graphics10.jpg}{\includegraphics[width=10cm]{multipleinterrupt.jpg}}
+
+    \chapter{Review of Processes}
+    A process is the execution of an individual program or a sequence of instructions that execute. The operating system should:
+    \begin{itemize}
+    \item Interleave the \textbf{execution} of several processes to maximize processor utilization while providing reasonable response time.
+    \item Allocate resources to processes e.g. memory.
+    \item Support inter process communication and user creation of processes.
+    \end{itemize}
+
+    \section{Process state}
+    In most modern computer systems, multiple processes run concurrently. A process can exist in one of up to seven states.
+
+    \begin{center}
+    \href{http://mcom.cit.ie/staff/Computing/prothwell/bbsos/notes/os03a_files/image002.jpg}{\includegraphics[width=10cm]{processstates.jpg}}
+    \end{center}
+
+    The two Suspend states refer to processes in swap space.
+
+    The ready and blocked states would each typically consisted of a queue of processes waiting to be moved to the processor or moved to the ready state respectively.
+
+    \begin{center}
+    \includegraphics[width=10cm]{readyblockedqueue.png}
+    \end{center}
+
+    Blocked suspend and ready suspend also consist of queues.
+
+    The dispatcher (program to move a process from ready to running) also requires processor time. For example, if three processes are concurrently running – process states might look as follows:
 \end{document}
