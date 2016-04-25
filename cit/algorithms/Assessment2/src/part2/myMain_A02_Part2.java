@@ -7,26 +7,26 @@ public class myMain_A02_Part2 {
 	// initialise_tree 
 	//-------------------------------------------------------------------	
 	public static void initialise_tree(myBinarySearchTree<Integer, String> t, boolean mode){
-		t.my_insert(8, "A");
+		t.insert(8, "A");
 		
-		t.my_insert(5, "B");
+		t.insert(5, "B");
 		
-		t.my_insert(2, "C");
+		t.insert(2, "C");
 
-		t.my_insert(1, "D");
+		t.insert(1, "D");
 		
-		t.my_insert(3, "E");
+		t.insert(3, "E");
 				
-		t.my_insert(7, "G");
+		t.insert(7, "G");
 		
-		t.my_insert(6, "H");
+		t.insert(6, "H");
 		
-		t.my_insert(11, "I");
+		t.insert(11, "I");
 		
-		t.my_insert(10, "J");
+		t.insert(10, "J");
 		
 		if (mode == false)
-			t.my_insert(9, "K");
+			t.insert(9, "K");
 	}
 	
 	//-------------------------------------------------------------------
@@ -39,19 +39,19 @@ public class myMain_A02_Part2 {
 		initialise_tree(myTree1, true);
 		initialise_tree(myTree2, false);
 		
-		System.out.println("Nodes of myTree1 at level 1? " + myTree1.my_count_at_level(1));		
-		System.out.println("Nodes of myTree1 at level 2? " + myTree1.my_count_at_level(2));
-		System.out.println("Nodes of myTree1 at level 3? " + myTree1.my_count_at_level(3));
-		System.out.println("Nodes of myTree1 at level 4? " + myTree1.my_count_at_level(4));
-		System.out.println("Nodes of myTree2 at level 4? " + myTree2.my_count_at_level(4));		
-		System.out.println("Nodes of myTree1 at level 5? " + myTree1.my_count_at_level(5));
+		System.out.println("Nodes of myTree1 at level 1? " + myTree1.countAtLevel(1));		
+		System.out.println("Nodes of myTree1 at level 2? " + myTree1.countAtLevel(2));
+		System.out.println("Nodes of myTree1 at level 3? " + myTree1.countAtLevel(3));
+		System.out.println("Nodes of myTree1 at level 4? " + myTree1.countAtLevel(4));
+		System.out.println("Nodes of myTree2 at level 4? " + myTree2.countAtLevel(4));		
+		System.out.println("Nodes of myTree1 at level 5? " + myTree1.countAtLevel(5));
 		
-		System.out.println("Is myTree1 balanced? " + myTree1.my_is_balanced());
-		System.out.println("Is myTree2 balanced? " + myTree2.my_is_balanced());		
+		System.out.println("Is myTree1 balanced? " + myTree1.isBalanced());
+		System.out.println("Is myTree2 balanced? " + myTree2.isBalanced());		
 		
-		System.out.println("How many nodes on myTree1 are smaller than 1? " + myTree1.my_count_smaller_nodes(1));		
-		System.out.println("How many nodes on myTree1 are smaller than 5? " + myTree1.my_count_smaller_nodes(5));
-		System.out.println("How many nodes on myTree1 are smaller than 11? " + myTree1.my_count_smaller_nodes(11));		
+		System.out.println("How many nodes on myTree1 are smaller than 1? " + myTree1.countSmallerNodes(1));		
+		System.out.println("How many nodes on myTree1 are smaller than 5? " + myTree1.countSmallerNodes(5));
+		System.out.println("How many nodes on myTree1 are smaller than 11? " + myTree1.countSmallerNodes(11));		
 	}
 		
 }
