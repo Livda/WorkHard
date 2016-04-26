@@ -22,11 +22,11 @@ __Unsafe :__ possibility of deadlock
 | __P1__ |    2   |    0   |    3   |
 | __P2__ |    1   |    3   |    0   |
 | __P3__ |    1   |    1   |    2   |
-| __P4__ |    2   |    2   |    2   |
+| __P4__ |    2   |    2   |    1   |
 
 :Current resource allocation
 
-Available = (2 1 2)
+Available = (2 1 3)
 
 \newpage
 ##c) Is the system currently in a safe state ? (_6 marks_)
@@ -40,9 +40,9 @@ Available = (2 1 2)
 
 :Total resources claims
 
-P3 -> Available = (3 2 4)
+P3 -> Available = (3 2 5)
 
-P2 -> Available = (4 5 6)
+P2 -> Available = (4 5 5)
 
 P4 -> Available = (6 7 6)
 
@@ -52,7 +52,7 @@ Done.
 
 The system is in a __safe__ state.
 
-##d) Draw a time-line to show the execution of each of there processes for the _Shortest Reaming Time_ scheduling algorithm. Calculate the turnaround and normalised turnaround times. (_8 marks_)
+##d) Draw a time-line to show the execution of each of there processes for the _Shortest Remaining Time_ scheduling algorithm. Calculate the turnaround and normalised turnaround times. (_8 marks_)
 
 | __Process Time__ | __Arrival Time__ | __Service Time__|
 |:----------------:|:----------------:|:---------------:|
@@ -66,22 +66,43 @@ The system is in a __safe__ state.
         |----|----|----|-->
 
 A        --                 0 -> 2
-B          -------          2 -> 9
-C                  ----     10 -> 14
-D                 -         9 -> 10
+B          --     -----     2 -> 4 / 9 -> 14
+C            -- --          4 -> 6 / 7 -> 9
+D              -            6 -> 7
 ```
 
 |              |  A  |  B  |  C  |  D  | Total |
 | :----------: | :-: | :-: | :-: | :-: | :---: |
 | Service time |  2  |  7  |  4  |  1  |  14   |
-| Waiting time |  0  |  0  |  6  |  3  |   9   |
+| Waiting time |  0  |  5  |  1  |  0  |   6   |
 
 : Service and waiting time for all processes
 
-_Turnaround time :_ Service time + Waiting time = $14 + 9 = 23$
+###Total
+_Turnaround time :_ Service time + Waiting time = $14 + 6 = 20$
 
-_Normalised turnaround time :_ Turnaround time / Service time = $23 / 14 = 1.64$
+_Normalised turnaround time :_ Turnaround time / Service time = $20 / 14 = 1.42$
 
+###Task A
+_Turnaround time :_ $2 + 0 = 2$
+
+_Normalised turnaround time :_ $2 / 2 = 1$
+
+###Task B
+_Turnaround time :_ $7 + 5 = 15$
+
+_Normalised turnaround time :_ $15 / 7 = 2.14$
+
+###Task C
+_Turnaround time :_ $4 + 1 = 5$
+
+_Normalised turnaround time :_ $5 / 4 = 1.25$
+
+
+###Task D
+_Turnaround time :_ $1 + 0 = 1$
+
+_Normalised turnaround time :_ $1 / 1 = 1$
 
 ##e) How does the Linux kill command work? (_3 marks_)
 The command `kill` send a signal to the application / processes. With the option
@@ -135,8 +156,7 @@ _Request queue: 67, 146, 55, 161, 88, 91, 121, 181, 133_
 __Redundancy :__ The same information is present in multiple places or can be
 restored by multiple ways.
 
-__Data striping :__ The date could be written on different disk to increase the
-speed of writing.
+__Data striping :__ Segmentation of data to byte or bit.
 
 __Mirroring :__ Is the duplication of all the information. Two disks will
 contain the same data, so we can access one or the other to get the same data.
@@ -149,6 +169,7 @@ even than the parity bit is 0 – if the sum is odd then the parity bit is 1. Fo
 example, the parity bit for 0110 is even because 0 + 1 + 1 + 0 = 10 i.e. even,
 parity bit is 0.
 
+\newpage
 ##e) Name three items from a Linux passwd file record. (_3 marks_)
 ```
 malabar:x:1000:1000:malabar,,,:/home/malabar:/bin/bash
@@ -157,7 +178,7 @@ malabar:x:1000:1000:malabar,,,:/home/malabar:/bin/bash
 
 1) username
 2) password, now it's `x` because the hash of the password is
-externalize in the shadow file
+externalize in the `shadow` file
 3) User ID
 4) Group ID
 5) User ID info
@@ -167,6 +188,7 @@ externalize in the shadow file
 #Question 4
 ##a) Outline two methods where multiple operating systems can be made available on a single computer. What is the first Linux process to run? (_3 marks_)
 Virtual Machine or Dual Boot.
+
 The first process to run is `init`. Nowadays, many Linux distributions use
 `systemd` which is more efficient and can handle more problems.
 
@@ -175,14 +197,15 @@ A Linux daemon is a service running in the background. These can vary depending
 on the particular distribution and the run-level. The latter refers to a set of
 services that start-up at boot time.
 
+\newpage
 ##c) With the aid of a diagram, describe how the NFS service works. (_10 marks_)
 ![NFS service](http://www.redhatlinuxsysadmin.com/redhat-linux-system-administration/module5/images/nfs.gif)
 
 ##d) Give three reasons why concurrency cannot be avoided in a modern operating system. (_6 marks_)
 
 1) Multiple application running at the same time
-2)
-3)
+2) Windowing
+3) Multi-processors
 
 #Question 5
 ##a) Define mutual exclusion and state the conditions for mutual exclusion to occur. (_12 marks_)
