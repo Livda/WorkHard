@@ -119,24 +119,40 @@ command,
 - `pstree` which shows running processes as a tree,
 - `top` or `htop` which show dynamicly all the processes running on the
 computer,
-- `fg` or `bg` with `jobs` which put a processes on background running or to retake it in
-front-ground,
+- `fg` or `bg` with `jobs` which put a processes on background running or to
+retake it in front-ground,
 - etc.
 
 #Question 2
 ##a) Name four primary assets of a computer system that require protection. (_4 marks_)
+Hardware, software, data and communication lines.
 
 ##b) Name and briefly describe four phases of a typical virus. (_8 marks_)
 
+1) __Dormant__ - Virus is idle and waiting for a trigger.
+2) __Propagation__ - Copies itself to other programs.
+3) __Triggering__ - An event activates the virus.
+4) __Execution__ - Virus function is performed.
+
 ##c) What is the main difference in the way Linux and Windows support virtual memory? (_2 marks_)
+Linux use a swap partition. Windows uses virtual memory manager and page files.
 
 ##d) With the aid of a diagram, describe how a Translation Lookaside Buffer works. (_11 marks_)
+![Translation Lookaside Buffer](http://pds18.egloos.com/pds/201008/25/54/b0104454_4c74d19e68d6a.jpg)
+
+Contains recent page table entries. Given the address examines TLB.
+If present, read address is calculated.
+Else check page table.
+    If present, calculate address.
+    Else, page fault. Load page.
+Update page table and buffer.
 
 #Question 3
 ##a) Describe the factors that need to be considered when calculating the access time of a disk scheduling algorithm. (_6 marks_)
-The access time is the sum of the __seek time__, the __latency time__ and the
-__transfer time__. The only way to reduce access time is to reduce the seek
-time because the other ones are fixed.
+The access time is the sum of the __seek time__(time it take to mode the head),
+the __latency time__ (time for disk to spin) and the __transfer time__(electronic
+transfer of data to / from memory). The only way to reduce access time is to
+reduce the seek time because the other ones are fixed.
 
 The algorithm are more or less efficient depending on the distribution of the
 resource required, but generally the FIFO scheduling algorithm is less efficient
@@ -147,16 +163,16 @@ than the C-Look scheduling algorithm.
 _Request queue: 67, 146, 55, 161, 88, 91, 121, 181, 133_
 
 ###i) Look
-151, 146, 133, 121, 91, 88, 67, 55, 181, 161
+151, 161, 181, 146, 133, 121, 91, 88, 67, 55
 
 ###ii)Circular circle
-151, 161, 181, 55, 67, 88, 91, 121, 133, 146
+151, 161, 181, 199, 0, 55, 67, 88, 91, 121, 133, 146
 
 ##c) With reference to RAID, what is meant by the terms redundancy, data striping and mirroring? (_6 marks_)
 __Redundancy :__ The same information is present in multiple places or can be
 restored by multiple ways.
 
-__Data striping :__ Segmentation of data to byte or bit.
+__Data striping :__ Segmentation of data to byte/bit level.
 
 __Mirroring :__ Is the duplication of all the information. Two disks will
 contain the same data, so we can access one or the other to get the same data.
@@ -169,7 +185,6 @@ even than the parity bit is 0 – if the sum is odd then the parity bit is 1. Fo
 example, the parity bit for 0110 is even because 0 + 1 + 1 + 0 = 10 i.e. even,
 parity bit is 0.
 
-\newpage
 ##e) Name three items from a Linux passwd file record. (_3 marks_)
 ```
 malabar:x:1000:1000:malabar,,,:/home/malabar:/bin/bash
@@ -193,19 +208,25 @@ The first process to run is `init`. Nowadays, many Linux distributions use
 `systemd` which is more efficient and can handle more problems.
 
 ##b) What is a Linux daemon? With reference to run-level directories, describe how daemons usually get started. (_6 marks_)
-A Linux daemon is a service running in the background. These can vary depending
-on the particular distribution and the run-level. The latter refers to a set of
-services that start-up at boot time.
+A Linux daemon is a service running in the background and usually load at boot
+time. A run level is selected, runs all services in the appropriate run-level
+directory uses symbolic links.
 
 \newpage
 ##c) With the aid of a diagram, describe how the NFS service works. (_10 marks_)
 ![NFS service](http://www.redhatlinuxsysadmin.com/redhat-linux-system-administration/module5/images/nfs.gif)
 
+__Network File System__ - A server runs NFS server software. It exports a
+directory to clients. Client runs NFS client software. Client has access to
+exported directory subject to set permissions.
+
 ##d) Give three reasons why concurrency cannot be avoided in a modern operating system. (_6 marks_)
 
 1) Multiple application running at the same time
-2) Windowing
-3) Multi-processors
+2) Windowing is naturally concurrent
+3) Multi-processors uses
+4) Greater efficiency - makes more use of resources so system won't be idle
+5) Distributed systems
 
 #Question 5
 ##a) Define mutual exclusion and state the conditions for mutual exclusion to occur. (_12 marks_)
