@@ -1,0 +1,111 @@
+\documentclass{report}
+\usepackage{fullpage,graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[official]{eurosym}
+
+\author{Aurélien Fontaine}
+\title{OO Analysis \& Desing Project 2016}
+\date{\today}
+
+\begin{document}
+\begin{titlepage}
+    \centering
+    \includegraphics[width=0.5\textwidth]{CIT.jpg}\par\vspace{1cm}
+    {\scshape\Large OO Analysis \& Design\par}
+    \vspace{1.5cm}
+    {\huge\bfseries Final Project\par}
+    \vspace{2cm}
+    {\Large\itshape Aurélien Fontaine\par}
+    \vfill
+    supervised by\par
+    Mrs. Mary \textsc{DAVIN}
+    \vfill
+    {\large \today\par}
+\end{titlepage}
+\begin{abstract}
+    “Davin’s Rent a Vehicle “is a vehicle rental company which has a wide variety of makes and models available to hire 7 days a week. The company has branches in city locations in Ireland. The main branch office is located at Cork Airport. All branches are managed by a manager which is an employee of Davin’s. Each employee works in one branch at any time. It is possible for an employee to be reassigned to a different branch on request. Each branch has its own email address and phone number. The chief executive of the company works in the main branch.
+
+    You have been commissioned on behalf of CIT computing department to design a system that would support the needs of Davin’s rental business.
+\end{abstract}
+\tableofcontents
+\part{List of events}
+\setcounter{chapter}{1}
+\section{Making reservation}
+    \begin{itemize}
+        \item Customer specify informations (\textit{time, rental start/end date, driver's age, category of vehicle and pick-up point})
+        \item System return a quotation
+        \item Possibility to get additional items (\textit{child booster seat, ...})
+        \item Customer give personal details (\textit{first name, surname, email, mobile})
+        \item Customer give payment details (\textit{type of card, name on card, card number, expiry date, CCV number})
+        \item System generate a reservation number for this reservation
+        \item System give the reservation number to the customer
+    \end{itemize}
+
+\section{Renting}
+    \begin{itemize}
+        \item Get each drivers informations (\textit{full name, date of birth, driver's license number, country where license was issued})
+        \item If multiple driver, assign one primary driver
+        \item Check for additional charges (\textit{collision damage waiver, liability insurance, personal accident insurance})
+        \item If no damage waiver, 1000\euro{} deposit (\textit{cash or credit card})
+        \item Creation of rental agreement (\textit{agreement number, customer's name, type of rate(daily, weekend or weekly), vehicle identification (license number), vehicle price category, date, time, mileage, expected date and time of return})
+        \item Give vehicle to the customer
+    \end{itemize}
+
+\section{Accepting returned car}
+    \begin{itemize}
+        \item Check fuel tank
+        \item Record date, time, mileage
+        \item Take pictures of the damages
+        \item Record the pictures
+        \item Add any extra charge to the bill
+    \end{itemize}
+
+\section{Inspecting}
+    \begin{itemize}
+        \item Inspection for maintenance
+        \item \textbf{If} reparation needed :
+        \begin{itemize}
+            \item Go to the rental garage for reparation
+        \end{itemize}
+        \item Take the vehicle to the vehicle wash
+        \item Assign a new park space to the vehicle
+    \end{itemize}
+
+\section{Billing}
+    \begin{itemize}
+        \item Give the bill to the customer
+        \item If not there, send it by mail (\textit{could be a third party such an insurance company})
+    \end{itemize}
+
+\section{Receiving payment}
+    \begin{itemize}
+        \item Get payment (\textit{by cash or credit card})
+        \item Refund deposit if needed
+    \end{itemize}
+
+\part{Event table}
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Event nb} & \textbf{Event description} \\
+\hline
+1 & Customer specify informations \\
+\hline
+2 & System return a quotation \\
+\hline
+\end{tabular}
+\end{center}
+
+\part{Use Case Diagram}
+\part{4 use case specifications}
+\part{Screen shot of the prototype}
+\part{System Sequence Diagrams}
+\part{Domain Model}
+\part{Sequence Diagram}
+\part{Design Class Diagram}
+\part{Extended Class Diagram}
+\part{Overview through a relational model}
+\part{From map design class diagram to code}
+
+\end{document}
