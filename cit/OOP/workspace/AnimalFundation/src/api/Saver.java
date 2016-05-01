@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Map;
 
@@ -70,7 +71,6 @@ public class Saver {
 	public AnimalShelter load(){
 		BufferedReader br = null;
 		String currentLine;
-		Person person;
 		Category cat = null;
 		Found f;
 		Adoption a;
@@ -85,27 +85,33 @@ public class Saver {
 		Map<Integer, Lost> lTable = new Hashtable<Integer, Lost>();
 
 		//Load all the persons
-		try {
-			br = new BufferedReader(new FileReader(persons));
-
-			while ((currentLine = br.readLine()) != null) {
-				String[] parts = currentLine.split(",");
-				int id = Integer.parseInt(parts[0]);
-				person = Person.load(parts);
-				pTable.put(id, person);
-			}
-			System.out.println("Persons loaded successfuly");
-		}
-		catch (IOException e) {
-			System.out.println ("Error when trying to read : "
-					+ e.getMessage());
-		} finally {
-			try {
-				if (br != null) br.close();
-			}
-			catch (IOException e) {
-				e.printStackTrace();
-			}
+//		try {
+//			br = new BufferedReader(new FileReader(persons));
+//
+//			while ((currentLine = br.readLine()) != null) {
+//				String[] parts = currentLine.split(",");
+//				int id = Integer.parseInt(parts[0]);
+//				person = Person.load(parts);
+//				pTable.put(id, person);
+//			}
+//			System.out.println("Persons loaded successfuly");
+//		}
+//		catch (IOException e) {
+//			System.out.println ("Error when trying to read : "
+//					+ e.getMessage());
+//		} finally {
+//			try {
+//				if (br != null) br.close();
+//			}
+//			catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//		}
+		DataBaseManager dbm = DataBaseManager.getDataBaseManager();
+		ArrayList<Person> personsList = dbm.getAllPersons();
+		for(Person p : personsList){
+			int id = p.getId();
+			pTable.put(id,p);
 		}
 
 		//Load all the founded Categories
