@@ -101,18 +101,15 @@ public class AnimalShelter {
 		return res;
 	}
 
-	public ArrayList<Animal> getAllAnimals(){
-		ArrayList<Animal> list = new ArrayList<Animal>();
-		List<Animal> temp = adoption.getList();
-		list.addAll(temp);
-		temp = lost.getList();
-		list.addAll(temp);
-		temp = found.getList();
-		list.addAll(temp);
-		return list;
+	public List<Animal> getAllAnimals(){
+		DataBaseManager dbm = DataBaseManager.getDataBaseManager();
+		List<Animal> animals =dbm.getAllAnimals();
+		return animals;
 	}
 
-	public ArrayList<Person> getAllPersons(){
+	public List<Person> getAllPersons(){
+		DataBaseManager dbm = DataBaseManager.getDataBaseManager();
+		List<Person> persons = dbm.getAllPersons();
 		return persons;
 	}
 	/**

@@ -25,11 +25,13 @@ public class Adoption extends Category{
 	 * @param vac Is the animal vaccinated
 	 */
 	public Adoption(int id, LocalDate date, Person contact,
-			boolean neut, boolean chip, boolean vac){
+			boolean neut, boolean chip, boolean vac, boolean reserved, boolean ready){
 		super(id, date, contact);
 		this.neutered = neut;
 		this.chipped = chip;
 		this.vaccinated = vac;
+		this.reserved = reserved;
+		this.ready = ready;
 	}
 
 	/**

@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -92,7 +91,7 @@ public class ReportHandler implements EventHandler<ActionEvent> {
 			System.out.println("Error when trying to initialise the person part : "
 					+ e.getMessage());
 		}
-		ArrayList<Person> list = MainWindow.shelter.getAllPersons();
+		List<Person> list = MainWindow.shelter.getAllPersons();
 		Collections.sort(list);
 		for(Person p : list){
 			p.fillReport(report);

@@ -108,7 +108,7 @@ public class Saver {
 //			}
 //		}
 		DataBaseManager dbm = DataBaseManager.getDataBaseManager();
-		ArrayList<Person> personsList = dbm.getAllPersons();
+		ArrayList<Person> personsList = (ArrayList<Person>) dbm.getAllPersons();
 		for(Person p : personsList){
 			int id = p.getId();
 			pTable.put(id,p);
