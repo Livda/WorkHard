@@ -4,6 +4,7 @@
 package api;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -48,6 +49,33 @@ public class DataBaseManager {
 			INSTANCE = new DataBaseManager();
 		}
 		return INSTANCE;
+	}
+	
+	public AnimalShelter getSavedShelter(){
+		List<Animal> animals = this.getAllAnimals();
+		
+		ArrayList<Animal> adoption = new ArrayList<Animal>();
+		ArrayList<Animal> found = new ArrayList<Animal>();
+		ArrayList<Animal> lost = new ArrayList<Animal>();
+		
+		for (Animal a : animals){
+			char catLetter = a.getAnimalCategory().getCategoryLetter();
+			switch(catLetter){
+			case 'a':
+				adoption.add(a);
+				break;
+			case 'f':
+				found.add(a);
+				break;
+			case 'l':
+				lost.add(a);
+				break;
+			}
+		}
+		AnimalList aAdoption = new AnimalList(adoption);
+		AnimalList aFound = new AnimalList(found);
+		AnimalList aLost = new AnimalList(lost);
+		return new AnimalShelter(aAdoption, aFound, aLost);
 	}
 	
 	public List<Person> getAllPersons(){
@@ -282,7 +310,6 @@ public class DataBaseManager {
 				}
 				Animal a = new Animal(id, age, color, gender, description, name, pathToPicture,
 						breed, category, type);
-				System.out.println(a);
 				animal.add(a);
 			}
 		} catch (SQLException ex){
@@ -302,29 +329,120 @@ public class DataBaseManager {
 	}
 	
 	public void add(Animal a){
+		//Get animal details
+		int id = a.getId();
+		int age = a.getAge();
+		String color = a.getColour();
+		boolean gender = a.getGender();
+		String description = a.getDescription();
+		String name = a.getName();
+		String pathToPicture = a.getPathToPicture();
+		String breed = a.getBreed();
+		String type = a.getType();
+		
+		//Get category details
+		Category category = a.getAnimalCategory();
+		char categoryLetter = category.getCategoryLetter();
+		int catID = category.getId();
+		LocalDate localDate = category.getDate();
+		Date date = Date.valueOf(localDate);
+		
+		//Get person details
+		Person person = category.getContact();
+		int pID = person.getId();
+		String pName = person.getName();
+		String adress = person.getAdress();
+		String phone = person.getPhone();
+		String email = person.getEmail();
+		
+		//Construction of all the queries
+		String animalQuery = "INSERT INTO "+animalTable+" VALUES (" + id + "," 
+				+ age + ",\"" + color + "\"," + gender + ",\"" + description + "\",\"" + name 
+				+ "\",\"" + pathToPicture + "\",\"" + breed + "\",\"" + categoryLetter + "\","
+				+ catID + ",\"" + type + "\");";
+		
+		String categoryQuery = "INSERT INTO ";
+		String secondPart = " VALUES (" + catID + ",\'" + date + "\'," + pID;
+		switch (categoryLetter){
+		case 'a':
+			Adoption adoption = (Adoption) category;
+			boolean neutered = adoption.isNeutered();
+			boolean chipped = adoption.isChipped();
+			boolean vaccinated = adoption.isVaccinated();
+			boolean reserved = adoption.isReserved();
+			boolean ready = adoption.isReady();
+			categoryQuery += adoptionTable + secondPart + "," + neutered +"," + chipped + "," 
+					+ vaccinated + "," + reserved + "," + ready + ");"; 
+			break;
+		case 'f':
+			Found found = (Found) category;
+			String fLocation = found.getLocation();
+			categoryQuery += foundTable + secondPart + ",\"" + fLocation + "\");";
+			break;
+		case 'l':
+			Lost lost = (Lost) category;
+			String lLocation = lost.getLocation();
+			categoryQuery += lostTable +secondPart + ",\"" + lLocation + "\");";
+			break;
+		}
+		
+		String personQuery = "INSERT INTO " + personsTable + " VALUES (" + pID + ",\"" +
+				pName + "\",\"" + adress + "\",\"" + phone + "\",\"" + email + "\");";
+		
 		Connection connection = null;
 		Statement statement = null;
 		try {
-			int id = a.getId();
-			int age = a.getAge();
-			String color = a.getColour();
-			boolean gender = a.getGender();
-			String description = a.getDescription();
-			String name = a.getName();
-			String pathToPicture = a.getPathToPicture();
-			String breed = a.getBreed();
-			String type = a.getType();
-			Category category = a.getAnimalCategory();
-			char categoryLetter = category.getCategoryLetter();
-			int catID = category.getId();
-			
-			String animalQuery = "INSERT INTO "+animalTable+" VALUES (" + id + "," + age + "," 
-					+ color + "," + gender + "," + description + "," + name + ","
-					+ pathToPicture + "," + breed + "," + categoryLetter + "," + catID
-					+ "," + type;
 			connection = DriverManager.getConnection(url, user, password);
+			connection.setAutoCommit(false);
 			statement = connection.createStatement();
+			statement.execute(personQuery);
+			statement.execute(categoryQuery);
 			statement.execute(animalQuery);
+			connection.setAutoCommit(true);
+		}catch (SQLException ex){
+			Logger lgr = Logger.getLogger(DataBaseManager.class.getName());
+			lgr.log(Level.SEVERE, ex.getMessage(), ex);
+		} finally {
+			try {
+				if (statement != null) {statement.close();}
+				if (connection != null) {connection.close();}
+			} catch (SQLException ex){
+				Logger lgr = Logger.getLogger(DataBaseManager.class.getName());
+				lgr.log(Level.SEVERE, ex.getMessage(), ex);
+			}
+		}
+	}
+	
+	public void remove(Animal a){
+		int id = a.getId();
+		Category cat = a.getAnimalCategory();
+		int catID = cat.getId();
+		char catLetter = cat.getCategoryLetter();
+		
+		String deleteAnimalQuery = "DELETE FROM " + animalTable + " WHERE ID=" + id + ";";
+		String deleteCategoryQuery = "DELETE FROM ";
+		String secondPart = " WHERE " + catLetter + "ID=" + catID +";";
+		switch (catLetter){
+		case 'a':
+			deleteCategoryQuery += adoptionTable + secondPart;
+			break;
+		case 'f':
+			deleteCategoryQuery += foundTable + secondPart;
+			break;
+		case 'l':
+			deleteCategoryQuery += lostTable + secondPart;
+			break;
+		}
+		
+		Connection connection = null;
+		Statement statement = null;
+		try {
+			connection = DriverManager.getConnection(url, user, password);
+			connection.setAutoCommit(false);
+			statement = connection.createStatement();
+			statement.execute(deleteCategoryQuery);
+			statement.execute(deleteAnimalQuery);
+			connection.setAutoCommit(true);
 		}catch (SQLException ex){
 			Logger lgr = Logger.getLogger(DataBaseManager.class.getName());
 			lgr.log(Level.SEVERE, ex.getMessage(), ex);

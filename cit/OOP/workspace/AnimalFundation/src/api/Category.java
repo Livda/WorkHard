@@ -18,6 +18,7 @@ public abstract class Category {
 
 	public Category(int id, LocalDate date, Person contact){
 		this.id = id;
+		nextId = nextId <= id ? id + 1 : nextId;
 		this.date = date;
 		this.contact = contact;
 	}

@@ -110,7 +110,6 @@ public class Animal implements Comparable<Animal>{
 	 * @return the breed
 	 */
 	public String getBreed() {
-		//TODO Messages.getString(breed)
 		return breed;
 	}
 	/**
@@ -160,6 +159,7 @@ public class Animal implements Comparable<Animal>{
 			String description, String name, String pathToPicture,
 			String breed, Category animalCategory, String type) {
 		this.id = id;
+		nextId = nextId <= id ? id + 1 : nextId;
 		this.age = age;
 		this.colour = colour;
 		this.gender = gender;

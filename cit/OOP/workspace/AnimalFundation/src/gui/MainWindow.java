@@ -3,6 +3,7 @@ package gui;
 import java.util.Locale;
 
 import api.AnimalShelter;
+import api.DataBaseManager;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -25,13 +26,14 @@ public class MainWindow extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			if (locale == null) {
-				Locale.setDefault(new Locale("fr"));				
+				Locale.setDefault(new Locale("en"));				
 			} else {
 				Locale.setDefault(locale);
 			}
-			shelter = new AnimalShelter();
+			shelter = DataBaseManager.getDataBaseManager().getSavedShelter();
 			mainBox = new VBox(10);
 			table = new TableViewBox();
+			table.printShelter();
 			stage = primaryStage;
 
 			Text nothingHere = new Text(Messages.getString("select_create_animal"));

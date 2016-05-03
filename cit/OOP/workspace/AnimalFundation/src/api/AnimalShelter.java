@@ -117,20 +117,7 @@ public class AnimalShelter {
 	 * @param a the animal
 	 */
 	public void add(Animal a) {
-		Category cat = a.getAnimalCategory();
-		Person p = cat.getContact();
-		if (!persons.contains(p)) persons.add(p);
-		switch (cat.getCategoryLetter()) {
-		case 'a' :
-			adoption.add(a);
-			break;
-		case 'f' :
-			found.add(a);
-			break;
-		case 'l' :
-			lost.add(a);
-			break;
-		}
+		DataBaseManager.getDataBaseManager().add(a);
 	}
 
 	/**
@@ -148,18 +135,7 @@ public class AnimalShelter {
 	 * @param a the animal
 	 */
 	public void remove(Animal a){
-		Category cat = a.getAnimalCategory();
-		switch (cat.getCategoryLetter()) {
-		case 'a' :
-			adoption.remove(a);
-			break;
-		case 'f' :
-			found.remove(a);
-			break;
-		case 'l' :
-			lost.remove(a);
-			break;
-		}
+		DataBaseManager.getDataBaseManager().remove(a);
 	}
 	
 	public void update(){

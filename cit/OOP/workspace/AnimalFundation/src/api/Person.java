@@ -39,6 +39,7 @@ public class Person implements Comparable<Person> {
 	 */
 	public Person(int id, String name, String adress, String phone, String email){
 		this.id = id;
+		nextId = nextId <= id ? id + 1 : nextId;
 		this.name = name;
 		this.adress = adress;
 		this.phone = phone;
