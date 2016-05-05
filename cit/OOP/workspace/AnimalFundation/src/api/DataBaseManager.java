@@ -456,5 +456,36 @@ public class DataBaseManager {
 			}
 		}
 	}
+	
+	public void updatePerson(Person p){
+		int pID = p.getId();
+		String name = p.getName();
+		String address = p.getAdress();
+		String phone = p.getPhone();
+		String email = p.getEmail();
+		
+		String updateQuery = "UPDATE " + personsTable + " SET name=\""+ name + "\", adress=\""
+				+ address + "\", phone=\"" + phone + "\", email=\"" + email + "\" WHERE pID="
+				+ pID + ";";
+		
+		Connection connection = null;
+		Statement statement = null;
+		try {
+			connection = DriverManager.getConnection(url, user, password);
+			statement = connection.createStatement();
+			statement.execute(updateQuery);
+		}catch (SQLException ex){
+			Logger lgr = Logger.getLogger(DataBaseManager.class.getName());
+			lgr.log(Level.SEVERE, ex.getMessage(), ex);
+		} finally {
+			try {
+				if (statement != null) {statement.close();}
+				if (connection != null) {connection.close();}
+			} catch (SQLException ex){
+				Logger lgr = Logger.getLogger(DataBaseManager.class.getName());
+				lgr.log(Level.SEVERE, ex.getMessage(), ex);
+			}
+		}
+	}
 }
 

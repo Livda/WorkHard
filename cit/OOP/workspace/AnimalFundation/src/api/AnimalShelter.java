@@ -13,7 +13,6 @@ public class AnimalShelter {
 	private AnimalList adoption;
 	private AnimalList lost;
 	private AnimalList found;
-	private ArrayList<Person> persons;
 
 	/**
 	 * @return the adoption
@@ -56,7 +55,6 @@ public class AnimalShelter {
 	 * Create an empty Shelter
 	 */
 	public AnimalShelter() {
-		this.persons = new ArrayList<Person>();
 		this.adoption = new AnimalList();
 		this.lost = new AnimalList();
 		this.found = new AnimalList();
@@ -69,14 +67,9 @@ public class AnimalShelter {
 	 * @param found the Found list
 	 */
 	public AnimalShelter(AnimalList adoption, AnimalList lost, AnimalList found) {
-		ArrayList<Person> persons = new ArrayList<Person>();
 		this.adoption = adoption;
-		persons.addAll(adoption.getAllPersons());
 		this.lost = lost;
-		persons.addAll(lost.getAllPersons());
 		this.found = found;
-		persons.addAll(found.getAllPersons());
-		this.persons = persons;
 	}
 
 	/**
@@ -125,9 +118,7 @@ public class AnimalShelter {
 	 * @param p the Person to take the attributes
 	 */
 	public void updatePerson(Person p){
-		int index = persons.indexOf(p);
-		Person update = persons.get(index);
-		update.updatePerson(p);
+		DataBaseManager.getDataBaseManager().updatePerson(p);
 	}
 
 	/**
