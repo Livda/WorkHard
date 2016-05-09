@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -117,8 +117,8 @@ public class DataBaseManager {
 		return persons;
 	}
 	
-	public List<Adoption> getAllAdoption(){
-		Map<Integer, Person> pTable = new Hashtable<Integer, Person>();
+	public List<Adoption> getAllAdoptionCategories(){
+		Map<Integer, Person> pTable = new HashMap<Integer, Person>();
 		for (Person p : this.getAllPersons()){
 			int pID = p.getId();
 			pTable.put(pID, p);
@@ -167,8 +167,58 @@ public class DataBaseManager {
 		return adoption;
 	}
 	
-	public List<Found> getAllFound() {
-		Map<Integer, Person> pTable = new Hashtable<Integer, Person>();
+	public List<Animal> getAllAdoptionAnimals(){
+		Map<Integer, Adoption> adoption = new HashMap<Integer, Adoption>();
+		for (Adoption a : this.getAllAdoptionCategories()){
+			adoption.put(a.getId(), a);
+		}
+		
+		Connection connection = null;
+		Statement statement = null;
+		ResultSet result = null;
+		List<Animal> animals = new ArrayList<Animal>();
+		try {
+			//Connecting to the database
+			String query = "SELECT * FROM "+animalTable+" WHERE categoryLetter='a';";
+			connection = DriverManager.getConnection(url, user, password);
+			statement = connection.createStatement();
+			result = statement.executeQuery(query);
+			
+			//Manage the data we get
+			while(result.next()){
+				int id = result.getInt("ID");
+				int age = result.getInt("age");
+				String color = result.getString("color");
+				boolean gender = result.getBoolean("gender");
+				String description = result.getString("description");
+				String name = result.getString("name");
+				String pathToPicture = result.getString("pathToPicture");
+				String breed = result.getString("breed");
+				String type = result.getString("type");
+				int catID = result.getInt("catID");
+				Adoption adopt = adoption.get(catID);
+				Animal a = new Animal(id, age, color, gender, description, name, pathToPicture,
+						breed, adopt, type);
+				animals.add(a);
+			}
+		} catch (SQLException ex){
+			Logger lgr = Logger.getLogger(DataBaseManager.class.getName());
+			lgr.log(Level.SEVERE, ex.getMessage(), ex);
+		} finally {
+			try {
+				if (statement != null) {statement.close();}
+				if (connection != null) {connection.close();}
+				if (result != null) {result.close();}
+			} catch (SQLException ex){
+				Logger lgr = Logger.getLogger(DataBaseManager.class.getName());
+				lgr.log(Level.SEVERE, ex.getMessage(), ex);
+			}
+		}
+		return animals;
+	}
+	
+	public List<Found> getAllFoundCategories() {
+		Map<Integer, Person> pTable = new HashMap<Integer, Person>();
 		for (Person p : this.getAllPersons()){
 			int pID = p.getId();
 			pTable.put(pID, p);
@@ -211,8 +261,58 @@ public class DataBaseManager {
 		return found;
 	}
 	
-	public List<Lost> getAllLost() {
-		Map<Integer, Person> pTable = new Hashtable<Integer, Person>();
+	public List<Animal> getAllFoundAnimals(){
+		Map<Integer, Found> found = new HashMap<Integer, Found>();
+		for (Found f : this.getAllFoundCategories()){
+			found.put(f.getId(), f);
+		}
+		
+		Connection connection = null;
+		Statement statement = null;
+		ResultSet result = null;
+		List<Animal> animals = new ArrayList<Animal>();
+		try {
+			//Connecting to the database
+			String query = "SELECT * FROM "+animalTable+" WHERE categoryLetter='f';";
+			connection = DriverManager.getConnection(url, user, password);
+			statement = connection.createStatement();
+			result = statement.executeQuery(query);
+			
+			//Manage the data we get
+			while(result.next()){
+				int id = result.getInt("ID");
+				int age = result.getInt("age");
+				String color = result.getString("color");
+				boolean gender = result.getBoolean("gender");
+				String description = result.getString("description");
+				String name = result.getString("name");
+				String pathToPicture = result.getString("pathToPicture");
+				String breed = result.getString("breed");
+				String type = result.getString("type");
+				int catID = result.getInt("catID");
+				Found foun = found.get(catID);
+				Animal a = new Animal(id, age, color, gender, description, name, pathToPicture,
+						breed, foun, type);
+				animals.add(a);
+			}
+		} catch (SQLException ex){
+			Logger lgr = Logger.getLogger(DataBaseManager.class.getName());
+			lgr.log(Level.SEVERE, ex.getMessage(), ex);
+		} finally {
+			try {
+				if (statement != null) {statement.close();}
+				if (connection != null) {connection.close();}
+				if (result != null) {result.close();}
+			} catch (SQLException ex){
+				Logger lgr = Logger.getLogger(DataBaseManager.class.getName());
+				lgr.log(Level.SEVERE, ex.getMessage(), ex);
+			}
+		}
+		return animals;
+	}
+	
+	public List<Lost> getAllLostCategories() {
+		Map<Integer, Person> pTable = new HashMap<Integer, Person>();
 		for (Person p : this.getAllPersons()){
 			int pID = p.getId();
 			pTable.put(pID, p);
@@ -255,30 +355,19 @@ public class DataBaseManager {
 		return lost;
 	}
 	
-	public List<Animal> getAllAnimals(){
-		Map<Integer, Adoption> aTable = new Hashtable<Integer, Adoption>();
-		Map<Integer, Found> fTable = new Hashtable<Integer, Found>();
-		Map<Integer, Lost> lTable = new Hashtable<Integer, Lost>();
-		for (Adoption a : this.getAllAdoption()){
-			int aID = a.getId();
-			aTable.put(aID, a);
-		}
-		for (Found f : this.getAllFound()){
-			int fID = f.getId();
-			fTable.put(fID, f);
-		}
-		for (Lost l : this.getAllLost()){
-			int lID = l.getId();
-			lTable.put(lID, l);
+	public List<Animal> getAllLostAnimals(){
+		Map<Integer, Lost> lost = new HashMap<Integer, Lost>();
+		for (Lost l : this.getAllLostCategories()){
+			lost.put(l.getId(), l);
 		}
 		
 		Connection connection = null;
 		Statement statement = null;
 		ResultSet result = null;
-		ArrayList<Animal> animal = new ArrayList<Animal>();
+		List<Animal> animals = new ArrayList<Animal>();
 		try {
 			//Connecting to the database
-			String query = "SELECT * FROM "+animalTable+";";
+			String query = "SELECT * FROM "+animalTable+" WHERE categoryLetter='l';";
 			connection = DriverManager.getConnection(url, user, password);
 			statement = connection.createStatement();
 			result = statement.executeQuery(query);
@@ -293,24 +382,12 @@ public class DataBaseManager {
 				String name = result.getString("name");
 				String pathToPicture = result.getString("pathToPicture");
 				String breed = result.getString("breed");
-				String categoryLetter = result.getString("categoryLetter");
 				String type = result.getString("type");
-				Category category = null;
 				int catID = result.getInt("catID");
-				switch (categoryLetter){
-				case "a":
-					category = aTable.get(catID);
-					break;
-				case "f":
-					category = fTable.get(catID);
-					break;
-				case "l":
-					category = lTable.get(catID);
-					break;
-				}
+				Lost los = lost.get(catID);
 				Animal a = new Animal(id, age, color, gender, description, name, pathToPicture,
-						breed, category, type);
-				animal.add(a);
+						breed, los, type);
+				animals.add(a);
 			}
 		} catch (SQLException ex){
 			Logger lgr = Logger.getLogger(DataBaseManager.class.getName());
@@ -325,7 +402,15 @@ public class DataBaseManager {
 				lgr.log(Level.SEVERE, ex.getMessage(), ex);
 			}
 		}
-		return animal;
+		return animals;
+	}
+	
+	public List<Animal> getAllAnimals(){
+		List<Animal> animals = new ArrayList<Animal>();
+		animals.addAll(this.getAllAdoptionAnimals());
+		animals.addAll(this.getAllFoundAnimals());
+		animals.addAll(	this.getAllLostAnimals());
+		return animals;
 	}
 	
 	public void add(Animal a){

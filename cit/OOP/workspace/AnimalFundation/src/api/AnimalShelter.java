@@ -18,7 +18,7 @@ public class AnimalShelter {
 	 * @return the adoption
 	 */
 	public AnimalList getAdoption() {
-		return adoption;
+		return new AnimalList(DataBaseManager.getDataBaseManager().getAllAdoptionAnimals());
 	}
 	/**
 	 * @param adoption the adoption to set
@@ -30,7 +30,7 @@ public class AnimalShelter {
 	 * @return the lost
 	 */
 	public AnimalList getLost() {
-		return lost;
+		return new AnimalList(DataBaseManager.getDataBaseManager().getAllLostAnimals());
 	}
 	/**
 	 * @param lost the lost to set
@@ -42,7 +42,7 @@ public class AnimalShelter {
 	 * @return the found
 	 */
 	public AnimalList getFound() {
-		return found;
+		return new AnimalList(DataBaseManager.getDataBaseManager().getAllFoundAnimals());
 	}
 	/**
 	 * @param found the found to set
