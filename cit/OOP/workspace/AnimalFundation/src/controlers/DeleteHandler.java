@@ -19,9 +19,9 @@ public class DeleteHandler implements EventHandler<ActionEvent> {
 	public void handle(ActionEvent e){
 		TableView<Animal> table = MainWindow.table.getTable();
 		Animal selected = table.getSelectionModel().getSelectedItem();
-
+		if (selected != null){
 		new ClearHandler().handle(e);
 		MainWindow.shelter.remove(selected);
 		MainWindow.table.printShelter();
-	}
+	}}
 }

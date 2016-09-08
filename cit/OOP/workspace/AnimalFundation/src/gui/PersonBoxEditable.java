@@ -80,11 +80,15 @@ public class PersonBoxEditable extends PersonBox {
 		TextField emailField = (TextField) node;
 		emailField.getStyleClass().remove("error");
 		String email = emailField.getText();
-		if (email.equals("")) {
+		if (email.equals("") || valideEmail(email)) {
 			errorInTheFields = true;
 			emailField.getStyleClass().add("error");
 		}
 		return email;
+	}
+	
+	private boolean valideEmail(String email){
+		return email.matches(".*@[A-Za-z]+");
 	}
 
 	/* (non-Javadoc)
@@ -126,5 +130,4 @@ public class PersonBoxEditable extends PersonBox {
 		TextField emailField = (TextField) node;
 		emailField.setText(email);
 	}
-
 }
