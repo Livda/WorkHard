@@ -6,7 +6,9 @@
 \usepackage[francais]{babel}  % langue
 \usepackage{graphicx}         % images
 \usepackage{verbatim}         % texte préformaté
-\usepackage{appendix}		  % annexes
+\usepackage{appendix}         % annexes
+\usepackage{amssymb}
+\usepackage{enumitem}
 
 \include{alias}
 
@@ -17,29 +19,29 @@
         \hspace{0.35\textwidth}
         \includegraphics[height=50px]{logo_logilink.png}
         \begin{center}
-	        \vspace{7cm}
-	        {\huge\bfseries Création d'un agenda collaboratif \par}
-	        \vspace{0.5cm}
-	        {\Large Département Informatique - Année scolaire 2015/2016\par}
+            \vspace{7cm}
+            {\huge\bfseries Création d'un agenda collaboratif \par}
+            \vspace{0.5cm}
+            {\Large Département Informatique - Année scolaire 2015/2016\par}
         \end{center}
         \vfill
 
-    	% Bottom of the page
-		Diffusion du rapport (y compris en version électronique) :
+        % Bottom of the page
+        Diffusion du rapport (y compris en version électronique) :
 
-		\begin{itemize}
-		\item Non autorisée (le rapport ne sera pas diffusé, mais archivé par obligation légale)
-		\item Autorisée en interne à l’INSA
- 		\item Autorisée en interne et en externe
- 		\end{itemize}
+        \begin{itemize}[label=$\square$]
+            \item Non autorisée (le rapport ne sera pas diffusé, mais archivé par obligation légale)
+            \item Autorisée en interne à l’INSA
+            \item Autorisée en interne et en externe
+        \end{itemize}
 
-		\vspace{0.5cm}
+        \vspace{0.5cm}
 
-    	\begin{tabular}{ll}
-	    	{\Large Auteur :}             & M.~Aurélien \textsc{Fontaine}\\
-	        {\Large Maître de stage :}    & Mme.~Gabrielle \textsc{Imbert}\\
-	        {\Large Correspondant INSA :} & M.~Bertrand \textsc{Coüasnon}\\
-    	\end{tabular}
+        \begin{tabular}{ll}
+            {\Large Auteur :}             & M.~Aurélien \textsc{Fontaine}\\
+            {\Large Maître de stage :}    & Mme.~Gabrielle \textsc{Imbert}\\
+            {\Large Correspondant INSA :} & M.~Bertrand \textsc{Coüasnon}\\
+        \end{tabular}
     \end{titlepage}
 
 \tableofcontents
@@ -54,17 +56,39 @@ L'objectif de ce stage a été de développer une application de calendrier coll
 
 \part{Travail réalisé}
 \chapter{L'étude}
-\section{Les limitations}
-Au cours du développement, il est apparu que l'utilisation d'une base de donnée par client n'est pas possible dans le temps qu'il m'était imparti. \symfony n'intègre pas de fonctionnalité pour utiliser des bases de données de manière dynamique, et essayer de passer outre le fonctionnement de \symfony nuirait au bon fonctionnement de la sécurité apportée par ce framework.
+L'application doit répondre à des exigences multiples.
+    \section{Côté utilisateur}
+    L'utilisateur doit avoir avoir accès à des fonctionnalités standards :
+    \begin{itemize}
+        \item gestion de son propre agenda ;
+        \item possibilité d'inviter d'autres utilisateurs à ses rendez-vous ;
+        \item possibilité de voir les horaires d'un autre utilisateur de l'entreprise.
+    \end{itemize}
+    \section{Côté administrateur}
+    L'administrateur peut faire tout ce qu'un utilisateur normal peut faire. Mais il doit avoir quelques privilèges supplémentaire :
+    \begin{itemize}
+        \item avoir une interface simplifiée de gestion des utilisateurs :
+        \begin{itemize}
+            \item modification du profil d'un utilisateur,
+            \item suppression d'un utilisateur,
+            \item création d'un utilisateur avec des droits d'administrateur ou d'utilisateur;
+        \end{itemize}
+        \item pouvoir voir l'agenda de chaque utilisateur ;
+        \item pouvoir gérer les groupes d'utilisateurs.
+    \end{itemize}
+
 \chapter{Le dev}
 Le développement du site \agenda s'est passé en plusieurs étapes. La partie fonctionnelle du site a été faite en premier.
-\section{La partie fonctionnelle}
-La partie fonctionnelle (le backend) a été la partie la plus longue du stage, aux alentours de 3 mois. Le développement de cette partie a été grandement facilitée par l'utilisation de \symfony et de tous ses bundles. Notamment, le bundle \textit{FOSUserBundle} qui permet une mise en place presque instantanée de la gestion des utilisateurs et de la sécurité du site web. Afin de pouvoir être au plus proche du cachier des charges, une adaptation du bundle a du être fait car il ne permettait pas de bloquer la création des utilisateurs uniquement par un administrateur d'une entreprise par exemple.
+    \section{La partie fonctionnelle}
+    La partie fonctionnelle (le backend) a été la partie la plus longue du stage, aux alentours de 3 mois. Le développement de cette partie a été grandement facilitée par l'utilisation de \symfony et de tous ses bundles. Notamment, le bundle \textit{FOSUserBundle} qui permet une mise en place presque instantanée de la gestion des utilisateurs et de la sécurité du site web. Afin de pouvoir être au plus proche du cahier des charges, une adaptation du bundle a du être fait car il ne permettait pas de bloquer la création des utilisateurs uniquement par un administrateur d'une entreprise par exemple.
+
+    \section{Les limitations}
+    Au cours du développement, il est apparu que l'utilisation d'une base de donnée par client n'est pas possible dans le temps qu'il m'était imparti. \symfony n'intègre pas de fonctionnalité pour utiliser des bases de données de manière dynamique, et essayer de passer outre le fonctionnement de \symfony nuirait au bon fonctionnement de la sécurité apportée par ce framework.
 \part{Conclusion}
 
 \part{Annexes}
 \begin{appendix}
-	\chapter{Planning}
+    \chapter{Planning}
 \end{appendix}
 
 \part{4eme de couverture}
