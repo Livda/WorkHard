@@ -1,0 +1,74 @@
+\documentclass[a4paper, 11pt]{report}
+
+\usepackage[utf8]{inputenc}   % accents
+\usepackage[T1]{fontenc}      % caractères français
+\usepackage{geometry}         % marges
+\usepackage[francais]{babel}  % langue
+\usepackage{graphicx}         % images
+\usepackage{verbatim}         % texte préformaté
+\usepackage{appendix}		  % annexes
+
+\include{alias}
+
+\begin{document}
+
+    \begin{titlepage}
+        \includegraphics[height=50px]{logo_insa.png}
+        \hspace{0.35\textwidth}
+        \includegraphics[height=50px]{logo_logilink.png}
+        \begin{center}
+	        \vspace{7cm}
+	        {\huge\bfseries Création d'un agenda collaboratif \par}
+	        \vspace{0.5cm}
+	        {\Large Département Informatique - Année scolaire 2015/2016\par}
+        \end{center}
+        \vfill
+
+    	% Bottom of the page
+		Diffusion du rapport (y compris en version électronique) :
+
+		\begin{itemize}
+		\item Non autorisée (le rapport ne sera pas diffusé, mais archivé par obligation légale)
+		\item Autorisée en interne à l’INSA
+ 		\item Autorisée en interne et en externe
+ 		\end{itemize}
+
+		\vspace{0.5cm}
+
+    	\begin{tabular}{ll}
+	    	{\Large Auteur :}             & M.~Aurélien \textsc{Fontaine}\\
+	        {\Large Maître de stage :}    & Mme.~Gabrielle \textsc{Imbert}\\
+	        {\Large Correspondant INSA :} & M.~Bertrand \textsc{Coüasnon}\\
+    	\end{tabular}
+    \end{titlepage}
+
+\tableofcontents
+
+\part{Introduction}
+\chapter{Présentation de l'entreprise}
+\logilink, société à responsabilité limitée est active depuis 10 ans.
+Implantée à MARSEILLE 2 (13002), elle est spécialisée dans le secteur d'activité de la programmation informatique. Son effectif est compris entre 6 et 9 salariés.
+
+\chapter{Présentation du stage}
+L'objectif de ce stage a été de développer une application de calendrier collaboratif afin de se passer des licences Exchange ou Gmail. Afin de répondre à cette problématique, j'ai développé un site web avec le framework \php \symfony.
+
+\part{Travail réalisé}
+\chapter{L'étude}
+\section{Les limitations}
+Au cours du développement, il est apparu que l'utilisation d'une base de donnée par client n'est pas possible dans le temps qu'il m'était imparti. \symfony n'intègre pas de fonctionnalité pour utiliser des bases de données de manière dynamique, et essayer de passer outre le fonctionnement de \symfony nuirait au bon fonctionnement de la sécurité apportée par ce framework.
+\chapter{Le dev}
+Le développement du site \agenda s'est passé en plusieurs étapes. La partie fonctionnelle du site a été faite en premier.
+\section{La partie fonctionnelle}
+La partie fonctionnelle (le backend) a été la partie la plus longue du stage, aux alentours de 3 mois. Le développement de cette partie a été grandement facilitée par l'utilisation de \symfony et de tous ses bundles. Notamment, le bundle \textit{FOSUserBundle} qui permet une mise en place presque instantanée de la gestion des utilisateurs et de la sécurité du site web. Afin de pouvoir être au plus proche du cachier des charges, une adaptation du bundle a du être fait car il ne permettait pas de bloquer la création des utilisateurs uniquement par un administrateur d'une entreprise par exemple.
+\part{Conclusion}
+
+\part{Annexes}
+\begin{appendix}
+	\chapter{Planning}
+\end{appendix}
+
+\part{4eme de couverture}
+\chapter{Résumé}
+\chapter{Abstract}
+
+\end{document}
