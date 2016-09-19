@@ -39,7 +39,7 @@
 
         \begin{tabular}{ll}
             {\Large Auteur :}             & M.~Aurélien \textsc{Fontaine}\\
-            {\Large Maître de stage :}    & Mme.~Gabrielle \textsc{Imbert}\\
+            {\Large Maître de stage :}    & Mme.~Gabrielle \textsc{Harley}\\
             {\Large Correspondant INSA :} & M.~Bertrand \textsc{Coüasnon}\\
         \end{tabular}
     \end{titlepage}
@@ -57,30 +57,68 @@ L'objectif de ce stage a été de développer une application de calendrier coll
 \part{Travail réalisé}
 \chapter{L'étude}
 L'application doit répondre à des exigences multiples.
-    \section{Côté utilisateur}
-    L'utilisateur doit avoir avoir accès à des fonctionnalités standards :
-    \begin{itemize}
-        \item gestion de son propre agenda ;
-        \item possibilité d'inviter d'autres utilisateurs à ses rendez-vous ;
-        \item possibilité de voir les horaires d'un autre utilisateur de l'entreprise.
-    \end{itemize}
-    \section{Côté administrateur}
-    L'administrateur peut faire tout ce qu'un utilisateur normal peut faire. Mais il doit avoir quelques privilèges supplémentaire :
-    \begin{itemize}
-        \item avoir une interface simplifiée de gestion des utilisateurs :
+    \section{Les interfaces}
+        \subsection{Côté utilisateur}
+        L'utilisateur doit avoir avoir accès à des fonctionnalités standards :
         \begin{itemize}
-            \item modification du profil d'un utilisateur,
-            \item suppression d'un utilisateur,
-            \item création d'un utilisateur avec des droits d'administrateur ou d'utilisateur;
+            \item gestion de son propre agenda ;
+            \item possibilité d'inviter d'autres utilisateurs à ses rendez-vous ;
+            \item possibilité de voir les horaires d'un autre utilisateur de l'entreprise ;
+            \item possibilité de voir les disponibilités de tout un groupe d'utilisateurs.
         \end{itemize}
-        \item pouvoir voir l'agenda de chaque utilisateur ;
-        \item pouvoir gérer les groupes d'utilisateurs.
+        \subsection{Côté administrateur}
+        L'administrateur peut faire tout ce qu'un utilisateur normal peut faire. Mais il doit avoir quelques privilèges supplémentaire :
+        \begin{itemize}
+            \item avoir une interface simplifiée de gestion des utilisateurs :
+            \begin{itemize}
+                \item création d'un utilisateur avec des droits d'administrateur ou d'utilisateur,
+                \item modification du profil d'un utilisateur,
+                \item suppression d'un utilisateur ;
+            \end{itemize}
+            \item pouvoir voir l'agenda de chaque utilisateur ;
+            \item pouvoir gérer les groupes d'utilisateurs :
+            \begin{itemize}
+                \item créer un groupe d'utilisateurs,
+                \item ajouter ou supprimer des gens de ce groupe.
+            \end{itemize}
+        \end{itemize}
+        \subsection{Côté super administrateur}
+        Le super administrateur doit pouvoir gérer les entreprises, c'est à dire :
+        \begin{itemize}
+            \item créer une entreprise avec un administrateur ;
+            \item révoquer l'accès à l'application d'une entreprise ;
+            \item supprimer définitivement une entreprise de l'application.
+        \end{itemize}
+    \section{Le backend}
+        \subsection{Le stockage}
+        Une base par entreprise
+        Une compatibilité avec les services proposés par \oswitch
+
+        \subsection{La qualité du code}
+        Permettre la reprise de mon code
+        Utilisation de technologies bien documentées.
+    \section{Les petits plus}
+    Si le temps le permettait, quelques fonctionnalités non essentielles devaient être implémentées :
+    \begin{itemize}
+        \item la géolocalisation des rendez-vous;
+        \item des notifications en temps réel ;
+        \item un système d'étiquettes : privé, congé, réunion, etc ;
+        \item une synchronisation avec les logiciels déjà développés par \logilink.
     \end{itemize}
 
 \chapter{Le dev}
-Le développement du site \agenda s'est passé en plusieurs étapes. La partie fonctionnelle du site a été faite en premier.
+Le développement du site \agenda s'est passé en plusieurs étapes. La partie fonctionnelle du site a été faite en premier. Ensuite, une refonte graphique du site s'est faite.
     \section{La partie fonctionnelle}
-    La partie fonctionnelle (le backend) a été la partie la plus longue du stage, aux alentours de 3 mois. Le développement de cette partie a été grandement facilitée par l'utilisation de \symfony et de tous ses bundles. Notamment, le bundle \textit{FOSUserBundle} qui permet une mise en place presque instantanée de la gestion des utilisateurs et de la sécurité du site web. Afin de pouvoir être au plus proche du cahier des charges, une adaptation du bundle a du être fait car il ne permettait pas de bloquer la création des utilisateurs uniquement par un administrateur d'une entreprise par exemple.
+    La partie fonctionnelle (le backend) a été la partie la plus longue du stage, aux alentours de 3 mois. Le développement de cette partie a été grandement facilité par l'utilisation de \symfony et de tous ses bundles. Notamment, le bundle \textit{FOSUserBundle} qui permet une mise en place presque instantanée de la gestion des utilisateurs et de la sécurité du site web. Afin de pouvoir être au plus proche du cahier des charges, une adaptation du bundle a du être fait car il ne permettait pas de bloquer la création des utilisateurs uniquement par un administrateur d'une entreprise par exemple.
+
+    Pour toute la partie de la géolocalisation, j'ai effectué une recherche d'outils. Il en est ressorti deux : \osm et \gmap. \osm étant une application gratuite et libre de droit, j'ai essayé de l'intégrer en premier. Il se trouve qu'il n'existe pas d'API fournie par l'association gérant \osm mais uniquement des API développées par des tiers qui ont des quotas de requêtes assez bas. Pour pouvoir faire plus de requêtes, soit il faut payer via ces mêmes tiers, soit il faut développer sa propre API client. L'un étant couteux et l'autre allait me prendre trop de temps. Je me suis donc tourné vers \gmap et son API. Il a été très simple d'intégrer \gmap à mon projet via leur API \javascript, qui est bien documentée et avec des quotas de requêtes gratuites plus que nécessaire : 25 000 chargement de cartes par jours. De plus, une résolution d'adresse est possible en utilisant ce service, ce qui permet de géolocaliser soit via une adresse soit via un clic sur la carte.
+
+    De plus, un début d'intégration a été fait avec la suite de transaction de \logilink pour permettre à un utilisateur de prendre un rendez-vous sur la suite \ulti, développé par \logilink et que celui ci se retrouve sur son agenda en ligne, ainsi que l'inverse. Le système d'étiquette permet notamment d'avoir une certaine cohérence entre les logiciels.
+
+    \section{La partie ``design''}
+    La majeure partie du temps restant à été dédiée à la mise en forme du site web. L'utilisation de \bootstrap étant jugée trop lourde et lente pour nous, nous avons décidé de faire tout le design avec l'aide de feuilles de CSS minimales et d'un \javascript réduit aux fonctions essentielles. La navigation a été ainsi fluidifiée.
+
+    De plus, un réel travail a été mis en œuvre afin de pouvoir s'adapter aussi bien sur mobile que sur ordinateur de bureau. Cette refonte graphique est notamment passée par une utilisation d’icônes à la place de textes et une reformulation de ceux-ci pour les rendre les plus courts et compréhensibles possibles. Cette minimisation permet à un utilisateur mobile de retrouver toute l'interface qu'il connait sur ordinateur de bureau.
 
     \section{Les limitations}
     Au cours du développement, il est apparu que l'utilisation d'une base de donnée par client n'est pas possible dans le temps qu'il m'était imparti. \symfony n'intègre pas de fonctionnalité pour utiliser des bases de données de manière dynamique, et essayer de passer outre le fonctionnement de \symfony nuirait au bon fonctionnement de la sécurité apportée par ce framework.
