@@ -22,7 +22,7 @@
             \vspace{7cm}
             {\huge\bfseries Création d'un agenda collaboratif \par}
             \vspace{0.5cm}
-            {\Large Déchapterement Informatique - Année scolaire 2015/2016\par}
+            {\Large Département Informatique - Année scolaire 2015/2016\par}
         \end{center}
         \vfill
 
@@ -48,8 +48,7 @@
 
 \chapter{Introduction}
 \section{Présentation de l'entreprise}
-\logilink, société à responsabilité limitée est active depuis 10 ans.
-Implantée à MARSEILLE 2 (13002), elle est spécialisée dans le secteur d'activité de la programmation informatique. Son effectif est compris entre 6 et 9 salariés.
+\logilink, société implantée à Marseille, elle est spécialisée dans le secteur d'activité de la programmation informatique pour des entreprises travaillant dans l'immobilier. Cette entreprise développe notamment \ulti, un logiciel métier regroupant de nombreuses fonctionnalités liées à l’immobilier comme la gérance ou le syndic. \logilink créé et des sites web pour de nombreuses agences immobilières sur Marseille.
 
 \section{Présentation du stage}
 L'objectif de ce stage a été de développer une application de calendrier collaboratif afin de se passer des licences Exchange ou Gmail. Afin de répondre à cette problématique, j'ai développé un site web avec le framework \php \symfony.
@@ -67,7 +66,7 @@ L'application doit répondre à des exigences multiples.
             \item possibilité de voir les disponibilités de tout un groupe d'utilisateurs.
         \end{itemize}
         \subsubsection{Côté administrateur}
-        L'administrateur peut faire tout ce qu'un utilisateur normal peut faire. Mais il doit avoir quelques privilèges supplémentaire :
+        L'administrateur à accès à toutes les fonctionnalités d'un utilisateur normal. Mais il doit avoir quelques privilèges supplémentaire :
         \begin{itemize}
             \item avoir une interface simplifiée de gestion des utilisateurs :
             \begin{itemize}
@@ -91,8 +90,10 @@ L'application doit répondre à des exigences multiples.
         \end{itemize}
     \subsection{Le backend}
         \subsubsection{Le stockage}
-        Une base par entreprise
-        Une compatibilité avec les services proposés par \oswitch
+        \begin{itemize}
+            \item pour une gestion simplifiée des entreprises et une meilleure séparation des données, une base de donnée par entreprise est requise;
+            \item  le site web final est hébergé chez \oswitch, il faut donc une compatibilité avec les services proposés par cette entreprise.
+        \end{itemize}
 
         \subsection{La qualité du code}
         Permettre la reprise de mon code
@@ -107,21 +108,30 @@ L'application doit répondre à des exigences multiples.
     \end{itemize}
 
 \section{Le dev}
-Le développement du site \agenda s'est passé en plusieurs étapes. La chapterie fonctionnelle du site a été faite en premier. Ensuite, une refonte graphique du site s'est faite.
-    \subsection{La chapterie fonctionnelle}
-    La chapterie fonctionnelle (le backend) a été la chapterie la plus longue du stage, aux alentours de 3 mois. Le développement de cette chapterie a été grandement facilité par l'utilisation de \symfony et de tous ses bundles. Notamment, le bundle \textit{FOSUserBundle} qui permet une mise en place presque instantanée de la gestion des utilisateurs et de la sécurité du site web. Afin de pouvoir être au plus proche du cahier des charges, une adaptation du bundle a du être fait car il ne permettait pas de bloquer la création des utilisateurs uniquement par un administrateur d'une entreprise par exemple.
+Le développement du site \agenda s'est passé en plusieurs étapes. La partie fonctionnelle du site a été faite en premier. Ensuite, une refonte graphique du site s'est faite.
+    \subsection{La partie fonctionnelle}
+    La partie fonctionnelle (le backend) a été la partie la plus longue du stage, aux alentours de 3 mois. Le développement de cette partie a été grandement facilité par l'utilisation de \symfony et de tous ses bundles. Notamment, le bundle \textit{FOSUserBundle} qui permet une mise en place presque instantanée de la gestion des utilisateurs et de la sécurité du site web. Afin de pouvoir être au plus proche du cahier des charges, une adaptation du bundle a du être fait car il ne permettait pas de bloquer la création des utilisateurs uniquement par un administrateur d'une entreprise par exemple.
 
-    Pour toute la chapterie de la géolocalisation, j'ai effectué une recherche d'outils. Il en est ressorti deux : \osm et \gmap. \osm étant une application gratuite et libre de droit, j'ai essayé de l'intégrer en premier. Il se trouve qu'il n'existe pas d'API fournie par l'association gérant \osm mais uniquement des API développées par des tiers qui ont des quotas de requêtes assez bas. Pour pouvoir faire plus de requêtes, soit il faut payer via ces mêmes tiers, soit il faut développer sa propre API client. L'un étant couteux et l'autre allait me prendre trop de temps. Je me suis donc tourné vers \gmap et son API. Il a été très simple d'intégrer \gmap à mon projet via leur API \javascript, qui est bien documentée et avec des quotas de requêtes gratuites plus que nécessaire : 25 000 chargement de cartes par jours. De plus, une résolution d'adresse est possible en utilisant ce service, ce qui permet de géolocaliser soit via une adresse soit via un clic sur la carte.
+    Pour toute la partie de la géolocalisation, j'ai effectué une recherche d'outils. Il en est ressorti deux : \osm et \gmap. \osm étant une application gratuite et libre de droit, j'ai essayé de l'intégrer en premier. Il se trouve qu'il n'existe pas d'API fournie par l'association gérant \osm mais uniquement des API développées par des tiers qui ont des quotas de requêtes assez bas. Pour pouvoir faire plus de requêtes, soit il faut payer via ces mêmes tiers, soit il faut développer sa propre API client. L'un étant coûteux et l'autre allait me prendre trop de temps. Je me suis donc tourné vers \gmap et son API. Il a été très simple d'intégrer \gmap à mon projet via leur API \javascript, qui est bien documentée et avec des quotas de requêtes gratuites plus que nécessaire : 25 000 chargement de cartes par jours. De plus, une résolution d'adresse est possible en utilisant ce service, ce qui permet de géolocaliser soit via une adresse soit via un clic sur la carte.
 
     De plus, un début d'intégration a été fait avec la suite de transaction de \logilink pour permettre à un utilisateur de prendre un rendez-vous sur la suite \ulti, développé par \logilink et que celui ci se retrouve sur son agenda en ligne, ainsi que l'inverse. Le système d'étiquette permet notamment d'avoir une certaine cohérence entre les logiciels.
 
-    \subsection{La chapterie ``design''}
-    La majeure chapterie du temps restant à été dédiée à la mise en forme du site web. L'utilisation de \bootstrap étant jugée trop lourde et lente pour nous, nous avons décidé de faire tout le design avec l'aide de feuilles de CSS minimales et d'un \javascript réduit aux fonctions essentielles. La navigation a été ainsi fluidifiée.
+    \subsection{La partie ``design''}
+    La majeure partie du temps restant à été dédiée à la mise en forme du site web. L'utilisation de \bootstrap étant jugée trop lourde et lente pour nous, nous avons décidé de faire tout le design avec l'aide de feuilles de CSS minimales et d'un \javascript réduit aux fonctions essentielles. La navigation a été ainsi fluidifiée.
 
-    De plus, un réel travail a été mis en œuvre afin de pouvoir s'adapter aussi bien sur mobile que sur ordinateur de bureau. Cette refonte graphique est notamment passée par une utilisation d’icônes à la place de textes et une reformulation de ceux-ci pour les rendre les plus courts et compréhensibles possibles. Cette minimisation permet à un utilisateur mobile de retrouver toute l'interface qu'il connait sur ordinateur de bureau.
+    De plus, un réel travail a été mis en œuvre afin de pouvoir s'adapter aussi bien sur mobile que sur ordinateur de bureau. Cette refonte graphique est notamment passée par une utilisation d’icônes à la place de textes et une reformulation de ceux-ci pour les rendre les plus courts et compréhensibles possibles. Cette minimisation permet à un utilisateur mobile de retrouver toute l'interface qu'il connaît sur ordinateur de bureau.
 
     \subsection{Les limitations}
-    Au cours du développement, il est apparu que l'utilisation d'une base de donnée par client n'est pas possible dans le temps qu'il m'était imchapteri. \symfony n'intègre pas de fonctionnalité pour utiliser des bases de données de manière dynamique, et essayer de passer outre le fonctionnement de \symfony nuirait au bon fonctionnement de la sécurité apportée par ce framework.
+    Au cours du développement, il est apparu que l'utilisation d'une base de donnée par client n'est pas possible dans le temps qu'il m'était imparti. \symfony n'intègre pas de fonctionnalité pour utiliser des bases de données de manière dynamique, et essayer de passer outre le fonctionnement de \symfony nuirait au bon fonctionnement de la sécurité apportée par ce framework. Cette impossibilité de séparation rend le site plus vulnérable aux incidents. En effet si pour une quelconque raison, la base de donnée venait à être corrompue, tous les clients ne pourraient plus avoir accès à leur agenda en ligne.
+
+\section{Possibilités d'évolution}
+    Le site web développé a de nombreux axes d'évolution possibles.
+
+    La séparation des base de données par client est une fonctionnalité importante qui serait intéressante de développer en premier lieu. Ainsi la gestion par entreprise serait grandement facilité et un incident chez un client n’occasionnerai pas de perturbations chez les autres clients.
+
+    Afin de pouvoir s'intégrer au mieux dans le système d'agenda de tous leurs clients, une synchronisation en temps réel peut être développée. Une telle synchronisation permettrait aux utilisateurs de se passer de l'import successif de fichiers .ics comme c'est actuellement possible.
+
+    La possibilité de pouvoir intégrer des agendas externes devrait possible aussi, que ce soit par URL ou par fichier serait une étape de plus dans la versatilité du site.
 
 \chapter{Conclusion}
 
