@@ -9,6 +9,11 @@
 \usepackage{appendix}         % annexes
 \usepackage{amssymb}
 \usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup {
+    colorlinks = true,
+    allcolors = black
+}
 
 \include{alias}
 
@@ -51,7 +56,7 @@
 \logilink, société implantée à Marseille, elle est spécialisée dans le secteur d'activité de la programmation informatique pour des entreprises travaillant dans l'immobilier. Cette entreprise développe notamment \ulti, un logiciel métier regroupant de nombreuses fonctionnalités liées à l’immobilier comme la gérance ou le syndic. \logilink créé et des sites web pour de nombreuses agences immobilières sur Marseille.
 
 \section{Présentation du stage}
-L'objectif de ce stage a été de développer une application de calendrier collaboratif afin de se passer des licences Exchange ou Gmail. Afin de répondre à cette problématique, j'ai développé un site web avec le framework \php \symfony.
+L'objectif de ce stage a été de développer une application de calendrier collaboratif afin de se passer des licences Exchange ou Gmail. Afin de répondre à cette problématique, j'ai développé un site web avec le framework \php \symfony \cite{symfony}.
 
 \chapter{Travail réalisé}
 \section{L'étude}
@@ -60,7 +65,13 @@ L'application doit répondre à des exigences multiples.
         \subsubsection{Côté utilisateur}
         L'utilisateur doit avoir avoir accès à des fonctionnalités standards :
         \begin{itemize}
-            \item gestion de son propre agenda ;
+            \item gestion de son propre agenda :
+            \begin{itemize}
+                \item création de rendez-vous,
+                \item édition des rendez-vous,
+                \item annulation,
+                \item suppression;
+            \end{itemize}
             \item possibilité d'inviter d'autres utilisateurs à ses rendez-vous ;
             \item possibilité de voir les horaires d'un autre utilisateur de l'entreprise ;
             \item possibilité de voir les disponibilités de tout un groupe d'utilisateurs.
@@ -96,6 +107,12 @@ L'application doit répondre à des exigences multiples.
         \end{itemize}
 
         \subsection{La qualité du code}
+        Ce site étant destiné à évoluer et à être utilisé, une réelle attention à été portée à la reprise de celui ci. Pour ce faire, il faut :
+        \begin{itemize}
+            \item utiliser une technologie bien documentée, stable et qui ne risque pas d'être abandonnée dans quelques années par ses développeurs ;
+            \item produire un code avec une structure pour permettre la compréhension ;
+            \item insérer des commentaires dans le code pour une meilleure compréhension des algorithmes et de la logique des interactions.
+        \end{itemize}
         Permettre la reprise de mon code
         Utilisation de technologies bien documentées.
     \subsection{Les petits plus}
@@ -103,21 +120,25 @@ L'application doit répondre à des exigences multiples.
     \begin{itemize}
         \item la géolocalisation des rendez-vous;
         \item des notifications en temps réel ;
+        \item un glisser-déposer pour changer l'heure d'un rendez-vous ;
+        \item un étirement d'un rendez-vous, pour en augmenter ou diminuer la durée ;
         \item un système d'étiquettes : privé, congé, réunion, etc ;
         \item une synchronisation avec les logiciels déjà développés par \logilink.
     \end{itemize}
 
-\section{Le dev}
-Le développement du site \agenda s'est passé en plusieurs étapes. La partie fonctionnelle du site a été faite en premier. Ensuite, une refonte graphique du site s'est faite.
+\section{Le développement}
+Le développement du site \agenda s'est passé en plusieurs étapes. La partie fonctionnelle du site a été faite en premier. Ensuite, une refonte graphique du site a été faite, avec quelques ajustements des fonctionnalités .
     \subsection{La partie fonctionnelle}
     La partie fonctionnelle (le backend) a été la partie la plus longue du stage, aux alentours de 3 mois. Le développement de cette partie a été grandement facilité par l'utilisation de \symfony et de tous ses bundles. Notamment, le bundle \textit{FOSUserBundle} qui permet une mise en place presque instantanée de la gestion des utilisateurs et de la sécurité du site web. Afin de pouvoir être au plus proche du cahier des charges, une adaptation du bundle a du être fait car il ne permettait pas de bloquer la création des utilisateurs uniquement par un administrateur d'une entreprise par exemple.
 
-    Pour toute la partie de la géolocalisation, j'ai effectué une recherche d'outils. Il en est ressorti deux : \osm et \gmap. \osm étant une application gratuite et libre de droit, j'ai essayé de l'intégrer en premier. Il se trouve qu'il n'existe pas d'API fournie par l'association gérant \osm mais uniquement des API développées par des tiers qui ont des quotas de requêtes assez bas. Pour pouvoir faire plus de requêtes, soit il faut payer via ces mêmes tiers, soit il faut développer sa propre API client. L'un étant coûteux et l'autre allait me prendre trop de temps. Je me suis donc tourné vers \gmap et son API. Il a été très simple d'intégrer \gmap à mon projet via leur API \javascript, qui est bien documentée et avec des quotas de requêtes gratuites plus que nécessaire : 25 000 chargement de cartes par jours. De plus, une résolution d'adresse est possible en utilisant ce service, ce qui permet de géolocaliser soit via une adresse soit via un clic sur la carte.
+    Pour toute la partie de la géolocalisation, j'ai effectué une recherche d'outils. Il en est ressorti deux : \osm et \gmap. \osm étant une application gratuite et libre de droit, j'ai essayé de l'intégrer en premier. Il se trouve qu'il n'existe pas d'API\footnote{En informatique, une interface de programmation applicative (souvent désignée par le terme API pour Application Programming Interface) est un ensemble normalisé de classes, de méthodes ou de fonctions qui sert de façade par laquelle un logiciel offre des services à d'autres logiciels. \textit{Wikipedia - mars 2017}} fournie par l'association gérant \osm mais uniquement des API développées par des tiers qui ont des quotas de requêtes assez bas. Pour pouvoir faire plus de requêtes, soit il faut payer via ces mêmes tiers, soit il faut développer sa propre API client. L'un étant coûteux et l'autre allait me prendre trop de temps. Je me suis donc tourné vers \gmap et son API. Il a été très simple d'intégrer \gmap à mon projet via leur API \javascript, qui est bien documentée et avec des quotas de requêtes gratuites plus que nécessaire : 25 000 chargement de cartes par jours \cite{gmap_prices}. De plus, une résolution d'adresse est possible en utilisant ce service, ce qui permet de géolocaliser soit via une adresse soit via un clic sur la carte.
 
     De plus, un début d'intégration a été fait avec la suite de transaction de \logilink pour permettre à un utilisateur de prendre un rendez-vous sur la suite \ulti, développé par \logilink et que celui ci se retrouve sur son agenda en ligne, ainsi que l'inverse. Le système d'étiquette permet notamment d'avoir une certaine cohérence entre les logiciels.
 
     \subsection{La partie ``design''}
     La majeure partie du temps restant à été dédiée à la mise en forme du site web. L'utilisation de \bootstrap étant jugée trop lourde et lente pour nous, nous avons décidé de faire tout le design avec l'aide de feuilles de CSS minimales et d'un \javascript réduit aux fonctions essentielles. La navigation a été ainsi fluidifiée.
+
+    L'utilisation de \jquery et notamment de son extension \textit{jQuery-UI} a permis d'ajouter des éléments dynamiques dans la page HTML fixe. Par exemple, l'intégration d'un sélecteur de date\footnote{``Date Picker'' en anglais}.
 
     De plus, un réel travail a été mis en œuvre afin de pouvoir s'adapter aussi bien sur mobile que sur ordinateur de bureau. Cette refonte graphique est notamment passée par une utilisation d’icônes à la place de textes et une reformulation de ceux-ci pour les rendre les plus courts et compréhensibles possibles. Cette minimisation permet à un utilisateur mobile de retrouver toute l'interface qu'il connaît sur ordinateur de bureau.
 
@@ -135,13 +156,15 @@ Le développement du site \agenda s'est passé en plusieurs étapes. La partie f
 
 \chapter{Conclusion}
 
-\begin{appendix}
-    \part{Annexes}
-        \chapter{Planning}
-\end{appendix}
+\appendix
+    \chapter{Planning}
 
-\chapter{4eme de couverture}
-    \section{Résumé}
-    \section{Abstract}
+\bibliographystyle{unsrt}
+\bibliography{biblio}
+
+\newpage
+    \section*{Résumé}
+    \section*{Abstract}
+
 
 \end{document}
