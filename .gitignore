@@ -249,6 +249,8 @@ _build/
 *.fls
 *.out
 *.toc
+*.bbl
+*.blg
 
 ##OCaml generation
 *.cm*

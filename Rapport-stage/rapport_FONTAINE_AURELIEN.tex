@@ -1,15 +1,9 @@
 \documentclass[a4paper, 11pt]{report}
 
-\usepackage[utf8]{inputenc}   % accents
-\usepackage[T1]{fontenc}      % caractères français
-\usepackage{geometry}         % marges
-\usepackage[francais]{babel}  % langue
-\usepackage{graphicx}         % images
-\usepackage{verbatim}         % texte préformaté
-\usepackage{appendix}         % annexes
-\usepackage{amssymb}
-\usepackage{enumitem}
-\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{geometry, graphicx,verbatim,appendix,amssymb,enumitem,xspace,hyperref}
 \hypersetup {
     colorlinks = true,
     allcolors = black
@@ -49,14 +43,22 @@
         \end{tabular}
     \end{titlepage}
 
+\chapter*{Remerciements}
+
+Il n'est jamais facile pour un étudiant de trouver un stage, c'est pourquoi je remercie l'entreprise LOGILINK de m'avoir accueilli durant ces 3 mois.
+
+Je tiens à remercier tout particulièrement M. Michel Imbert et Mme Gabrielle Harlay, dirigeants de l'entreprise LOGILINK,  qui m'ont accordé leur confiance et attribué une mission valorisante durant ce stage, et M. Jérome Harlay, qui m'a conseillé pour tout la partie graphique de mon site web. Je remercie également toute l'équipe pour leur accueil et leur esprit d'équipe.
+
+Faire mon stage de 4ème année dans votre entreprise a été un plaisir, j'ai pu apprendre beaucoup grâce à vous.
+
 \tableofcontents
 
-\chapter{Introduction}
+\chapter{Présentation}
 \section{Présentation de l'entreprise}
-\logilink, société implantée à Marseille, elle est spécialisée dans le secteur d'activité de la programmation informatique pour des entreprises travaillant dans l'immobilier. Cette entreprise développe notamment \ulti, un logiciel métier regroupant de nombreuses fonctionnalités liées à l’immobilier comme la gérance ou le syndic. \logilink créé et des sites web pour de nombreuses agences immobilières sur Marseille.
+\logilink, société implantée à Marseille, est spécialisée dans le secteur d'activité de la programmation informatique principalement pour des entreprises travaillant dans l'immobilier. Cette entreprise développe notamment \ulti, un logiciel métier regroupant de nombreuses fonctionnalités liées à l’immobilier comme la gérance ou le syndic. \logilink créé et des sites web pour de nombreuses agences immobilières sur Marseille.
 
 \section{Présentation du stage}
-L'objectif de ce stage a été de développer une application de calendrier collaboratif afin de se passer des licences Exchange ou Gmail. Afin de répondre à cette problématique, j'ai développé un site web avec le framework \php \symfony \cite{symfony}.
+L'objectif de ce stage a été de développer une application de calendrier collaboratif afin de se passer des licences Exchange ou Gmail. Afin de répondre à cette problématique, j'ai développé un site web avec le framework\footnote{En programmation informatique, un framework ou structure logicielle est un ensemble cohérent de composants logiciels structurels, qui sert à créer les fondations ainsi que les grandes lignes de tout ou d'une partie d'un logiciel (architecture). \textit{Wikipedia - septembre 2017}} \php, \symfony.
 
 \chapter{Travail réalisé}
 \section{L'étude}
@@ -99,41 +101,43 @@ L'application doit répondre à des exigences multiples.
             \item révoquer l'accès à l'application d'une entreprise ;
             \item supprimer définitivement une entreprise de l'application.
         \end{itemize}
-    \subsection{Le backend}
+    \subsection[Le backend]{Le backend\footnote{En informatique, un back-end (parfois aussi appelé un arrière-plan) est un terme désignant un étage de sortie d'un logiciel devant produire un résultat. On l'oppose au front-end (aussi appelé un frontal) qui lui est la partie visible de l'iceberg. \textit{Wikipedia - septembre 2017}}}
         \subsubsection{Le stockage}
         \begin{itemize}
-            \item pour une gestion simplifiée des entreprises et une meilleure séparation des données, une base de donnée par entreprise est requise;
+            \item pour une gestion simplifiée des entreprises et une meilleure séparation des données, une base de donnée par entreprise est requise ;
             \item  le site web final est hébergé chez \oswitch, il faut donc une compatibilité avec les services proposés par cette entreprise.
         \end{itemize}
 
-        \subsection{La qualité du code}
+        \subsubsection{La qualité du code}
         Ce site étant destiné à évoluer et à être utilisé, une réelle attention à été portée à la reprise de celui ci. Pour ce faire, il faut :
         \begin{itemize}
             \item utiliser une technologie bien documentée, stable et qui ne risque pas d'être abandonnée dans quelques années par ses développeurs ;
             \item produire un code avec une structure pour permettre la compréhension ;
             \item insérer des commentaires dans le code pour une meilleure compréhension des algorithmes et de la logique des interactions.
         \end{itemize}
-        Permettre la reprise de mon code
-        Utilisation de technologies bien documentées.
     \subsection{Les petits plus}
     Si le temps le permettait, quelques fonctionnalités non essentielles devaient être implémentées :
     \begin{itemize}
-        \item la géolocalisation des rendez-vous;
+        \item la géolocalisation des rendez-vous ;
         \item des notifications en temps réel ;
         \item un glisser-déposer pour changer l'heure d'un rendez-vous ;
         \item un étirement d'un rendez-vous, pour en augmenter ou diminuer la durée ;
-        \item un système d'étiquettes : privé, congé, réunion, etc ;
+        \item un système d'étiquettes : privé, congés, réunion, etc ;
         \item une synchronisation avec les logiciels déjà développés par \logilink.
     \end{itemize}
 
 \section{Le développement}
-Le développement du site \agenda s'est passé en plusieurs étapes. La partie fonctionnelle du site a été faite en premier. Ensuite, une refonte graphique du site a été faite, avec quelques ajustements des fonctionnalités .
+Le développement du site \agenda s'est passé en plusieurs étapes. La partie fonctionnelle du site a été faite en premier. Ensuite, une refonte graphique du site a été faite, avec quelques ajustements des fonctionnalités.
     \subsection{La partie fonctionnelle}
-    La partie fonctionnelle (le backend) a été la partie la plus longue du stage, aux alentours de 3 mois. Le développement de cette partie a été grandement facilité par l'utilisation de \symfony et de tous ses bundles. Notamment, le bundle \textit{FOSUserBundle} qui permet une mise en place presque instantanée de la gestion des utilisateurs et de la sécurité du site web. Afin de pouvoir être au plus proche du cahier des charges, une adaptation du bundle a du être fait car il ne permettait pas de bloquer la création des utilisateurs uniquement par un administrateur d'une entreprise par exemple.
+    La partie fonctionnelle (le backend) a été la partie la plus longue du stage, aux alentours de 3 mois.
 
-    Pour toute la partie de la géolocalisation, j'ai effectué une recherche d'outils. Il en est ressorti deux : \osm et \gmap. \osm étant une application gratuite et libre de droit, j'ai essayé de l'intégrer en premier. Il se trouve qu'il n'existe pas d'API\footnote{En informatique, une interface de programmation applicative (souvent désignée par le terme API pour Application Programming Interface) est un ensemble normalisé de classes, de méthodes ou de fonctions qui sert de façade par laquelle un logiciel offre des services à d'autres logiciels. \textit{Wikipedia - mars 2017}} fournie par l'association gérant \osm mais uniquement des API développées par des tiers qui ont des quotas de requêtes assez bas. Pour pouvoir faire plus de requêtes, soit il faut payer via ces mêmes tiers, soit il faut développer sa propre API client. L'un étant coûteux et l'autre allait me prendre trop de temps. Je me suis donc tourné vers \gmap et son API. Il a été très simple d'intégrer \gmap à mon projet via leur API \javascript, qui est bien documentée et avec des quotas de requêtes gratuites plus que nécessaire : 25 000 chargement de cartes par jours \cite{gmap_prices}. De plus, une résolution d'adresse est possible en utilisant ce service, ce qui permet de géolocaliser soit via une adresse soit via un clic sur la carte.
+    Le développement de cette partie a été grandement facilitée par l'utilisation de \symfony et de tous ses bundles\footnote{Un bundle est un ensemble de fichiers structurés dans un répertoire qui implémente une seule fonctionnalité \textit{symfony.com - septembre 2017}}. Notamment, le bundle \textit{FOSUserBundle} qui permet une mise en place presque instantanée de la gestion des utilisateurs et de la sécurité du site web. Afin de pouvoir être au plus proche du cahier des charges, une adaptation du bundle a du être fait car il ne permettait pas de bloquer la création des utilisateurs uniquement par un administrateur d'une entreprise par exemple.
 
-    De plus, un début d'intégration a été fait avec la suite de transaction de \logilink pour permettre à un utilisateur de prendre un rendez-vous sur la suite \ulti, développé par \logilink et que celui ci se retrouve sur son agenda en ligne, ainsi que l'inverse. Le système d'étiquette permet notamment d'avoir une certaine cohérence entre les logiciels.
+    Pour toute la partie de la géolocalisation, j'ai effectué une recherche d'outils. Il en est ressorti deux : \osm et \gmap. \osm étant une application gratuite et libre de droit, j'ai essayé de l'intégrer en premier. Il se trouve qu'il n'existe pas d'API\footnote{En informatique, une interface de programmation applicative (souvent désignée par le terme API pour Application Programming Interface) est un ensemble normalisé de classes, de méthodes ou de fonctions qui sert de façade par laquelle un logiciel offre des services à d'autres logiciels. \textit{Wikipedia - septembre 2017}} fournie par l'association gérant \osm mais uniquement des API développées par des tiers qui ont des quotas de requêtes assez bas. Pour pouvoir faire plus de requêtes, soit il faut payer via ces mêmes tiers, soit il faut développer sa propre API client. L'un étant coûteux et l'autre allait me prendre trop de temps. Je me suis donc tourné vers \gmap et son API. Il a été très simple d'intégrer \gmap à mon projet via leur API \javascript, qui est bien documentée et avec des quotas de requêtes gratuites plus que nécessaire : 25 000 chargement de cartes par jours \cite{gmap_prices}. De plus, une résolution d'adresse est possible en utilisant ce service, ce qui permet de géolocaliser soit via une adresse soit via un clic sur la carte.
+
+    De plus, un début d'intégration a été fait avec la suite de transaction de \logilink pour permettre à un utilisateur de prendre un rendez-vous sur la suite \ulti, développé par \logilink, et que celui ci se retrouve sur son agenda en ligne, ainsi que l'inverse. Le système d'étiquettes permet notamment d'avoir une certaine cohérence entre les logiciels.
+
+    La partie des notifications en temps réel ne peut pas se faire avec \symfony et la technologie \php. En effet, le \php ne permet pas un comportement asynchrone comme le suppose une telle application. Pour se faire, j'ai utilisé un serveur NodeJs, utilisant une base de données Redis, et un web socket\footnote{WebSocket est un standard du Web désignant un protocole réseau de la couche application et une interface de programmation du World Wide Web visant à créer des canaux de communication full-duplex par dessus une connexion TCP. \textit{Wikipedia - septembre 2017}} : \io. L'utilisation d'une technologie a été compliquée car elle ne fonctionne pas comme tout le reste du site web.
 
     \subsection{La partie ``design''}
     La majeure partie du temps restant à été dédiée à la mise en forme du site web. L'utilisation de \bootstrap étant jugée trop lourde et lente pour nous, nous avons décidé de faire tout le design avec l'aide de feuilles de CSS minimales et d'un \javascript réduit aux fonctions essentielles. La navigation a été ainsi fluidifiée.
@@ -150,20 +154,23 @@ Le développement du site \agenda s'est passé en plusieurs étapes. La partie f
 
     La séparation des base de données par client est une fonctionnalité importante qui serait intéressante de développer en premier lieu. Ainsi la gestion par entreprise serait grandement facilité et un incident chez un client n’occasionnerai pas de perturbations chez les autres clients.
 
-    Afin de pouvoir s'intégrer au mieux dans le système d'agenda de tous leurs clients, une synchronisation en temps réel peut être développée. Une telle synchronisation permettrait aux utilisateurs de se passer de l'import successif de fichiers .ics comme c'est actuellement possible.
+    Afin de pouvoir s'intégrer au mieux dans le système d'agenda de tous leurs clients, une synchronisation en temps réel peut être développée. Une telle synchronisation permettrait aux utilisateurs de se passer de l'import successif de fichiers .ics comme c'est actuellement le cas.
 
     La possibilité de pouvoir intégrer des agendas externes devrait possible aussi, que ce soit par URL ou par fichier serait une étape de plus dans la versatilité du site.
 
 \chapter{Conclusion}
+    Ce stage m'a permis de perfectionner ma connaissance de \symfony et de toutes ses exigences. Mais j'ai surtout appris à maitriser de nombreuses technologies comme le Javascript, le jQuery et la gestion de serveurs NodeJs. Créer ce site web avec des contraintes de temps a été une expérience très enrichissante et formatice pour moi.
 
 \appendix
-    \chapter{Planning}
+    \chapter{Une annexe}
+    \chapter{Une autre}
 
 \bibliographystyle{unsrt}
 \bibliography{biblio}
 
 \newpage
     \section*{Résumé}
+    Au cours de ce stage j'ai été amené à être au contact de plusieurs technologies. L'utilisation de chacune d'entre-elles m'a permis de mieux comprendre le travail d'un développeur web et de toutes les contraintes avec lesquelles il doit travailler au quotidien.
     \section*{Abstract}
 
 
