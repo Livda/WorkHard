@@ -13,7 +13,7 @@
 \include{alias}
 
 \begin{document}
-\renewcommand{\bibname}{Réferences}
+\renewcommand{\bibname}{Références}
 
 \begin{titlepage}
     \includegraphics[height=50px]{logo_insa.png}
@@ -49,7 +49,7 @@
 
 Il n'est jamais facile pour un étudiant de trouver un stage, c'est pourquoi je remercie l'entreprise LOGILINK de m'avoir accueilli durant ces 4 mois.
 
-Je tiens à remercier tout particulièrement M. Michel Imbert et Mme Gabrielle Harlay, dirigeants de l'entreprise LOGILINK,  qui m'ont accordé leur confiance et attribué une mission valorisante durant ce stage, et M. Jérome Harlay, qui m'a conseillé pour tout la partie graphique de mon site web. Je remercie également toute l'équipe pour leur accueil et leur esprit d'équipe.
+Je tiens à remercier tout particulièrement M. Michel Imbert et Mme Gabrielle Harlay, dirigeants de l'entreprise LOGILINK,  qui m'ont accordé leur confiance et attribué une mission valorisante durant ce stage, et M. Jérôme Harlay, qui m'a conseillé pour tout la partie graphique de mon site web. Je remercie également toute l'équipe pour leur accueil et leur esprit d'équipe.
 
 Faire mon stage de $4^e$ année dans votre entreprise a été un plaisir, j'ai pu apprendre beaucoup grâce à vous.
 
@@ -115,7 +115,7 @@ L'application doit répondre à des exigences multiples.
         \begin{itemize}
             \item utiliser une technologie bien documentée, stable et qui ne risque pas d'être abandonnée dans quelques années par ses développeurs ;
             \item produire un code avec une structure pour permettre la compréhension ;
-            \item insérer des commentaires dans le code pour une meilleure compréhension des algkorithmes et de la logique des interactions.
+            \item insérer des commentaires dans le code pour une meilleure compréhension des algorithmes et de la logique des interactions.
         \end{itemize}
     \subsection{Les petits plus}
     Si le temps le permettait, quelques fonctionnalités non essentielles devaient être implémentées :
@@ -141,6 +141,8 @@ Le développement du site \agenda s'est passé en plusieurs étapes. La partie f
 
     La partie des notifications en temps réel ne peut pas se faire avec \symfony et la technologie \php. En effet, le \php ne permet pas un comportement asynchrone comme le suppose une telle application. Pour se faire, j'ai utilisé un serveur \njs, utilisant une base de données Redis, et un WebSocket\footnote{WebSocket est un standard du Web désignant un protocole réseau de la couche application et une interface de programmation du World Wide Web visant à créer des canaux de communication full-duplex par dessus une connexion TCP. \textit{Wikipedia - septembre 2017}} : \io\cite{io}. L'utilisation de \io a été compliquée car il ne fonctionne pas comme tout le reste du site web. Après quelques jours de travail dessus, j'ai réussi à en comprendre le fonctionnement et à aboutir à une solution où la sécurité de l'application n'est pas remise en cause.
 
+    De par la nature du framework, j'ai été obligé d'utiliser un modèle MVC\footnote{Le patron d'architecture logicielle modèle-vue-contrôleur (en abrégé MVC, en anglais model-view-controller), [...] est un modèle destiné à répondre aux besoins des applications interactives en séparant les problématiques liées aux différents composants au sein de leur architecture respective. \textit{Wikipedia - septembre 2017}}. Grâce à ceci, toutes les parties sont séparées, la relecture du code produit est grandement facilitée. De plus, je me suis efforcé de toujours suivre les mêmes conventions de nommage afin d'avoir un code cohérent à lire. Le modèle (cf. annexe \ref{modele}) a été fait en premier, puis il a subit des évolutions au cours du développement. Le plus gros changement a été l'optimisation pour une utilisation avec une base de donnée, notamment en ajoutant dans de multiples objets la référence d'une Company, permettant de se passer d'une jointure dans de nombreux cas.
+
     \subsection{La partie ``design''}
     La majeure partie du temps restant à été dédiée à la mise en forme du site web. L'utilisation de \bootstrap\cite{bootstrap} étant jugée trop lourde et lente pour nous, nous avons décidé de faire tout le design avec l'aide de feuilles de CSS minimales\footnote{Les feuilles de style en cascade, généralement appelées CSS de l'anglais Cascading Style Sheets, forment un langage informatique qui décrit la présentation des documents HTML et XML. Les standards définissant CSS sont publiés par le World Wide Web Consortium (W3C). textit{Wikipedia - septembre 2016}} et de scripts \js\cite{js} réduits aux fonctions essentielles. La navigation a été ainsi fluidifiée et le temps de chargement des pages grandement réduit.
 
@@ -161,13 +163,19 @@ Le développement du site \agenda s'est passé en plusieurs étapes. La partie f
     La possibilité de pouvoir intégrer des agendas externes devrait possible aussi, que ce soit par URL ou par fichier serait une étape de plus dans la versatilité du site.
 
 \chapter{Conclusion}
-    Ce stage m'a permis de perfectionner ma connaissance de \symfony et de toutes ses exigences. Mais j'ai surtout appris à maîtriser de nombreuses technologies comme le \js, le \jq et la gestion de serveurs \njs. Créer ce site web avec des contraintes de temps a été une expérience très enrichissante et formatrice pour moi. Au contact de Jérome Harlay, j'ai appris de nombreuses choses sur le CSS et sur comment rendre une page ergonomique.
+    Ce stage m'a permis de perfectionner ma connaissance de \symfony et de toutes ses exigences. Mais j'ai surtout appris à maîtriser de nombreuses technologies comme le \js, le \jq et la gestion de serveurs \njs. Créer ce site web avec des contraintes de temps a été une expérience très enrichissante et formatrice pour moi. Au contact de Jérôme Harlay, j'ai appris de nombreuses choses sur le CSS et sur comment rendre une page ergonomique.
 
     La mise en service d'\agenda doit permettre à \lgk et à ses clients de se passer des services payants qui représentent un coût non négligeables à l'année.
 
 \appendix
-    \chapter{Une annexe}
-    \chapter{Une autre}
+    \chapter{Diagramme de classes}
+    \begin{figure}[!ht]
+        \centering
+        \includegraphics[height=13cm]{UML.png}
+        \caption{Diagramme de classes du modèle d'\agenda}
+        \label{modele}
+    \end{figure}
+    % \chapter{Une autre}
 
 \bibliographystyle{unsrt}
 \bibliography{biblio}
@@ -176,6 +184,11 @@ Le développement du site \agenda s'est passé en plusieurs étapes. La partie f
 \thispagestyle{empty}
     \section*{Résumé}
     Au cours de ce stage j'ai été amené à être au contact de plusieurs technologies. L'utilisation de chacune d'entre-elles m'a permis de mieux comprendre le travail d'un développeur web et de toutes les contraintes avec lesquelles il doit travailler au quotidien.
+
+    La construction du site web de bout en bout, a été une expérience très enrichissante et m'a permis de comprendre et de mettre en application les techniques de modélisation, de conception et de développement vues en cours. Ainsi j'ai pu manipuler du \php, \js et \jq et mieux comprendre le fonctionnement de chacun de ces langages et leurs champs d'applications.
     \section*{Abstract}
+    During this internship, I've been working with many technologies. By using each one of them, I've a better understanding of an web developer and all the constrains which that involve.
+
+    Having started from scratch for the web site building was a very rewarding experience and let me apply all the conception and development methods that I've learn in course. So I used \php, \js and \jq et like that I have now a better comprehension of the this languages and their use domain.
 
 \end{document}
