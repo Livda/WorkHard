@@ -57,7 +57,7 @@ Faire mon stage de $4^e$ année dans votre entreprise a été un plaisir, j'ai p
 
 \chapter{Présentation}
 \section{Présentation de l'entreprise}
-\lgk\cite{logilink}, société implantée à Marseille, est spécialisée dans le secteur d'activité de la programmation informatique principalement pour des entreprises travaillant dans l'immobilier. Cette entreprise développe notamment \ulti, un logiciel métier regroupant de nombreuses fonctionnalités liées à l’immobilier comme la gérance ou le syndic. \lgk créé et des sites web pour de nombreuses agences immobilières sur Marseille.
+\lgk\cite{logilink}, société implantée à Marseille, est spécialisée dans le secteur d'activité de la programmation informatique principalement pour des entreprises travaillant dans l'immobilier. Cette entreprise développe notamment \ulti, un logiciel métier regroupant de nombreuses fonctionnalités liées à l’immobilier comme la gérance ou le syndic. \lgk créé aussi des sites web pour de nombreuses agences immobilières sur Marseille.
 
 \section{Présentation du stage}
 L'objectif de ce stage a été de développer une application de calendrier collaboratif afin de se passer des licences Exchange\cite{ex} ou Google Calendar\cite{gcal}. Afin de répondre à cette problématique, j'ai développé un site web avec le framework\footnote{En programmation informatique, un framework ou structure logicielle est un ensemble cohérent de composants logiciels structurels, qui sert à créer les fondations ainsi que les grandes lignes de tout ou d'une partie d'un logiciel (architecture). \textit{Wikipedia - septembre 2017}} \php\cite{php}, \symfony\cite{symfony}.
@@ -114,7 +114,7 @@ L'application doit répondre à des exigences multiples.
         Ce site étant destiné à évoluer et à être utilisé, une réelle attention à été portée à la reprise de celui ci. Pour ce faire, il faut :
         \begin{itemize}
             \item utiliser une technologie bien documentée, stable et qui ne risque pas d'être abandonnée dans quelques années par ses développeurs ;
-            \item produire un code avec une structure pour permettre la compréhension ;
+            \item produire un code structuré pour permettre la compréhension à des fins de maintenance ou d'évolution ;
             \item insérer des commentaires dans le code pour une meilleure compréhension des algorithmes et de la logique des interactions.
         \end{itemize}
     \subsection{Les petits plus}
@@ -133,49 +133,83 @@ Le développement du site \agenda s'est passé en plusieurs étapes. La partie f
     \subsection{La partie fonctionnelle}
     La partie fonctionnelle (le backend) a été la partie la plus longue du stage, aux alentours de 3 mois.
 
-    Le développement de cette partie a été grandement facilitée par l'utilisation de \symfony et de tous ses bundles\footnote{Un bundle est un ensemble de fichiers structurés dans un répertoire qui implémente une seule fonctionnalité \textit{symfony.com - septembre 2017}}. Notamment, le bundle \textit{FOSUserBundle} qui permet une mise en place presque instantanée de la gestion des utilisateurs et de la sécurité du site web. Afin de pouvoir être au plus proche du cahier des charges, une adaptation du bundle a du être fait car il ne permettait pas de bloquer la création des utilisateurs uniquement par un administrateur d'une entreprise par exemple.
+    \subsubsection*{Le framework}
+        Le développement de cette partie a été grandement facilitée par l'utilisation de \symfony et de tous ses bundles\footnote{Un bundle est un ensemble de fichiers structurés dans un répertoire qui implémente une seule fonctionnalité \textit{symfony.com - septembre 2017}}. Notamment, le bundle \textit{FOSUserBundle} qui permet une mise en place presque instantanée de la gestion des utilisateurs et de la sécurité du site web. Afin de pouvoir être au plus proche du cahier des charges, une adaptation du bundle a du être faite car il ne permettait pas de bloquer la création des utilisateurs uniquement par un administrateur d'une entreprise par exemple.
 
-    Pour toute la partie de la géolocalisation, j'ai effectué une recherche d'outils. Il en est ressorti deux : \osm\cite{osm} et \gmap\cite{gmap}. \osm étant une application gratuite et libre de droit, j'ai essayé de l'intégrer en premier. Il se trouve qu'il n'existe pas d'API\footnote{En informatique, une interface de programmation applicative (souvent désignée par le terme API pour Application Programming Interface) est un ensemble normalisé de classes, de méthodes ou de fonctions qui sert de façade par laquelle un logiciel offre des services à d'autres logiciels. \textit{Wikipedia - septembre 2017}} fournie par l'association gérant \osm mais uniquement des API développées par des tiers qui ont des quotas de requêtes assez bas. Pour pouvoir faire plus de requêtes, soit il faut payer via ces mêmes tiers, soit il faut développer sa propre API client. L'un étant coûteux et l'autre allait me prendre trop de temps. Je me suis donc tourné vers \gmap et son API. Il a été très simple d'intégrer \gmap à mon projet via leur API \js, qui est bien documentée et avec des quotas de requêtes gratuites plus que nécessaire : 25 000 chargement de cartes par jours \cite{gmap_prices}. De plus, une résolution d'adresse est possible en utilisant ce service, ce qui permet de géolocaliser soit via une adresse soit via un clic sur la carte.
+        De par la nature du framework, j'ai été obligé d'utiliser un modèle MVC\footnote{Le patron d'architecture logicielle modèle-vue-contrôleur (en abrégé MVC, en anglais model-view-controller), [...] est un modèle destiné à répondre aux besoins des applications interactives en séparant les problématiques liées aux différents composants au sein de leur architecture respective. \textit{Wikipedia - septembre 2017}}. Grâce à ceci, toutes les parties sont séparées, la relecture du code produit est grandement facilitée. De plus, je me suis efforcé de toujours suivre les mêmes conventions de nommage afin d'avoir un code cohérent à lire. Le modèle (cf. annexe \ref{modele}) a été fait en premier, puis il a subit des évolutions au cours du développement. Le plus gros changement a été l'optimisation pour une utilisation avec une base de donnée, notamment en ajoutant dans de multiples objets la référence d'une entreprise, permettant de se passer d'une jointure dans de nombreux cas.
 
-    De plus, un début d'intégration a été fait avec la suite de transaction de \lgk pour permettre à un utilisateur de prendre un rendez-vous sur la suite \ulti, développé par \lgk, et que celui ci se retrouve sur son agenda en ligne, ainsi que l'inverse. Le système d'étiquettes permet notamment d'avoir une certaine cohérence entre les logiciels.
+    \subsubsection*{La géolocalisation}
+        Pour toute la partie de la géolocalisation, j'ai effectué une recherche d'outils. Il en est ressorti deux : \osm\cite{osm} et \gmap\cite{gmap}. \osm étant une application gratuite et libre de droit, j'ai essayé de l'intégrer en premier. Il se trouve qu'il n'existe pas d'API\footnote{En informatique, une interface de programmation applicative (souvent désignée par le terme API pour Application Programming Interface) est un ensemble normalisé de classes, de méthodes ou de fonctions qui sert de façade par laquelle un logiciel offre des services à d'autres logiciels. \textit{Wikipedia - septembre 2017}} fournie par l'association gérant \osm mais uniquement des API développées par des tiers qui ont des quotas de requêtes assez bas. Pour pouvoir faire plus de requêtes, soit il faut payer via ces mêmes tiers, soit il faut développer sa propre API client. L'un étant coûteux et l'autre allait me prendre trop de temps. Je me suis donc tourné vers \gmap et son API. Il a été très simple d'intégrer \gmap à mon projet via leur API \js, qui est bien documentée et avec des quotas de requêtes gratuites largement supérieures : 25 000 chargements de cartes par jours \cite{gmap_prices}. De plus, une résolution d'adresse est possible en utilisant ce service, ce qui permet de géolocaliser soit via une adresse soit via un clic sur la carte.
 
-    La partie des notifications en temps réel ne peut pas se faire avec \symfony et la technologie \php. En effet, le \php ne permet pas un comportement asynchrone comme le suppose une telle application. Pour se faire, j'ai utilisé un serveur \njs, utilisant une base de données Redis, et un WebSocket\footnote{WebSocket est un standard du Web désignant un protocole réseau de la couche application et une interface de programmation du World Wide Web visant à créer des canaux de communication full-duplex par dessus une connexion TCP. \textit{Wikipedia - septembre 2017}} : \io\cite{io}. L'utilisation de \io a été compliquée car il ne fonctionne pas comme tout le reste du site web. Après quelques jours de travail dessus, j'ai réussi à en comprendre le fonctionnement et à aboutir à une solution où la sécurité de l'application n'est pas remise en cause.
+    \subsubsection*{L'intégration}
+        Un début d'intégration a été fait avec la suite de transaction de \lgk pour permettre à un utilisateur de prendre un rendez-vous sur la suite \ulti, développé par \lgk, et que celui ci se retrouve sur son agenda en ligne, ainsi que l'inverse. Le système d'étiquettes permet notamment d'avoir une certaine cohérence entre les logiciels.
 
-    De par la nature du framework, j'ai été obligé d'utiliser un modèle MVC\footnote{Le patron d'architecture logicielle modèle-vue-contrôleur (en abrégé MVC, en anglais model-view-controller), [...] est un modèle destiné à répondre aux besoins des applications interactives en séparant les problématiques liées aux différents composants au sein de leur architecture respective. \textit{Wikipedia - septembre 2017}}. Grâce à ceci, toutes les parties sont séparées, la relecture du code produit est grandement facilitée. De plus, je me suis efforcé de toujours suivre les mêmes conventions de nommage afin d'avoir un code cohérent à lire. Le modèle (cf. annexe \ref{modele}) a été fait en premier, puis il a subit des évolutions au cours du développement. Le plus gros changement a été l'optimisation pour une utilisation avec une base de donnée, notamment en ajoutant dans de multiples objets la référence d'une Company, permettant de se passer d'une jointure dans de nombreux cas.
+    \subsubsection*{Les notifications en temps réel}
+        La partie des notifications en temps réel ne peut pas se faire avec \symfony et la technologie \php. En effet, le \php ne permet pas un comportement asynchrone comme le suppose une telle application. Pour se faire, j'ai utilisé un serveur \njs, utilisant une base de données Redis, et un WebSocket\footnote{WebSocket est un standard du Web désignant un protocole réseau de la couche application et une interface de programmation du World Wide Web visant à créer des canaux de communication full-duplex par dessus une connexion TCP. \textit{Wikipedia - septembre 2017}} : \io\cite{io}. L'utilisation de \io a été compliquée car il ne fonctionne pas comme tout le reste du site web. Après quelques jours de travail dessus, j'ai réussi à en comprendre le fonctionnement et à aboutir à une solution où la sécurité de l'application n'est pas remise en cause.
+
 
     \subsection{La partie ``design''}
     La majeure partie du temps restant à été dédiée à la mise en forme du site web. L'utilisation de \bootstrap\cite{bootstrap} étant jugée trop lourde et lente pour nous, nous avons décidé de faire tout le design avec l'aide de feuilles de CSS minimales\footnote{Les feuilles de style en cascade, généralement appelées CSS de l'anglais Cascading Style Sheets, forment un langage informatique qui décrit la présentation des documents HTML et XML. Les standards définissant CSS sont publiés par le World Wide Web Consortium (W3C). textit{Wikipedia - septembre 2016}} et de scripts \js\cite{js} réduits aux fonctions essentielles. La navigation a été ainsi fluidifiée et le temps de chargement des pages grandement réduit.
 
-    L'utilisation de \jq\cite{jquery} et notamment de son extension \textit{jQuery-UI} a permis d'ajouter des éléments dynamiques dans la page HTML fixe. Par exemple, l'intégration d'un sélecteur de date\footnote{``Date Picker'' en anglais}. Grâce à \jq, le glisser-déposer et l'étirement des cellules à été possible et ce qui rend la navigation plus fluide et moins statique.
+    L'utilisation de \jq\cite{jquery} et notamment de son extension \textit{jQuery-UI} a permis d'ajouter des éléments dynamiques dans la page HTML fixe. Par exemple, l'intégration d'un sélecteur de date\footnote{``Date Picker'' en anglais}. Grâce à \jq, le glisser-déposer et l'étirement des cellules à été possible ce qui rend la navigation plus fluide et moins statique.
 
     De plus, un réel travail a été mis en œuvre afin de pouvoir s'adapter aussi bien sur mobile que sur ordinateur de bureau. Cette refonte graphique est notamment passée par une utilisation d’icônes à la place de textes et une reformulation de ceux-ci pour les rendre les plus courts et compréhensibles possibles. Cette minimisation permet à un utilisateur mobile de retrouver toute l'interface qu'il connaît sur ordinateur de bureau.
 
     \subsection{Les limitations}
-    Au cours du développement, il est apparu que l'utilisation d'une base de donnée par client n'est pas possible dans le temps qu'il m'était imparti. \symfony n'intègre pas de fonctionnalité pour utiliser des bases de données de manière dynamique, et essayer de passer outre le fonctionnement de \symfony nuirait au bon fonctionnement de la sécurité apportée par ce framework. Cette impossibilité de séparation rend le site plus vulnérable aux incidents. En effet si pour une quelconque raison, la base de donnée venait à être corrompue, tous les clients ne pourraient plus avoir accès à leur agenda en ligne.
+    Au cours du développement, il est apparu que la mise en place d'une base de donnée par client n'était pas possible dans le temps qu'il m'était imparti. \symfony n'intègre pas de fonctionnalité pour utiliser des bases de données de manière dynamique, et essayer de passer outre le fonctionnement de \symfony nuirait au bon fonctionnement de la sécurité apportée par ce framework. Cette impossibilité de séparation rend le site plus vulnérable aux incidents. En effet si pour une quelconque raison, la base de donnée venait à être corrompue, tous les clients ne pourraient plus avoir accès à leur agenda en ligne.
 
 \section{Possibilités d'évolution}
-    Le site web développé a de nombreux axes d'évolution possibles.
+    Le site web développé a plusieurs axes d'évolution possibles :
 
-    La séparation des base de données par client est une fonctionnalité importante qui serait intéressante de développer en premier lieu. Ainsi la gestion par entreprise serait grandement facilité et un incident chez un client n’occasionnerai pas de perturbations chez les autres clients.
-
-    Afin de pouvoir s'intégrer au mieux dans le système d'agenda de tous leurs clients, une synchronisation en temps réel peut être développée. Une telle synchronisation permettrait aux utilisateurs de se passer de l'import successif de fichiers .ics comme c'est actuellement le cas.
-
-    La possibilité de pouvoir intégrer des agendas externes devrait possible aussi, que ce soit par URL ou par fichier serait une étape de plus dans la versatilité du site.
+    \begin{itemize}
+        \item la séparation des base de données par client est une fonctionnalité importante qui serait intéressante à développer en premier lieu. Ainsi la gestion par entreprise serait grandement facilitée et un incident chez un client n’occasionnerait pas de perturbations chez les autres clients ;
+        \item afin de pouvoir s'intégrer au mieux dans le système d'agenda de tous leurs clients, une synchronisation en temps réel peut être développée. Une telle synchronisation permettrait aux utilisateurs de se passer de l'import successif de fichiers .ics comme c'est actuellement le cas ;
+        \item l'import d'agendas d'autres applications via URL ou via fichier, serait une étape de plus dans la versatilité du site.
+    \end{itemize}
 
 \chapter{Conclusion}
     Ce stage m'a permis de perfectionner ma connaissance de \symfony et de toutes ses exigences. Mais j'ai surtout appris à maîtriser de nombreuses technologies comme le \js, le \jq et la gestion de serveurs \njs. Créer ce site web avec des contraintes de temps a été une expérience très enrichissante et formatrice pour moi. Au contact de Jérôme Harlay, j'ai appris de nombreuses choses sur le CSS et sur comment rendre une page ergonomique.
 
-    La mise en service d'\agenda doit permettre à \lgk et à ses clients de se passer des services payants qui représentent un coût non négligeables à l'année.
+    La mise en service d'\agenda doit permettre à \lgk et à ses clients de se passer des services payants qui représentent un coût non négligeable à l'année.
 
 \appendix
     \chapter{Diagramme de classes}
     \begin{figure}[!ht]
-        \centering
-        \includegraphics[height=13cm]{UML.png}
+        \centerline{\includegraphics[height=13cm]{UML.png}}
         \caption{Diagramme de classes du modèle d'\agenda}
         \label{modele}
     \end{figure}
-    % \chapter{Une autre}
+    \chapter{Captures d'écran d'\agenda}
+
+    \begin{figure}[!ht]
+        \centerline{\includegraphics[height=10cm]{login.png}}
+        \caption{Page de connexion}
+        \label{login}
+    \end{figure}
+
+    \begin{figure}[!ht]
+        \centerline{\includegraphics[height=9cm]{week.png}}
+        \caption{Vue de l'agenda sur une semaine}
+        \label{week}
+    \end{figure}
+
+    \begin{figure}[!ht]
+        \centerline{\includegraphics[height=9cm]{month.png}}
+        \caption{Vue de l'agenda sur un mois}
+        \label{month}
+    \end{figure}
+
+    \begin{figure}[!ht]
+        \centerline{\includegraphics[height=9cm]{new_event.png}}
+        \caption{Création d'un événement}
+        \label{new_event}
+    \end{figure}
+
+    \begin{figure}[!ht]
+        \centerline{\includegraphics[height=9cm]{tags.png}}
+        \caption{Visualisation des étiquettes}
+        \label{tags}
+    \end{figure}
 
 \bibliographystyle{unsrt}
 \bibliography{biblio}
@@ -187,8 +221,8 @@ Le développement du site \agenda s'est passé en plusieurs étapes. La partie f
 
     La construction du site web de bout en bout, a été une expérience très enrichissante et m'a permis de comprendre et de mettre en application les techniques de modélisation, de conception et de développement vues en cours. Ainsi j'ai pu manipuler du \php, \js et \jq et mieux comprendre le fonctionnement de chacun de ces langages et leurs champs d'applications.
     \section*{Abstract}
-    During this internship, I've been working with many technologies. By using each one of them, I've a better understanding of an web developer and all the constrains which that involve.
+    During this internship, I've been working with many technologies. By using each one of them, I've a better understanding of a web developer and all the constrains which that involve.
 
-    Having started from scratch for the web site building was a very rewarding experience and let me apply all the conception and development methods that I've learn in course. So I used \php, \js and \jq et like that I have now a better comprehension of the this languages and their use domain.
+    Having started from scratch for the web site building was a very rewarding experience and lets me apply all the conception and development methods that I've learn during my courses. So I used \php, \js and \jq and like, that I have now a better comprehension of this languages and their use domain.
 
 \end{document}
