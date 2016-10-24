@@ -8,7 +8,9 @@ geometry: margin=3cm
 #Tuning BDD
 ## Exercices sur des Employés
 
-``Emp ( num_secu, nom, sal, dept, boss )``
+~~~~ {.SQL}
+Emp ( num_secu, nom, sal, dept, boss )
+~~~~
 
 1 page = 2Ko ; 30 employés / page ;
 
@@ -46,14 +48,18 @@ Ici, on en met un.
 
 ###Met on un index sur une de ces requêtes ?
 
-`select count(*) from Emp where sal = 'xxx';`
+~~~~ {.SQL}
+select count(*) from Emp where sal = 'xxx';
+~~~~
 
 - index dense secondaire hash
     - secondaire : salaire non fixe
     - dense : pour compter dans l'index
     - hash : on veut une valeur précise
 
-`select * from Emp where sal = 'xxx';`
+~~~~ {.SQL}
+select * from Emp where sal = 'xxx';
+~~~~
 
 Ici on doit accéder aux données, on ne peut pas rester dans un index. On regarde la sélectivité de la requête :
 
@@ -69,11 +75,15 @@ Ici on doit accéder aux données, on ne peut pas rester dans un index. On regar
 
 ###Tables
 
-``Vol (vol.id, siege.id, #passager)``
+~~~~ {.SQL}
+Vol (vol.id, siege.id, #passager)
+~~~~
 
 SGBD 2PL granule ligne par page
 
-``Total (vol.id, totalPassagers)``
+~~~~ {.SQL}
+Total (vol.id, totalPassagers)
+~~~~
 
 ###Questions
 
@@ -89,9 +99,10 @@ Ajout index dense hash primaire ou secondaire sur le `vol.id`.
 
 ## Exercices sur Employés (bis)
 
-``Emp (num_secu, nom, dept , salaire)``
-
-``ServiceARisque (service, boss, #tel)``
+~~~~ {.SQL}
+Emp (num_secu, nom, dept , salaire)
+ServiceARisque (service, boss, #tel)
+~~~~
 
 Emp :
 
@@ -113,11 +124,58 @@ SAR :
 
 Le `DISTINCT` est inutile et contre-productif.
 
+##Numéro des employés travaillant dans un service à risque
+
+~~~~ {.SQL .numberLines}
+SELECT nss
+FROM Emp, ServiceARisque
+WHERE Emp.dept = ServiceARisque.service;
+~~~~
+
+On sait que `Emp` >> `ServiceARisque`.
+
+1. Scan sequentiel de `ServiceARisque`
+2. Si sélectivité élevée
+    - Scan sequentiel de `Emp`
+3. Si sélectivité faible
+    - recherche des `Emp` correspondants via l'index secondaire
+
+$\rightarrow$ plusieurs lectures de `Emp`
+
+1. Scan séquentiel de `Emp`
+2. Vérification de présence dans `ServiceARisque` via l'index primaire
+
+$\rightarrow$ une seule lecture de `Emp` et des lectures d'index. Beaucoup plus rapide.
+
+~~~~ {.SQL .numberLines}
+SELECT nss
+FROM Emp
+WHERE dept in
+    (SELECT service
+     FROM ServiceARisque);
+~~~~
+
+Si l'optimiseur est bien fait, il va faire comme au dessus.
+
+##Afficher les employés les mieux payés de chaque département
+
+~~~~ {.SQL .numberLines}
+SELECT nss
+FROM Emp as e1
+WHERE salaire =
+    (SELECT max(salaire)
+     FROM Emp as e2
+     WHERE e2.dept = e1.dept);
+~~~~
+
+Du fait de la référence `e1` dans la sous-requête, on lit la requête de gauche à droite.
+Créer une vue concrète (`CONCRETE VIEW`) avec le salaire max de chaque `dept`.
+
 \newpage
 
 #XML Schema
 
-~~~~ {#mycode .xml .numberLines}
+~~~~ {.xml .numberLines}
 <xsd:schema xmlns:xsd="http://www.w3.org/2000/10/XMLSchema">
     <xsd:element name="degustation">
     <xsd:complexType>
@@ -155,38 +213,38 @@ Le `DISTINCT` est inutile et contre-productif.
 #XPath
 
 ##Vineyard of wines
-~~~~ {#mycode .xpath .numberLines}
+~~~~ {.xpath}
 /child::degustation/child::vins/child::cru
 ~~~~
 
 ##Text of the name of the second wine region
-~~~~ {#mycode .xpath .numberLines}
+~~~~ {.xpath .numberLines}
 /child::degustation/
     child::vins[position()=2]/child::region/
     child::nom/child::text()
 ~~~~
 
 ##Attributes of the wines
-~~~~ {#mycode .xpath .numberLines}
+~~~~ {.xpath}
 /descendant::vins/attributes::id
 ~~~~
 
 ##Wine vineyards in regions with states
-~~~~ {#mycode .xpath .numberLines}
+~~~~ {.xpath}
 /descendant::vins[descendant::etat]/child::cru
 ~~~~
 
 ##Sections of a chapter
-~~~~ {#mycode .xpath .numberLines}
+~~~~ {.xpath}
 /livre/chapitre/section
 ~~~~
 
 ##Text of a chapter 1 section 2
-~~~~ {#mycode .xpath .numberLines}
+~~~~ {.xpath}
 //chapitre[1]/section[2]/text()
 ~~~~
 
 ##Caption of the first figure in the second section of the third chapter
-~~~~ {#mycode .xpath .numberLines}
+~~~~ {.xpath}
 //chapitre[3]/section[2]//figure[1]/légende
 ~~~~
