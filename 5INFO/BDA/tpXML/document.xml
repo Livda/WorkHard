@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="style.css" type="text/css"?>
+
+<!DOCTYPE intership_abstract [
+
+<!ELEMENT intership_abstract (title_page, content_page)>
+    <!ATTLIST intership_abstract begin_date CDATA #REQUIRED>
+    <!ATTLIST intership_abstract end_date CDATA #REQUIRED>
+
+<!ELEMENT title_page (student_name, tutor_name, company_address, intership_title)>
+    <!ELEMENT student_name (#PCDATA)>
+    <!ELEMENT tutor_name (#PCDATA)>
+        <!ATTLIST tutor_name prefix (M. | Mme. | Mlle. | Dr.) #IMPLIED>
+    <!ELEMENT company_address (#PCDATA)>
+    <!ELEMENT intership_title (#PCDATA)>
+
+<!ELEMENT content_page (intership_context, work_done, key_words, intership_input)>
+    <!ELEMENT intership_context (item+)>
+        <!ELEMENT item (#PCDATA)>
+    <!ELEMENT work_done (#PCDATA)>
+    <!ELEMENT key_words (key_word+)>
+        <!ELEMENT key_word (#PCDATA)>
+    <!ELEMENT intership_input (#PCDATA)>
+]>
+
+<intership_abstract begin_date="25-10-16" end_date="10-02-16">
+    <title_page>
+        <student_name>
+            Pierre Durand
+        </student_name>
+        <tutor_name prefix="Dr.">
+            Alain Nicolas
+        </tutor_name>
+        <company_address>
+            Société de Service et Conseil
+            Département "Conseil et techniques avancées"
+            4 rue des Tilleuls
+            35065 Rennes CEDEX
+        </company_address>
+        <intership_title>
+            Intégration d'un composant dans un Système d'Information : définition, conception, prototypage et évaluation.
+        </intership_title>
+    </title_page>
+    <content_page>
+        <intership_context>
+            <item>
+                Un Système d'Information peut être défini comme un ensemble de composants destiné à faciliter la gestion de l'ensemble des informations.
+            </item>
+            <item>
+                Au sein d'un tel système d'information, il serait intéressant de proposer l'intégration...
+            </item>
+        </intership_context>
+        <work_done>
+            Après avoir étudié la documentation, j'ai défini le cahier des charges ...
+        </work_done>
+        <key_words>
+            <key_word>
+                Linux
+            </key_word>
+            <key_word>
+                SQL
+            </key_word>
+            <key_word>
+                XML
+            </key_word>
+            <key_word>
+                C++
+            </key_word>
+        </key_words>
+        <intership_input>
+            J'ai beaucoup appris ...
+        </intership_input>
+    </content_page>
+</intership_abstract>

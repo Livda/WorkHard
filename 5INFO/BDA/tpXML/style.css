@@ -1,0 +1,61 @@
+* {
+    display: block;
+    padding: 5px;
+    /*white-space: pre;*/
+}
+*:before {
+    font-weight: bold;
+    white-space: pre;
+}
+intership_abstract {
+    padding: 20px;
+}
+title_page {
+    border: 1px double black;
+}
+student_name:before {
+    content: "Nom de l'étudiant :";
+}
+student_name {
+    border-bottom: 1px solid black;
+}
+tutor_name:before {
+    content: "Nom du tuteur :";
+}
+company_address:before {
+    content: "Adresse de l'entreprise :\a";
+}
+company_address {
+    white-space: pre;
+}
+intership_title:before {
+    content: "Titre du stage :\a";
+}
+intership_title {
+    border-top: 1px solid black;
+}
+content_page {
+    margin-top: 20px;
+    border: 2px solid gray;
+    counter-reset: context;
+}
+intership_context:before {
+    content: "Contexte du stage :\a";
+}
+item:before {
+    content: counter(context)") ";
+    counter-increment: context;
+}
+work_done:before {
+    content: "Travail réalisé :\a";
+}
+key_words:before {
+    content: "Environnement - mots clefs :\a";
+}
+key_word {
+    margin-left: 30px;
+    display: list-item;
+}
+intership_input:before {
+    content: "Apport du stage :\a";
+}
