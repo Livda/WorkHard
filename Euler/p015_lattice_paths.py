@@ -13,7 +13,7 @@ def pascals_triangle(rows):
     return result
 
 size = 20
-result = pascals_triangle(size)
+result = pascals_triangle(size*2)
 for row in result:
     print(row)
 print(result[-1][len(result[-1])//2])
