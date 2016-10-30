@@ -1,8 +1,5 @@
-
 import sys
 from random import randint, shuffle
-
-
 
 def gen_mutant_line(mat):
     res = []
@@ -56,7 +53,6 @@ def gen_mutant_square(mat):
                         res[3*i+x].append(mat[3*i+x][3*j+y])
     return res
 
-
 def gen_mutant(mat):
 
     criterion = randint(1, 3)
@@ -70,7 +66,6 @@ def gen_mutant(mat):
         print("WTF")
         return gen_mutant_line(mat)
 
-
 def get_fitness(mat):
     r = [[e-10 if e > 10 else e for e in line] for line in mat]
     fitness = 0
@@ -78,10 +73,14 @@ def get_fitness(mat):
         fitness += len(set(line))
     for i in range(0, 9):
         fitness += len(set([line[i] for line in mat]))
-    for i in range(0,9):
-        for j in range(0,9):
-
-
+    for i in range(0,3):
+        for j in range(0,3):
+            numbers = []
+            for x in range(0, 3):
+                for y in range(0, 3):
+                    numbers.append(mat[3*i+x][3*j+y])
+            fitness +=  len(set(numbers))
+    return fitness
 
 if __name__ == "__main__" :
 
@@ -90,7 +89,6 @@ if __name__ == "__main__" :
     f.close()
 
     sudoku = [[a+10 if a != 0 else a for a in line] for line in sudoku]
-
 
     print(gen_mutant_square(sudoku))
 
