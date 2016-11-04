@@ -248,3 +248,86 @@ Créer une vue concrète (`CONCRETE VIEW`) avec le salaire max de chaque `dept`.
 ~~~~ {.xpath}
 //chapitre[3]/section[2]//figure[1]/légende
 ~~~~
+
+#XQuery
+
+##Names of the restaurants
+~~~~{.xpath}
+collection("Guide")/Restaurant/Nom
+~~~~
+
+##Text of the names of the restaurants
+~~~~{.xpath}
+collection("Guide")/Restaurant/Nom/text()
+~~~~
+
+##Menus of all the restaurants
+~~~~{.xpath}
+collection("Guide")//Menu
+~~~~
+
+##Values of the attributes in the menus of all the restaurants
+~~~~{.xpath}
+collection("Guide")//Menu/@*
+or
+collection("Guide")//Menu/@*/string
+~~~~
+
+##Restaurants in Cabourg
+~~~~{.xpath}
+collection("Guide")/Restaurant/Adresse[Ville="Cabourg"]
+or
+collection("Guide")/Restaurant/Adresse[Ville/text()="Cabourg"]
+~~~~
+
+##Addresses of the restaurants in Cabourg
+~~~~{.xpath}
+collection("Guide")/Restaurant/Adresse[Ville="Cabourg"]/Adresse
+~~~~
+~~~~{.xquery}
+for $R in collection("Guide")/
+    Restaurant[Adresse/Ville="Cabourg"]
+return $R/Adresse
+~~~~
+
+##Names of the hotels, and names and phone numbers of the restaurants located in te same street
+~~~~{.xquery}
+for
+    $R in collection("Guide")/Restaurant,
+    $H in collection("Repertoire")/Hotel
+where
+    $H/Adresse/Rue=$R/Adresse/Rue
+return
+    <HotelRestau>
+        {$H/Nom}
+        {$R/Nom}
+        {$R/Téléphone}
+    </HotelRestau>
+~~~~
+
+##List of the restaurants sorted by towns
+~~~~{.xquery}
+for
+    $V in distinct-values(collection("Guide")/Restaurant//Ville)
+return
+    <Restoparville>
+        <Ville>{$V}</Ville> #Remark: no $V/text() because distinct-values
+        <Restos>
+            {for $R in collection("Guide")/Restaurant
+            where $R//Ville=$V
+            return $R/Nom}
+        </Restos>
+    </Restoparville>
+~~~~
+
+##Names of the restaurants together with the average price of the proposed menus
+~~~~{.xquery}
+for $R in collection("Guide")/Restaurant
+let $A:=$R/Menu/@Prix
+return
+    <resultat>
+        {$R/Nom}
+        <avgprix>{avg($A)}</avgprix>
+    </resultat>
+~~~~
+
