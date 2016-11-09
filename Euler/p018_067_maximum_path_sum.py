@@ -4,7 +4,7 @@ triangle = []
 for line in file:
     tab = [int(n) for n in line.split()]
     triangle.append(tab)
-
+file.close()
 result = 0
 position = 0
 last_array = []

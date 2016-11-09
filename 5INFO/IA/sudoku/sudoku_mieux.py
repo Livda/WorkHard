@@ -93,38 +93,38 @@ def get_fitness(mat):
 #mutation
 
 def mix_line(su1, su2, mut):
-    
+
     mut_lo = mut[:]
     mut_lo.sort()
-    
+
     son, goku = su1[:], su2[:]
 
     for i in mut_lo:
         son[i] = su1[i]
         goku[i] = su2[i]
-    
-    return son, goku 
+
+    return son, goku
 
 def mix_column(su1, su2, mut):
-    
+
     mut_lo = mut[:]
     mut_lo.sort()
-    
+
     son, goku = su1[:], su2[:]
 
     for i in mut_lo:
         for j in range(0, 9):
             son[j][i] = su1[j][i]
             goku[j][i] = su2[j][i]
-    
-    return son, goku 
+
+    return son, goku
 
 def mix_square(su1, su2, mut):
-    
+
     mut_lo = mut[:]
     mut_lo.sort()
-    
-    mut_lo = [(i%3, i//3) for i in mut_lo]    
+
+    mut_lo = [(i%3, i//3) for i in mut_lo]
 
     son, goku = su1[:], su2[:]
 
@@ -133,11 +133,11 @@ def mix_square(su1, su2, mut):
             for y in range(0, 3):
                 son[3*i+x][3*y+j] = su1[3*i+x][3*y+j]
                 goku[3*i+x][3*y+j] = su2[3*i+x][3*y+j]
-    
-    return son, goku 
+
+    return son, goku
 
 def mix_gene(sudoku1, sudoku2):
-    
+
     action = randint(0, 2)
     mutations = sample(range(0, 9), randint(1, 9))
     if action == 0:
@@ -149,20 +149,20 @@ def mix_gene(sudoku1, sudoku2):
 
 
 def mutate_gene(sudoku):
-    
+
     son = sudoku[:]
     michel = True
-    
+
     while michel:
         yamcha = randint(0, 80)
         i, j = yamcha%9, yamcha//9
         if sudoku[i][j] < 10:
             son[i][j] = randint(1, 9)
             return son
-            
+
 
 def splinter(pool):
-    
+
     ny = pool[:]
     next_gen = []
     leonardo = max(pool, key=get_fitness)
@@ -174,7 +174,7 @@ def splinter(pool):
         ny.remove(raphael)
         donatello = choice(ny)
         ny.remove(donatello)
-        
+
         action = randint(0, 10)
         if action < 2:
             son, goku = mix_gene(raphael, donatello)
@@ -214,7 +214,7 @@ if __name__ == "__main__" :
     it = 0
 
     while get_fitness(max_fitness) < 243:
-        splinter(ninja_turtles)    
+        splinter(ninja_turtles)
         max_fitness = max(ninja_turtles, key=get_fitness)
         print_sudoku(max_fitness)
         it += 1
