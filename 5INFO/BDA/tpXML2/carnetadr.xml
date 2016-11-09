@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<carnetDAdresse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
+	<carteDeVisite id="i1">
+		<prenom>Yves</prenom>
+		<nom>Merci</nom>
+		<organisme>Vins en vrac Cie</organisme>
+		<adresse>
+			<numero>40</numero>
+			<voie type="avenue">general Leclerc</voie>
+			<ville codepostal="45042">Orleans</ville>
+		</adresse>
+		<note> Très grand <cle>champagne</cle> </note>
+	</carteDeVisite>
+	<carteDeVisite id="i2">
+		<prenom>Roland</prenom>
+		<nom>Grand</nom>
+		<organisme>Artichauts et primeurs</organisme>
+		<adresse>
+			<numero>256</numero>
+			<voie type="boulevard">Martenot</voie>
+			<ville codepostal="35000">Rennes</ville>
+		</adresse>
+	</carteDeVisite>
+	<carteDeVisite id="i6">
+		<prenom>Harold</prenom>
+		<nom>Lejean</nom>
+		<organisme>Fruits et legumes boutik</organisme>
+		<adresse>
+			<numero>256</numero>
+			<voie>Martenot</voie>
+			<ville codepostal="35000">Rennes</ville>
+		</adresse>
+		<note>Tous les <cle>fruits</cle> frais à volonte
+		</note>
+	</carteDeVisite>
+	<carteDeVisite id="i3">
+		<prenom>Pierre</prenom>
+		<nom>Dupont</nom>
+		<organisme>Cavavins</organisme>
+		<adresse>
+			<numero>1 bis</numero>
+			<voie>La Rabine</voie>
+			<ville codepostal="56000">Vannes</ville>
+		</adresse>
+	</carteDeVisite>
+	<carteDeVisite id="i4">
+		<prenom>Paul</prenom>
+		<nom>Lapate</nom>
+		<organisme>Laboulang'</organisme>
+		<adresse>
+			<numero>56</numero>
+			<voie type="impasse">Dubout</voie>
+			<ville codepostal="35400">Redon</ville>
+		</adresse>
+		<note>Les meilleurs <cle>croissants</cle> de Bretagne
+		</note>
+	</carteDeVisite>
+	<carteDeVisite id="i5">
+		<prenom>Jean</prenom>
+		<nom>Passe</nom>
+		<organisme>Cavavins</organisme>
+		<adresse>
+			<numero>56</numero>
+			<voie type="boulevard">Leclerc</voie>
+			<ville codepostal="29000">Brest</ville>
+		</adresse>
+	</carteDeVisite>
+</carnetDAdresse>

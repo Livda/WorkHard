@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:element name="carnetDAdresse">
+    <xsd:complexType>
+        <xsd:sequence>
+            <xsd:element name="carteDeVisite" maxOccurs="unbounded">
+            <xsd:complexType>
+                <xsd:sequence>
+                    <xsd:element name="prenom" type="xsd:string"></xsd:element>
+                    <xsd:element name="nom" type="xsd:string"></xsd:element>
+                    <xsd:element name="organisme" type="xsd:string"></xsd:element>
+                    <xsd:element name="adresse">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="numero" type="xsd:string"></xsd:element>
+                                <xsd:element name="voie">
+                                <xsd:complexType>
+                                <xsd:simpleContent>
+                                    <xsd:extension base="xsd:string">
+                                    <xsd:attribute name="type" type="voie" default="rue"></xsd:attribute>
+                                    </xsd:extension>
+                                </xsd:simpleContent>
+                                </xsd:complexType>
+                                </xsd:element>
+                                <xsd:element name="ville">
+                                    <xsd:complexType>
+                                    <xsd:simpleContent>
+                                        <xsd:extension base="xsd:string">
+                                        <xsd:attribute name="codepostal" type="codePostal"></xsd:attribute>
+                                    </xsd:extension>
+                                    </xsd:simpleContent>
+                                    </xsd:complexType>
+                                </xsd:element>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="note" minOccurs="0">
+                        <xsd:complexType mixed="true">
+                            <xsd:sequence>
+                                <xsd:element name="cle" type="xsd:string"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                </xsd:sequence>
+            <xsd:attribute name="id" type="xsd:ID" use="required"></xsd:attribute>
+            </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    </xsd:element>
+    <xsd:simpleType name="codePostal">
+        <xsd:restriction base="xsd:integer">
+            <xsd:pattern value="[0-9]{5}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="voie">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="rue"/>
+            <xsd:enumeration value="avenue"/>
+            <xsd:enumeration value="impasse"/>
+            <xsd:enumeration value="cours"/>
+            <xsd:enumeration value="square"/>
+            <xsd:enumeration value="boulevard"/>
+            <xsd:enumeration value="chemin"/>
+            <xsd:enumeration value="allee"/>
+            <xsd:enumeration value="quai"/>
+            <xsd:enumeration value="route"/>
+            <xsd:enumeration value="passage"/>
+            <xsd:enumeration value="place"/>
+            <xsd:enumeration value="rondPoint"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

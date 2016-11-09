@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT carnetDAdresse (carteDeVisite+)>
+<!ELEMENT carteDeVisite (prenom, nom, organisme, adresse, note?)>
+<!ATTLIST carteDeVisite
+	id ID #REQUIRED
+>
+<!ELEMENT prenom (#PCDATA)>
+<!ELEMENT nom (#PCDATA)>
+<!ELEMENT organisme (#PCDATA)>
+<!ELEMENT adresse (numero, voie, ville)>
+<!ELEMENT numero (#PCDATA)>
+<!ELEMENT voie (#PCDATA)>
+<!ATTLIST voie
+	type (rue | avenue | impasse | cours | square | boulevard | chemin | allee | quai | route | passage | place | rondPoint) "rue"
+>
+<!ELEMENT ville (#PCDATA)>
+<!ATTLIST ville
+	codepostal CDATA #IMPLIED
+>
+<!ELEMENT note (#PCDATA | cle)*>
+<!ELEMENT cle (#PCDATA)>
