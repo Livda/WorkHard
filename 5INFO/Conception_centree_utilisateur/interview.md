@@ -1,6 +1,6 @@
 #Présentation
 ##Personne interrogée
-JJ, étudiante de 4:e année dans le département d'Informatique, 22 ans
+JJ, étudiante de 4e année dans le département d'Informatique, 22 ans
 
 ##Lieu
 Salle Bordeaux du département informatique
