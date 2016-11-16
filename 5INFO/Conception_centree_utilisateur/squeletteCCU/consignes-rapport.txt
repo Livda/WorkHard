@@ -1,0 +1,75 @@
+Bonjour,
+
+je vous rappelle qu'il faut m'envoyer avant le 11/12 un répertoire au
+nom de votre groupe contenant : 
+
+1-1-utilisation.tex : le fichier contenant la description détaillée des
+scénarios d'utilisation observés lors de vos entretiens.
+
+1-2-questions.tex : la liste des questions précises que se sont posés
+les interviewés.
+
+2-invariant.tex : La liste des points observés qui doivent être
+préservés absolument
+
+3-faiblesse.tex : La liste des faiblesses observées sur lesquelles il
+faudra travailler
+
+4-suggestion.tex : La liste des suggestions qui ont pu être faites
+directement par les utilisateurs
+
+5-brainstorming.tex : la liste brute des idées qui sont sorties de
+votre séance de brainstorming.
+
+-------------------
+Pour tous les fichiers, il va sans dire qu'il ne doit plus y avoir de
+faute d'orthographe, ni de faute de syntaxe.
+
+Merci de respecter scrupuleusement les consignes explicitées dans les
+fichiers joints.
+
+-------------------
+ATTENTION : Je vous demande d'anonymiser le nom des sociétés en plus
+des noms des interviewés. Merci d'augmenter la table de correspondance
+du dossier en conséquence. 
+
+-------------------
+Si vous utilisez des étiquettes préfixez les par le nom de votre
+groupe pour éviter les clashs de nom quand je vais tout assembler
+(ex: \label{groupeA:pointInteressant})
+
+Mettez toutes les illustrations dans le répertoire ``images''.
+Pour insérer une figure :
+
+\Figurepdf{t}{<largeur>}{groupeX/images/<nom_fichier>}{<titre>}{groupeX:fig:<etiquette_de_cette_figure>} 
+Pour la largeur, \linewidth est souvent pertinent.
+
+-------------------
+Envoyez moi le répertoire groupe<X> zippé.  Merci de changer le X (ça
+va sans dire, mais l'expérience montre que ça va mieux en le
+disant :-)). 
+
+Ne me renvoyez pas les fichiers de style, enlevez les
+fichiers inutiles de votre répertoire. Faites attention qu'il y ait
+bien toutes les illustrations nécessaires.
+
+Merci de vérifier que les accents passent bien sous un Mac, 
+et qu'il n'y a pas de chemins en dur.
+
+Merci aussi au responsable de bien vérifier que ça compile avec
+pdflatex, qu'il n'y a pas de référence dans le vide, que tous les
+morceaux sont présents, que ça a bien été relu, ... Bref, faites moi
+gagner du temps.
+
+Je garde des traces de toutes les anicroches, si elles sont trop
+nombreuses la note s'en ressent forcément.
+
+-------------------
+C'est moi qui rédigerai le chapitre d'introduction et qui peaufinerai
+les introductions de chaque chapitre.
+
+
+Merci de votre coopération,
+
+Mireille Ducassé
+

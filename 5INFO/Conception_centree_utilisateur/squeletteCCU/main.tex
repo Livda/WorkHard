@@ -1,0 +1,204 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          FICHIER MAÎTRE POUR LE RAPPORT DE CONCEPTION PARTICIPATIVE
+%                     5e année INSA de Rennes
+%
+%             NE PAS LE MODIFIER SANS DEMANDER L'AVIS À ducasse@irisa.fr
+%
+%	Ce fichier a vocation à être compilé avec pdflatex. Toutes les
+%	figures doivent donc être au format pdf.
+%
+%	Les exemples sont donnés pour un groupe X fictif. Vous devez
+%	rendre une archive contenant un répertoire groupe<lettre de
+%	votre groupe> qui contient lui-même les fichiers à
+%	inclure. Voir exemple fourni et dans la suite de ce fichier.
+%
+%	Pensez à remplacer tous les 'X' par votre étiquette de groupe
+%	(A, B, C ou D).
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[a4paper,12pt]{book}
+
+\usepackage{conception-participative}   % Fichier (./conception-participative.sty) contenant les styles pour
+
+\usepackage{placeins}		% pour que les figures de
+                                % chaque groupe soient dumpées à la
+                                % fin de la section (cf \FloatBarrier
+                                % dans la suite)
+
+%\linespread{1,6}          % Pour une version destinée à un relecteur,
+                           % décommenter cette commande (double interligne)
+
+% UTILISEZ SPELL (correcteur orthographique) à accès simplifié depuis
+% XEmacs
+
+%%% RELISEZ-VOUS entre VOUS, au delà d'un certain nombre de fautes
+%%% d'ortographe par groupe chaque faute fera baisser la note.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\title{Cours de conception centrée utilisateur \\~\\
+Analyse de l'utilisation du site
+en Anglais de l'INSA de Rennes}
+\author{Rapport des étudiants
+  de 5ème année \\du département Informatique de l'INSA de Rennes
+\\~\\Sous la direction de Mireille Ducass\'{e}
+}
+\date{Janvier 2014}
+
+\maketitle
+
+\tableofcontents
+\chapter{Introduction}
+%\input{introduction}
+
+%% l'introduction sera faite au moment de l'édition finale du
+%% document.
+
+% Ceci est juste un exemple d'utilisation de citation
+% bibliographique. Une citation peut apparaître n'importe où dans vos parties,
+% pourvu que la reference correspondante existe dans votre fichier
+% ref.bib . La référence ci-dessous sera bien entendu mise dans le
+% fichier global de références.
+
+L'exercice s'inspire librement du rapport de Wendy Mackay~\cite{mackay-02}.
+
+\section{Contributeurs}
+
+\begin{description}
+\input{groupeD/0-contributeurs}
+\end{description}
+
+\chapter{Scénarios d'utilisation collectés}
+\label{scenarios:utilisation:chapitre}
+
+Ce chapitre rassemble tous les scénarios collectés par les groupes
+d'étudiants. Pour chaque scénario sont indiqués les noms des personnes
+qui dirigent l'entretien~; les initiales et la fonction de la personne
+interrogée avec ses liens de parenté éventuels~; le lieu~; la date, la
+durée et le contexte de l'entretien.
+
+Les consignes étaient de poser les questions 1 et 2 suivantes en début
+de tous les entretiens. Ensuite chaque groupe s'est réparti les
+questions par lesquelles chaque membre continuait chaque entretien et
+enchaînait jusqu'à ce que l'heure d'entretien soit finie. L'objectif
+était de rassembler le plus possible de choses différentes (mode
+"gathering"). On ne cherchait pas à tester des fonctionnalités
+particulières, mais plutôt à voir ce qui passe dans la tête des
+utilisateurs cibles.
+
+\begin{enumerate}
+
+\item Vous souvenez-vous de questions que vous vous êtes  posées avant de venir à l'INSA ? Pour chacune d'elles pouvez vous nous montrer si/comment vous trouvez des réponses sur le site en anglais de l'INSA ?
+\item     Vous posez-vous actuellement des questions sur l'INSA ? Si oui pouvez-vous les formuler et chercher des réponses sur le site en anglais de l'INSA ?
+\item     Quelles informations vous intéressent sur
+\begin{enumerate}
+ \item       l'hébergement ?
+ \item       la restauration ?
+ \item       la gestion administrative de votre séjour l'INSA (relations internationales, scolarité, ...) ?
+ \item       les frais et coût de la vie ?
+ \item       les contenus pédagogiques des cursus ?
+ \item       les doubles diplômes ?
+ \item       les cours donnés en anglais ?
+ \item       la vie étudiante en dehors des cours ? \\
+\end{enumerate}
+         Pour chaque point dire : "Pouvez-vous formuler des questions à ce sujet et chercher des réponses sur le site en anglais de l'INSA ?"
+
+\end{enumerate}
+
+
+\input{groupeD/1-1-utilisation}
+\FloatBarrier
+
+\chapter{Liste des questions des interviewés}
+
+Ce chapitre donne la liste des questions précises que se sont posés
+les interwievés pendant les entretiens.
+
+\input{groupeD/1-2-questions}
+
+\chapter{Bonnes propriétés à préserver}
+
+Ce chapitre décrit les propriétés du site qui ont été identifiées, à
+la suite des entretiens, comme étant à préserver. Elles ne doivent pas
+être remises en cause par les propositions d'amélioration.
+
+
+\input{groupeD/2-invariant}
+
+\chapter{Liste des faiblesses détectées}
+
+Ce chapitre décrit les faiblesses du produit qui ont été détectées lors
+des entretiens avec les utilisateurs  interviewés.
+
+\input{groupeD/3-faiblesse}
+
+\chapter{Suggestions des utilisateurs}
+
+Ce chapitre décrit les suggestions des utilisateurs interviewés.
+
+\input{groupeD/4-suggestion}
+
+\chapter{Résultats des ``brainstormings''}
+
+Ce chapitre liste des suggestions à l'état brut pour les utilisateurs
+ciblés par les groupes d'étudiants. Ces suggestions sont le résultat
+d'une séance de ``brainstorming'' où toutes les idées étaient
+encouragées. Seules certaines ont été retravaillées (cf chapitres
+suivants).
+
+\input{groupeD/5-brainstorming}
+
+
+\chapter{Propositions d'améliorations et nouveaux scénarios d'utilisation}
+Ce chapitre décrit les propositions d'amélioration ainsi que les
+scénarios d'utilisation spécifiés par les étudiants en tenant compte
+des analyses, suggestions et propositions précédemment listées.  Ces
+scénarios ont été soumis à la critique d'un autre groupe d'étudiants
+ainsi qu'à des utilisateurs extérieurs, voir chapitre suivant.
+
+\input{groupeD/6-proposition}
+\FloatBarrier
+
+\chapter{Audits extérieurs}
+
+Ce chapitre décrit le résultat des entretiens faits à l'extérieur de
+la promotion, où l'utilisation du produit a été présentée en tenant
+compte des améliorations proposées. En général ces utilisateurs ont
+été les mêmes que ceux interrogés pour le
+chapitre~\ref{scenarios:utilisation:chapitre}.  Chaque intervieweur a
+presenté les images des améliorations précédentes puis a récolté les
+remarques et critiques émises.
+
+\input{groupeD/7-audit}
+
+\bibliographystyle{plain}
+\begin{thebibliography}{1}
+
+\bibitem{caelen05}
+J.~Caelen, F.~Jambon, and A.~Vidal.
+\newblock Conception participative : des "moments" à leur instrumentation.
+\newblock {\em Revue RIHM, EuropIa éd}, 6(2), 2005.
+
+\bibitem{ducasseCP}
+M.~Ducass\'e.
+\newblock Conception participative.
+\newblock Support de cours, INSA de Rennes, 2009.
+\newblock Remis à jour tous les ans. Disponible à la demande :
+  ducasse@irisa.fr.
+
+\bibitem{mackay-02}
+{Wendy Mackay}.
+\newblock {Using video to support interaction design}.
+\newblock {DVD Tutorial}, {INRIA and ACM/SIGCHI}, {2002}.
+\newblock {Available online at
+  http://stream.cc.gt.atl.ga.us/hccvideos/viddesign.php}.
+
+\end{thebibliography}
+
+%\bibliography{main.bib}
+% \bibliography{groupeD/ref.bib}
+
+\end{document}
