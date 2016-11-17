@@ -1,3 +1,4 @@
+(: Trouver le prix minimum de chaque livre et afficher les résultats sous la forme :)
 <resultats>
 {
   for $titre in distinct-values(doc("refbib.xml")/bib/livre/titre)

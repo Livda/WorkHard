@@ -1,3 +1,4 @@
+(: Afficher pour chaque auteur les titres des livres qu'il a écrit en veillant à ne pas avoir plusieurs fois le même auteur :)
 for
   $auth in distinct-values(doc("refbib.xml")/bib/livre//auteur)
 return

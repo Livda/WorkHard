@@ -1,3 +1,4 @@
+(: Afficher tous les livres en les triant par ordre alphabétique croissant de titre :)
 for $f in doc("refbib.xml")/bib/livre
 order by $f/titre
 return $f

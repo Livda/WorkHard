@@ -1,3 +1,4 @@
+(: Afficher les auteurs des livres sous la forme suivante (sans s'inquiéter de la présence de doublons éventuels) :)
 <auteurs>
 {for $f in doc("refbib.xml")/bib/livre
 return

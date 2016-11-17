@@ -1,3 +1,4 @@
+(: Pour chaque livre ayant au moins un auteur, afficher le titre et les deux premiers auteurs (ou l'unique auteur), puis un élément vide et_al (qui signifie et alii, c'est à dire et les autreq, ou encore les collègues) si le livre a des auteurs supplémentaires :)
 for $livre in doc("refbib.xml")/bib/livre
 return
   if (exists($livre/auteur[2]))

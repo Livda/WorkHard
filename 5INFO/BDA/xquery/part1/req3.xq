@@ -1,3 +1,4 @@
+(: Afficher les livres publiés chez Addison-Wesley après 1992 sous la forme suivante :)
 <biblio>
 {
   for $f in doc("refbib.xml")/bib/livre
