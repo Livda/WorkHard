@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<personnes>
+  <perso_tuple>
+    <idperso>P01</idperso>
+    <nom>Tom Jones</nom>
+    <confiance>B</confiance>
+  </perso_tuple>
+  <perso_tuple>
+    <idperso>P02</idperso>
+    <nom>Mary Doe</nom>
+    <confiance>A</confiance>
+  </perso_tuple>
+  <perso_tuple>
+    <idperso>P03</idperso>
+    <nom>Dee Linquent</nom>
+    <confiance>D</confiance>
+  </perso_tuple>
+  <perso_tuple>
+    <idperso>P04</idperso>
+    <nom>Roger Smith</nom>
+    <confiance>C</confiance>
+  </perso_tuple>
+  <perso_tuple>
+    <idperso>P05</idperso>
+    <nom>Jack Sprat</nom>
+    <confiance>B</confiance>
+  </perso_tuple>
+  <perso_tuple>
+    <idperso>P06</idperso>
+    <nom>Rip Van Winkle</nom>
+    <confiance>B</confiance>
+  </perso_tuple>
+</personnes>

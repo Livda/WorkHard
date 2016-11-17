@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<objets>
+  <obj_tuple>
+    <noobj>1001</noobj>
+    <description>Velo rouge</description>
+    <propose_par>P01</propose_par>
+    <date_debut>2006-01-05</date_debut>
+    <date_fin>2006-01-20</date_fin>
+    <prix_de_reserve>40</prix_de_reserve>
+  </obj_tuple>
+  <obj_tuple>
+    <noobj>1002</noobj>
+    <description>Moto</description>
+    <propose_par>P02</propose_par>
+    <date_debut>2006-02-11</date_debut>
+    <date_fin>2006-03-15</date_fin>
+    <prix_de_reserve>500</prix_de_reserve>
+  </obj_tuple>
+  <obj_tuple>
+    <noobj>1003</noobj>
+    <description>Tres vieux velo</description>
+    <propose_par>P02</propose_par>
+    <date_debut>2006-01-10</date_debut>
+    <date_fin>2006-02-20</date_fin>
+    <prix_de_reserve>25</prix_de_reserve>
+  </obj_tuple>
+  <obj_tuple>
+    <noobj>1004</noobj>
+    <description>Tricycle</description>
+    <propose_par>P01</propose_par>
+    <date_debut>2006-02-25</date_debut>
+    <date_fin>2006-03-08</date_fin>
+    <prix_de_reserve>15</prix_de_reserve>
+  </obj_tuple>
+  <obj_tuple>
+    <noobj>1005</noobj>
+    <description>Raquette de tennis</description>
+    <propose_par>P03</propose_par>
+    <date_debut>2006-03-19</date_debut>
+    <date_fin>2006-04-30</date_fin>
+    <prix_de_reserve>20</prix_de_reserve>
+  </obj_tuple>
+  <obj_tuple>
+    <noobj>1006</noobj>
+    <description>Helicoptere</description>
+    <propose_par>P03</propose_par>
+    <date_debut>2006-05-05</date_debut>
+    <date_fin>2006-05-25</date_fin>
+    <prix_de_reserve>50000</prix_de_reserve>
+  </obj_tuple>
+  <obj_tuple>
+    <noobj>1007</noobj>
+    <description>Velo de course</description>
+    <propose_par>P04</propose_par>
+    <date_debut>2006-01-20</date_debut>
+    <date_fin>2006-02-20</date_fin>
+    <prix_de_reserve>200</prix_de_reserve>
+  </obj_tuple>
+  <obj_tuple>
+    <noobj>1008</noobj>
+    <description>Velo casse</description>
+    <propose_par>P01</propose_par>
+    <date_debut>2006-02-05</date_debut>
+    <date_fin>2006-03-06</date_fin>
+    <prix_de_reserve>25</prix_de_reserve>
+  </obj_tuple>
+</objets>
+
