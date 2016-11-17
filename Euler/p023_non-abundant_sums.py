@@ -19,13 +19,16 @@ for number in range(lower_bound, upper_bound):
 # find all the numbers that are not a sum of abundant numbers
 not_sum_of_abundant = []
 for number in range(1, upper_bound):
+    find = False
     for n1 in abundant_numbers:
-        if n1 > number:
+        if n1 > number or find:
             break
         for n2 in abundant_numbers:
-            if n2 > number:
+            if n2 >= n1 or find:
                 break
-            if (n1 != n2) and ((n1+n2) == number):
-                not_sum_of_abundant.append(number)
+            if (n1+n2) == number:
+                find = True
+    if not find:
+        not_sum_of_abundant.append(number)
 
 print(not_sum_of_abundant)
