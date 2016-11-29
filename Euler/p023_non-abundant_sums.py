@@ -16,19 +16,24 @@ for number in range(lower_bound, upper_bound):
         divisors_sum += n
     if divisors_sum > number:
         abundant_numbers.append(number)
+        print(number)
 # find all the numbers that are not a sum of abundant numbers
 not_sum_of_abundant = []
 for number in range(1, upper_bound):
     find = False
     for n1 in abundant_numbers:
-        if n1 > number or find:
+        if n1 > number or not find:
             break
         for n2 in abundant_numbers:
-            if n2 >= n1 or find:
+            if n2 >= n1 or not find:
                 break
             if (n1+n2) == number:
                 find = True
     if not find:
         not_sum_of_abundant.append(number)
-
-print(not_sum_of_abundant)
+sum = 0
+for num in not_sum_of_abundant:
+    sum += num
+print(sum)
+# result : 395437503
+# python3 p023_non-abundant_sums.py  28,36s user 0,25s system 99% cpu 28,722 total
