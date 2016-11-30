@@ -1,39 +1,35 @@
-def all_divisors(number):
-    array = []
-    for divisor in range(1, number//2+1):
-        if number % divisor == 0:
-            array.append(divisor)
-    return array
+# get all the divisors of a number
+def divisors(nb, extremum = False):
+    divisors = []
+    inf = 1 if extremum else 2
+    for i in range(inf, int(nb**0.5)+1):
+        q, r = divmod(nb, i)
+        if r == 0:
+            if q >= i:
+                divisors.append(i)
+                if q > i:
+                    divisors.append(nb//i)
+    return divisors
 
+# test if the number n is abuntant
+def is_abundant(n):
+    return sum(divisors(n))+1 > n
+
+# generate a list with all the abundant number under the upper_bound
 upper_bound = 28123
-lower_bound = 12
-abundant_numbers = []
-# find all the abundant number between the bounds
-for number in range(lower_bound, upper_bound):
-    divisors = all_divisors(number)
-    divisors_sum = 0
-    for n in divisors:
-        divisors_sum += n
-    if divisors_sum > number:
-        abundant_numbers.append(number)
-        print(number)
-# find all the numbers that are not a sum of abundant numbers
-not_sum_of_abundant = []
-for number in range(1, upper_bound):
-    find = False
-    for n1 in abundant_numbers:
-        if n1 > number or not find:
+abundants = [i for i in range(2, upper_bound+1) if is_abundant(i)]
+sommes = {}
+# generate all the possible sum of abundant numbers
+for i in range(len(abundants)):
+    for j in range(i, len(abundants)):
+        somme = abundants[i] + abundants[j]
+        if somme > upper_bound:
             break
-        for n2 in abundant_numbers:
-            if n2 >= n1 or not find:
-                break
-            if (n1+n2) == number:
-                find = True
-    if not find:
-        not_sum_of_abundant.append(number)
-sum = 0
-for num in not_sum_of_abundant:
-    sum += num
-print(sum)
-# result : 395437503
-# python3 p023_non-abundant_sums.py  28,36s user 0,25s system 99% cpu 28,722 total
+        sommes[somme] = 1
+
+resultat = (upper_bound*(upper_bound+1))//2 - sum(sommes.keys())
+print(resultat)
+
+# > time python3 p023_non-abundant_sums.py
+# 4179871
+# python3 p023_non-abundant_sums.py  6,37s user 0,01s system 100% cpu 6,379 total
