@@ -4,7 +4,6 @@ from random import randint
 from faker import Factory
 
 database_size = 1000000
-file_name_N1 = 'fat_table.sql'
 customers_number = 3000
 sellers_number = 700
 products_number = 2400
@@ -65,7 +64,7 @@ def generate_products(size):
   return products
 
 def big_N1_table(sellers, customers, products):
-  table_name = "Fat_table"
+  table_name = "fat_table"
   f = open(table_name + '.sql', 'w')
   attributes = [
     "product_id INT NOT NULL",
@@ -113,7 +112,7 @@ def big_N1_table(sellers, customers, products):
   return commands
 
 def small_tables(sellers, customers, products, commands):
-  table_name = "Customer"
+  table_name = "customer"
   f = open(table_name + '.sql', 'w')
   attributes = [
     "customer_id INT NOT NULL PRIMARY KEY",
@@ -127,7 +126,7 @@ def small_tables(sellers, customers, products, commands):
   f.write(generate_into(table_name, attributes,  customers))
   f.close()
 
-  table_name = "Product"
+  table_name = "product"
   f = open(table_name + '.sql', 'w')
   attributes = [
     "product_id INT NOT NULL PRIMARY KEY",
@@ -142,7 +141,7 @@ def small_tables(sellers, customers, products, commands):
   f.write(generate_into(table_name, attributes, products))
   f.close()
 
-  table_name = "Seller"
+  table_name = "seller"
   f = open(table_name + '.sql', 'w')
   attributes = [
     "seller_id INT NOT NULL PRIMARY KEY",
@@ -154,7 +153,7 @@ def small_tables(sellers, customers, products, commands):
   f.write(generate_into(table_name, attributes, sellers))
   f.close()
 
-  table_name = "Command"
+  table_name = "command"
   f = open(table_name + '.sql', 'w')
   attributes = [
     "command_id INT NOT NULL PRIMARY KEY",
@@ -221,7 +220,7 @@ def generate_into(table_name, attributes, values):
     result += batch
   return result
 
-#generation des trucs qu'on va utiliser
+# géneration des trucs qu'on va utiliser
 sellers = generate_sellers(sellers_number)
 customers = generate_customers(customers_number)
 products = generate_products(products_number)
