@@ -3,6 +3,7 @@ from random import randint
 # sudo pip3 install faker
 from faker import Factory
 
+# changer uniquement ces valeurs pour modifier la génération
 database_size = 1000000
 customers_number = 3000
 sellers_number = 700
