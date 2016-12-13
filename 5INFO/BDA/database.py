@@ -15,6 +15,7 @@ fake = Factory.create('fr_FR')
 
 # génère des vendeurs
 def generate_sellers(size):
+  print("Début de la génétation des vendeurs")
   sellers = []
   IDs = []
   for i in range(0, size):
@@ -30,10 +31,12 @@ def generate_sellers(size):
     # calcul d'une date comprise entre il y a 50 ans et aujourd'hui
     admittance_day = fake.date_time_between("-50y", "now").date()
     sellers.append([id, name, admittance_day])
+  print("Fin de la génération des vendeurs")
   return sellers
 
 # génère des clients
 def generate_customers(size):
+  print("Début de la génétation des clients")
   customers = []
   for i in range(0, size):
     # generation d'un ID incrémental
@@ -45,10 +48,12 @@ def generate_customers(size):
     # calcul d'une adresse
     address = fake.street_address()
     customers.append([id, name, phone_number, address])
+  print("Fin de la génétation des clients")
   return customers
 
 # génère les produits
 def generate_products(size):
+  print("Début de la génétation des produits")
   products = []
   for i in range(0, size):
     # generation d'un ID incrémental
@@ -62,6 +67,7 @@ def generate_products(size):
     # generation d'un cout
     cost = randint(50, 250)
     products.append([id, name, color, description, cost])
+  print("Fin de la génétation des produits")
   return products
 
 def big_N1_table(sellers, customers, products):
@@ -164,6 +170,7 @@ def small_tables(sellers, customers, products, commands):
 
 # permet de factoriser la creation des tables
 def generate_table_header(table_name, attributes):
+  print("Création de l'entête de la table", table_name)
   result = "CREATE TABLE " + table_name + " (\n"
   for attribute in attributes:
     result += "    " + attribute
@@ -171,9 +178,11 @@ def generate_table_header(table_name, attributes):
       result += ",\n"
     else:
       result += "\n);\n"
+  print(" Entête de la table", table_name, "finie")
   return result
 
 def generate_into(table_name, attributes, values):
+  print("Génération des lignes d'insertion de la table", table_name)
   result = ""
   for i in range(0, len(values), batch_size):
     batch = "INSERT INTO " + table_name +" ("
@@ -214,6 +223,7 @@ def generate_into(table_name, attributes, values):
       else:
         batch += "),\n"
     result += batch
+  print("Lignes d'insertions", table_name, "générée")
   return result
 
 # géneration des trucs qu'on va utiliser
