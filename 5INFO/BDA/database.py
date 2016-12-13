@@ -113,8 +113,8 @@ def big_N1_table(sellers, customers, products):
   return commands
 
 def small_tables(sellers, customers, products, commands):
+  f = open('small_tables.sql', 'w')
   table_name = "customer"
-  f = open(table_name + '.sql', 'w')
   attributes = [
     "customer_id INT NOT NULL PRIMARY KEY",
     "customer_name VARCHAR(50)",
@@ -125,10 +125,8 @@ def small_tables(sellers, customers, products, commands):
   attributes = ["customer_id", "customer_name", "customer_phone",
                 "customer_address"]
   f.write(generate_into(table_name, attributes,  customers))
-  f.close()
 
   table_name = "product"
-  f = open(table_name + '.sql', 'w')
   attributes = [
     "product_id INT NOT NULL PRIMARY KEY",
     "product_name VARCHAR(100)",
@@ -140,10 +138,8 @@ def small_tables(sellers, customers, products, commands):
   attributes = ["product_id", "product_name", "product_color",
                 "product_description", "product_cost"]
   f.write(generate_into(table_name, attributes, products))
-  f.close()
 
   table_name = "seller"
-  f = open(table_name + '.sql', 'w')
   attributes = [
     "seller_id INT NOT NULL PRIMARY KEY",
     "seller_name VARCHAR(50)",
@@ -152,10 +148,8 @@ def small_tables(sellers, customers, products, commands):
   f.write(generate_table_header(table_name, attributes))
   attributes = ["seller_id", "seller_name", "seller_admittance_day"]
   f.write(generate_into(table_name, attributes, sellers))
-  f.close()
 
   table_name = "command"
-  f = open(table_name + '.sql', 'w')
   attributes = [
     "command_id INT NOT NULL PRIMARY KEY",
     "product_id INT REFERENCES Product(product_id)",
@@ -166,6 +160,7 @@ def small_tables(sellers, customers, products, commands):
   f.write(generate_table_header(table_name, attributes))
   attributes = ["command_id", "product_id", "seller_id", "customer_id", "command_date"]
   f.write(generate_into(table_name, attributes, commands))
+  f.close()
 
 # permet de factoriser la creation des tables
 def generate_table_header(table_name, attributes):
