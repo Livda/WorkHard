@@ -199,12 +199,15 @@ def generate_into(table_name, attributes, values):
     for k in range(0, batch_size):
       if i+k >= len(values):
         break
+      # add spaces for nice indentation
       batch += "    ("
       value = values[i+k]
       value_len = len(value)
       # ajout de tous les attributs sauf le dernier
       for l in range(0, value_len - 1):
         attr = value[l]
+        # test if the attribute is an int or something
+        # put some ' around the non int value
         if isinstance(attr, int):
           batch += str(attr)
         else:
