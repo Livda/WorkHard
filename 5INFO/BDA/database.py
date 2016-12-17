@@ -3,69 +3,72 @@ from random import randint
 # sudo pip3 install faker
 from faker import Factory
 
-# changer uniquement ces valeurs pour modifier la génération
+# ONLY change this values to modify the generation
 database_size = 1000000
 customers_number = 3000
 sellers_number = 700
 products_number = 2400
 batch_size = 25000
 
-# initialisation du Faker pour générer plein de trucs random
+# Faker initialisation, which help us for pretty random generation
 fake = Factory.create('fr_FR')
 
-# génère des vendeurs
+# generate all the sellers
 def generate_sellers(size):
   print("Début de la génétation des vendeurs")
   sellers = []
   IDs = []
   for i in range(0, size):
-    # calcul de l'ID aléatoire
+    # calculation for a random ID
     new_id = randint(1, 2000)
-    # verification si l'id a deja été généré
+    # check if the ID is already generated
     while (new_id in IDs):
       new_id = randint(1, 2000)
     IDs.append(new_id)
     id = new_id
-    # calcul d'un nom random
+    # new random name
     name = fake.name()
-    # calcul d'une date comprise entre il y a 50 ans et aujourd'hui
+    # new random date between 50 years ago and today
     admittance_day = fake.date_time_between("-50y", "now").date()
+    # add the seller in the array
     sellers.append([id, name, admittance_day])
   print("Fin de la génération des vendeurs")
   return sellers
 
-# génère des clients
+# generate all the customers
 def generate_customers(size):
   print("Début de la génétation des clients")
   customers = []
   for i in range(0, size):
-    # generation d'un ID incrémental
+    # create an incremental ID
     id = i + 1
-    # calcul d'un nom random
+    # new random name
     name = fake.name()
-    # calcul du numéro de téléphone
+    # new random phone number
     phone_number = fake.phone_number()
-    # calcul d'une adresse
+    # new random address
     address = fake.street_address()
+    # add the custosmer to the array
     customers.append([id, name, phone_number, address])
   print("Fin de la génétation des clients")
   return customers
 
-# génère les produits
+# generate all the products
 def generate_products(size):
   print("Début de la génétation des produits")
   products = []
   for i in range(0, size):
-    # generation d'un ID incrémental
+    # create an incremental ID
     id = i + 1
-    # generation d'un nom
+    # new random name
     name = fake.word()
-    # generation d'une couleur
+    # new random color
     color = fake.safe_color_name()
-    # generation d'un description
+    # new random words as description
     description = fake.sentence(nb_words=20)
-    # generation d'un cout
+    # new random int between 50 and 250
     cost = randint(50, 250)
+    # add the product to the array
     products.append([id, name, color, description, cost])
   print("Fin de la génétation des produits")
   return products
@@ -93,18 +96,16 @@ def big_N1_table(sellers, customers, products):
   commands = []
   entries = []
   for i in range(0, database_size):
-    # selection d'un produit, d'un client et d'un vendeur au hasard dans les
-    # listes passées en paramètres
+    # select a product, a customer and a seller randomly in the parameters list
     product = products[randint(0, products_number-1)]
     customer = customers[randint(0, customers_number-1)]
     seller = sellers[randint(0, sellers_number-1)]
-    # création d'un id incrémental
+    # create an incremental ID
     command_id = i + 1
-    # génération d'une date entre la date d'embauche du vendeur et aujourd'hui
+    # generate a date between the admition day of the seller and today
     command_date = fake.date_time_between_dates(seller[2], datetime.datetime.now().date())
     commands.append([command_id, product[0], seller[0], customer[0], command_date])
-    # creation d'un tableau avec toutes les infos nescessaires pour le remplissage
-    # par paquets
+    # create an array with all the data required for the batch filling
     fat_entry = [product[0], product[1], product[2], product[3], product[4],
                  customer[0], customer[1], customer[2], customer[3],
                  seller[0], seller[1], seller[2], command_id, command_date]
@@ -168,7 +169,7 @@ def small_tables(sellers, customers, products, commands):
   f.write(generate_into(table_name, attributes, commands))
   f.close()
 
-# permet de factoriser la creation des tables
+# generate the "CREATE TABLE" instruction
 def generate_table_header(table_name, attributes):
   print("Création de l'entête de la table", table_name)
   result = "CREATE TABLE " + table_name + " (\n"
@@ -181,6 +182,7 @@ def generate_table_header(table_name, attributes):
   print(" Entête de la table", table_name, "finie")
   return result
 
+# generete the "INSERT INTO" instructions by batch
 def generate_into(table_name, attributes, values):
   print("Génération des lignes d'insertion de la table", table_name)
   result = ""
@@ -203,7 +205,7 @@ def generate_into(table_name, attributes, values):
       batch += "    ("
       value = values[i+k]
       value_len = len(value)
-      # ajout de tous les attributs sauf le dernier
+      # add all the attributes but not the last
       for l in range(0, value_len - 1):
         attr = value[l]
         # test if the attribute is an int or something
@@ -213,29 +215,27 @@ def generate_into(table_name, attributes, values):
         else:
           batch += "\'" + str(attr) + "\'"
         batch += ", "
-      # ajout du dernier attribut
+      # add the last attribute
       attr = value[value_len-1]
       if isinstance(attr, int):
         batch += str(attr)
       else:
         batch += "\'" + str(attr) + "\'"
-      # si on arrive à la fin du batch,
-      # ou qu'on arrive au bout du tableau de valeurs
-      # on fini la requete SQL
+      # if it's the end of the batch or the end of the array
+      # the SQL request is ended
       if k == batch_size -1 or i + k + 1 >= len(values):
         batch += ")\n;\n"
-      # sinon on met une virgule pour continuer d'ajouter
-      # des valeurs
+      # otherwise we put a comma to continue the insertions
       else:
         batch += "),\n"
     result += batch
   print("Lignes d'insertions", table_name, "générées")
   return result
 
-# géneration des trucs qu'on va utiliser
+# generate stuff we're gonna to use
 sellers = generate_sellers(sellers_number)
 customers = generate_customers(customers_number)
 products = generate_products(products_number)
-# creation et remplissage des fichiers
+# creation and filling the files
 commands = big_N1_table(sellers, customers, products)
 small_tables(sellers, customers, products, commands)
