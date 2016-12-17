@@ -185,6 +185,8 @@ def generate_into(table_name, attributes, values):
   print("Génération des lignes d'insertion de la table", table_name)
   result = ""
   for i in range(0, len(values), batch_size):
+    # generation of the first line in which the attribute names and their order
+    # is defined
     batch = "INSERT INTO " + table_name +" ("
     attributes_len = len(attributes)
     for j in range(0, len(attributes)-1):
@@ -193,6 +195,7 @@ def generate_into(table_name, attributes, values):
       batch += ", "
     batch += attributes[attributes_len-1] + ")\n"
     batch += "VALUES\n"
+    # insertion of all the values ordered as we define before
     for k in range(0, batch_size):
       if i+k >= len(values):
         break
