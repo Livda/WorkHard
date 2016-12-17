@@ -223,7 +223,7 @@ def generate_into(table_name, attributes, values):
       else:
         batch += "),\n"
     result += batch
-  print("Lignes d'insertions", table_name, "générée")
+  print("Lignes d'insertions", table_name, "générées")
   return result
 
 # géneration des trucs qu'on va utiliser
