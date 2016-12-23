@@ -1,5 +1,8 @@
+# This script use Python3, install it !
 import datetime
 from random import randint
+# It need an external lib, so you have to download it
+# with the following command line :
 # sudo pip3 install faker
 from faker import Factory
 
