@@ -103,6 +103,7 @@ def big_N1_table(sellers, customers, products):
     product = products[randint(0, products_number-1)]
     customer = customers[randint(0, customers_number-1)]
     seller = sellers[randint(0, sellers_number-1)]
+    print("Selection des infos pour la ligne", i)
     # create an incremental ID
     command_id = i + 1
     # generate a date between the admition day of the seller and today
@@ -118,7 +119,7 @@ def big_N1_table(sellers, customers, products):
                 "customer_name", "customer_phone", "customer_address",
                 "seller_id", "seller_name", "seller_admittance_day",
                 "command_id", "command_date"]
-  f.write(generate_into(table_name, attributes, entries))
+  generate_into(table_name, attributes, entries, f)
   f.close()
   return commands
 
@@ -134,7 +135,7 @@ def small_tables(sellers, customers, products, commands):
   f.write(generate_table_header(table_name, attributes))
   attributes = ["customer_id", "customer_name", "customer_phone",
                 "customer_address"]
-  f.write(generate_into(table_name, attributes,  customers))
+  generate_into(table_name, attributes,  customers, f)
 
   table_name = "product"
   attributes = [
@@ -147,7 +148,7 @@ def small_tables(sellers, customers, products, commands):
   f.write(generate_table_header(table_name, attributes))
   attributes = ["product_id", "product_name", "product_color",
                 "product_description", "product_cost"]
-  f.write(generate_into(table_name, attributes, products))
+  generate_into(table_name, attributes, products, f)
 
   table_name = "seller"
   attributes = [
@@ -157,7 +158,7 @@ def small_tables(sellers, customers, products, commands):
   ]
   f.write(generate_table_header(table_name, attributes))
   attributes = ["seller_id", "seller_name", "seller_admittance_day"]
-  f.write(generate_into(table_name, attributes, sellers))
+  generate_into(table_name, attributes, sellers, f)
 
   table_name = "command"
   attributes = [
@@ -169,7 +170,7 @@ def small_tables(sellers, customers, products, commands):
   ]
   f.write(generate_table_header(table_name, attributes))
   attributes = ["command_id", "product_id", "seller_id", "customer_id", "command_date"]
-  f.write(generate_into(table_name, attributes, commands))
+  generate_into(table_name, attributes, commands, f)
   f.close()
 
 # generate the "CREATE TABLE" instruction
@@ -182,13 +183,12 @@ def generate_table_header(table_name, attributes):
       result += ",\n"
     else:
       result += "\n);\n"
-  print(" Entête de la table", table_name, "finie")
+  print("Entête de la table", table_name, "finie")
   return result
 
 # generete the "INSERT INTO" instructions by batch
-def generate_into(table_name, attributes, values):
+def generate_into(table_name, attributes, values, file):
   print("Génération des lignes d'insertion de la table", table_name)
-  result = ""
   for i in range(0, len(values), batch_size):
     # generation of the first line in which the attribute names and their order
     # is defined
@@ -231,9 +231,10 @@ def generate_into(table_name, attributes, values):
       # otherwise we put a comma to continue the insertions
       else:
         batch += "),\n"
-    result += batch
+    file.write(batch)
+    print("Ajout d'un batch dans ", table_name)
   print("Lignes d'insertions", table_name, "générées")
-  return result
+  return 1
 
 # generate stuff we're gonna to use
 sellers = generate_sellers(sellers_number)
